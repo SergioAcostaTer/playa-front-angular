@@ -1,9 +1,8 @@
-
-
 <!-- Main Layout -->
-<main class="bg-gray-100 min-h-screen w-full flex flex-col items-center">
-  <app-header class="w-full"></app-header>
-  <app-beach-detail class="w-full h-[calc(100dvh-80px)]"></app-beach-detail>
+<main class="bg-gray-100 min-h-screen flex flex-col items-center justify-between relative">
+  <Header class="w-full sticky top-0 z-10 h-16"></Header>
+  <div class="flex-grow w-full">
+    <router-outlet class="w-full h-full"></router-outlet>
+  </div>
+  <Footer class="w-full bg-gray-800 text-white p-4"></Footer>
 </main>
-
-<router-outlet />
