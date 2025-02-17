@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { LoginComponent } from "../../pages/login/login.component";
 
 @Component({
   selector: 'Header',
-  imports: [],
+  imports: [LoginComponent],
   templateUrl: './header.component.html',
 })
 export class HeaderComponent {
