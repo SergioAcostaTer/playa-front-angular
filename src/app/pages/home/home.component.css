@@ -1,0 +1,86 @@
+#banner {
+    background-image: url('/las-canteras.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 25vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+    position: relative;
+    padding: 0 20px;
+}
+
+#banner h1 {
+    margin: 0;
+    text-align: center;
+    line-height: 1.2;
+    letter-spacing: 1px;
+}
+
+#banner div {
+    width: 80%;
+    margin-top: 20px;
+    position: absolute;
+    margin: auto 0;
+    bottom: -22px;
+}
+
+#banner div input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#banner div input::placeholder {
+    color: #888;
+}
+
+#banner div input:focus {
+    background-color: #fff;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+
+#beach-grid {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    justify-items: center;
+    padding: 27px;
+}
+
+@media screen and (min-width: 768px) {
+    #banner div {
+        max-width: 600px;
+        bottom: -31px;
+    }
+
+    #banner {
+        height: 40vh;
+    }
+
+    #banner div input {
+        padding: 1rem;
+    }
+
+    #beach-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 25px;
+        justify-items: center;
+        padding: 40px 80px;
+    }
+}

@@ -1,44 +1,31 @@
 <!-- Header Component -->
-<header class="w-full h-full bg-white flex items-center px-6 border-b-1" id="header">
-    <h1 class="text-2xl font-bold">TuPlaya.com</h1>
+<header id="header">
+    <!-- Menu Button (Hamburger for small screens) -->
+    <button id="menu-button" aria-label="Toggle menu" class="menu-button">
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 50 50"
+            id="menu-icon">
+            <path
+                d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z">
+            </path>
+        </svg>
+    </button>
 
-    <nav class="ml-auto flex items-center space-x-4">
+    <a href="/" class="logo">
+        <h1 class="text-2xl font-bold">Playea</h1>
+    </a>
+
+    <!-- Navigation Menu -->
+    <nav id="nav-menu" class="flex items-center justify-center space-x-4">
         <ul class="list">
-            <li>
-                <a href="/" class="list-element">Home</a>
-            </li>
-            <li>
-                <a href="/login" class="list-element">Login</a>
-            </li>
+            <li><a href="/" class="list-element">Home</a></li>
+            <li><a href="/login" class="list-element">Login</a></li>
         </ul>
     </nav>
 
-
-    <style>
-        .red-bg {
-            background-color: red;
-        }
-
-        #header {
-            background-color: red;
-        }
-
-        .list-element {
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        .list-element:hover {
-            color: black;
-        }
-
-        .list {
-            display: flex;
-            list-style-type: none;
-            gap: 1rem;
-        }
-
-
-    </style>
-
+    <!-- Right Side: Avatar -->
+    <div id="right-menu" class="flex items-center space-x-4">
+        <div id="avatar">
+            <img src="/avatar.jpg" alt="User Avatar">
+        </div>
+    </div>
 </header>

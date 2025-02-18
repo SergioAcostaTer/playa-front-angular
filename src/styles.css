@@ -1,1 +1,36 @@
 @import "tailwindcss";
+@import "tailwindcss/preflight.css" layer(base);
+
+:root {
+    /* Primary Colors */
+    --primary-color: #896e00; /* Warm sand color */
+    --secondary-color: #0099cc; /* Ocean blue */
+    --accent-color: #00bfae; /* Seafoam green */
+
+    /* Text Colors */
+    --text-color: #333333; /* Dark text for readability */
+    --header-text-color: #ffffff; /* White text for headers */
+    --footer-text-color: #f0e1a1; /* Light sandy beige for footer text */
+
+    /* Background Colors */
+    --header-background: #4e3629; /* Beachwood - dark wood for header */
+    --footer-background: #b78c3d; /* Darker sand tone for footer */
+    --main-background: #ffffff; /* Clean white background */
+    --section-background: #aee2d8; /* Light seafoam green for sections */
+    
+    /* Accent Colors */
+    --button-background: #ff7f50; /* Coral color for buttons */
+    --button-text-color: #ffffff; /* White text on buttons */
+    --link-color: #0099cc; /* Ocean blue for links */
+    --link-hover-color: #00bfae; /* Seafoam green on hover */
+    
+    /* Other Colors */
+    --light-sand: #f0e1a1; /* Light sandy beige */
+    --sky-blue: #87ceeb; /* Clear sky blue */
+    --sunset-orange: #ff7043; /* Warm sunset orange */
+    --seafoam: #aee2d8; /* Light seafoam green */
+    --beachwood: #4e3629; /* Driftwood brown */
+
+    /* Border Colors */
+    --header-border: #4e3629; /* Dark wood border for header */
+}
