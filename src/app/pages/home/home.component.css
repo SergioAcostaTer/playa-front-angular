@@ -60,6 +60,7 @@
     gap: 20px;
     justify-items: center;
     padding: 27px;
+    align-items: center;
 }
 
 @media screen and (min-width: 768px) {
@@ -82,5 +83,14 @@
         gap: 25px;
         justify-items: center;
         padding: 40px 80px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+
+    #beach-grid {
+        padding: 40px 120px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+
     }
 }

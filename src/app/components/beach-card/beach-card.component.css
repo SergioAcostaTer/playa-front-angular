@@ -6,6 +6,7 @@
   max-width: 350px;
   background-color: #fff;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
 }
 
 .card-image {

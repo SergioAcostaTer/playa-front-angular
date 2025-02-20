@@ -1,31 +1,18 @@
-<!-- Header Component -->
-<div>
-    <div id="banner">
-        <h1>Busca tu playa</h1>
+<div id="banner">
+    <h1>Busca tu playa</h1>
+    <div>
+        <input type="text" placeholder="Busca destinos...">
+    </div>
+</div>
 
-        <div>
-            <input type="text" placeholder="Busca destinos...">
-        </div>
-    </div>
-    <div id="beach-grid">
-        <app-beach-card [imageUrl]="'/las-canteras.jpg'" [title]="'Playa de Las Canteras'" [rating]="'4.5'"
-            [distance]="'A 2 km'"
-            [recommended]="true"></app-beach-card>
-        <app-beach-card [imageUrl]="'/las-canteras.jpg'" [title]="'Playa de Las Canteras'" [rating]="'4.5'"
-            [distance]="'A 2 km'"></app-beach-card>
-        <app-beach-card [imageUrl]="'/las-canteras.jpg'" [title]="'Playa de Las Canteras'" [rating]="'4.5'"
-            [distance]="'A 2 km'"></app-beach-card>
-        <app-beach-card [imageUrl]="'/las-canteras.jpg'" [title]="'Playa de Las Canteras'" [rating]="'4.5'"
-            [distance]="'A 2 km'"></app-beach-card>
-        <app-beach-card [imageUrl]="'/las-canteras.jpg'" [title]="'Playa de Las Canteras'" [rating]="'4.5'"
-            [distance]="'A 2 km'"></app-beach-card>
-        <app-beach-card [imageUrl]="'/las-canteras.jpg'" [title]="'Playa de Las Canteras'" [rating]="'4.5'"
-            [distance]="'A 2 km'"></app-beach-card>
-        <app-beach-card
-            [imageUrl]="'https://www.holaislascanarias.com/sites/default/files/styles/colorbox_image/public/resources/resource_image/dunas_de_maspalomas-gran_canaria_2.jpg'"
-            [title]="'Playa de Maspalomas'" [rating]="'4.8'" [distance]="'A 5 km'"></app-beach-card>
-        <app-beach-card
-            [imageUrl]="'https://www.holaislascanarias.com/sites/default/files/styles/masonry_image/public/resources/resource_image/PH19473.jpg'"
-            [title]="'Playa de Los Sargos'" [rating]="'4.2'" [distance]="'A 10 km'"></app-beach-card>
-    </div>
+<div id="beach-grid" *ngIf="beaches?.length">
+    <app-beach-card
+        class="w-full flex flex-col items-center"
+        *ngFor="let beach of beaches"
+        [imageUrl]="beach.imageUrl"
+        [title]="beach.title"
+        [rating]="beach.rating"
+        [distance]="beach.distance"
+        [recommended]="beach.recommended">
+    </app-beach-card>
 </div>
