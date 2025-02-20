@@ -6,32 +6,11 @@
 </div>
 
 <div class="categories-container">
-    <h2>Categorías</h2>
     <div class="categories">
-        <div class="category">
-            <img src="https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg" alt="Playas">
-            <p>Playas</p>
-        </div>
-        <div class="category">
-            <img src="assets/images/mountain.svg" alt="Montañas">
-            <p>Montañas</p>
-        </div>
-        <div class="category">
-            <img src="assets/images/city.svg" alt="Ciudades">
-            <p>Ciudades</p>
-        </div>
-        <div class="category">
-            <img src="assets/images/forest.svg" alt="Bosques">
-            <p>Bosques</p>
-        </div>
-        <div class="category">
-            <img src="assets/images/desert.svg" alt="Desiertos">
-            <p>Desiertos</p>
-        </div>
-        <div class="category">
-            <img src="assets/images/lake.svg" alt="Lagos">
-            <p>Lagos</p>
-        </div>
+      <div class="category" *ngFor="let category of categories">
+        <img [src]="categoryImage" [alt]="category">
+        <p>{{ category }}</p>
+      </div>
     </div>
 </div>
 
@@ -48,62 +27,89 @@
 </div>
 
 <style>
-    /* Contenedor principal */
     .categories-container {
         width: 100%;
-        padding: 1rem 0;
+        border-bottom: 1px solid #e0e0e0;
+        box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.05);
+        /* box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);  */
+        margin-top: 40px;
+        padding: 0;
     }
 
-    /* Scroll horizontal */
     .categories {
         display: flex;
-        gap: 1rem;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
-        scroll-padding: 1rem;
         white-space: nowrap;
-        padding-bottom: 0.5rem;
+        padding: 0;
+        width: 100%;
+        gap: 5px;
     }
 
-    /* Minimal scrollbar */
     .categories::-webkit-scrollbar {
-        height: 6px;
+        height: 0;
     }
 
     .categories::-webkit-scrollbar-track {
-        background: #f1f1f1;
         border-radius: 10px;
     }
 
     .categories::-webkit-scrollbar-thumb {
-        background: #bbb;
         border-radius: 10px;
     }
 
-    .categories::-webkit-scrollbar-thumb:hover {
-        background: #999;
-    }
-
-    /* Cada categoría */
     .category {
         flex: 0 0 auto;
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        background: #f7f7f7;
-        padding: 1rem;
-        border-radius: 10px;
-        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s ease-in-out;
         cursor: pointer;
-        min-width: 120px;
+        min-width: 80px;
+        max-width: 80px;
         scroll-snap-align: center;
+        border-bottom: 2px solid transparent;
+        padding: 10px 5px;
+        transition: border-bottom 0.2s ease-in-out;
+    }
+
+    .category:hover, .category:active, .category.active:hover {
+        border-bottom: 2px solid #474747;
+    }
+
+    .category:first-child {
+        margin-left: 10px;
+    }
+
+    .category:last-child {
+        margin-right: 10px;
     }
 
     .category img {
-        width: 50px;
-        height: 50px;
+        width: 24px;
+        height: 24px;
         margin-bottom: 0.5rem;
+    }
+
+    .category p {
+        font-size: 0.8rem;
+        margin: 0;
+    }
+
+    @media screen and (min-width: 768px) {
+        .categories {
+            gap: 0px;
+        }
+
+        .category {
+            min-width: 100px;
+            max-width: 100px;
+        }
+
+        .category img {
+            width: 32px;
+            height: 32px;
+        }
     }
 </style>
