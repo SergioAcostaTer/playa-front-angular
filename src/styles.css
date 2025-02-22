@@ -34,3 +34,8 @@
     /* Border Colors */
     --header-border: #4e3629; /* Dark wood border for header */
 }
+
+
+main{
+    width: 100%;
+}
