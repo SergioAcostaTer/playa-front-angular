@@ -5,7 +5,7 @@
   width: 100%;
   background-color: var(--header-background);
   color: var(--header-text-color);
-  padding: 0 1rem;
+  padding: 0 4rem;
   height: 4rem;
   border-bottom: 1px solid var(--header-border-color);
   position: fixed;
@@ -29,8 +29,8 @@
 }
 
 #menu-icon {
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 2rem;
+  height: 2rem;
   fill: var(--header-text-color);
 }
 
@@ -38,6 +38,8 @@
   width: 2.7rem;
   height: 2.7rem;
   border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid var(--header-text-color);
 }
 
 .list-element {
@@ -58,6 +60,10 @@
 }
 
 @media (max-width: 767px) {
+  #header {
+    padding: 0 1rem;
+  }
+
   #menu-button {
     display: block;
   }

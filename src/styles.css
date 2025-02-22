@@ -9,11 +9,11 @@
 
     /* Text Colors */
     --text-color: #333333; /* Dark text for readability */
-    --header-text-color: #ffffff; /* White text for headers */
+    --header-text-color: #000000; /* White text for headers */
     --footer-text-color: #f0e1a1; /* Light sandy beige for footer text */
 
     /* Background Colors */
-    --header-background: #4e3629; /* Beachwood - dark wood for header */
+    --header-background: #ffffff; /* Beachwood - dark wood for header */
     --footer-background: #b78c3d; /* Darker sand tone for footer */
     --main-background: #ffffff; /* Clean white background */
     --section-background: #aee2d8; /* Light seafoam green for sections */
