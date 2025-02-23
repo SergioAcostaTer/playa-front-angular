@@ -66,6 +66,7 @@
   height: 100%;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
 }
 
 #avatar {
@@ -81,6 +82,23 @@
   object-fit: cover;
   border-radius: 50%;
   cursor: pointer;
+  border: 1px solid var(--header-avatar-border, #ddd);
+}
+
+#right-menu .buttons {
+  display: flex;
+  gap: 0.7rem;
+}
+
+#right-menu .buttons .button {
+  background-color: var(--header-button-text, #000);
+  color: var(--header-button-background, #fff);
+  border: 1px solid var(--header-button-border, #ddd);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  text-decoration: none;
 }
 
 /* --- Mobile Menu Handling --- */
@@ -121,5 +139,9 @@
     flex-direction: column;
     gap: 1rem;
     padding: 0;
+  }
+
+  #right-menu .buttons {
+    display: none;
   }
 }
