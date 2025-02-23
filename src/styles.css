@@ -50,8 +50,26 @@
   --rating-star-color: #ff9800;
   --rating-text-color: #ff9800;
   /* END CARDS */
+
+  /* LOGIN */
+  --login-primary-bg: #ffffff; /* Fondo principal: Blanco puro para un diseño limpio */
+  --login-secondary-bg: #f8f9fa; /* Fondo secundario: Un gris claro sutil para contraste */
+  --login-text-color: #222222; /* Texto: Negro suave para buena legibilidad */
+  --login-input-bg: #ffffff; /* Fondo de inputs: Blanco para simplicidad */
+  --login-button-color: #ff385c; /* Botón principal: Rojo rosado característico de Airbnb */
+  --login-button-hover: #e31c5f; /* Hover del botón: Un tono más fuerte para efecto visual */
+  --login-border-color: #dddddd; /* Bordes y líneas: Gris claro para suavidad */
+  --login-placeholder-color: #717171; /* Texto de placeholder: Gris medio, visible pero no invasivo */
+  /* END LOGIN */
 }
 
 main {
   width: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }

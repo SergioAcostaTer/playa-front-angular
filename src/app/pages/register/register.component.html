@@ -1,4 +1,4 @@
-<main class="login-container">
+<main class="register-container">
 
     <div class="left-panel">
         <img src="/login.webp" alt="fondo" class="background-image">
@@ -8,17 +8,27 @@
         <h1 class="title">
             Playea<span class="registered-span">®</span>
         </h1>
-        <h2 class="subtitle">Iniciar sesión</h2>
-        <p class="login-text">¿No tienes una cuenta? <a href="/register" class="login-link">Regístrate</a></p>
+        <h2 class="subtitle">Crear una cuenta</h2>
+        <p class="register-text">¿Ya tienes una cuenta? <a href="/login" class="register-link">Iniciar sesión</a></p>
 
-        <form class="login-form">
+        <form class="signup-form">
+            <div class="input-group">
+                <input type="text" placeholder="Nombre" class="input first-name">
+                <input type="text" placeholder="Apellido" class="input last-name">
+            </div>
             <input type="email" placeholder="Correo electrónico" class="input email">
-            <input type="password" placeholder="Contraseña" class="input password">
+            <input type="password" placeholder="Ingresa tu contraseña" class="input password">
 
-            <button type="submit" class="login-button">Iniciar sesión</button>
+            <div class="checkbox-group">
+                <input type="checkbox" id="terms" class="checkbox">
+                <label for="terms" class="terms-label">Acepto los <a href="#" class="terms-link">Términos y
+                        Condiciones</a></label>
+            </div>
+
+            <button type="submit" class="signup-button">Crear cuenta</button>
 
             <div class="divider">
-                <span class="or-text">O continúa con</span>
+                <span class="or-text">O regístrate con</span>
             </div>
 
             <div class="social-buttons">
