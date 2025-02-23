@@ -55,7 +55,7 @@
 #beach-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 40px;
+  gap: 25px;
   justify-items: center;
   padding: 24px;
   align-items: center;
@@ -77,17 +77,17 @@
 
   #beach-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
     justify-items: center;
-    padding: 40px 80px;
+    padding: 32px;
   }
 }
 
 @media screen and (min-width: 1024px) {
   #beach-grid {
-    padding: 40px 120px;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    padding: 32px 120px;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   }
 }
 
