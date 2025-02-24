@@ -1,0 +1,44 @@
+<div class="profile-container">
+    <div class="profile-user-image">
+        <img src="/avatar.jpg" alt="UserIcon">
+        <p>
+            <span class="profile-username">Pablito1234</span>
+        </p>
+        <p><a href="">Cambia tu foto de perfil</a></p>
+    </div>
+    <form class="profile-form">
+        <div class="profile-form-input">
+            <label>Nombre
+                <input type="text" name="name" id="profile-name" placeholder="UserName">
+            </label>
+        </div>
+        <div class="profile-form-input">
+            <label>Apellido
+                <input type="text" name="surname" id="profile-surname" placeholder="UserSurname">
+            </label>
+        </div>
+        <div class="profile-form-input">
+            <label>Email
+                <input type="email" name="email" id="profile-email" placeholder="UserEmail">
+            </label>
+        </div>
+        <div class="profile-form-input">
+            <label>Número de Teléfono</label>
+            <div class="phone-input">
+                <select name="phone-prefix" id="phone-prefix">
+                    <option value="+1">+1 (USA)</option>
+                    <option value="+34">+34 (España)</option>
+                    <option value="+44">+44 (Reino Unido)</option>
+                    <option value="+49">+49 (Alemania)</option>
+                    <option value="+33">+33 (Francia)</option>
+                    <option value="+55">+55 (Brasil)</option>
+                    <option value="+91">+91 (India)</option>
+                    <option value="+81">+81 (Japón)</option>
+                    <option value="+86">+86 (China)</option>
+                    <option value="+52">+52 (México)</option>
+                </select>
+                <input type="tel" name="phone" id="profile-phone" placeholder="123456789" maxlength="15">
+            </div>
+        </div>
+    </form>
+</div>
