@@ -14,7 +14,7 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    align-items: stretch; /* Asegura que los elementos ocupen todo el ancho */
+    align-items: stretch; /* Ensures elements take full width */
 }
 
 .user-popup-image img {
@@ -36,13 +36,23 @@
 
 .user-popup-account-buttons button {
     padding: 0.5em 1.5em;
-    flex-grow: 1; /* Hace que los botones se expandan uniformemente */
-    max-width: 48%; /* Evita que se salgan del contenedor */
+    flex-grow: 1; /* Ensures buttons expand evenly */
+    max-width: 48%; /* Prevents buttons from overflowing */
     box-shadow: 0 0 2px 0 #000;
     border: none;
     cursor: pointer;
     border-radius: 5px;
     text-align: center;
+    transition: box-shadow 0.2s ease-in-out; /* Smooth hover effect */
+}
+
+.user-popup-account-buttons button:hover,
+.user-popup-section-buttons button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.user-popup-account-buttons button:hover {
+    border: 1px solid #0002;
 }
 
 .user-popup-section-buttons button a {
@@ -65,13 +75,14 @@
 .user-popup-section-buttons button {
     flex-grow: 1;
     min-width: 150px;
-    max-width: 90%;
-    padding: 0.8em 2em;
+    width: 90%;
+    padding: 0.2em 2em;
     text-align: center;
     border: 1px solid #000;
     cursor: pointer;
     border-radius: 4px;
     margin-top: 5px;
+    transition: box-shadow 0.2s ease-in-out; /* Smooth shadow effect */
 }
 
 .popup-overlay {
