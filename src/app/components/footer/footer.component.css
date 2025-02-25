@@ -1,11 +1,41 @@
 #footer {
+    padding: 1rem;
+    background-color: var(--footer-background);
+}
+
+.footer-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 20%;
     align-items: center;
     justify-content: center;
-    background-color: var(--footer-background);
     color: var(--footer-text-color);
-    padding: 1rem;
     width: 100%;
     box-sizing: border-box;
+    flex-wrap: wrap;
+}
+
+.footer-links {
+    min-width: 50px;
+    text-align: center;
+    font-size: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-links a {
+    margin-bottom: 5px;
+}
+
+.footer-subtitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: block;
+}
+
+.footer-text {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.8rem;
 }
