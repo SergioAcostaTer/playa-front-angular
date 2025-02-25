@@ -1,0 +1,15 @@
+<div id="Titulo">
+  <h1 class="title-favourites">Me Gusta</h1>
+</div>
+
+<div id="beach-grid" *ngIf="beaches?.length">
+  <app-beach-card
+    class="w-full flex flex-col items-center"
+    *ngFor="let beach of beaches"
+    [imageUrl]="beach.imageUrl"
+    [title]="beach.title"
+    [rating]="beach.rating"
+    [distance]="beach.distance"
+    [recommended]="beach.recomended">
+  </app-beach-card>
+</div>
