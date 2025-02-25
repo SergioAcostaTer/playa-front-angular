@@ -145,3 +145,16 @@
     display: none;
   }
 }
+
+.logo-text {
+  font-size: 1.5rem; /* text-2xl */
+  font-weight: bold; /* font-bold */
+}
+
+.nav-menu {
+  display: flex; /* flex */
+  align-items: center; /* items-center */
+  justify-content: center; /* justify-center */
+  gap: 1rem; /* space-x-4 */
+}
+
