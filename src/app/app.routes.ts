@@ -6,6 +6,7 @@ import { NoHeaderLayoutComponent } from './layout/noheader-layout/noheader-layou
 import { RegisterPageComponent } from './pages/register/register.component';
 import { BeachDetailPageComponent } from './pages/beachDetail/beach-detail.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { UserPopUpComponent } from './pages/user-popup/user-popup.component';
 
 export const routes: Routes = [
   {
@@ -14,7 +15,8 @@ export const routes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       { path: 'beach/:slug', component: BeachDetailPageComponent },
-      {path: 'profile', component: ProfileComponent}
+      {path: 'profile', component: ProfileComponent},
+      {path: 'user-popup', component: UserPopUpComponent}
     ],
   },
   {

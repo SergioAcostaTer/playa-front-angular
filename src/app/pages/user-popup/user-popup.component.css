@@ -1,0 +1,25 @@
+.user-popup-container {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #fff;
+    height: 50vh;
+    max-height: 500px;
+    width: 40vw;
+    max-width: 400px;
+    box-shadow: 0 0 10px 0 #0004;
+    z-index: 1000;
+    border-radius: 15px;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.user-popup-image img {
+    width: 50%;
+    border-radius: 50%;
+    border: 1px solid #000;
+    margin: auto;
+    margin-bottom: 40px;
+}
