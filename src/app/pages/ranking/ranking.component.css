@@ -1,11 +1,11 @@
 .ranking-container {
-  max-width: 500px;
+  max-width: 1000px;
   width: 100%;
   padding: 20px;
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
+  margin: 20px auto;
 }
 
 /* Title */
@@ -26,6 +26,7 @@
   margin-bottom: 15px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 .beach-card:hover {
@@ -34,14 +35,14 @@
 
 /* Recommended Beach */
 .recommended {
-  border-left: 5px solid #ff9800;
-  background: #fffaf0;
+  border-left: 5px solid var(--badge-bg-color);
+  background: var(--badge-bg-color-light);
 }
 
 /* Image */
 .beach-card img {
   width: 100%;
-  max-height: 140px;
+  max-height: 300px;
   object-fit: cover;
   border-radius: 8px;
 }
@@ -77,11 +78,11 @@
 /* Responsive */
 @media (max-width: 600px) {
   .ranking-container {
-      max-width: 100%;
-      padding: 10px;
+    max-width: 100%;
+    padding: 10px;
   }
 
   .beach-card {
-      padding: 10px;
+    padding: 10px;
   }
 }
