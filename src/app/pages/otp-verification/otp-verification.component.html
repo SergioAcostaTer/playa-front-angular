@@ -1,0 +1,23 @@
+<div class="otp-verification-container">
+    <a class="app-logo" href="">LOGO</a>
+    <h1>Verificación OTP</h1>
+    <p>Por favor, revisa tu correo www.pepito&#64;gmail.com para poder poner el código</p>
+    
+    <form class="otp-verification-form">
+        <div class="otp-inputs">
+            <input type="text" maxlength="1" required oninput="moveToNext(this, 'input2')" id="input1">
+            <input type="text" maxlength="1" required oninput="moveToNext(this, 'input3')" id="input2">
+            <input type="text" maxlength="1" required oninput="moveToNext(this, 'input4')" id="input3">
+            <input type="text" maxlength="1" required id="input4">
+        </div>
+        <button type="submit">Confirmar</button>
+    </form>
+</div>
+
+<script>
+    function moveToNext(currentInput, nextInputId) {
+        if (currentInput.value.length >= currentInput.maxLength) {
+            document.getElementById(nextInputId)?.focus();
+        }
+    }
+</script>
