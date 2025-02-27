@@ -147,3 +147,10 @@
     width: 100%;
   }
 }
+
+.forgot-password-link {
+  color: var(--login-button-color);
+  align-self: flex-end;
+  margin-top: -10px;
+  font-size: 0.9em;
+}
