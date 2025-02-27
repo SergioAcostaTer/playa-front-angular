@@ -1,8 +1,8 @@
 ---
 
-# 🌊 **TuPlaya.com** - Encuentra tu paraíso en las Playas de Canarias 🏖️
+# 🌊 **Playea®** - Encuentra tu paraíso en las Playas de Canarias 🏖️
 
-Bienvenido a **TuPlaya.com**, la plataforma definitiva para explorar y descubrir las mejores playas de las Islas Canarias. Imagina una experiencia similar a **Airbnb**, pero enfocada en la belleza natural de las costas canarias. Con **TuPlaya.com**, podrás conocer, comparar y elegir las playas que mejor se adaptan a tus gustos y necesidades, ¡todo con un solo clic!
+Bienvenido a **Playea®**, la plataforma definitiva para explorar y descubrir las mejores playas de las Islas Canarias. Imagina una experiencia similar a **Airbnb**, pero enfocada en la belleza natural de las costas canarias. Con **Playea®**, podrás conocer, comparar y elegir las playas que mejor se adaptan a tus gustos y necesidades, ¡todo con un solo clic!
 
 ---
 
@@ -41,7 +41,7 @@ Bienvenido a **TuPlaya.com**, la plataforma definitiva para explorar y descubrir
 
 ---
 
-## 💡 **¿Por qué elegir TuPlaya.com?**
+## 💡 **¿Por qué elegir Playea®?**
 
 - **Acceso rápido y fácil**: Navega de manera sencilla por las playas de Canarias con una interfaz amigable y atractiva.
 - **Información detallada**: Encuentra todos los detalles de cada playa, desde su accesibilidad hasta qué servicios ofrece (baños, aparcamiento, restaurantes, etc.).
@@ -58,8 +58,8 @@ Bienvenido a **TuPlaya.com**, la plataforma definitiva para explorar y descubrir
 ---
 
 ## 🌐 **Visítanos y empieza tu aventura**  
-TuPlaya.com es la puerta de entrada a tu próximo día de sol, arena y mar. ¿A qué esperas? 🌊 ¡Tu playa ideal está a un clic de distancia!
+Playea® es la puerta de entrada a tu próximo día de sol, arena y mar. ¿A qué esperas? 🌊 ¡Tu playa ideal está a un clic de distancia!
 
 ---
 
-¡Y eso es todo! ¿Te animas a explorar las mejores playas de Canarias con **TuPlaya.com**? 🌞🌊
+¡Y eso es todo! ¿Te animas a explorar las mejores playas de Canarias con **Playea®**? 🌞🌊
