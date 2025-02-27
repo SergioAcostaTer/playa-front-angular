@@ -9,5 +9,6 @@ import { HeaderComponent } from '../../components/header/header.component';
   standalone: true,
   templateUrl: './main-layout.component.html',
   imports: [CommonModule, RouterModule, HeaderComponent, FooterComponent],
+  styleUrl: './main-layout.component.css'
 })
 export class MainLayoutComponent {}
