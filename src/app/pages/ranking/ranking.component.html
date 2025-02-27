@@ -1,0 +1,27 @@
+<div id="banner">
+    <h1>Busca tu playa</h1>
+    <div>
+        <input type="text" placeholder="Busca destinos...">
+    </div>
+</div>
+
+<div class="categories-container">
+    <div class="categories">
+      <div class="category" *ngFor="let category of categories">
+        <img [src]="categoryImage" [alt]="category">
+        <p>{{ category }}</p>
+      </div>
+    </div>
+</div>
+
+<div id="beach-grid" *ngIf="beaches?.length">
+    <app-beach-card
+        class="w-full flex flex-col items-center"
+        *ngFor="let beach of beaches"
+        [imageUrl]="beach.imageUrl"
+        [title]="beach.title"
+        [rating]="beach.rating"
+        [distance]="beach.distance"
+        [recommended]="beach.recommended">
+    </app-beach-card>
+</div>

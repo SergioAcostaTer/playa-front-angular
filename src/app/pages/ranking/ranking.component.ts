@@ -4,13 +4,13 @@ import { BeachCardComponent } from '../../components/beach-card/beach-card.compo
 import { beachesList } from '../../constants/beachesList.js';
 
 @Component({
-  selector: 'Home',
+  selector: 'ranking-page',
   standalone: true,
   imports: [CommonModule, BeachCardComponent],
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  templateUrl: './ranking.component.html',
+  styleUrls: ['./ranking.component.css'],
 })
-export class HomePageComponent {
+export class RankingPageComponent {
   beaches = beachesList;
 
   categories: string[] = [

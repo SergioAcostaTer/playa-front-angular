@@ -9,7 +9,7 @@ import { BeachCardComponent } from '../../components/beach-card/beach-card.compo
   templateUrl: './Favourite.component.html',
   styleUrls: ['./Favourite.component.css'],
 })
-export class FavouriteComponent {
+export class FavouritePageComponent {
   beaches = [
     {
       imageUrl:
