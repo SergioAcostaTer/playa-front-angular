@@ -1,6 +1,4 @@
-<div id="Titulo">
-  <h1 class="title-favourites">Me Gusta</h1>
-</div>
+<title-page [title]="'Tus playas favoritas'"></title-page>
 
 <div id="beach-grid" *ngIf="beaches?.length">
   <app-beach-card
@@ -10,6 +8,6 @@
     [title]="beach.title"
     [rating]="beach.rating"
     [distance]="beach.distance"
-    [recommended]="beach.recomended">
+    [recommended]="beach.recommended">
   </app-beach-card>
 </div>

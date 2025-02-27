@@ -7,7 +7,7 @@ import { RegisterPageComponent } from './pages/register/register.component';
 import { BeachDetailPageComponent } from './pages/beachDetail/beach-detail.component';
 import { ProfilePageComponent } from './pages/profile/profile.component';
 import { UserPopUpComponent } from './pages/user-popup/user-popup.component';
-import { FavouritePageComponent } from './pages/favourites/Favourite.component';
+import { FavouritePageComponent } from './pages/favourites/favourite.component';
 import { RankingPageComponent } from './pages/ranking/ranking.component';
 
 export const routes: Routes = [

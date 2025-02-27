@@ -1,21 +1,20 @@
 .ranking-container {
-  max-width: 1000px;
+  max-width: 900px;
   width: 100%;
-  padding: 20px;
+  padding: 0 25px;
   background: #fff;
   border-radius: 10px;
   text-align: center;
-  margin: 20px auto;
+  margin: auto;
+  margin-top: 20px;
 }
 
-/* Title */
 .ranking-title {
   font-size: 24px;
   margin-bottom: 20px;
   color: #333;
 }
 
-/* Beach Card */
 .beach-card {
   display: flex;
   flex-direction: column;
@@ -79,7 +78,6 @@
 @media (max-width: 600px) {
   .ranking-container {
     max-width: 100%;
-    padding: 10px;
   }
 
   .beach-card {
