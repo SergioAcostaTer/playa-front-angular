@@ -9,6 +9,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { UserPopUpComponent } from './pages/user-popup/user-popup.component';
 import {FavouriteComponent} from './pages/favourites/Favourite.component';
 import {ForgotPasswordComponent} from './pages/forgot-password/forgot-password.component';
+import {OTPVerificationComponent} from './pages/otp-verification/otp-verification.component';
 
 export const routes: Routes = [
   {
@@ -29,7 +30,8 @@ export const routes: Routes = [
     children: [
       { path: 'register', component: RegisterPageComponent },
       { path: 'login', component: LoginPageComponent },
-      { path: 'forgot-password', component: ForgotPasswordComponent }
+      { path: 'forgot-password', component: ForgotPasswordComponent },
+      { path: 'forgot-password/otp-verification', component: OTPVerificationComponent }
     ],
   },
   { path: '**', redirectTo: '/' },
