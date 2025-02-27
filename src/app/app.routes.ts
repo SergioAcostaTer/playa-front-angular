@@ -8,6 +8,7 @@ import { BeachDetailPageComponent } from './pages/beachDetail/beach-detail.compo
 import { ProfileComponent } from './pages/profile/profile.component';
 import { UserPopUpComponent } from './pages/user-popup/user-popup.component';
 import {FavouriteComponent} from './pages/favourites/Favourite.component';
+import {ForgotPasswordComponent} from './pages/forgot-password/forgot-password.component';
 
 export const routes: Routes = [
   {
@@ -27,7 +28,8 @@ export const routes: Routes = [
     component: NoHeaderLayoutComponent,
     children: [
       { path: 'register', component: RegisterPageComponent },
-      { path: 'login', component: LoginPageComponent }
+      { path: 'login', component: LoginPageComponent },
+      { path: 'forgot-password', component: ForgotPasswordComponent }
     ],
   },
   { path: '**', redirectTo: '/' },
