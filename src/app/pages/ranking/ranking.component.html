@@ -1,27 +1,59 @@
-<div id="banner">
-    <h1>Busca tu playa</h1>
-    <div>
-        <input type="text" placeholder="Busca destinos...">
-    </div>
-</div>
+<div class="ranking-container">
+    <h1 class="ranking-title">🏝️ Top 5 Beaches</h1>
 
-<div class="categories-container">
-    <div class="categories">
-      <div class="category" *ngFor="let category of categories">
-        <img [src]="categoryImage" [alt]="category">
-        <p>{{ category }}</p>
-      </div>
+    <div class="beach-card recommended">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Playa_del_Verodal%2C_El_Hierro%2C_Canarias%2C_Espa%C3%B1a.JPG/220px-Playa_del_Verodal%2C_El_Hierro%2C_Canarias%2C_Espa%C3%B1a.JPG"
+            alt="Playa del Verodal">
+        <div class="beach-info">
+            <h2>Playa del Verodal</h2>
+            <p class="rating">⭐ 4.5 • <span class="distance">A 10 km</span></p>
+            <p class="description">Famosa por su arena rojiza y su ambiente salvaje. Un paraíso escondido en El Hierro,
+                ideal para relajarse y disfrutar del mar.</p>
+        </div>
     </div>
-</div>
 
-<div id="beach-grid" *ngIf="beaches?.length">
-    <app-beach-card
-        class="w-full flex flex-col items-center"
-        *ngFor="let beach of beaches"
-        [imageUrl]="beach.imageUrl"
-        [title]="beach.title"
-        [rating]="beach.rating"
-        [distance]="beach.distance"
-        [recommended]="beach.recommended">
-    </app-beach-card>
+    <div class="beach-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Tacor%C3%B3n_foto_principal.jpg/220px-Tacor%C3%B3n_foto_principal.jpg"
+            alt="Playa de Tacorón">
+        <div class="beach-info">
+            <h2>Playa de Tacorón</h2>
+            <p class="rating">⭐ 4.2 • <span class="distance">A 15 km</span></p>
+            <p class="description">Una joya volcánica con aguas cristalinas. Perfecta para snorkel y disfrutar de una
+                vista impresionante de los acantilados.</p>
+        </div>
+    </div>
+
+    <div class="beach-card recommended">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/San_Sebastian_EM1B5794_%2832684958331%29.jpg/220px-San_Sebastian_EM1B5794_%2832684958331%29.jpg"
+            alt="Playa de San Sebastián">
+        <div class="beach-info">
+            <h2>Playa de San Sebastián</h2>
+            <p class="rating">⭐ 4.7 • <span class="distance">A 20 km</span></p>
+            <p class="description">Playa urbana con historia, rodeada de edificios coloniales y una brisa marina que
+                enamora. Perfecta para paseos al atardecer.</p>
+        </div>
+    </div>
+
+    <div class="beach-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Playa_de_Santiago_%288524842683%29.jpg/220px-Playa_de_Santiago_%288524842683%29.jpg"
+            alt="Playa de Santiago">
+        <div class="beach-info">
+            <h2>Playa de Santiago</h2>
+            <p class="rating">⭐ 4.3 • <span class="distance">A 25 km</span></p>
+            <p class="description">Ubicada en un encantador pueblo pesquero, esta playa combina tranquilidad con la
+                cultura local y restaurantes de mariscos frescos.</p>
+        </div>
+    </div>
+
+    <div class="beach-card recommended">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/View_of_the_steep_coast_at_Playa_De_Vueltas_black_sand_beach_on_La_Gomera%2C_Spain_%2848293845792%29.jpg/220px-View_of_the_steep_coast_at_Playa_De_Vueltas_black_sand_beach_on_La_Gomera%2C_Spain_%2848293845792%29.jpg"
+            alt="Playa de Vueltas">
+        <div class="beach-info">
+            <h2>Playa de Vueltas</h2>
+            <p class="rating">⭐ 4.6 • <span class="distance">A 30 km</span></p>
+            <p class="description">Playa de arena negra con un ambiente relajado. Ideal para nadar, tomar el sol y
+                desconectar del mundo.</p>
+        </div>
+    </div>
+
 </div>
