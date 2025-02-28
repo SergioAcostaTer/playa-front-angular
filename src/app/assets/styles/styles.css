@@ -1,8 +1,4 @@
 /*TODO Corregir uso del tailwind*/
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
   /* Primary Colors */
   --primary-color: #896e00; /* Warm sand color */
@@ -93,4 +89,9 @@ a {
 input {
   outline: none;
   padding: 4px 8px;
+}
+
+
+ul {
+  list-style-type: none;
 }

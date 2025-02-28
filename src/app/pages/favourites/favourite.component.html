@@ -2,7 +2,7 @@
 
 <div id="beach-grid" *ngIf="beaches?.length">
   <app-beach-card
-    class="w-full flex flex-col items-center"
+    style="width: 100%;"
     *ngFor="let beach of beaches"
     [imageUrl]="beach.imageUrl"
     [title]="beach.title"
