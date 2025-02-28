@@ -16,13 +16,14 @@
 }
 .profile-form input {
   width: 100%;
-  padding: 6px 8px;
+  padding: 10px 10px;
   border: none;
   border-radius: 10px;
   background-color: #ccc6;
   margin: 5px 0 10px 0;
   box-shadow: none;
   box-shadow: 0 0 5px 0 #0004;
+  margin-bottom: 20px;
 }
 
 .profile-user-image {

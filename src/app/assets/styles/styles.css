@@ -77,3 +77,20 @@ main {
   box-sizing: border-box;
   font-family: Arial, sans-serif;
 }
+
+a {
+  text-decoration: none;
+}
+
+.app-logo {
+  text-transform: uppercase;
+  color: #000;
+  font-size: 30px;
+  align-self: flex-start;
+  font-weight: 700;
+}
+
+input {
+  outline: none;
+  padding: 4px 8px;
+}

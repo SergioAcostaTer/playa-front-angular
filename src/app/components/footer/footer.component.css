@@ -25,6 +25,8 @@
 
 .footer-links a {
     margin-bottom: 5px;
+    color: var(--footer-text-color);
+
 }
 
 .footer-subtitle {
