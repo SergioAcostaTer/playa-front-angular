@@ -1,7 +1,3 @@
-/*TODO Corregir uso del tailwind*/
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 :root {
   /* Primary Colors */
@@ -88,6 +84,7 @@ a {
   font-size: 30px;
   align-self: flex-start;
   font-weight: 700;
+  margin: 2vh 6vw
 }
 
 input {

@@ -1,0 +1,11 @@
+<div class="ranking-container">
+  <app-ranking-card 
+    *ngFor="let beach of beaches"
+    [title]="beach.title"
+    [imageUrl]="beach.imageUrl"
+    [rating]="beach.rating"
+    [distance]="beach.distance"
+    [description]="beach.description"
+    [recommended]="beach.recommended">
+  </app-ranking-card>
+</div>
