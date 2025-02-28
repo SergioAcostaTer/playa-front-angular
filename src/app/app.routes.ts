@@ -7,10 +7,10 @@ import { RegisterPageComponent } from './pages/register/register.component';
 import { BeachDetailPageComponent } from './pages/beachDetail/beach-detail.component';
 import { ProfilePageComponent } from './pages/profile/profile.component';
 import { UserPopUpComponent } from './pages/user-popup/user-popup.component';
-import { FavouritePageComponent } from './pages/favourites/favourite.component';
 import { RankingPageComponent } from './pages/ranking/ranking.component';
-import {ForgotPasswordComponent} from './pages/forgot-password/forgot-password.component';
-import {OTPVerificationComponent} from './pages/otp-verification/otp-verification.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { OTPVerificationComponent } from './pages/otp-verification/otp-verification.component';
+import { FavouritePageComponent } from './pages/favourites/favourite.component';
 
 export const routes: Routes = [
   {
@@ -22,7 +22,7 @@ export const routes: Routes = [
       { path: 'beach/:slug', component: BeachDetailPageComponent },
       { path: 'profile', component: ProfilePageComponent },
       { path: 'user-popup', component: UserPopUpComponent },
-      { path: 'ranking', component: RankingPageComponent },
+      { path: 'ranking', component: RankingPageComponent }, 
     ],
   },
   {
@@ -32,7 +32,10 @@ export const routes: Routes = [
       { path: 'register', component: RegisterPageComponent },
       { path: 'login', component: LoginPageComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
-      { path: 'forgot-password/otp-verification', component: OTPVerificationComponent }
+      {
+        path: 'forgot-password/otp-verification',
+        component: OTPVerificationComponent,
+      },
     ],
   },
   { path: '**', redirectTo: '/' },
