@@ -5,7 +5,7 @@ import { Component, Input } from '@angular/core';
   selector: 'app-ranking-card',
   templateUrl: './ranking-card.component.html',
   styleUrls: ['./ranking-card.component.css'],
-  imports: [ CommonModule ]
+  imports: [CommonModule],
 })
 export class RankingCardComponent {
   @Input() title!: string;
