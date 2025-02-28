@@ -1,0 +1,17 @@
+.ranking-container {
+    max-width: 900px;
+    width: 100%;
+    padding: 0 25px;
+    background: #fff;
+    border-radius: 10px;
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+}
+
+  /* Responsive */
+@media (max-width: 600px) {
+    .ranking-container {
+        max-width: 100%;
+    }
+}

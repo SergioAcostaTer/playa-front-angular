@@ -1,4 +1,4 @@
-/*TODO Corregir uso del tailwind*/
+
 :root {
   /* Primary Colors */
   --primary-color: #896e00; /* Warm sand color */
@@ -84,6 +84,7 @@ a {
   font-size: 30px;
   align-self: flex-start;
   font-weight: 700;
+  margin: 2vh 6vw
 }
 
 input {
