@@ -133,21 +133,6 @@
   border-color: var(--login-button-color);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .login-container {
-    flex-direction: column;
-  }
-
-  .left-panel {
-    display: none;
-  }
-
-  .right-panel {
-    width: 100%;
-  }
-}
-
 .forgot-password-link {
   color: var(--login-button-color);
   align-self: flex-end;
