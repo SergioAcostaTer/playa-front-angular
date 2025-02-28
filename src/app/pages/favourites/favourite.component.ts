@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { BeachCardComponent } from '../../components/beach-card/beach-card.component';
 import { beachesList } from '../../constants/beachesList';
-import { TitlePageComponent } from '../../title-page/title-page.component';
+import { TitlePageComponent } from '../../components/title-page/title-page.component';
 
 @Component({
   selector: 'app-user-favourites',

@@ -1,5 +1,7 @@
-@import "tailwindcss";
-@import "tailwindcss/preflight.css" layer(base);
+/*TODO Corregir uso del tailwind*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   /* Primary Colors */

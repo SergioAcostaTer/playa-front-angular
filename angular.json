@@ -23,11 +23,11 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "src/app/assets"
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/app/assets/styles/styles.css"
             ],
             "scripts": [],
             "prerender": false,
@@ -87,7 +87,7 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/app/assets/styles/styles.css"
             ],
             "scripts": []
           }
