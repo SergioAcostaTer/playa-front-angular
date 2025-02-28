@@ -5,7 +5,7 @@ import { beachesList } from '../../constants/beachesList';
 import { TitlePageComponent } from '../../title-page/title-page.component';
 
 @Component({
-  selector: 'Favoritos',
+  selector: 'app-user-favourites',
   standalone: true,
   imports: [CommonModule, BeachCardComponent, TitlePageComponent],
   templateUrl: './favourite.component.html',
