@@ -7,7 +7,7 @@ import { RegisterPageComponent } from './pages/register/register.component';
 import { BeachDetailPageComponent } from './pages/beachDetail/beach-detail.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { UserPopUpComponent } from './pages/user-popup/user-popup.component';
-import {FavouriteComponent} from './pages/favourites/Favourite.component';
+import {FavouritePageComponent} from './pages/favourites/favourite.component';
 import {ForgotPasswordComponent} from './pages/forgot-password/forgot-password.component';
 import {OTPVerificationComponent} from './pages/otp-verification/otp-verification.component';
 
@@ -17,7 +17,7 @@ export const routes: Routes = [
     component: MainLayoutComponent,
     children: [
       { path: '', component: HomeComponent },
-      { path: 'favourites', component: FavouriteComponent },
+      { path: 'favourites', component: FavouritePageComponent },
       { path: '', component: HomeComponent },
       { path: 'beach/:slug', component: BeachDetailPageComponent },
       {path: 'profile', component: ProfileComponent},
