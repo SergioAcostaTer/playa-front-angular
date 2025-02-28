@@ -101,50 +101,6 @@
   text-decoration: none;
 }
 
-/* --- Mobile Menu Handling --- */
-@media (max-width: 767px) {
-  #header {
-    padding: 0 1rem;
-  }
-
-  #menu-button {
-    display: block;
-  }
-
-  #nav-menu {
-    position: fixed;
-    top: 4rem;
-    right: 1rem;
-    background-color: var(--header-background, #fff);
-    width: 200px; /* Explicit width to prevent shift */
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    visibility: hidden;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: transform 0.2s ease, opacity 0.2s ease,
-      visibility 0s linear 0.2s;
-  }
-
-  /* Maintain space, preventing shift */
-  #menu-button:checked + #nav-menu {
-    visibility: visible;
-    opacity: 1;
-    transform: translateY(0);
-    transition: transform 0.2s ease, opacity 0.2s ease, visibility 0s;
-  }
-
-  #nav-menu ul {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 0;
-  }
-
-  #right-menu .buttons {
-    display: none;
-  }
-}
 
 .logo-text {
   font-size: 1.5rem; /* text-2xl */
