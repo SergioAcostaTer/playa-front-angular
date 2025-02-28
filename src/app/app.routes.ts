@@ -22,7 +22,7 @@ export const routes: Routes = [
       { path: 'beach/:slug', component: BeachDetailPageComponent },
       { path: 'profile', component: ProfilePageComponent },
       { path: 'user-popup', component: UserPopUpComponent },
-      { path: 'ranking', component: RankingPageComponent },
+      { path: 'ranking', component: RankingPageComponent }, 
     ],
   },
   {
