@@ -8,11 +8,9 @@ import express from 'express';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-// Define the paths to your server and browser dist folders
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
 
-// Create the Express app and Angular Node app engine instance
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
@@ -36,27 +34,8 @@ app.use(
     maxAge: '1y',
     index: false,
     redirect: false,
-  })
+  }),
 );
-
-/**
- * Handle dynamic routes like /beach/:slug
- */
-app.get('/beach/:slug', (req, res, next) => {
-  // You can extract the 'slug' param here
-  const { slug } = req.params;
-  console.log(`Rendering beach page for slug: ${slug}`);
-
-  // You can pass this dynamic parameter (slug) to the Angular app if needed
-  // or use it for custom logic before rendering the page.
-  
-  angularApp
-    .handle(req)
-    .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next()
-    )
-    .catch(next);
-});
 
 /**
  * Handle all other requests by rendering the Angular application.
@@ -65,7 +44,7 @@ app.use('/**', (req, res, next) => {
   angularApp
     .handle(req)
     .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next()
+      response ? writeResponseToNodeResponse(response, res) : next(),
     )
     .catch(next);
 });
@@ -82,6 +61,6 @@ if (isMainModule(import.meta.url)) {
 }
 
 /**
- * The request handler used by the Angular CLI (dev-server and during build).
+ * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
  */
 export const reqHandler = createNodeRequestHandler(app);
