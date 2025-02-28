@@ -238,37 +238,3 @@ textarea {
 .beach-description .pricing-list li strong {
   color: #ff5a5f;
 }
-@media screen and (max-width: 1024px) {
-  .beach-description h2 {
-    font-size: 1.8rem;
-  }
-  .beach-description h3 {
-    font-size: 1.5rem;
-  }
-  .beach-description p {
-    font-size: 1rem;
-  }
-  .beach-description ul li {
-    font-size: 1rem;
-  }
-  .beach-description .pricing-list li {
-    font-size: 1rem;
-  }
-}
-@media screen and (max-width: 768px) {
-  .beach-description h2 {
-    font-size: 1.6rem;
-  }
-  .beach-description h3 {
-    font-size: 1.4rem;
-  }
-  .beach-description p {
-    font-size: 0.95rem;
-  }
-  .beach-description ul li {
-    font-size: 0.95rem;
-  }
-  .beach-description .pricing-list li {
-    font-size: 0.95rem;
-  }
-}
