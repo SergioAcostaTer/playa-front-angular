@@ -34,6 +34,7 @@
               "entry": "src/server.ts"
             },
             "server": "src/main.server.ts",
+            "outputMode": "server",
             "prerender": {
               "discoverRoutes": true
             }

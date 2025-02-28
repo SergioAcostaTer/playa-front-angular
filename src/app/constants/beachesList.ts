@@ -159,7 +159,3 @@ export const beachesList = [
     recommended: true,
   },
 ];
-
-export const beachesRoutes = beachesList.map((beach) =>
-  beach.title.toLowerCase().replace(/ /g, '-')
-);
