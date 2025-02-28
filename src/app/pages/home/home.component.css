@@ -54,41 +54,11 @@
 
 #beach-grid {
   display: grid;
-  grid-template-columns: 1fr;
   gap: 25px;
   justify-items: center;
   padding: 24px;
   align-items: center;
-}
-
-@media screen and (min-width: 768px) {
-  #banner div {
-    max-width: 600px;
-    bottom: -31px;
-  }
-
-  #banner {
-    height: 40vh;
-  }
-
-  #banner div input {
-    padding: 1rem;
-  }
-
-  #beach-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 24px;
-    justify-items: center;
-    padding: 32px;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  #beach-grid {
-    padding: 32px 120px;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  }
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 }
 
 .categories-container {
@@ -164,20 +134,4 @@
 .category p {
   font-size: 0.8rem;
   margin: 0;
-}
-
-@media screen and (min-width: 768px) {
-  .categories {
-    gap: 0px;
-  }
-
-  .category {
-    min-width: 100px;
-    max-width: 100px;
-  }
-
-  .category img {
-    width: 32px;
-    height: 32px;
-  }
 }
