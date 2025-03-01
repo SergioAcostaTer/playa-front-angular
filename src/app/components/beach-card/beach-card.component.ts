@@ -15,4 +15,5 @@ export class BeachCardComponent {
   @Input() rating: string = '0';
   @Input() distance: string = 'N/A';
   @Input() recommended?: boolean = false;
+  @Input() description?: string;
 }

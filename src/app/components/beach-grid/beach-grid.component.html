@@ -1,0 +1,10 @@
+<div class="beach-grid" *ngIf="beaches?.length">
+    <app-beach-card
+        *ngFor="let beach of beaches"
+        [imageUrl]="beach.imageUrl"
+        [title]="beach.title"
+        [rating]="beach.rating"
+        [distance]="beach.distance"
+        [recommended]="beach.recommended">
+    </app-beach-card>
+</div>
