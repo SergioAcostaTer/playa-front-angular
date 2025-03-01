@@ -9,5 +9,11 @@ import { BeachCardComponent } from '../beach-card/beach-card.component';
   styleUrl: './beach-grid.component.css'
 })
 export class BeachGridComponent {
-  @Input() beaches: { imageUrl: string, title: string, rating: string, distance: string, recommended?: boolean }[] = [];
+  @Input() beaches: { 
+          imageUrl: string,
+          title: string, 
+          rating: string, 
+          distance: string, 
+          recommended?: boolean 
+  }[] = [];
 }
