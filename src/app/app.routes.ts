@@ -29,13 +29,10 @@ export const routes: Routes = [
     path: '',
     component: NoHeaderLayoutComponent,
     children: [
-      { path: 'register', component: RegisterPageComponent },
-      { path: 'login', component: LoginPageComponent },
-      { path: 'forgot-password', component: ForgotPasswordComponent },
-      {
-        path: 'forgot-password/otp-verification',
-        component: OTPVerificationComponent,
-      },
+      { path: '/auth/register', component: RegisterPageComponent },
+      { path: '/auth/login', component: LoginPageComponent },
+      { path: '/auth/forgot-password', component: ForgotPasswordComponent },
+      { path: '/auth/forgot-password/otp-verification', component: OTPVerificationComponent },
     ],
   },
   { path: '**', redirectTo: '/' },
