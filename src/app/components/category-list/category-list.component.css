@@ -1,0 +1,29 @@
+.categories-container {
+    width: 100%;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
+    margin-top: 20px;
+    padding: 0;
+  }
+  
+  .categories {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    white-space: nowrap;
+    padding: 0;
+    width: 100%;
+    gap: 5px;
+  }
+  
+  .categories::-webkit-scrollbar {
+    height: 0;
+  }
+  
+  .categories::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+  
+  .categories::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+  }
+  

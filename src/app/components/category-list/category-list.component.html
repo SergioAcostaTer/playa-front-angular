@@ -1,0 +1,9 @@
+<div class="categories-container">
+    <div class="categories">
+      <app-category *ngFor="let category of categories"
+                    [category]="category.name"
+                    [categoryImage]="category.image">
+      </app-category>
+    </div>
+  </div>
+  

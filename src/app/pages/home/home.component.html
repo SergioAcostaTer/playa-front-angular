@@ -5,14 +5,8 @@
     </div>
 </div>
 
-<div class="categories-container">
-    <div class="categories">
-      <div class="category" *ngFor="let category of categories">
-        <img [src]="categoryImage" [alt]="category">
-        <p>{{ category }}</p>
-      </div>
-    </div>
-</div>
+<app-category-list [categories]="categories"></app-category-list>
+
 
 <div id="beach-grid" *ngIf="beaches?.length">
     <app-beach-card
