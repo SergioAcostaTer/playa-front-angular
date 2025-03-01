@@ -58,7 +58,7 @@
 | **Verificación OTP** | `/auth/forgot-password/otp-verification` |
 
 ## 🔗 Enlaces
-- **Figma**: [Enlace a Figma](www.figma.com/design/r6Gxqsy8sfzuwfJZOIexKR/Playea.com)
+- **Figma**: [Enlace a Figma](https://www.figma.com/design/r6Gxqsy8sfzuwfJZOIexKR/Playea.com?node-id=0-1&t=liIOWVMREdWDgDs7-1)
 - **Trello**: [Enlace a Trello](https://trello.com/b/le5wbuMa/playea)
 
 ---
