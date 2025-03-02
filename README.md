@@ -1,65 +1,66 @@
+# Playea: Plataforma de Valoración de Playas en Canarias 
+### (Readme para asignatura-PWM)
+
+## 📌 Integrantes del Proyecto
+- **Miguel Ángel Rodríguez Ruano**
+- **Gorka Eymard Santana Cabrera**
+- **Sergio Acosta Quintana**
+
+## 📝 Descripción del Proyecto
+**Playea** es una plataforma web dedicada a la exploración y valoración de las mejores playas de las Islas Canarias. Su objetivo principal es proporcionar una herramienta interactiva donde los usuarios puedan descubrir playas, compartir sus experiencias y acceder a reseñas basadas en valoraciones reales.
+
+## 📋 Características Principales
+| Característica | Descripción |
+|--------------|------------|
+| **Registro e Inicio de Sesión** | Los usuarios pueden crear una cuenta, personalizar su perfil y gestionar sus valoraciones. |
+| **Base de Datos Completa** | Información detallada sobre todas las playas de Canarias, incluyendo ubicación, imágenes y datos relevantes. |
+| **Sistema de Valoración** | Calificación de playas con puntuaciones de 1 a 5 estrellas y escritura de reseñas detalladas. |
+| **Ranking de Playas** | Listado con las playas mejor valoradas en diferentes categorías como las más limpias, visitadas y recomendadas. |
+
+## 📄 Requisitos del Proyecto
+### 🔹 Requisitos Funcionales
+| ID | Requisito |
+|----|----------|
+| RF01 | El usuario podrá registrarse mediante email y contraseña. |
+| RF02 | El usuario podrá iniciar y cerrar sesión. |
+| RF03 | Se permitirá la recuperación de contraseña mediante email. |
+| RF04 | Los usuarios podrán explorar todas las playas en la base de datos. |
+| RF05 | Cada playa tendrá información detallada, como ubicación, tipo de arena y servicios disponibles. |
+| RF06 | Los usuarios podrán calificar playas de 1 a 5 estrellas. |
+| RF07 | Los usuarios podrán escribir y leer comentarios sobre las playas. |
+| RF08 | Se permitirá a los usuarios subir fotos de playas. |
+| RF09 | Se mostrará un ranking de playas mejor valoradas según puntuaciones de usuarios. |
+
+### 🔹 Requisitos No Funcionales
+| ID | Requisito |
+|----|----------|
+| RNF01 | La plataforma debe tener una interfaz intuitiva y fácil de usar. |
+| RNF02 | El diseño debe ser responsivo para adaptarse a distintos dispositivos. |
+| RNF03 | Las búsquedas y filtrados deben ejecutarse en menos de 2 segundos. |
+| RNF04 | La carga de imágenes será optimizada para evitar tiempos de espera largos. |
+| RNF05 | Las contraseñas de los usuarios estarán encriptadas. |
+| RNF06 | Se implementarán medidas contra spam y contenido inapropiado en comentarios y fotos. |
+| RNF07 | La plataforma debe estar disponible al menos el 99.5% del tiempo. |
+
+## 🌍 Rutas y URLs del Proyecto
+| Página | URL |
+|--------|-----|
+| **Página de inicio** | `/` |
+| **Ranking de playas mejor valoradas** | `/ranking` |
+| **Página de detalles de playa** | `/playa/:nombre-playa` |
+| **Mapa interactivo** | `/mapa` |
+| **Login** | `/auth/login` |
+| **Registro** | `/auth/register` |
+| **Recuperación de contraseña** | `/auth/forgot-password` |
+| **Perfil de usuario** | `/profile` |
+| **Favoritos** | `/favourites` |
+| **Popup de usuario** | `/user-popup` |
+| **Verificación OTP** | `/auth/forgot-password/otp-verification` |
+
+## 🔗 Enlaces
+- **Figma**: [Enlace a Figma](https://www.figma.com/design/r6Gxqsy8sfzuwfJZOIexKR/Playea.com?node-id=0-1&t=liIOWVMREdWDgDs7-1)
+- **Trello**: [Enlace a Trello](https://trello.com/b/le5wbuMa/playea)
+
 ---
 
-# 🌊 **Playea®** - Encuentra tu paraíso en las Playas de Canarias 🏖️
 
-Bienvenido a **Playea®**, la plataforma definitiva para explorar y descubrir las mejores playas de las Islas Canarias. Imagina una experiencia similar a **Airbnb**, pero enfocada en la belleza natural de las costas canarias. Con **Playea®**, podrás conocer, comparar y elegir las playas que mejor se adaptan a tus gustos y necesidades, ¡todo con un solo clic!
-
----
-
-## 🚀 **Funcionalidades**
-
-### 🌟 **Explora las Playas**
-- **Vista interactiva de playas**: Navega por un mapa interactivo de las Islas Canarias y encuentra todas las playas con fotos, descripciones y puntos de interés. ¡Es como tener el paraíso al alcance de tu mano! 🗺️
-- **Filtros avanzados**: ¿Prefieres una playa tranquila, con deportes acuáticos o pet-friendly? Usa nuestros filtros para encontrar la playa perfecta para ti.
-  
-### 🏄‍♀️ **Actividades y Experiencias**
-- **Busca actividades**: Encuentra las mejores actividades disponibles en cada playa: surf, windsurf, snorkel, paseos en bote y mucho más. ¡Aventuras al sol garantizadas! 🏄‍♂️🤿
-- **Reserva tu experiencia**: Reserva directamente las actividades que más te gusten a través de la plataforma. ¡Sin intermediarios!
-
-### 🏖️ **Valoraciones y Opiniones**
-- **Reseñas de usuarios**: Lee opiniones y valoraciones de otras personas que ya han visitado las playas. ¿Qué te ofrecen realmente? ¿Es ideal para niños, para descansar o para una fiesta en la orilla? 🌞
-- **Sube tus fotos**: Comparte tu experiencia subiendo tus fotos favoritas de las playas para ayudar a otros viajeros a elegir su destino soñado. 📸
-
-### 💬 **Comunicación con otros usuarios**
-- **Foro de viajeros**: Únete a nuestra comunidad. Comparte consejos, preguntas y sugerencias sobre las playas. ¿Qué playa es la más recomendada para un día en familia o para disfrutar del atardecer? 🤔🌅
-
-### 🔍 **Búsqueda Rápida**
-- **Buscador inteligente**: Encuentra playas por nombre, ubicación o actividades disponibles. ¿Buscas una playa cerca de tu hotel o una playa más tranquila? ¡La búsqueda es rápida y fácil! 🧐
-
-### 🌴 **Playas recomendadas para cada tipo de viajero**
-- **Familias**: Playas con zonas protegidas, servicios y actividades para niños.
-- **Aventureros**: Playas con olas perfectas para surfistas y áreas para deportes acuáticos.
-- **Románticas**: Playas apartadas con vistas increíbles y atardeceres de ensueño para disfrutar en pareja.
-- **Amigos y fiestas**: Playas vibrantes, con música y ambiente juvenil para pasarla genial con amigos.
-
-### 🗓️ **Calendario de eventos en la playa**
-- **Eventos locales**: Conoce festivales, conciertos y otras actividades que se celebran cerca de las playas. ¡Nunca te pierdas un buen plan! 🎉🎶
-
-### 📲 **Notificaciones y Favoritos**
-- **Lista de favoritos**: Añade tus playas preferidas a la lista de favoritos para tenerlas siempre a mano. ❤️
-- **Notificaciones personalizadas**: Activa notificaciones para recibir alertas sobre nuevos eventos, ofertas o cambios de condiciones (como la previsión de oleaje). 📩
-
----
-
-## 💡 **¿Por qué elegir Playea®?**
-
-- **Acceso rápido y fácil**: Navega de manera sencilla por las playas de Canarias con una interfaz amigable y atractiva.
-- **Información detallada**: Encuentra todos los detalles de cada playa, desde su accesibilidad hasta qué servicios ofrece (baños, aparcamiento, restaurantes, etc.).
-- **Comunidad activa**: Interactúa con otros viajeros, comparte recomendaciones y experiencias. ¡Viajar es más divertido en compañía! 👫
-- **Soporte local**: Recibe asistencia en tiempo real si necesitas ayuda con tu búsqueda o reservas.
-
----
-
-## ✨ **Próximas características**
-- **Guías locales**: Asesoramiento personalizado sobre qué hacer en cada isla o playa, de la mano de los expertos locales.
-- **Integración con transporte público**: Planifica cómo llegar a la playa en transporte público, coche de alquiler o bicicleta.
-- **Modo offline**: Accede a las playas y mapas sin conexión a internet.
-
----
-
-## 🌐 **Visítanos y empieza tu aventura**  
-Playea® es la puerta de entrada a tu próximo día de sol, arena y mar. ¿A qué esperas? 🌊 ¡Tu playa ideal está a un clic de distancia!
-
----
-
-¡Y eso es todo! ¿Te animas a explorar las mejores playas de Canarias con **Playea®**? 🌞🌊

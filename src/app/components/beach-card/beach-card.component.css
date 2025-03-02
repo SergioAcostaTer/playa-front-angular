@@ -98,34 +98,6 @@
   color: var(--rating-star-color);
 }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .card {
-    border-radius: 13px;
-  }
-
-  .card-image {
-    height: 200px;
-  }
-
-  .card-content {
-    padding: 14px;
-  }
-
-  .card-header h2 {
-    font-size: 0.9rem;
-  }
-
-  .rating-container svg {
-    width: 16px;
-    height: 16px;
-  }
-
-  .rating {
-    font-size: 0.9rem;
-  }
-}
-
 .card-title {
   font-size: 1.5rem; /* text-2xl */
   font-weight: bold; /* font-bold */

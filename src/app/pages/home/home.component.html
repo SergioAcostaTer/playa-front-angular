@@ -5,23 +5,6 @@
     </div>
 </div>
 
-<div class="categories-container">
-    <div class="categories">
-      <div class="category" *ngFor="let category of categories">
-        <img [src]="categoryImage" [alt]="category">
-        <p>{{ category }}</p>
-      </div>
-    </div>
-</div>
+<app-category-list [categories]="categories"></app-category-list>
 
-<div id="beach-grid" *ngIf="beaches?.length">
-    <app-beach-card
-        style="width: 100%;"
-        *ngFor="let beach of beaches"
-        [imageUrl]="beach.imageUrl"
-        [title]="beach.title"
-        [rating]="beach.rating"
-        [distance]="beach.distance"
-        [recommended]="beach.recommended">
-    </app-beach-card>
-</div>
+<app-beach-grid [beaches]="beaches"></app-beach-grid>

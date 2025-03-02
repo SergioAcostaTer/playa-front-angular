@@ -26,16 +26,13 @@ export const routes: Routes = [
     ],
   },
   {
-    path: '',
+    path: 'auth',
     component: NoHeaderLayoutComponent,
     children: [
       { path: 'register', component: RegisterPageComponent },
       { path: 'login', component: LoginPageComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
-      {
-        path: 'forgot-password/otp-verification',
-        component: OTPVerificationComponent,
-      },
+      { path: 'forgot-password/otp-verification', component: OTPVerificationComponent },
     ],
   },
   { path: '**', redirectTo: '/' },

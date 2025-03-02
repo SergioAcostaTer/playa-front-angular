@@ -1,13 +1,3 @@
 <title-page [title]="'Tus playas favoritas'"></title-page>
 
-<div id="beach-grid" *ngIf="beaches?.length">
-  <app-beach-card
-    style="width: 100%;"
-    *ngFor="let beach of beaches"
-    [imageUrl]="beach.imageUrl"
-    [title]="beach.title"
-    [rating]="beach.rating"
-    [distance]="beach.distance"
-    [recommended]="beach.recommended">
-  </app-beach-card>
-</div>
+<app-beach-grid [beaches]="beaches"></app-beach-grid>

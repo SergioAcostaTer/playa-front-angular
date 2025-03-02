@@ -1,0 +1,35 @@
+.category {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+    min-width: 80px;
+    max-width: 80px;
+    scroll-snap-align: center;
+    border-bottom: 2px solid transparent;
+    padding: 10px 5px;
+    padding-top: 20px;
+    transition: border-bottom 0.2s ease-in-out;
+  }
+  
+  .category:hover,
+  .category:active,
+  .category.active:hover {
+    border-bottom: 2px solid #474747;
+  }
+  
+  
+  .category img {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .category p {
+    font-size: 0.8rem;
+    margin: 0;
+  }
+  

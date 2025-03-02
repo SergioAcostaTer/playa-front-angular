@@ -10,8 +10,8 @@ import { Component, Input } from '@angular/core';
 export class RankingCardComponent {
   @Input() title!: string;
   @Input() imageUrl!: string;
-  @Input() rating!: number;
+  @Input() rating!: string;
   @Input() distance!: string;
   @Input() description!: string;
-  @Input() recommended: boolean = false;
+  @Input() recommended?: boolean = false;
 }

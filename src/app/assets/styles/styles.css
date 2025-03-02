@@ -96,3 +96,7 @@ input {
 ul {
   list-style-type: none;
 }
+
+app-beach-card {
+  width: 100%;
+}

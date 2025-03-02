@@ -10,8 +10,3 @@
 }
 
   /* Responsive */
-@media (max-width: 600px) {
-    .ranking-container {
-        max-width: 100%;
-    }
-}
