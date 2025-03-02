@@ -46,13 +46,3 @@
   width: 100%;
   padding: 20px;
 }
-
-@media screen and (max-width: 768px) {
-  .title-page-container {
-    min-height: 150px;
-  }
-  .title-page-container h2 {
-    font-size: 2.5rem;
-    padding: 15px;
-  }
-}

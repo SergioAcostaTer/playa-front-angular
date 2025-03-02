@@ -166,22 +166,3 @@
 .apple-button:hover {
   border-color: var(--login-button-color);
 }
-
-/* Responsive */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
-
-  .left-panel {
-    display: none;
-  }
-
-  .right-panel {
-    width: 100%;
-  }
-
-  .input-group {
-    flex-direction: column;
-  }
-}
