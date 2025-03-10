@@ -26,7 +26,7 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'authh',
+    path: '',
     component: NoHeaderLayoutComponent,
     children: [
       { path: 'register', component: RegisterPageComponent },
