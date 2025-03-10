@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { beachesList } from '../../constants/beachesList.js';
+import { getBeachByName } from '../../services/getBeachByName.js';
 
 @Component({
   selector: 'app-beach-detail',
@@ -16,15 +17,13 @@ export class BeachDetailPageComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) {}
 
-  getBeachBySlug(slug: string) {
-    return this.beaches.find((beach) => beach.title.replace(/ /g, '-').toLowerCase() === slug);
-  }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     const slug = this.route.snapshot.paramMap.get('slug');
     
     if (slug) {
-      this.beach = this.getBeachBySlug(slug);
+      this.beach = await getBeachByName(slug);
+      console.log(this.beach);
     }
   }
 }

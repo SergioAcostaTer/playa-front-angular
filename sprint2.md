@@ -1,0 +1,1 @@
+- Hacer peticiones "fake server" a los json
