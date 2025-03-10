@@ -14,7 +14,7 @@ import { getHomeBeaches } from '../../services/getHomeBeaches';
 })
 export class HomePageComponent implements OnInit {
   categories = categoriesList;
-  beaches: any[] = [];
+  beaches = [];
 
   async ngOnInit() {
     try {
