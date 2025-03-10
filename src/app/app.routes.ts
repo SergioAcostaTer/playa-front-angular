@@ -34,6 +34,5 @@ export const routes: Routes = [
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'forgot-password/otp-verification', component: OTPVerificationComponent },
     ],
-  },
-  { path: '**', redirectTo: '/' },
+  }
 ];
