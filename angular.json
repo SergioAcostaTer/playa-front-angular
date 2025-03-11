@@ -23,11 +23,11 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "src/app/assets"
+                "input": "public"
               }
             ],
             "styles": [
-              "src/app/assets/styles/styles.css"
+              "public/styles/styles.css"
             ],
             "scripts": [],
             "ssr": {

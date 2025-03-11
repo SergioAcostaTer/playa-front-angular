@@ -13,7 +13,14 @@
 
         <form class="login-form">
             <input type="email" placeholder="Correo electrónico" class="input email">
-            <input type="password" placeholder="Contraseña" class="input password">
+
+            <div class="password-container">
+              <input id="password-text" type="password" placeholder="Contraseña" class="input password">
+              <button type="button" class="toggle-password" (click)="togglePassword()">
+                <img id="toggle-icon" src="/images/NotShowing.png" alt="Mostrar Contraseña">
+              </button>
+            </div>
+
             <a class="forgot-password-link" href="/auth/forgot-password">¿Olvidaste tu contraseña?</a>
 
             <button type="submit" class="login-button">Iniciar sesión</button>
