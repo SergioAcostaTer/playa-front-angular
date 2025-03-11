@@ -1,8 +1,9 @@
 <header class="header">
     <button id="menu-button" aria-label="Toggle menu" class="menu-button">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 50 50" id="menu-icon">
-            <path
-                d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z">
+            <path d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z 
+                     M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z 
+                     M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z">
             </path>
         </svg>
     </button>
@@ -19,7 +20,7 @@
     </nav>
 
     <div id="right-menu" class="right-menu">
-        <a id="avatar" href="/user-popup">
+        <a id="avatar" (click)="togglePopup()">
             <img src="/images/avatar.jpg" alt="User Avatar" class="avatar">
         </a>
         <div class="buttons">
@@ -28,3 +29,20 @@
         </div>
     </div>
 </header>
+
+<!-- POPUP -->
+<div *ngIf="isPopupVisible" class="popup-overlay">
+    <div class="user-popup-container">
+        <div class="user-popup-image">
+            <img src="/images/avatar.jpg" alt="UserIcon">
+        </div>
+        <div class="user-popup-account-buttons">
+            <button><a href="#">Añadir Cuenta</a></button>
+            <button><a href="#">Cerrar Sesión</a></button>
+        </div>
+        <div class="user-popup-section-buttons">
+            <button><a href="/profile">Perfil</a></button>
+            <button><a href="/favourites">Me Gusta</a></button>
+        </div>
+    </div>
+</div>
