@@ -1,9 +1,16 @@
 import { Component } from '@angular/core';
+import { togglePasswordView } from '../../utils/toggle-password-view';
 
 @Component({
   selector: 'app-login',
-  imports: [],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginPageComponent {}
+export class LoginPageComponent {
+  email: string = '';
+  password: string = '';
+
+  togglePassword() {
+    togglePasswordView('password-text', 'toggle-icon');  // Llamamos a la función reutilizable
+  }
+}
