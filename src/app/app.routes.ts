@@ -6,7 +6,6 @@ import { NoHeaderLayoutComponent } from './layout/noheader-layout/noheader-layou
 import { RegisterPageComponent } from './pages/register/register.component';
 import { BeachDetailPageComponent } from './pages/beachDetail/beach-detail.component';
 import { ProfilePageComponent } from './pages/profile/profile.component';
-import { UserPopUpComponent } from './pages/user-popup/user-popup.component';
 import { RankingPageComponent } from './pages/ranking/ranking.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { OTPVerificationComponent } from './pages/otp-verification/otp-verification.component';
@@ -21,7 +20,6 @@ export const routes: Routes = [
       { path: 'favourites', component: FavouritePageComponent },
       { path: 'beach/:slug', component: BeachDetailPageComponent },
       { path: 'profile', component: ProfilePageComponent },
-      { path: 'user-popup', component: UserPopUpComponent },
       { path: 'ranking', component: RankingPageComponent }, 
     ],
   },
