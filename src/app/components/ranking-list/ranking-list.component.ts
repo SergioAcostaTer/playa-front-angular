@@ -13,6 +13,7 @@ interface Beach {
 
 @Component({
   selector: 'app-ranking-list',
+  standalone: true,
   templateUrl: './ranking-list.component.html',
   styleUrls: ['./ranking-list.component.css'],
   imports: [CommonModule, RankingCardComponent],
@@ -26,4 +27,8 @@ export class RankingListComponent {
     recommended?: boolean; 
     description: string; 
   }[] = [];
+
+  trackByTitle(index: number, beach: { title: string }): string {
+    return beach.title; // Optimización de renderizado
+  }
 }
