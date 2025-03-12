@@ -13,6 +13,10 @@
   transition: border-bottom 0.2s ease-in-out, transform 0.3s ease-in-out;
 }
 
+.category:hover {
+  border-bottom-color: var(--primary-color, #007bff);
+}
+
 /* ELEMENTOS */
 .category__image {
   width: 1.5rem;

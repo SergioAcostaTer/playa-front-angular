@@ -1,29 +1,36 @@
-.categories-container {
-    width: 100%;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
-    margin-top: 20px;
-    padding: 0;
-  }
-  
-  .categories {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    white-space: nowrap;
-    padding: 0;
-    width: 100%;
-    gap: 5px;
-  }
-  
-  .categories::-webkit-scrollbar {
-    height: 0;
-  }
-  
-  .categories::-webkit-scrollbar-track {
-    border-radius: 10px;
-  }
-  
-  .categories::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-  }
-  
+/* BLOQUE PRINCIPAL */
+.category-list {
+  width: 100%;
+  box-shadow: 0 0 0.375rem rgba(0, 0, 0, 0.16);
+  margin-top: 1.25rem;
+  padding: 0;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 0.5rem;
+}
+
+/* ELEMENTOS */
+.category-list__item {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+}
+
+/* MODIFICADOR */
+.category-list--empty {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--text-color, #333);
+  padding: 2rem;
+}
+
+/* Ocultar scrollbar en navegadores modernos */
+.category-list {
+  -ms-overflow-style: none;  /* IE y Edge */
+  scrollbar-width: none;      /* Firefox */
+}
+
+.category-list::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari y Opera */
+}
