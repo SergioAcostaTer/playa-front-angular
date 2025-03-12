@@ -10,7 +10,6 @@ import { BeachGridComponent } from '../../components/beach-grid/beach-grid.compo
   standalone: true,
   imports: [CommonModule, BeachGridComponent, TitlePageComponent],
   templateUrl: './favourite.component.html',
-  styleUrls: ['./favourite.component.css'],
 })
 export class FavouritePageComponent {
   beaches = beachesList;
