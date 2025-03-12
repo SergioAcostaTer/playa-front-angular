@@ -1,10 +1,17 @@
-<div class="beach-grid" *ngIf="beaches?.length">
+<div *ngIf="beaches?.length; else emptyState" class="beach-grid" role="list">
     <app-beach-card
-        *ngFor="let beach of beaches"
+        *ngFor="let beach of beaches; trackBy: trackByTitle"
         [imageUrl]="beach.imageUrl"
         [title]="beach.title"
         [rating]="beach.rating"
         [distance]="beach.distance"
-        [recommended]="beach.recommended">
+        [recommended]="beach.recommended"
+        class="beach-grid__item"
+        role="listitem">
     </app-beach-card>
 </div>
+
+<!-- Mensaje cuando no hay playas -->
+<ng-template #emptyState>
+    <p class="beach-grid beach-grid--empty">No hay playas disponibles.</p>
+</ng-template>
