@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
   imports: [CommonModule],
   templateUrl: './beach-card.component.html',
   styleUrls: ['./beach-card.component.css'],
-  host: { 'class': 'card' }
+  host: { 'class': 'beach-card' }
 })
 export class BeachCardComponent {
   @Input() imageUrl: string = 'assets/default-beach.jpg';
