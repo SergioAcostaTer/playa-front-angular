@@ -1,13 +1,21 @@
-.container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    min-width: 100%;
-  }
-  
-.header, footer {
-    width: 100%;
+/* BLOQUE PRINCIPAL */
+.main-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
+
+/* ELEMENTOS */
+.main-layout__header,
+.main-layout__footer {
+  width: 100%;
+}
+
+.main-layout__content {
+  width: 100%;
+  flex-grow: 1;
 }

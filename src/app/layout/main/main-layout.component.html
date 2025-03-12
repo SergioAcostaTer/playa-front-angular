@@ -1,8 +1,9 @@
-<div class="container">
-    <app-header
-        style="width: 100%;display: sticky;position: -webkit-sticky;position: sticky;top: 0;z-index: 1000;"></app-header>
-    <main>
+<div class="main-layout">
+    <app-header class="main-layout__header"></app-header>
+    
+    <main class="main-layout__content" role="main">
         <router-outlet></router-outlet>
     </main>
-    <app-footer></app-footer>
+    
+    <app-footer class="main-layout__footer"></app-footer>
 </div>
