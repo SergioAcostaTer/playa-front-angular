@@ -5,7 +5,7 @@ import { Component, Input } from '@angular/core';
   selector: 'app-category',
   imports: [ CommonModule ],
   templateUrl: './category.component.html',
-  styleUrl: './category.component.css',
+  styleUrls: [ './category.component.css', ],
 })
 export class CategoryComponent {
   @Input() category!: string;
