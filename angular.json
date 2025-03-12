@@ -27,7 +27,7 @@
               }
             ],
             "styles": [
-              "public/styles/styles.css"
+              "src/styles/styles.css"
             ],
             "scripts": [],
             "ssr": {
@@ -93,7 +93,7 @@
               }
             ],
             "styles": [
-              "src/app/assets/styles/styles.css"
+              "src/styles/styles.css"
             ],
             "scripts": []
           }
