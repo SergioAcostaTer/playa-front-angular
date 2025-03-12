@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-ranking-card',
+  standalone: true,
   templateUrl: './ranking-card.component.html',
   styleUrls: ['./ranking-card.component.css'],
   imports: [CommonModule],

@@ -1,8 +1,8 @@
-<a class="beach-card" [ngClass]="{ 'recommended': recommended }">
-    <img [src]="imageUrl" [alt]="title" loading="lazy">
-    <div class="beach-info">
-        <h2>{{ title }}</h2>
-        <p class="rating">{{ rating }} • <span class="distance">A {{ distance }}</span></p>
-        <p class="description">{{ description }}</p>
+<a class="ranking-card" [ngClass]="{ 'ranking-card--recommended': recommended }">
+    <img [src]="imageUrl" [alt]="title" loading="lazy" class="ranking-card__image">
+    <div class="ranking-card__info">
+        <h2 class="ranking-card__title">{{ title }}</h2>
+        <p class="ranking-card__rating">{{ rating }} • <span class="ranking-card__distance">A {{ distance }}</span></p>
+        <p class="ranking-card__description">{{ description }}</p>
     </div>
 </a>

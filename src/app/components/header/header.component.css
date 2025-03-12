@@ -143,10 +143,6 @@
   align-items: center;
 }
 
-.popup__image-container {
-  /* Container styling if needed */
-}
-
 .popup__image {
   max-width: 80px;
   max-height: 80px;
