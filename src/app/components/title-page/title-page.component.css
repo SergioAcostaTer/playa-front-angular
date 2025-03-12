@@ -1,4 +1,5 @@
-.title-page-container {
+/* BLOQUE PRINCIPAL */
+.title-page {
   width: 100%;
   border-radius: 10px;
   overflow: hidden;
@@ -9,22 +10,12 @@
   padding: 25px;
   margin: auto;
   padding-bottom: 0;
-}
-
-.title-page-container div {
   min-height: 200px;
   max-width: 850px;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.title-page-container img {
+/* ELEMENTOS */
+.title-page__background {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -35,7 +26,7 @@
   filter: blur(1px) brightness(0.75);
 }
 
-.title-page-container h2 {
+.title-page__title {
   position: relative;
   z-index: 2;
   font-size: 3rem;
