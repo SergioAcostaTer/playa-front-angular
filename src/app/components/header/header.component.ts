@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-header',
   standalone: true,
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css',
+  styleUrls: [ './header.component.css' ],
   imports: [CommonModule],
 })
 export class HeaderComponent {
@@ -21,10 +21,10 @@ export class HeaderComponent {
 
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event): void {
-    const target = event.target as HTMLElement;
+    if (!this.isPopupVisible) return;
 
-    // Verifica si el clic fue en el avatar o dentro del popup
-    if (!target.closest('.user-popup-container') && !target.closest('#avatar')) {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.header__popup') && !target.closest('.header__avatar')) {
       this.closePopup();
     }
   }
