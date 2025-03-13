@@ -1,4 +1,4 @@
-#banner {
+.banner {
   background-image: url("/images/las-canteras.jpg");
   background-size: cover;
   background-position: center;
@@ -15,14 +15,14 @@
   padding: 0 20px;
 }
 
-#banner h1 {
+.banner__title {
   margin: 0;
   text-align: center;
   line-height: 1.2;
   letter-spacing: 1px;
 }
 
-#banner div {
+.banner__search {
   width: 80%;
   margin-top: 20px;
   position: absolute;
@@ -30,7 +30,7 @@
   bottom: -22px;
 }
 
-#banner div input {
+.banner__input {
   width: 100%;
   padding: 0.5rem;
   font-size: 1.2rem;
@@ -43,12 +43,11 @@
   transition: all 0.3s ease;
 }
 
-#banner div input::placeholder {
+.banner__input::placeholder {
   color: #888;
 }
 
-#banner div input:focus {
+.banner__input:focus {
   background-color: #fff;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
-

@@ -6,7 +6,7 @@ import { BeachGridComponent } from '../../components/beach-grid/beach-grid.compo
 import { getHomeBeaches } from '../../services/getHomeBeaches';
 
 @Component({
-  selector: 'Home',
+  selector: 'app-home',
   standalone: true,
   imports: [CommonModule, CategoryListComponent, BeachGridComponent],
   templateUrl: './home.component.html',
