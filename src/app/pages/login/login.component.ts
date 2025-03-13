@@ -11,6 +11,6 @@ export class LoginPageComponent {
   password: string = '';
 
   togglePassword() {
-    togglePasswordView('password-text', 'toggle-icon');  // Llamamos a la función reutilizable
+    togglePasswordView('password-text', 'toggle-icon');
   }
 }

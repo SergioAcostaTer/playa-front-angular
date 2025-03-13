@@ -1,4 +1,4 @@
-.login-container {
+.login {
   display: flex;
   width: 100vw;
   height: 100vh;
@@ -6,9 +6,12 @@
   overflow: hidden;
 }
 
-.left-panel {
+.login__panel {
   width: 50%;
   height: 100%;
+}
+
+.login__panel--left {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -16,7 +19,7 @@
   position: relative;
 }
 
-.background-image {
+.login__background {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -24,9 +27,7 @@
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
 }
 
-.right-panel {
-  width: 50%;
-  height: 100%;
+.login__panel--right {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,33 +36,33 @@
   text-align: center;
 }
 
-.title {
+.login__title {
   font-size: 2.5rem;
   display: flex;
 }
 
-.registered-span {
+.login__title-icon {
   font-size: 0.9rem;
   margin-top: 10px;
 }
 
-.subtitle {
+.login__subtitle {
   font-size: 1.5rem;
   margin-bottom: 10px;
 }
 
-.login-text {
+.login__text {
   margin-bottom: 20px;
   font-size: 0.9rem;
 }
 
-.login-link {
+.login__link {
   color: var(--login-button-color);
   text-decoration: none;
   font-weight: bold;
 }
 
-.login-form {
+.login__form {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -70,12 +71,12 @@
   max-width: 500px;
 }
 
-.password-container {
+.login__password-wrapper {
   position: relative;
   width: 100%;
 }
 
-.toggle-password {
+.login__password-toggle {
   position: absolute;
   right: 15px;
   top: 50%;
@@ -83,14 +84,16 @@
   cursor: pointer;
   font-size: 1.5rem;
   padding: 5px;
+  border: none;
+  background: none;
 }
 
-.toggle-password img {
+.login__password-icon {
   width: 15px;
   height: 15px;
 }
 
-.input {
+.login__input {
   background-color: var(--login-input-bg);
   border: 1px solid var(--login-border-color);
   padding: 12px;
@@ -100,11 +103,18 @@
   font-size: 1rem;
 }
 
-.input::placeholder {
+.login__input::placeholder {
   color: var(--login-placeholder-color);
 }
 
-.login-button {
+.login__forgot-link {
+  color: var(--login-button-color);
+  align-self: flex-end;
+  margin-top: -10px;
+  font-size: 0.9em;
+}
+
+.login__submit {
   background-color: var(--login-button-color);
   border: none;
   padding: 12px;
@@ -117,32 +127,35 @@
   font-weight: bold;
 }
 
-.login-button:hover {
+.login__submit:hover {
   background-color: var(--login-button-hover);
 }
 
-.divider {
+.login__divider {
   text-align: center;
   margin: 10px 0;
   font-size: 0.9rem;
   opacity: 0.8;
 }
 
-.social-buttons {
+.login__socials {
   display: flex;
   gap: 10px;
   justify-content: center;
 }
 
-.google-button:hover,
-.apple-button:hover {
+.login__social {
+  padding: 10px 25px;
+  background: none;
+  border: 1px solid var(--login-border-color);
+  border-radius: 5px;
+}
+
+.login__social--google:hover,
+.login__social--apple:hover {
   border-color: var(--login-button-color);
 }
 
-.forgot-password-link {
-  color: var(--login-button-color);
-  align-self: flex-end;
-  margin-top: -10px;
-  font-size: 0.9em;
+.login__social-icon {
+  /* Estilos específicos para los íconos SVG si es necesario */
 }
-
