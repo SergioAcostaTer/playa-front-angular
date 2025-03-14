@@ -6,24 +6,6 @@
   overflow: hidden;
 }
 
-.register__left-panel {
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 20px;
-  position: relative;
-}
-
-.register__background-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
-}
-
 .register__right-panel {
   width: 50%;
   height: 100%;
@@ -130,25 +112,24 @@
 }
 
 
-.register__social-buttons {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
+.register__password-wrapper {
+  position: relative;
+  width: 100%;
 }
 
-.register__social-button {
-  background: none;
-  border: 1px solid var(--login-border-color);
-  padding: 10px 20px;
-  border-radius: 5px;
-  color: var(--login-text-color);
+.register__password-toggle {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
   cursor: pointer;
-  transition: border 0.3s;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  font-size: 1.5rem;
+  padding: 5px;
+  border: none;
+  background: none;
 }
 
-.register__social-button:hover {
-  border-color: var(--login-button-color);
+.register__password-icon {
+  width: 15px;
+  height: 15px;
 }
