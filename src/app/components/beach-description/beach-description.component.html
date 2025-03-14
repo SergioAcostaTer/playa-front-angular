@@ -5,11 +5,6 @@
     <h3 class="beach-description__subtitle">Características de la Playa</h3>
     <p class="beach-description__text">{{ description.features }}</p>
 
-    <h3 class="beach-description__subtitle">Servicios</h3>
-    <ul class="beach-description__list">
-        <li class="beach-description__item" *ngFor="let service of description.services" [innerHTML]="service"></li>
-    </ul>
-
     <h3 class="beach-description__subtitle">Actividades</h3>
     <ul class="beach-description__list">
         <li class="beach-description__item" *ngFor="let activity of description.activities" [innerHTML]="activity"></li>

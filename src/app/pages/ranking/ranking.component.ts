@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TitlePageComponent } from "../../components/title-page/title-page.component";
 import { RankingListComponent } from '../../components/ranking-list/ranking-list.component';
-import { beachesList } from '../../constants/beachesList';
+import { categoriesList } from '../../constants/categoriesList';
+import { getHomeBeaches } from '../../services/getHomeBeaches';
 @Component({
   selector: 'ranking-page',
   standalone: true,
@@ -11,5 +12,14 @@ import { beachesList } from '../../constants/beachesList';
   styleUrls: [ ],
 })
 export class RankingPageComponent {
-  beaches = beachesList;
+    categories = categoriesList;
+    beaches = [];
+  
+    async ngOnInit() {
+      try {
+        this.beaches = await getHomeBeaches();
+      } catch (error) {
+        console.error('Error fetching beaches:', error);
+      }
+    }
 }

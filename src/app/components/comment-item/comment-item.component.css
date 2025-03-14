@@ -1,0 +1,55 @@
+.comment-item {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 15px 0;
+}
+
+.comment-item__author {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.comment-item__rating {
+  font-size: 0.9rem;
+  color: #f39c12; /* Amarillo para la calificación */
+  margin: 5px 0;
+}
+
+.comment-item__text {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.comment-item__actions {
+  display: flex;
+  gap: 10px;
+}
+
+.comment-item__button {
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.comment-item__button--reply {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.comment-item__button--reply:hover {
+  background-color: #e0e0e0;
+}
+
+.comment-item__button--like {
+  background-color: var(--login-button-color);;
+  color: white;
+}
+
+.comment-item__button--like:hover {
+  background-color: var(--login-button-color);;
+}

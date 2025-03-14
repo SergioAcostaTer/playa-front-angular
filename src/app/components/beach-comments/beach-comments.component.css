@@ -1,0 +1,79 @@
+.beach-comments {
+  margin-top: 30px;
+  max-width: 100%;
+}
+
+.beach-comments__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.beach-comments__list {
+  margin-bottom: 30px;
+}
+
+.beach-comments__add {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.beach-comments__add-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+.beach-comments__form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.beach-comments__input,
+.beach-comments__select,
+.beach-comments__textarea {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: 'Arial', sans-serif;
+}
+
+.beach-comments__input {
+  width: 100%;
+}
+
+.beach-comments__select {
+  width: 100px;
+}
+
+.beach-comments__textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.beach-comments__submit {
+  padding: 10px 20px;
+  background-color: var(--login-button-color);;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.beach-comments__submit:hover {
+  background-color: var(--login-button-color);;
+}
+
+.beach-comments__submit:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}

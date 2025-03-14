@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { BeachCardComponent } from '../../components/beach-card/beach-card.component';
-import { beachesList } from '../../constants/beachesList';
+import { categoriesList } from '../../constants/categoriesList';
 import { TitlePageComponent } from '../../components/title-page/title-page.component';
 import { BeachGridComponent } from '../../components/beach-grid/beach-grid.component';
+import { getHomeBeaches } from '../../services/getHomeBeaches';
 
 @Component({
   selector: 'app-user-favourites',
@@ -12,5 +12,14 @@ import { BeachGridComponent } from '../../components/beach-grid/beach-grid.compo
   templateUrl: './favourite.component.html',
 })
 export class FavouritePageComponent {
-  beaches = beachesList;
+    categories = categoriesList;
+    beaches = [];
+  
+    async ngOnInit() {
+      try {
+        this.beaches = await getHomeBeaches();
+      } catch (error) {
+        console.error('Error fetching beaches:', error);
+      }
+    }
 }
