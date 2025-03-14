@@ -1,0 +1,38 @@
+<div class="beach-description">
+    <h2 class="beach-description__title">Bienvenid&#64; a {{ title }}</h2>
+    <p class="beach-description__text">{{ description.intro }}</p>
+
+    <h3 class="beach-description__subtitle">Características de la Playa</h3>
+    <p class="beach-description__text">{{ description.features }}</p>
+
+    <h3 class="beach-description__subtitle">Servicios</h3>
+    <ul class="beach-description__list">
+        <li class="beach-description__item" *ngFor="let service of description.services" [innerHTML]="service"></li>
+    </ul>
+
+    <h3 class="beach-description__subtitle">Actividades</h3>
+    <ul class="beach-description__list">
+        <li class="beach-description__item" *ngFor="let activity of description.activities" [innerHTML]="activity"></li>
+    </ul>
+
+    <h3 class="beach-description__subtitle">Accesibilidad y Mascotas</h3>
+    <ul class="beach-description__list">
+        <li class="beach-description__item" *ngFor="let access of description.accessibility" [innerHTML]="access"></li>
+    </ul>
+
+    <h3 class="beach-description__subtitle">Próximos Eventos</h3>
+    <ul class="beach-description__list">
+        <li class="beach-description__item" *ngFor="let event of description.events" [innerHTML]="event"></li>
+    </ul>
+
+    <h3 class="beach-description__subtitle">Clima y Mejor Época para Visitar</h3>
+    <p class="beach-description__text">{{ description.climate }}</p>
+
+    <h3 class="beach-description__subtitle">Precios</h3>
+    <ul class="beach-description__list">
+        <li class="beach-description__item" *ngFor="let price of description.prices" [innerHTML]="price"></li>
+    </ul>
+
+    <h3 class="beach-description__subtitle">Disponibilidad</h3>
+    <p class="beach-description__text">{{ description.availability }}</p>
+</div>
