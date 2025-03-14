@@ -8,7 +8,7 @@ import { beachesList } from '../../constants/beachesList';
   standalone: true,
   imports: [CommonModule, TitlePageComponent, RankingListComponent],
   templateUrl: './ranking.component.html',
-  styleUrls: ['./ranking.component.css'],
+  styleUrls: [ ],
 })
 export class RankingPageComponent {
   beaches = beachesList;
