@@ -1,0 +1,32 @@
+<div class="beach-detail-layout">
+    <div class="beach-detail-layout__image">
+        <img [src]="beach.imageUrl" [alt]="beach.title" class="beach-detail-layout__image-main" />
+    </div>
+
+    <div class="beach-detail-layout__sidebar">
+        <section class="beach-detail-layout__header">
+            <h1 class="beach-detail-layout__title">🏖️ {{ beach.title }}</h1>
+            <div class="beach-detail-layout__rating-info">
+                <span class="beach-detail-layout__rating">⭐ {{ beach.rating }}</span>
+                <span class="beach-detail-layout__separator"> | </span>
+                <span class="beach-detail-layout__reviews">📝 {{ beach.reviews }} reseñas</span>
+                <span class="beach-detail-layout__separator"> | </span>
+                <span class="beach-detail-layout__distance">📍 {{ beach.distance }}</span>
+            </div>
+        </section>
+
+        <section class="beach-detail-layout__services">
+            <h3 class="beach-detail-layout__services-title">🏝️ Servicios y Características</h3>
+            <ul class="beach-detail-layout__services-list">
+                <li class="beach-detail-layout__services-item" *ngFor="let service of beach.services">{{ service }}</li>
+            </ul>
+        </section>
+
+        <section class="beach-detail-layout__weather">
+            <h3 class="beach-detail-layout__weather-title">🌤️ Clima</h3>
+            <p class="beach-detail-layout__weather-text">{{ beach.weather }}</p>
+        </section>
+
+        <button class="beach-detail-layout__button">Ir a la playa</button>
+    </div>
+</div>

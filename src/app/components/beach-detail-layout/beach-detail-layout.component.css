@@ -1,0 +1,80 @@
+.beach-detail-layout {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}
+
+.beach-detail-layout__image {
+  flex: 1;
+}
+
+.beach-detail-layout__image-main {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.beach-detail-layout__sidebar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  border: 1px solid #0002;
+  border-radius: 10px;
+  padding: 1em 2em;
+}
+
+.beach-detail-layout__header {
+  text-align: left;
+}
+
+.beach-detail-layout__title {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.beach-detail-layout__rating-info {
+  display: flex;
+  gap: 10px;
+  font-size: 1rem;
+  color: #666;
+}
+
+.beach-detail-layout__separator {
+  color: #999;
+}
+
+.beach-detail-layout__services-title,
+.beach-detail-layout__weather-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.beach-detail-layout__services-list {
+  list-style: none;
+  padding: 0;
+}
+
+.beach-detail-layout__services-item {
+  margin-bottom: 8px;
+}
+
+.beach-detail-layout__weather-text {
+  margin: 0;
+}
+
+.beach-detail-layout__button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.beach-detail-layout__button:hover {
+  background-color: #0056b3;
+}

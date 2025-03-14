@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { beachesList } from '../../constants/beachesList.js';
-import { getBeachByName } from '../../services/getBeachByName.js';
+import { beachesList } from '../../constants/beachesList';
+import { BeachDetailLayoutComponent } from '../../components/beach-detail-layout/beach-detail-layout.component';
 
 @Component({
   selector: 'app-beach-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BeachDetailLayoutComponent],
   templateUrl: './beach-detail.component.html',
   styleUrls: ['./beach-detail.component.css']
 })
@@ -17,13 +17,14 @@ export class BeachDetailPageComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) {}
 
-
-  async ngOnInit() {
+  ngOnInit() {
     const slug = this.route.snapshot.paramMap.get('slug');
     
     if (slug) {
-      this.beach = await getBeachByName(slug);
-      console.log(this.beach);
+      // Busca la playa cuyo title, normalizado, coincida con el slug
+      this.beach = this.beaches.find((beach: any) => 
+        beach.title?.replace(/ /g, '-')?.toLowerCase() === slug.toLowerCase()
+      );
     }
   }
 }

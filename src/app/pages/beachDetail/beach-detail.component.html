@@ -1,43 +1,6 @@
 <div *ngIf="beach" class="beach-detail-container">
-  <div class="beach-detail-layout">
-    <div class="beach-image">
-      <img [src]="beach.imageUrl" alt="{{ beach.title }}" class="main-image" />
-    </div>
 
-    <div class="beach-sidebar">
-      <header class="beach-info-header">
-        <h1 class="beach-title">🏖️ Playa Dorada</h1>
-        <div class="rating-info">
-          <span class="rating">⭐ 4.8</span>
-          <span> | </span>
-          <span class="reviews">📝 120 reseñas</span>
-          <span> | </span>
-          <span class="distance">📍 A 5.2 km de ti</span>
-        </div>
-      </header>
-
-      <div class="beach-location">
-        <h3>🏝️ Servicios y Características</h3>
-        <ul>
-          <li>✅ 🏖️ Camas de sol y sombrillas</li>
-          <li>✅ ☕ Cafeterías en la playa</li>
-          <li>✅ ♿ Accesible para sillas de ruedas</li>
-          <li>✅ 🐶 Apto para perros</li>
-          <li>✅ 📶 Wi-Fi gratis</li>
-          <li>✅ 🛟 Socorrista en servicio</li>
-        </ul>
-      </div>
-
-      <div class="weather-info">
-        <h3>🌤️ Clima</h3>
-        <p>☀️ Soleado, 28°C (82°F) — ¡Perfecto para un día de playa! 🏊‍♂️</p>
-      </div>
-
-      <button class="book-now-btn">Ir a la playa</button>
-    </div>
-
-
-  </div>
+  <app-beach-detail-layout [beach]="beach"></app-beach-detail-layout>
 
   <div class="beach-info">
     <div class="map-container">
