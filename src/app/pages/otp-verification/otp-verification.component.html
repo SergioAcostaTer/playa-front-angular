@@ -1,23 +1,39 @@
-<div class="otp-verification-container">
-    <a class="app-logo" href="/">PLAYEA</a>
-    <h1>Verificación OTP</h1>
-    <p>Por favor, revisa tu correo www.pepito&#64;gmail.com para poder poner el código</p>
+<div class="otp-verification">
+    <a class="otp-verification__logo" href="javascript:void(0)">PLAYEA</a>
+    <h1 class="otp-verification__title">Verificación OTP</h1>
+    <p class="otp-verification__description">Por favor, revisa tu correo www.pepito&#64;gmail.com para poder poner el código</p>
     
-    <form class="otp-verification-form">
-        <div class="otp-inputs">
-            <input type="text" maxlength="1" required oninput="moveToNext(this, 'input2')" id="input1">
-            <input type="text" maxlength="1" required oninput="moveToNext(this, 'input3')" id="input2">
-            <input type="text" maxlength="1" required oninput="moveToNext(this, 'input4')" id="input3">
-            <input type="text" maxlength="1" required id="input4">
+    <div class="otp-verification__form">
+        <div class="otp-verification__inputs">
+            <input 
+                type="text" 
+                maxlength="1" 
+                required 
+                class="otp-verification__input"
+                (keyup)="onKeyUp($event, 1)"
+                #input1>
+            <input 
+                type="text" 
+                maxlength="1" 
+                required 
+                class="otp-verification__input"
+                (keyup)="onKeyUp($event, 2)"
+                #input2>
+            <input 
+                type="text" 
+                maxlength="1" 
+                required 
+                class="otp-verification__input"
+                (keyup)="onKeyUp($event, 3)"
+                #input3>
+            <input 
+                type="text" 
+                maxlength="1" 
+                required 
+                class="otp-verification__input"
+                (keyup)="onKeyUp($event, 4)"
+                #input4>
         </div>
-        <button type="submit">Confirmar</button>
-    </form>
+        <button type="button" (click)="onSubmit()" class="otp-verification__button">Confirmar</button>
+    </div>
 </div>
-
-<script>
-    function moveToNext(currentInput, nextInputId) {
-        if (currentInput.value.length >= currentInput.maxLength) {
-            document.getElementById(nextInputId)?.focus();
-        }
-    }
-</script>

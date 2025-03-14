@@ -1,6 +1,4 @@
-/* Estilos para la verificación OTP */
-
-.otp-verification-container {
+.otp-verification {
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -11,21 +9,31 @@
     letter-spacing: 1px;
 }
 
+.otp-verification__logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: var(--login-button-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
 
-.otp-verification-container h1 {
+.otp-verification h1 {
     margin-top: 35px;
     font-size: 2.2em;
     font-weight: 700;
     text-transform: uppercase;
 }
 
-.otp-verification-container p {
+.otp-verification p {
     font-size: 0.9em;
     margin-bottom: 50px;
     max-width: 80%;
 }
 
-.otp-verification-form {
+.otp-verification__form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,7 +41,7 @@
     width: 100%;
 }
 
-.otp-inputs {
+.otp-verification__inputs {
     min-width: 300px;
     width: 60vw;
     max-width: 400px;
@@ -45,7 +53,7 @@
     gap: 1em;
 }
 
-.otp-inputs input {
+.otp-verification__input {
     width: 50px;
     height: 65px;
     border: 1px solid #000;
@@ -55,7 +63,7 @@
     font-size: 1.5em;
 }
 
-.otp-verification-form button {
+.otp-verification__form button {
     margin-top: 15px;
     padding: 12px 30px;
     background-color: var(--login-button-color);
@@ -68,6 +76,6 @@
     max-width: 500px;
 }
 
-.otp-verification-form button:hover {
+.otp-verification__form button:hover {
     box-shadow: 0 0 5px 0 var(--login-button-color);
 }
