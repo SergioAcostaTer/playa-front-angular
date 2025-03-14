@@ -3,11 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { beachesList } from '../../constants/beachesList';
 import { BeachDetailLayoutComponent } from '../../components/beach-detail-layout/beach-detail-layout.component';
+import { BeachMapComponent } from "../../components/beach-map/beach-map.component";
 
 @Component({
   selector: 'app-beach-detail',
   standalone: true,
-  imports: [CommonModule, BeachDetailLayoutComponent],
+  imports: [CommonModule, BeachDetailLayoutComponent, BeachMapComponent, BeachMapComponent ],
   templateUrl: './beach-detail.component.html',
   styleUrls: ['./beach-detail.component.css']
 })

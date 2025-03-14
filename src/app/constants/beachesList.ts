@@ -13,7 +13,21 @@ export const beachesList = [
     ],
     "weather": "⛅ Parcialmente nublado, 24°C (75°F) — Ideal para un paseo",
     "recommended": true,
-    "description": "Playa de arena rojiza y aguas cristalinas, ideal para disfrutar de la naturaleza en su estado más puro."
+    "mapImageUrl": '/images/example-map.png',
+    "description": {
+      "intro": 'Playa Dorada es una de las playas más queridas de las Islas Canarias...',
+      "features": 'La playa se extiende a lo largo de 2 kilómetros...',
+      "services": [
+        '<strong>Tumbonas y Sombrillas:</strong> Disponibles para alquilar...',
+        '<strong>Cafés y Restaurantes junto a la playa:</strong> Ofrecen una variedad...'
+      ],
+      "activities": ['<strong>Surf:</strong> Tanto si eres principiante...', '<strong>Paddle Surf:</strong> Deslízate sobre las aguas...'],
+      "accessibility": ['<strong>Apta para Perros:</strong> Playa Dorada es una playa...', '<strong>Accesible en Silla de Ruedas:</strong> La playa es totalmente...'],
+      "events": ['<strong>Fiestas en la Playa:</strong> Cada viernes por la noche...', '<strong>Competencia Anual de Surf:</strong> Playa Dorada organiza...'],
+      "climate": 'El clima en Playa Dorada es perfecto durante todo el año...',
+      "prices": ['<strong>Tumbonas y Sombrillas:</strong> Desde 50$ por día...', '<strong>Clases de Surf:</strong> Clases grupales por 40$...'],
+      "availability": 'Playa Dorada está abierta todos los días de 8 AM a 8 PM...'
+    }
   },
   {
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Tacor%C3%B3n_foto_principal.jpg/220px-Tacor%C3%B3n_foto_principal.jpg",
@@ -28,7 +42,21 @@ export const beachesList = [
     ],
     "weather": "☀️ Soleado, 26°C (79°F) — Perfecto para nadar",
     "recommended": false,
-    "description": "Pequeña cala de aguas tranquilas con impresionantes vistas al océano Atlántico."
+    "mapImageUrl": '/images/example-map.png',
+    "description": {
+      "intro": 'Playa Dorada es una de las playas más queridas de las Islas Canarias...',
+      "features": 'La playa se extiende a lo largo de 2 kilómetros...',
+      "services": [
+        '<strong>Tumbonas y Sombrillas:</strong> Disponibles para alquilar...',
+        '<strong>Cafés y Restaurantes junto a la playa:</strong> Ofrecen una variedad...'
+      ],
+      "activities": ['<strong>Surf:</strong> Tanto si eres principiante...', '<strong>Paddle Surf:</strong> Deslízate sobre las aguas...'],
+      "accessibility": ['<strong>Apta para Perros:</strong> Playa Dorada es una playa...', '<strong>Accesible en Silla de Ruedas:</strong> La playa es totalmente...'],
+      "events": ['<strong>Fiestas en la Playa:</strong> Cada viernes por la noche...', '<strong>Competencia Anual de Surf:</strong> Playa Dorada organiza...'],
+      "climate": 'El clima en Playa Dorada es perfecto durante todo el año...',
+      "prices": ['<strong>Tumbonas y Sombrillas:</strong> Desde 50$ por día...', '<strong>Clases de Surf:</strong> Clases grupales por 40$...'],
+      "availability": 'Playa Dorada está abierta todos los días de 8 AM a 8 PM...'
+    }
   },
   {
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/San_Sebastian_EM1B5794_%2832684958331%29.jpg/220px-San_Sebastian_EM1B5794_%2832684958331%29.jpg",
@@ -45,7 +73,21 @@ export const beachesList = [
     ],
     "weather": "☀️ Soleado, 28°C (82°F) — Día ideal para tomar el sol",
     "recommended": true,
-    "description": "Playa urbana con un ambiente relajado, ideal para pasear y disfrutar del sol."
+    "mapImageUrl": '/images/example-map.png',
+    "description": {
+      "intro": 'Playa Dorada es una de las playas más queridas de las Islas Canarias...',
+      "features": 'La playa se extiende a lo largo de 2 kilómetros...',
+      "services": [
+        '<strong>Tumbonas y Sombrillas:</strong> Disponibles para alquilar...',
+        '<strong>Cafés y Restaurantes junto a la playa:</strong> Ofrecen una variedad...'
+      ],
+      "activities": ['<strong>Surf:</strong> Tanto si eres principiante...', '<strong>Paddle Surf:</strong> Deslízate sobre las aguas...'],
+      "accessibility": ['<strong>Apta para Perros:</strong> Playa Dorada es una playa...', '<strong>Accesible en Silla de Ruedas:</strong> La playa es totalmente...'],
+      "events": ['<strong>Fiestas en la Playa:</strong> Cada viernes por la noche...', '<strong>Competencia Anual de Surf:</strong> Playa Dorada organiza...'],
+      "climate": 'El clima en Playa Dorada es perfecto durante todo el año...',
+      "prices": ['<strong>Tumbonas y Sombrillas:</strong> Desde 50$ por día...', '<strong>Clases de Surf:</strong> Clases grupales por 40$...'],
+      "availability": 'Playa Dorada está abierta todos los días de 8 AM a 8 PM...'
+    }
   },
   {
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Playa_de_Santiago_%288524842683%29.jpg/220px-Playa_de_Santiago_%288524842683%29.jpg",
@@ -60,7 +102,21 @@ export const beachesList = [
     ],
     "weather": "⛅ Parcialmente nublado, 23°C (73°F) — Bueno para relajarse",
     "recommended": false,
-    "description": "Conocida por su arena negra volcánica y su tranquilidad, perfecta para desconectar."
+    "mapImageUrl": '/images/example-map.png',
+    "description": {
+      "intro": 'Playa Dorada es una de las playas más queridas de las Islas Canarias...',
+      "features": 'La playa se extiende a lo largo de 2 kilómetros...',
+      "services": [
+        '<strong>Tumbonas y Sombrillas:</strong> Disponibles para alquilar...',
+        '<strong>Cafés y Restaurantes junto a la playa:</strong> Ofrecen una variedad...'
+      ],
+      "activities": ['<strong>Surf:</strong> Tanto si eres principiante...', '<strong>Paddle Surf:</strong> Deslízate sobre las aguas...'],
+      "accessibility": ['<strong>Apta para Perros:</strong> Playa Dorada es una playa...', '<strong>Accesible en Silla de Ruedas:</strong> La playa es totalmente...'],
+      "events": ['<strong>Fiestas en la Playa:</strong> Cada viernes por la noche...', '<strong>Competencia Anual de Surf:</strong> Playa Dorada organiza...'],
+      "climate": 'El clima en Playa Dorada es perfecto durante todo el año...',
+      "prices": ['<strong>Tumbonas y Sombrillas:</strong> Desde 50$ por día...', '<strong>Clases de Surf:</strong> Clases grupales por 40$...'],
+      "availability": 'Playa Dorada está abierta todos los días de 8 AM a 8 PM...'
+    }
   },
   {
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/View_of_the_steep_coast_at_Playa_De_Vueltas_black_sand_beach_on_La_Gomera%2C_Spain_%2848293845792%29.jpg/220px-View_of_the_steep_coast_at_Playa_De_Vueltas_black_sand_beach_on_La_Gomera%2C_Spain_%2848293845792%29.jpg",
@@ -76,7 +132,21 @@ export const beachesList = [
     ],
     "weather": "☀️ Soleado, 27°C (81°F) — Excelente para un día en la playa",
     "recommended": true,
-    "description": "Ubicada en un pequeño puerto pesquero, esta playa es ideal para nadar y relajarse."
+    "mapImageUrl": '/images/example-map.png',
+    "description": {
+      "intro": 'Playa Dorada es una de las playas más queridas de las Islas Canarias...',
+      "features": 'La playa se extiende a lo largo de 2 kilómetros...',
+      "services": [
+        '<strong>Tumbonas y Sombrillas:</strong> Disponibles para alquilar...',
+        '<strong>Cafés y Restaurantes junto a la playa:</strong> Ofrecen una variedad...'
+      ],
+      "activities": ['<strong>Surf:</strong> Tanto si eres principiante...', '<strong>Paddle Surf:</strong> Deslízate sobre las aguas...'],
+      "accessibility": ['<strong>Apta para Perros:</strong> Playa Dorada es una playa...', '<strong>Accesible en Silla de Ruedas:</strong> La playa es totalmente...'],
+      "events": ['<strong>Fiestas en la Playa:</strong> Cada viernes por la noche...', '<strong>Competencia Anual de Surf:</strong> Playa Dorada organiza...'],
+      "climate": 'El clima en Playa Dorada es perfecto durante todo el año...',
+      "prices": ['<strong>Tumbonas y Sombrillas:</strong> Desde 50$ por día...', '<strong>Clases de Surf:</strong> Clases grupales por 40$...'],
+      "availability": 'Playa Dorada está abierta todos los días de 8 AM a 8 PM...'
+    }
   },
   {
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Santa_Cruz_de_La_Palma_2017-10_01.jpg/220px-Santa_Cruz_de_La_Palma_2017-10_01.jpg",
@@ -92,7 +162,21 @@ export const beachesList = [
     ],
     "weather": "☀️ Soleado, 25°C (77°F) — Perfecto para familias",
     "recommended": false,
-    "description": "Playa céntrica con paseo marítimo, ideal para familias y amantes del sol."
+    "mapImageUrl": '/images/example-map.png',
+    "description": {
+      "intro": 'Playa Dorada es una de las playas más queridas de las Islas Canarias...',
+      "features": 'La playa se extiende a lo largo de 2 kilómetros...',
+      "services": [
+        '<strong>Tumbonas y Sombrillas:</strong> Disponibles para alquilar...',
+        '<strong>Cafés y Restaurantes junto a la playa:</strong> Ofrecen una variedad...'
+      ],
+      "activities": ['<strong>Surf:</strong> Tanto si eres principiante...', '<strong>Paddle Surf:</strong> Deslízate sobre las aguas...'],
+      "accessibility": ['<strong>Apta para Perros:</strong> Playa Dorada es una playa...', '<strong>Accesible en Silla de Ruedas:</strong> La playa es totalmente...'],
+      "events": ['<strong>Fiestas en la Playa:</strong> Cada viernes por la noche...', '<strong>Competencia Anual de Surf:</strong> Playa Dorada organiza...'],
+      "climate": 'El clima en Playa Dorada es perfecto durante todo el año...',
+      "prices": ['<strong>Tumbonas y Sombrillas:</strong> Desde 50$ por día...', '<strong>Clases de Surf:</strong> Clases grupales por 40$...'],
+      "availability": 'Playa Dorada está abierta todos los días de 8 AM a 8 PM...'
+    }
   },
   {
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/La_Palma_-_Brena_Baja_-_Los_Cancajos_-_Punta_de_la_Arena_%2B_Playa_de_Los_Cancajos_06_ies.jpg/220px-La_Palma_-_Brena_Baja_-_Los_Cancajos_-_Punta_de_la_Arena_%2B_Playa_de_Los_Cancajos_06_ies.jpg",
@@ -109,7 +193,21 @@ export const beachesList = [
     ],
     "weather": "☀️ Soleado, 28°C (82°F) — Ideal para buceo",
     "recommended": true,
-    "description": "Perfecta para el buceo y el snorkel, gracias a su biodiversidad marina."
+    "mapImageUrl": '/images/example-map.png',
+    "description": {
+      "intro": 'Playa Dorada es una de las playas más queridas de las Islas Canarias...',
+      "features": 'La playa se extiende a lo largo de 2 kilómetros...',
+      "services": [
+        '<strong>Tumbonas y Sombrillas:</strong> Disponibles para alquilar...',
+        '<strong>Cafés y Restaurantes junto a la playa:</strong> Ofrecen una variedad...'
+      ],
+      "activities": ['<strong>Surf:</strong> Tanto si eres principiante...', '<strong>Paddle Surf:</strong> Deslízate sobre las aguas...'],
+      "accessibility": ['<strong>Apta para Perros:</strong> Playa Dorada es una playa...', '<strong>Accesible en Silla de Ruedas:</strong> La playa es totalmente...'],
+      "events": ['<strong>Fiestas en la Playa:</strong> Cada viernes por la noche...', '<strong>Competencia Anual de Surf:</strong> Playa Dorada organiza...'],
+      "climate": 'El clima en Playa Dorada es perfecto durante todo el año...',
+      "prices": ['<strong>Tumbonas y Sombrillas:</strong> Desde 50$ por día...', '<strong>Clases de Surf:</strong> Clases grupales por 40$...'],
+      "availability": 'Playa Dorada está abierta todos los días de 8 AM a 8 PM...'
+    }
   },
   {
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/El_Faro_11_ies.jpg/220px-El_Faro_11_ies.jpg",
@@ -123,7 +221,21 @@ export const beachesList = [
     ],
     "weather": "⛅ Parcialmente nublado, 22°C (72°F) — Bueno para pasear",
     "recommended": false,
-    "description": "Un lugar espectacular para disfrutar de la puesta de sol y la brisa marina."
+    "mapImageUrl": '/images/example-map.png',
+    "description": {
+      "intro": 'Playa Dorada es una de las playas más queridas de las Islas Canarias...',
+      "features": 'La playa se extiende a lo largo de 2 kilómetros...',
+      "services": [
+        '<strong>Tumbonas y Sombrillas:</strong> Disponibles para alquilar...',
+        '<strong>Cafés y Restaurantes junto a la playa:</strong> Ofrecen una variedad...'
+      ],
+      "activities": ['<strong>Surf:</strong> Tanto si eres principiante...', '<strong>Paddle Surf:</strong> Deslízate sobre las aguas...'],
+      "accessibility": ['<strong>Apta para Perros:</strong> Playa Dorada es una playa...', '<strong>Accesible en Silla de Ruedas:</strong> La playa es totalmente...'],
+      "events": ['<strong>Fiestas en la Playa:</strong> Cada viernes por la noche...', '<strong>Competencia Anual de Surf:</strong> Playa Dorada organiza...'],
+      "climate": 'El clima en Playa Dorada es perfecto durante todo el año...',
+      "prices": ['<strong>Tumbonas y Sombrillas:</strong> Desde 50$ por día...', '<strong>Clases de Surf:</strong> Clases grupales por 40$...'],
+      "availability": 'Playa Dorada está abierta todos los días de 8 AM a 8 PM...'
+    }
   },
   {
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Playa_Charco_Verde_near_Puerto_Naos_%28Canary_Islands_2015%2C_La_Plama%29_-_panoramio.jpg/220px-Playa_Charco_Verde_near_Puerto_Naos_%28Canary_Islands_2015%2C_La_Plama%29_-_panoramio.jpg",
@@ -139,7 +251,21 @@ export const beachesList = [
     ],
     "weather": "☀️ Soleado, 29°C (84°F) — Día perfecto",
     "recommended": true,
-    "description": "Cala de arena negra con aguas tranquilas, ideal para un día de relax en familia."
+    "mapImageUrl": '/images/example-map.png',
+    "description": {
+      "intro": 'Playa Dorada es una de las playas más queridas de las Islas Canarias...',
+      "features": 'La playa se extiende a lo largo de 2 kilómetros...',
+      "services": [
+        '<strong>Tumbonas y Sombrillas:</strong> Disponibles para alquilar...',
+        '<strong>Cafés y Restaurantes junto a la playa:</strong> Ofrecen una variedad...'
+      ],
+      "activities": ['<strong>Surf:</strong> Tanto si eres principiante...', '<strong>Paddle Surf:</strong> Deslízate sobre las aguas...'],
+      "accessibility": ['<strong>Apta para Perros:</strong> Playa Dorada es una playa...', '<strong>Accesible en Silla de Ruedas:</strong> La playa es totalmente...'],
+      "events": ['<strong>Fiestas en la Playa:</strong> Cada viernes por la noche...', '<strong>Competencia Anual de Surf:</strong> Playa Dorada organiza...'],
+      "climate": 'El clima en Playa Dorada es perfecto durante todo el año...',
+      "prices": ['<strong>Tumbonas y Sombrillas:</strong> Desde 50$ por día...', '<strong>Clases de Surf:</strong> Clases grupales por 40$...'],
+      "availability": 'Playa Dorada está abierta todos los días de 8 AM a 8 PM...'
+    }
   },
   {
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/La_Palma_-_Tazacorte_-_El_Puerto_-_Avenida_El_Emigrante_%2B_Playa_08_ies.jpg/220px-La_Palma_-_Tazacorte_-_El_Puerto_-_Avenida_El_Emigrante_%2B_Playa_08_ies.jpg",
@@ -154,7 +280,21 @@ export const beachesList = [
     ],
     "weather": "☀️ Soleado, 26°C (79°F) — Bueno para comer al aire libre",
     "recommended": false,
-    "description": "Playa con servicios y restaurantes cercanos, perfecta para disfrutar de la gastronomía local."
+    "mapImageUrl": '/images/example-map.png',
+    "description": {
+      "intro": 'Playa Dorada es una de las playas más queridas de las Islas Canarias...',
+      "features": 'La playa se extiende a lo largo de 2 kilómetros...',
+      "services": [
+        '<strong>Tumbonas y Sombrillas:</strong> Disponibles para alquilar...',
+        '<strong>Cafés y Restaurantes junto a la playa:</strong> Ofrecen una variedad...'
+      ],
+      "activities": ['<strong>Surf:</strong> Tanto si eres principiante...', '<strong>Paddle Surf:</strong> Deslízate sobre las aguas...'],
+      "accessibility": ['<strong>Apta para Perros:</strong> Playa Dorada es una playa...', '<strong>Accesible en Silla de Ruedas:</strong> La playa es totalmente...'],
+      "events": ['<strong>Fiestas en la Playa:</strong> Cada viernes por la noche...', '<strong>Competencia Anual de Surf:</strong> Playa Dorada organiza...'],
+      "climate": 'El clima en Playa Dorada es perfecto durante todo el año...',
+      "prices": ['<strong>Tumbonas y Sombrillas:</strong> Desde 50$ por día...', '<strong>Clases de Surf:</strong> Clases grupales por 40$...'],
+      "availability": 'Playa Dorada está abierta todos los días de 8 AM a 8 PM...'
+    }
   },
   {
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Puntallana_-_Playa_de_Nogales_01_ies.jpg/220px-Puntallana_-_Playa_de_Nogales_01_ies.jpg",
@@ -168,7 +308,21 @@ export const beachesList = [
     ],
     "weather": "🌬️ Ventoso, 25°C (77°F) — Ideal para surf",
     "recommended": true,
-    "description": "Un paraíso natural rodeado de acantilados, ideal para surfistas y aventureros."
+    "mapImageUrl": '/images/example-map.png',
+    "description": {
+      "intro": 'Playa Dorada es una de las playas más queridas de las Islas Canarias...',
+      "features": 'La playa se extiende a lo largo de 2 kilómetros...',
+      "services": [
+        '<strong>Tumbonas y Sombrillas:</strong> Disponibles para alquilar...',
+        '<strong>Cafés y Restaurantes junto a la playa:</strong> Ofrecen una variedad...'
+      ],
+      "activities": ['<strong>Surf:</strong> Tanto si eres principiante...', '<strong>Paddle Surf:</strong> Deslízate sobre las aguas...'],
+      "accessibility": ['<strong>Apta para Perros:</strong> Playa Dorada es una playa...', '<strong>Accesible en Silla de Ruedas:</strong> La playa es totalmente...'],
+      "events": ['<strong>Fiestas en la Playa:</strong> Cada viernes por la noche...', '<strong>Competencia Anual de Surf:</strong> Playa Dorada organiza...'],
+      "climate": 'El clima en Playa Dorada es perfecto durante todo el año...',
+      "prices": ['<strong>Tumbonas y Sombrillas:</strong> Desde 50$ por día...', '<strong>Clases de Surf:</strong> Clases grupales por 40$...'],
+      "availability": 'Playa Dorada está abierta todos los días de 8 AM a 8 PM...'
+    }
   },
   {
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/PuntaDeTeno.jpg/220px-PuntaDeTeno.jpg",
@@ -181,7 +335,21 @@ export const beachesList = [
     ],
     "weather": "☀️ Soleado, 27°C (81°F) — Perfecto para fotos",
     "recommended": true,
-    "description": "Playa remota con aguas cristalinas y vistas espectaculares al faro de Teno."
+    "mapImageUrl": '/images/example-map.png',
+    "description": {
+      "intro": 'Playa Dorada es una de las playas más queridas de las Islas Canarias...',
+      "features": 'La playa se extiende a lo largo de 2 kilómetros...',
+      "services": [
+        '<strong>Tumbonas y Sombrillas:</strong> Disponibles para alquilar...',
+        '<strong>Cafés y Restaurantes junto a la playa:</strong> Ofrecen una variedad...'
+      ],
+      "activities": ['<strong>Surf:</strong> Tanto si eres principiante...', '<strong>Paddle Surf:</strong> Deslízate sobre las aguas...'],
+      "accessibility": ['<strong>Apta para Perros:</strong> Playa Dorada es una playa...', '<strong>Accesible en Silla de Ruedas:</strong> La playa es totalmente...'],
+      "events": ['<strong>Fiestas en la Playa:</strong> Cada viernes por la noche...', '<strong>Competencia Anual de Surf:</strong> Playa Dorada organiza...'],
+      "climate": 'El clima en Playa Dorada es perfecto durante todo el año...',
+      "prices": ['<strong>Tumbonas y Sombrillas:</strong> Desde 50$ por día...', '<strong>Clases de Surf:</strong> Clases grupales por 40$...'],
+      "availability": 'Playa Dorada está abierta todos los días de 8 AM a 8 PM...'
+    }
   },
   {
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Playa_de_El_Socorro.JPG/220px-Playa_de_El_Socorro.JPG",
@@ -196,7 +364,21 @@ export const beachesList = [
     ],
     "weather": "🌬️ Ventoso, 24°C (75°F) — Bueno para surfistas",
     "recommended": false,
-    "description": "Playa amplia y popular entre surfistas por sus olas constantes."
+    "mapImageUrl": '/images/example-map.png',
+    "description": {
+      "intro": 'Playa Dorada es una de las playas más queridas de las Islas Canarias...',
+      "features": 'La playa se extiende a lo largo de 2 kilómetros...',
+      "services": [
+        '<strong>Tumbonas y Sombrillas:</strong> Disponibles para alquilar...',
+        '<strong>Cafés y Restaurantes junto a la playa:</strong> Ofrecen una variedad...'
+      ],
+      "activities": ['<strong>Surf:</strong> Tanto si eres principiante...', '<strong>Paddle Surf:</strong> Deslízate sobre las aguas...'],
+      "accessibility": ['<strong>Apta para Perros:</strong> Playa Dorada es una playa...', '<strong>Accesible en Silla de Ruedas:</strong> La playa es totalmente...'],
+      "events": ['<strong>Fiestas en la Playa:</strong> Cada viernes por la noche...', '<strong>Competencia Anual de Surf:</strong> Playa Dorada organiza...'],
+      "climate": 'El clima en Playa Dorada es perfecto durante todo el año...',
+      "prices": ['<strong>Tumbonas y Sombrillas:</strong> Desde 50$ por día...', '<strong>Clases de Surf:</strong> Clases grupales por 40$...'],
+      "availability": 'Playa Dorada está abierta todos los días de 8 AM a 8 PM...'
+    }
   },
   {
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Playa_Los_Patos.jpg/220px-Playa_Los_Patos.jpg",
@@ -210,7 +392,21 @@ export const beachesList = [
     ],
     "weather": "☀️ Soleado, 26°C (79°F) — Ideal para relajarse",
     "recommended": true,
-    "description": "Una playa virgen rodeada de acantilados, ideal para los amantes de la tranquilidad."
+    "mapImageUrl": '/images/example-map.png',
+    "description": {
+      "intro": 'Playa Dorada es una de las playas más queridas de las Islas Canarias...',
+      "features": 'La playa se extiende a lo largo de 2 kilómetros...',
+      "services": [
+        '<strong>Tumbonas y Sombrillas:</strong> Disponibles para alquilar...',
+        '<strong>Cafés y Restaurantes junto a la playa:</strong> Ofrecen una variedad...'
+      ],
+      "activities": ['<strong>Surf:</strong> Tanto si eres principiante...', '<strong>Paddle Surf:</strong> Deslízate sobre las aguas...'],
+      "accessibility": ['<strong>Apta para Perros:</strong> Playa Dorada es una playa...', '<strong>Accesible en Silla de Ruedas:</strong> La playa es totalmente...'],
+      "events": ['<strong>Fiestas en la Playa:</strong> Cada viernes por la noche...', '<strong>Competencia Anual de Surf:</strong> Playa Dorada organiza...'],
+      "climate": 'El clima en Playa Dorada es perfecto durante todo el año...',
+      "prices": ['<strong>Tumbonas y Sombrillas:</strong> Desde 50$ por día...', '<strong>Clases de Surf:</strong> Clases grupales por 40$...'],
+      "availability": 'Playa Dorada está abierta todos los días de 8 AM a 8 PM...'
+    }
   },
   {
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Las_Teresitas2a.jpg/220px-Las_Teresitas2a.jpg",
@@ -227,7 +423,21 @@ export const beachesList = [
     ],
     "weather": "☀️ Soleado, 28°C (82°F) — Perfecto para un día en familia",
     "recommended": true,
-    "description": "Famosa por su arena dorada importada del Sahara y su ambiente relajado."
+    "mapImageUrl": '/images/example-map.png',
+    "description": {
+      "intro": 'Playa Dorada es una de las playas más queridas de las Islas Canarias...',
+      "features": 'La playa se extiende a lo largo de 2 kilómetros...',
+      "services": [
+        '<strong>Tumbonas y Sombrillas:</strong> Disponibles para alquilar...',
+        '<strong>Cafés y Restaurantes junto a la playa:</strong> Ofrecen una variedad...'
+      ],
+      "activities": ['<strong>Surf:</strong> Tanto si eres principiante...', '<strong>Paddle Surf:</strong> Deslízate sobre las aguas...'],
+      "accessibility": ['<strong>Apta para Perros:</strong> Playa Dorada es una playa...', '<strong>Accesible en Silla de Ruedas:</strong> La playa es totalmente...'],
+      "events": ['<strong>Fiestas en la Playa:</strong> Cada viernes por la noche...', '<strong>Competencia Anual de Surf:</strong> Playa Dorada organiza...'],
+      "climate": 'El clima en Playa Dorada es perfecto durante todo el año...',
+      "prices": ['<strong>Tumbonas y Sombrillas:</strong> Desde 50$ por día...', '<strong>Clases de Surf:</strong> Clases grupales por 40$...'],
+      "availability": 'Playa Dorada está abierta todos los días de 8 AM a 8 PM...'
+    }
   },
   {
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Playa_de_Alm%C3%A1ciga3.jpg/220px-Playa_de_Alm%C3%A1ciga3.jpg",
@@ -241,7 +451,21 @@ export const beachesList = [
     ],
     "weather": "🌬️ Ventoso, 25°C (77°F) — Ideal para surf",
     "recommended": false,
-    "description": "Un destino perfecto para surfistas y aventureros, rodeado de montañas volcánicas."
+    "mapImageUrl": '/images/example-map.png',
+    "description": {
+      "intro": 'Playa Dorada es una de las playas más queridas de las Islas Canarias...',
+      "features": 'La playa se extiende a lo largo de 2 kilómetros...',
+      "services": [
+        '<strong>Tumbonas y Sombrillas:</strong> Disponibles para alquilar...',
+        '<strong>Cafés y Restaurantes junto a la playa:</strong> Ofrecen una variedad...'
+      ],
+      "activities": ['<strong>Surf:</strong> Tanto si eres principiante...', '<strong>Paddle Surf:</strong> Deslízate sobre las aguas...'],
+      "accessibility": ['<strong>Apta para Perros:</strong> Playa Dorada es una playa...', '<strong>Accesible en Silla de Ruedas:</strong> La playa es totalmente...'],
+      "events": ['<strong>Fiestas en la Playa:</strong> Cada viernes por la noche...', '<strong>Competencia Anual de Surf:</strong> Playa Dorada organiza...'],
+      "climate": 'El clima en Playa Dorada es perfecto durante todo el año...',
+      "prices": ['<strong>Tumbonas y Sombrillas:</strong> Desde 50$ por día...', '<strong>Clases de Surf:</strong> Clases grupales por 40$...'],
+      "availability": 'Playa Dorada está abierta todos los días de 8 AM a 8 PM...'
+    }
   },
   {
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Playa_de_La_Nea.JPG/220px-Playa_de_La_Nea.JPG",
@@ -256,7 +480,21 @@ export const beachesList = [
     ],
     "weather": "☀️ Soleado, 26°C (79°F) — Bueno para pasear",
     "recommended": false,
-    "description": "Una playa semiurbana con un ambiente tranquilo y vistas al océano Atlántico."
+    "mapImageUrl": '/images/example-map.png',
+    "description": {
+      "intro": 'Playa Dorada es una de las playas más queridas de las Islas Canarias...',
+      "features": 'La playa se extiende a lo largo de 2 kilómetros...',
+      "services": [
+        '<strong>Tumbonas y Sombrillas:</strong> Disponibles para alquilar...',
+        '<strong>Cafés y Restaurantes junto a la playa:</strong> Ofrecen una variedad...'
+      ],
+      "activities": ['<strong>Surf:</strong> Tanto si eres principiante...', '<strong>Paddle Surf:</strong> Deslízate sobre las aguas...'],
+      "accessibility": ['<strong>Apta para Perros:</strong> Playa Dorada es una playa...', '<strong>Accesible en Silla de Ruedas:</strong> La playa es totalmente...'],
+      "events": ['<strong>Fiestas en la Playa:</strong> Cada viernes por la noche...', '<strong>Competencia Anual de Surf:</strong> Playa Dorada organiza...'],
+      "climate": 'El clima en Playa Dorada es perfecto durante todo el año...',
+      "prices": ['<strong>Tumbonas y Sombrillas:</strong> Desde 50$ por día...', '<strong>Clases de Surf:</strong> Clases grupales por 40$...'],
+      "availability": 'Playa Dorada está abierta todos los días de 8 AM a 8 PM...'
+    }
   },
   {
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Playa_de_San_Juan_555.jpg/220px-Playa_de_San_Juan_555.jpg",
@@ -273,7 +511,21 @@ export const beachesList = [
     ],
     "weather": "☀️ Soleado, 27°C (81°F) — Perfecto para nadar",
     "recommended": true,
-    "description": "Ideal para nadar y relajarse, con restaurantes cercanos y ambiente local."
+    "mapImageUrl": '/images/example-map.png',
+    "description": {
+      "intro": 'Playa Dorada es una de las playas más queridas de las Islas Canarias...',
+      "features": 'La playa se extiende a lo largo de 2 kilómetros...',
+      "services": [
+        '<strong>Tumbonas y Sombrillas:</strong> Disponibles para alquilar...',
+        '<strong>Cafés y Restaurantes junto a la playa:</strong> Ofrecen una variedad...'
+      ],
+      "activities": ['<strong>Surf:</strong> Tanto si eres principiante...', '<strong>Paddle Surf:</strong> Deslízate sobre las aguas...'],
+      "accessibility": ['<strong>Apta para Perros:</strong> Playa Dorada es una playa...', '<strong>Accesible en Silla de Ruedas:</strong> La playa es totalmente...'],
+      "events": ['<strong>Fiestas en la Playa:</strong> Cada viernes por la noche...', '<strong>Competencia Anual de Surf:</strong> Playa Dorada organiza...'],
+      "climate": 'El clima en Playa Dorada es perfecto durante todo el año...',
+      "prices": ['<strong>Tumbonas y Sombrillas:</strong> Desde 50$ por día...', '<strong>Clases de Surf:</strong> Clases grupales por 40$...'],
+      "availability": 'Playa Dorada está abierta todos los días de 8 AM a 8 PM...'
+    }
   },
   {
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Playa_de_las_Am%C3%A9ricas_-_Playa_de_Torvoscas_%26_Playa_de_Fa%C3%B1abe.jpg/220px-Playa_de_las_Am%C3%A9ricas_-_Playa_de_Torvoscas_%26_Playa_de_Fa%C3%B1abe.jpg",
@@ -290,7 +542,21 @@ export const beachesList = [
     ],
     "weather": "☀️ Soleado, 29°C (84°F) — Día animado en la playa",
     "recommended": true,
-    "description": "Una de las playas más animadas, con hoteles, bares y vida nocturna vibrante."
+    "mapImageUrl": '/images/example-map.png',
+    "description": {
+      "intro": 'Playa Dorada es una de las playas más queridas de las Islas Canarias...',
+      "features": 'La playa se extiende a lo largo de 2 kilómetros...',
+      "services": [
+        '<strong>Tumbonas y Sombrillas:</strong> Disponibles para alquilar...',
+        '<strong>Cafés y Restaurantes junto a la playa:</strong> Ofrecen una variedad...'
+      ],
+      "activities": ['<strong>Surf:</strong> Tanto si eres principiante...', '<strong>Paddle Surf:</strong> Deslízate sobre las aguas...'],
+      "accessibility": ['<strong>Apta para Perros:</strong> Playa Dorada es una playa...', '<strong>Accesible en Silla de Ruedas:</strong> La playa es totalmente...'],
+      "events": ['<strong>Fiestas en la Playa:</strong> Cada viernes por la noche...', '<strong>Competencia Anual de Surf:</strong> Playa Dorada organiza...'],
+      "climate": 'El clima en Playa Dorada es perfecto durante todo el año...',
+      "prices": ['<strong>Tumbonas y Sombrillas:</strong> Desde 50$ por día...', '<strong>Clases de Surf:</strong> Clases grupales por 40$...'],
+      "availability": 'Playa Dorada está abierta todos los días de 8 AM a 8 PM...'
+    }
   },
   {
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Playa_de_las_Vistas%2C_Abona%2C_Tenerife%2C_Canary_Islands%2C_Spain_-_panoramio.jpg/220px-Playa_de_las_Vistas%2C_Abona%2C_Tenerife%2C_Canary_Islands%2C_Spain_-_panoramio.jpg",
@@ -307,7 +573,21 @@ export const beachesList = [
     ],
     "weather": "☀️ Soleado, 28°C (82°F) — Perfecto para familias",
     "recommended": false,
-    "description": "Amplia playa con arena fina y aguas tranquilas, ideal para familias."
+    "mapImageUrl": '/images/example-map.png',
+    "description": {
+      "intro": 'Playa Dorada es una de las playas más queridas de las Islas Canarias...',
+      "features": 'La playa se extiende a lo largo de 2 kilómetros...',
+      "services": [
+        '<strong>Tumbonas y Sombrillas:</strong> Disponibles para alquilar...',
+        '<strong>Cafés y Restaurantes junto a la playa:</strong> Ofrecen una variedad...'
+      ],
+      "activities": ['<strong>Surf:</strong> Tanto si eres principiante...', '<strong>Paddle Surf:</strong> Deslízate sobre las aguas...'],
+      "accessibility": ['<strong>Apta para Perros:</strong> Playa Dorada es una playa...', '<strong>Accesible en Silla de Ruedas:</strong> La playa es totalmente...'],
+      "events": ['<strong>Fiestas en la Playa:</strong> Cada viernes por la noche...', '<strong>Competencia Anual de Surf:</strong> Playa Dorada organiza...'],
+      "climate": 'El clima en Playa Dorada es perfecto durante todo el año...',
+      "prices": ['<strong>Tumbonas y Sombrillas:</strong> Desde 50$ por día...', '<strong>Clases de Surf:</strong> Clases grupales por 40$...'],
+      "availability": 'Playa Dorada está abierta todos los días de 8 AM a 8 PM...'
+    }
   },
   {
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Playa_de_Guigui_%28II%29_-_panoramio.jpg/220px-Playa_de_Guigui_%28II%29_-_panoramio.jpg",
@@ -320,6 +600,20 @@ export const beachesList = [
     ],
     "weather": "☀️ Soleado, 27°C (81°F) — Ideal para aventureros",
     "recommended": true,
-    "description": "Una playa escondida a la que solo se accede tras una caminata de varias horas, perfecta para aventureros."
+    "mapImageUrl": '/images/example-map.png',
+    "description": {
+      "intro": 'Playa Dorada es una de las playas más queridas de las Islas Canarias...',
+      "features": 'La playa se extiende a lo largo de 2 kilómetros...',
+      "services": [
+        '<strong>Tumbonas y Sombrillas:</strong> Disponibles para alquilar...',
+        '<strong>Cafés y Restaurantes junto a la playa:</strong> Ofrecen una variedad...'
+      ],
+      "activities": ['<strong>Surf:</strong> Tanto si eres principiante...', '<strong>Paddle Surf:</strong> Deslízate sobre las aguas...'],
+      "accessibility": ['<strong>Apta para Perros:</strong> Playa Dorada es una playa...', '<strong>Accesible en Silla de Ruedas:</strong> La playa es totalmente...'],
+      "events": ['<strong>Fiestas en la Playa:</strong> Cada viernes por la noche...', '<strong>Competencia Anual de Surf:</strong> Playa Dorada organiza...'],
+      "climate": 'El clima en Playa Dorada es perfecto durante todo el año...',
+      "prices": ['<strong>Tumbonas y Sombrillas:</strong> Desde 50$ por día...', '<strong>Clases de Surf:</strong> Clases grupales por 40$...'],
+      "availability": 'Playa Dorada está abierta todos los días de 8 AM a 8 PM...'
+    }
   }
 ];
