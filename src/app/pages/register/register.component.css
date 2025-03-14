@@ -1,4 +1,4 @@
-.register-container {
+.register {
   display: flex;
   width: 100vw;
   height: 100vh;
@@ -6,7 +6,7 @@
   overflow: hidden;
 }
 
-.left-panel {
+.register__left-panel {
   width: 50%;
   height: 100%;
   display: flex;
@@ -16,7 +16,7 @@
   position: relative;
 }
 
-.background-image {
+.register__background-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -24,20 +24,7 @@
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
 }
 
-.back-button {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: none;
-  border: 1px solid var(--login-border-color);
-  color: var(--login-text-color);
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-.right-panel {
+.register__right-panel {
   width: 50%;
   height: 100%;
   display: flex;
@@ -48,32 +35,32 @@
   text-align: center;
 }
 
-.title {
+.register__title {
   font-size: 2.5rem;
   display: flex;
 }
 
-.registered-span {
+.register__registered-span {
   font-size: 0.9rem;
   margin-top: 10px;
 }
 
-.subtitle {
+.register__subtitle {
   font-size: 1.5rem;
   margin-bottom: 10px;
 }
 
-.register-text {
+.register__text {
   margin-bottom: 20px;
   font-size: 0.9rem;
 }
 
-.register-link {
+.register__link {
   color: var(--login-button-color);
   text-decoration: none;
 }
 
-.signup-form {
+.register__form {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -82,12 +69,12 @@
   max-width: 500px;
 }
 
-.input-group {
+.register__input-group {
   display: flex;
   gap: 10px;
 }
 
-.input {
+.register__input {
   background-color: var(--login-input-bg);
   border: 1px solid var(--login-border-color);
   padding: 10px;
@@ -96,30 +83,30 @@
   width: 100%;
 }
 
-.input::placeholder {
+.register__input::placeholder {
   color: var(--login-placeholder-color);
 }
 
-.checkbox-group {
+.register__checkbox-group {
   display: flex;
   align-items: center;
   gap: 5px;
 }
 
-.checkbox {
+.register__checkbox {
   cursor: pointer;
 }
 
-.terms-label {
+.register__terms-label {
   font-size: 0.9rem;
 }
 
-.terms-link {
+.register__terms-link {
   color: var(--login-button-color);
   text-decoration: none;
 }
 
-.signup-button {
+.register__button {
   background-color: var(--login-button-color);
   border: none;
   padding: 12px;
@@ -131,25 +118,25 @@
   width: 100%;
 }
 
-.signup-button:hover {
+.register__button:hover {
   background-color: var(--login-button-hover);
 }
 
-.divider {
+.register__divider {
   text-align: center;
   margin: 10px 0;
   font-size: 0.9rem;
   opacity: 0.8;
 }
 
-.social-buttons {
+
+.register__social-buttons {
   display: flex;
   gap: 10px;
   justify-content: center;
 }
 
-.google-button,
-.apple-button {
+.register__social-button {
   background: none;
   border: 1px solid var(--login-border-color);
   padding: 10px 20px;
@@ -162,7 +149,6 @@
   gap: 10px;
 }
 
-.google-button:hover,
-.apple-button:hover {
+.register__social-button:hover {
   border-color: var(--login-button-color);
 }
