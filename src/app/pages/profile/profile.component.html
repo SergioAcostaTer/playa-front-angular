@@ -1,31 +1,31 @@
-<div class="profile-container">
-    <div class="profile-user-image">
-        <img src="/images/avatar.jpg" alt="UserIcon">
+<div class="profile">
+    <div class="profile__user-image">
+        <img src="/images/avatar.jpg" alt="UserIcon" class="profile__avatar">
         <p>
-            <span class="profile-username">Pablito1234</span>
+            <span class="profile__username">Pablito1234</span>
         </p>
-        <p><a href="">Cambia tu foto de perfil</a></p>
+        <p><a href="#" class="profile__change-link">Cambia tu foto de perfil</a></p>
     </div>
-    <form class="profile-form">
-        <div class="profile-form-input">
-            <label>Nombre
-                <input type="text" name="name" id="profile-name" placeholder="UserName">
+    <form class="profile__form">
+        <div class="profile__form-input">
+            <label class="profile__label">Nombre
+                <input type="text" name="name" id="profile-name" placeholder="UserName" class="profile__input">
             </label>
         </div>
-        <div class="profile-form-input">
-            <label>Apellido
-                <input type="text" name="surname" id="profile-surname" placeholder="UserSurname">
+        <div class="profile__form-input">
+            <label class="profile__label">Apellido
+                <input type="text" name="surname" id="profile-surname" placeholder="UserSurname" class="profile__input">
             </label>
         </div>
-        <div class="profile-form-input">
-            <label>Email
-                <input type="email" name="email" id="profile-email" placeholder="UserEmail">
+        <div class="profile__form-input">
+            <label class="profile__label">Email
+                <input type="email" name="email" id="profile-email" placeholder="UserEmail" class="profile__input">
             </label>
         </div>
-        <div class="profile-form-input">
-            <label for="profile-phone">Número de Teléfono</label>
-                <div class="phone-input">
-                    <select name="phone-prefix" id="phone-prefix">
+        <div class="profile__form-input">
+            <label for="profile-phone" class="profile__label">Número de Teléfono</label>
+                <div class="profile__phone-input">
+                    <select name="phone-prefix" id="phone-prefix" class="profile__select">
                         <option value="+1">+1 (USA)</option>
                         <option value="+34">+34 (España)</option>
                         <option value="+44">+44 (Reino Unido)</option>
@@ -37,7 +37,7 @@
                         <option value="+86">+86 (China)</option>
                         <option value="+52">+52 (México)</option>
                     </select>
-                    <input type="tel" name="phone" id="profile-phone" placeholder="123456789" maxlength="15">
+                    <input type="tel" name="phone" id="profile-phone" placeholder="123456789" maxlength="15" class="profile__input">
                 </div>
         </div>
     </form>

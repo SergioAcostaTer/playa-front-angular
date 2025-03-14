@@ -1,5 +1,6 @@
-.profile-container {
+.profile {
   margin: auto;
+  margin-top: 30px;
   height: 70vh;
   font: Arial, sans-serif;
   display: flex;
@@ -9,40 +10,40 @@
   max-width: 500px;
 }
 
-.profile-form label {
+.profile__label {
   font-size: 1em;
   letter-spacing: 1px;
   word-spacing: 2.5px;
 }
-.profile-form input {
+
+.profile__input {
   width: 100%;
   padding: 10px 10px;
   border: none;
   border-radius: 10px;
   background-color: #ccc6;
   margin: 5px 0 10px 0;
-  box-shadow: none;
   box-shadow: 0 0 5px 0 #0004;
   margin-bottom: 20px;
 }
 
-.profile-user-image {
+.profile__user-image {
   text-align: center;
 }
 
-.profile-username {
+.profile__username {
   font-size: 1.5em;
   font-weight: 700;
   text-align: center;
 }
 
-.profile-user-image a {
+.profile__change-link {
   font-size: 0.8em;
   color: var(--change-user-image-color);
   text-shadow: 0 0 1px #0004;
 }
 
-.profile-user-image img {
+.profile__avatar {
   max-width: 100px;
   max-height: 100px;
   border-radius: 50%;
@@ -51,11 +52,11 @@
   box-shadow: 0 0 3px 0 #0004;
 }
 
-.phone-input {
+.profile__phone-input {
   display: flex;
 }
 
-.phone-input select {
+.profile__select {
   border: 1px solid #0003;
   border-radius: 4px;
   max-width: 20%;
