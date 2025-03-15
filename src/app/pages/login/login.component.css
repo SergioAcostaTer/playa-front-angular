@@ -129,3 +129,32 @@
   font-size: 0.9rem;
   opacity: 0.8;
 }
+
+
+@media (max-width: 430px) {
+  .login {
+    flex-direction: column;
+  }
+
+  app-panel-image {
+    display: none;
+  }
+
+  .login__panel {
+    width: 100%;
+  }
+}
+
+@media (max-width: 742px) {
+  .login {
+    flex-direction: column;
+  }
+
+  app-panel-image {
+    display: none;
+  }
+
+  .login__panel {
+    width: 100%;
+  }
+}
