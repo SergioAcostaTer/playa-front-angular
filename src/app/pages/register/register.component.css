@@ -6,7 +6,7 @@
   overflow: hidden;
 }
 
-.register__right-panel {
+.register__panel {
   width: 50%;
   height: 100%;
   display: flex;
@@ -132,4 +132,33 @@
 .register__password-icon {
   width: 15px;
   height: 15px;
+}
+
+
+@media (max-width: 430px) {
+  .register {
+    flex-direction: column;
+  }
+
+  app-panel-image {
+    display: none;
+  }
+
+  .register__panel {
+    width: 100%;
+  }
+}
+
+@media (max-width: 742px) {
+  .register {
+    flex-direction: column;
+  }
+
+  app-panel-image {
+    display: none;
+  }
+
+  .register__panel {
+    width: 100%;
+  }
 }
