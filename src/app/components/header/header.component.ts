@@ -24,7 +24,7 @@ export class HeaderComponent {
     if (!this.isPopupVisible) return;
 
     const target = event.target as HTMLElement;
-    if (!target.closest('.header__popup') && !target.closest('.header__avatar')) {
+    if (!target.closest('.header__popup') && !target.closest('.header__menu')) {
       this.closePopup();
     }
   }

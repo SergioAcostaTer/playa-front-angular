@@ -1,12 +1,4 @@
 <header class="header">
-    <button class="header__menu-button" aria-label="Toggle menu">
-        <svg class="header__menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 50 50">
-            <path d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z 
-                    M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z 
-                    M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z">
-            </path>
-        </svg>
-    </button>
 
     <a href="/" class="header__logo">
         <h2 class="header__logo-text">Playea</h2>
@@ -24,13 +16,13 @@
     </nav>
 
     <div class="header__user-menu">
-        <a class="header__avatar" (click)="togglePopup()">
-            <img src="/images/avatar.jpg" alt="User Avatar" class="header__avatar-image">
-        </a>
         <div class="header__auth-buttons">
             <a href="/login" class="header__auth-button">Login</a>
             <a href="/register" class="header__auth-button">Register</a>
         </div>
+        <a class="header__menu" (click)="togglePopup()">
+            <img src="/images/menu-list.svg" class="header__menu-image">
+        </a>
     </div>
 </header>
 
@@ -53,7 +45,10 @@
                 <a href="/profile" class="popup__section-link">Perfil</a>
             </button>
             <button class="popup__section-button">
-                <a href="/favourites" class="popup__section-link">Me Gusta</a>
+                <a href="/favourites" class="popup__section-link">Favoritos</a>
+            </button>
+            <button class="popup__section-button popup__section-button--mobile">
+                <a href="/ranking" class="popup__section-link">Ranking</a>
             </button>
         </div>
     </div>
