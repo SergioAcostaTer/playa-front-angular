@@ -62,7 +62,7 @@
 	flex: 1;
 }
 
-@media (max-width: 630px) {
+@media (max-width: 768px) {
 	.footer {
 		font-size: 0.8rem;
 		padding: 0.8em;

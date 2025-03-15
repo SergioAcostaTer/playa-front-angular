@@ -21,3 +21,9 @@
 	color: var(--text-color, #333);
 	padding: 2rem;
 }
+
+@media (max-width: 768px) {
+	.beach-grid {
+		grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+	}
+}
