@@ -51,3 +51,23 @@
   background-color: #fff;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
+
+@media (max-width: 768px) {
+  .banner {
+    height: 30vh;
+  }
+
+  .banner__title {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .banner {
+    height: 25vh;
+  }
+
+  .banner__title {
+    font-size: 2.5rem;
+  }
+}
