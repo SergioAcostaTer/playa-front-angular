@@ -30,14 +30,14 @@
 }
 
 .beach-detail-layout__title {
-  font-size: 2rem;
+  font-size: 2em;
   margin: 0;
 }
 
 .beach-detail-layout__rating-info {
   display: flex;
   gap: 10px;
-  font-size: 1rem;
+  font-size: 1em;
   color: #666;
 }
 
@@ -47,7 +47,7 @@
 
 .beach-detail-layout__services-title,
 .beach-detail-layout__weather-title {
-  font-size: 1.5rem;
+  font-size: 1.5em;
   margin-bottom: 10px;
 }
 
@@ -65,7 +65,7 @@
 }
 
 .beach-detail-layout__button {
-  background-color: #007bff;
+  background-color: var(--login-button-color);
   color: white;
   border: none;
   padding: 12px 20px;
@@ -78,3 +78,26 @@
 .beach-detail-layout__button:hover {
   background-color: #0056b3;
 }
+
+@media (max-width: 768px) {
+  .beach-detail-layout {
+    flex-direction: column;
+    font-size: 14px;
+  }
+
+  .beach-detail-layout__sidebar {
+    padding: 1em;
+  }
+}
+
+@media (max-width: 500px) {
+  .beach-detail-layout {
+    flex-direction: column;
+    font-size: 12px;
+  }
+
+  .beach-detail-layout__sidebar {
+    padding: 1em;
+  }
+}
+

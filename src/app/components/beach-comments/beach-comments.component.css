@@ -70,7 +70,7 @@
 }
 
 .beach-comments__submit:hover {
-  background-color: var(--login-button-color);;
+  background-color: var(--login-button-color);
 }
 
 .beach-comments__submit:disabled {
