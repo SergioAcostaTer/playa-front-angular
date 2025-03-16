@@ -8,7 +8,7 @@
   align-items: center;
   position: relative;
   padding: 25px;
-  margin: auto;
+  margin: 10px auto 0 auto;
   padding-bottom: 0;
   min-height: 200px;
   max-width: 850px;
@@ -29,11 +29,33 @@
 .title-page__title {
   position: relative;
   z-index: 2;
-  font-size: 3rem;
+  font-size: 3em;
   color: #fff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-weight: 700;
   text-align: center;
   width: 100%;
   padding: 20px;
+}
+
+@media (max-width: 850px) {
+  .title-page {
+      padding: 20px;
+      font-size: 13px;
+      width: 80vw;
+      min-width: 450px;
+      height: 10vh;
+      min-height: 150px;
+  }
+}
+
+@media (max-width: 430px) {
+  .title-page {
+      padding: 20px;
+      font-size: 9px;
+      width: 80vw;
+      min-width: 300px;
+      height: 10vh;
+      min-height: 100px;
+  }
 }
