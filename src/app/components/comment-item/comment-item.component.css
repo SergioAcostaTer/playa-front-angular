@@ -1,22 +1,23 @@
 .comment-item {
   border-bottom: 1px solid #e0e0e0;
   padding: 15px 0;
+  font-size: 16px;
 }
 
 .comment-item__author {
-  font-size: 1rem;
+  font-size: 1em;
   font-weight: 600;
   color: #333;
 }
 
 .comment-item__rating {
-  font-size: 0.9rem;
+  font-size: 0.9em;
   color: #f39c12; /* Amarillo para la calificación */
   margin: 5px 0;
 }
 
 .comment-item__text {
-  font-size: 1rem;
+  font-size: 1em;
   color: #555;
   line-height: 1.5;
   margin-bottom: 10px;
@@ -29,7 +30,7 @@
 
 .comment-item__button {
   padding: 5px 10px;
-  font-size: 0.9rem;
+  font-size: 0.9em;
   border: none;
   border-radius: 3px;
   cursor: pointer;
@@ -52,4 +53,10 @@
 
 .comment-item__button--like:hover {
   background-color: var(--login-button-color);;
+}
+
+@media (max-width: 768px) {
+  .comment-item {
+    font-size: 14px;
+  }
 }

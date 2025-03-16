@@ -27,7 +27,6 @@ export class BeachCommentsComponent {
         text: this.newCommentText,
       };
       this.addComment.emit(newComment); // Emite el nuevo comentario al padre
-      // Resetea el formulario
       this.newCommentText = '';
       this.newCommentAuthor = 'You';
       this.newCommentRating = 5;

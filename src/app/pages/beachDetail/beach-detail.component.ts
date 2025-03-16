@@ -22,7 +22,7 @@ import { Beach, Comment } from '../../models/beach'; // Asegúrate de importar l
   styleUrls: ['./beach-detail.component.css'],
 })
 export class BeachDetailPageComponent implements OnInit {
-  beach: any | undefined; // Tipamos correctamente el objeto beach
+  beach: any | undefined;
   beaches: Beach[] = beachesList;
 
   constructor(private route: ActivatedRoute) {}
@@ -40,7 +40,6 @@ export class BeachDetailPageComponent implements OnInit {
 
   addComment(newComment: Comment) {
     if (this.beach) {
-      // Asegúrate de que comments esté inicializado como un array
       if (!this.beach.comments) {
         this.beach.comments = [];
       }

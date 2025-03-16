@@ -13,13 +13,7 @@ export interface Beach {
 
 export interface BeachDescription {
     intro: string;
-    features: string;
-    activities: string[];
-    accessibility: string[];
-    events: string[];
-    climate: string;
-    prices: string[];
-    availability: string;
+    paragraph: string;
 }
 
 export interface Comment {
