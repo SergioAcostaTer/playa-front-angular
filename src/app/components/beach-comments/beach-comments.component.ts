@@ -16,7 +16,7 @@ export class BeachCommentsComponent {
   @Output() addComment = new EventEmitter<Comment>(); // Evento de salida para notificar al padre
 
   newCommentText: string = '';
-  newCommentAuthor: string = '';
+  newCommentAuthor: string = 'You'; // Valor por defecto
   newCommentRating: number = 5; // Valor por defecto
 
   onAddComment() {
@@ -29,7 +29,7 @@ export class BeachCommentsComponent {
       this.addComment.emit(newComment); // Emite el nuevo comentario al padre
       // Resetea el formulario
       this.newCommentText = '';
-      this.newCommentAuthor = '';
+      this.newCommentAuthor = 'You';
       this.newCommentRating = 5;
     }
   }
