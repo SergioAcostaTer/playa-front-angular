@@ -90,7 +90,7 @@
   height: 100%;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 1.2rem;
 }
 
 .header__menu {
@@ -218,7 +218,11 @@
 
 @media (max-width: 768px) {
   .header__nav {
-    display: none;
+    width: 80%;
+  }
+
+  .header__nav-link {
+    font-size: 1.2rem;
   }
   
   .popup__container {
@@ -226,11 +230,23 @@
     max-width: 300px;
   }
 
+  .header__auth-buttons {
+    width: 80%;
+  }
+
+  .header__auth-button {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 550px) {
+  .header__nav {
+    display: none;
+  }
+  
   .popup__section-button--mobile {
     display: flex;
   }
 }
 
-@media (max-width: 742px) {
-
-}

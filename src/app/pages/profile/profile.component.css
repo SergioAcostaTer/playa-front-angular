@@ -1,6 +1,6 @@
 .profile {
   margin: auto;
-  margin-top: 30px;
+  margin-top: 10px;
   height: 70vh;
   font: Arial, sans-serif;
   display: flex;
@@ -8,23 +8,39 @@
   gap: 1rem;
   width: 80%;
   max-width: 500px;
+  height: 75vh;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .profile__label {
   font-size: 1em;
   letter-spacing: 1px;
   word-spacing: 2.5px;
+  width: 100%;
+}
+
+.profile__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 100%; /* Asegura que el formulario ocupe el ancho completo */
+  align-items: stretch; /* Cambia a stretch para que los hijos ocupen el ancho completo */
 }
 
 .profile__input {
   width: 100%;
+  max-height: 35px;
   padding: 10px 10px;
   border: none;
   border-radius: 10px;
   background-color: #ccc6;
-  margin: 5px 0 10px 0;
   box-shadow: 0 0 5px 0 #0004;
-  margin-bottom: 20px;
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
+}
+
+#profile-phone {
+  margin-top: 6px;
 }
 
 .profile__user-image {
@@ -54,14 +70,65 @@
 
 .profile__phone-input {
   display: flex;
+  width: 100%;
+  gap: 4px;
 }
 
 .profile__select {
   border: 1px solid #0003;
   border-radius: 4px;
   max-width: 20%;
-  margin-right: 3px;
   height: 37px;
   margin-top: 5px;
   box-shadow: 0 0 2px 0 #0004;
+}
+
+.profile__input--button {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 5px 0 #0002;
+  color: var(--footer-text-color, #f0e1a1);
+  background-color: var(--footer-background, #b78c3d);
+  margin-right: auto;
+}
+
+.profile__input--button:hover {
+  cursor: pointer;
+}
+
+.profile__button {
+  align-self: flex-end;
+  border: none;
+  background: none;
+  padding: 10px 14px;
+}
+
+@media (max-width: 768px) {
+  .profile {
+    height: 80vh;
+  }
+  .profile__avatar {
+    max-width: 80px;
+    max-height: 80px;
+  }
+  .profile__username {
+    font-size: 1.2em;
+  }
+  .profile__label {
+    font-size: 0.9em;
+  }
+  .profile__input {
+    padding: 8px 8px;
+  }
+  .profile__change-link {
+    font-size: 0.7em;
+  }
+  .profile__select {
+    max-width: 25%;
+  }
+  .profile__input--button {
+    padding: 8px 16px;
+  }
 }
