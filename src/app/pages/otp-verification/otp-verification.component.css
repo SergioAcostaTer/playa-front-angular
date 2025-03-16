@@ -81,3 +81,11 @@
 .otp-verification__form button:hover {
     box-shadow: 0 0 5px 0 var(--login-button-color);
 }
+
+@media (max-width: 550px) {
+    .otp-verification {
+        padding: 20px;
+        font-size: 13px;
+    }
+}
+
