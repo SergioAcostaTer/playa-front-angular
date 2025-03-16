@@ -2,10 +2,11 @@
 .beach-grid {
 	display: grid;
 	gap: 1.5rem;
-	justify-items: center;
+	justify-content: center;
 	padding: 1.5rem;
 	grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
 	width: 100%;
+	margin: auto;
 }
 
 /* ELEMENTO */
@@ -24,6 +25,6 @@
 
 @media (max-width: 768px) {
 	.beach-grid {
-		grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
 	}
 }
