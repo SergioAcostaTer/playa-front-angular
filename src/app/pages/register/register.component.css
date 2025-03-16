@@ -17,6 +17,15 @@
   text-align: center;
 }
 
+.register__logo {
+  color: #000;
+}
+
+.register__title-icon {
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
 .register__title {
   font-size: 2.5rem;
   display: flex;
@@ -133,7 +142,6 @@
   width: 15px;
   height: 15px;
 }
-
 
 @media (max-width: 430px) {
   .register {
