@@ -12,6 +12,7 @@
   cursor: pointer;
   text-decoration: none;
   color: inherit;
+  max-width: 700px;
 }
 
 /* EFECTO HOVER */
@@ -36,6 +37,7 @@
 .ranking-card__info {
   padding: 10px;
   text-align: left;
+  justify-content: start;
 }
 
 .ranking-card__title {
