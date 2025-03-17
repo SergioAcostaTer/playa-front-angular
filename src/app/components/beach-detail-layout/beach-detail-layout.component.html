@@ -1,6 +1,6 @@
-<section class="beach-detail-layout">
+<!-- <section class="beach-detail-layout">
     <div class="beach-detail-layout__image">
-        <img [src]="beach.imageUrl" [alt]="beach.title" class="beach-detail-layout__image-main" />
+        <img [src]="beach.coverUrl" [alt]="beach.name" class="beach-detail-layout__image-main" />
     </div>
 
     <div class="beach-detail-layout__sidebar">
@@ -25,6 +25,49 @@
         <section class="beach-detail-layout__weather">
             <h3 class="beach-detail-layout__weather-title">🌤️ Clima</h3>
             <p class="beach-detail-layout__weather-text">{{ beach.weather }}</p>
+        </section>
+
+        <button class="beach-detail-layout__button">Ir a la playa</button>
+    </div>
+</section> -->
+<section class="beach-detail-layout">
+    <div class="beach-detail-layout__image">
+        <img [src]="beach.cover_url" [alt]="beach.name" class="beach-detail-layout__image-main" />
+    </div>
+
+    <div class="beach-detail-layout__sidebar">
+        <section class="beach-detail-layout__header">
+            <h1 class="beach-detail-layout__title">🏖️ {{ beach.name }}</h1>
+            <div class="beach-detail-layout__rating-info">
+                <span class="beach-detail-layout__rating">⭐ {{ beach.classification }}</span>
+                <span class="beach-detail-layout__separator"> | </span>
+                <span class="beach-detail-layout__reviews">📝 {{ beach.annual_max_occupancy }} reseñas</span>
+                <span class="beach-detail-layout__separator"> | </span>
+                <span class="beach-detail-layout__distance">📍 {{ beach.municipality }}</span>
+            </div>
+        </section>
+
+        <section class="beach-detail-layout__services">
+            <h3 class="beach-detail-layout__services-title">🏝️ Servicios y Características</h3>
+            <ul class="beach-detail-layout__services-list">
+                <li class="beach-detail-layout__services-item">
+                    <span class="beach-detail-layout__services-icon">🚽</span>
+                    <span class="beach-detail-layout__services-text">Baños</span>
+                </li>
+                <li class="beach-detail-layout__services-item">
+                    <span class="beach-detail-layout__services-icon">🚿</span>
+                    <span class="beach-detail-layout__services-text">Duchas</span>
+                </li>
+                <li class="beach-detail-layout__services-item">
+                    <span class="beach-detail-layout__services-icon">🚗</span>
+                    <span class="beach-detail-layout__services-text">Estacionamiento</span>
+                </li>
+            </ul>
+        </section>
+
+        <section class="beach-detail-layout__weather">
+            <h3 class="beach-detail-layout__weather-title">🌤️ Clima</h3>
+            <p class="beach-detail-layout__weather-text">{{ beach.environment_condition }}</p>
         </section>
 
         <button class="beach-detail-layout__button">Ir a la playa</button>

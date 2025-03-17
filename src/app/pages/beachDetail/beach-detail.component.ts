@@ -6,7 +6,7 @@ import { BeachDetailLayoutComponent } from '../../components/beach-detail-layout
 import { BeachMapComponent } from '../../components/beach-map/beach-map.component';
 import { BeachDescriptionComponent } from '../../components/beach-description/beach-description.component';
 import { BeachCommentsComponent } from '../../components/beach-comments/beach-comments.component';
-import { Beach, Comment } from '../../models/beach'; // Asegúrate de importar la interfaz
+import { Beach, Comment } from '../../models/beach'; // Ensure the interface is imported
 
 @Component({
   selector: 'app-beach-detail',
@@ -15,14 +15,13 @@ import { Beach, Comment } from '../../models/beach'; // Asegúrate de importar l
     CommonModule,
     BeachDetailLayoutComponent,
     BeachMapComponent,
-    BeachDescriptionComponent,
-    BeachCommentsComponent,
-  ],
+    BeachDescriptionComponent
+],
   templateUrl: './beach-detail.component.html',
   styleUrls: ['./beach-detail.component.css'],
 })
 export class BeachDetailPageComponent implements OnInit {
-  beach: any | undefined;
+  beach: Beach | null = null;
   beaches: Beach[] = beachesList;
 
   constructor(private route: ActivatedRoute) {}
@@ -31,19 +30,19 @@ export class BeachDetailPageComponent implements OnInit {
     const slug = this.route.snapshot.paramMap.get('slug');
 
     if (slug) {
-      // Busca la playa cuyo title, normalizado, coincida con el slug
+      // Find the beach with a matching normalized name
       this.beach = this.beaches.find((beach: Beach) =>
-        beach.title?.replace(/ /g, '-')?.toLowerCase() === slug.toLowerCase()
-      );
+        beach.name?.replace(/ /g, '-')?.toLowerCase() === slug.toLowerCase()
+      ) || null; // Ensure it returns null if no beach is found
     }
   }
 
-  addComment(newComment: Comment) {
-    if (this.beach) {
-      if (!this.beach.comments) {
-        this.beach.comments = [];
-      }
-      this.beach.comments.push(newComment); // Añade el nuevo comentario
-    }
-  }
+  // addComment(newComment: Comment) {
+  //   if (this.beach) {
+  //     if (!this.beach.comments) {
+  //       this.beach.comments = []; // Initialize the comments array if undefined
+  //     }
+  //     this.beach.comments.push(newComment); // Add the new comment
+  //   }
+  // }
 }

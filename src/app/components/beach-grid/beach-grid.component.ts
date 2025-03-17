@@ -1,24 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { BeachCardComponent } from '../beach-card/beach-card.component';
+import { Beach } from '../../models/beach';
 
 @Component({
   selector: 'app-beach-grid',
   standalone: true,
-  imports: [ CommonModule, BeachCardComponent ],
+  imports: [CommonModule, BeachCardComponent],
   templateUrl: './beach-grid.component.html',
-  styleUrls: [ './beach-grid.component.css' ],
+  styleUrls: ['./beach-grid.component.css'],
 })
 export class BeachGridComponent {
-  @Input() beaches: { 
-          imageUrl: string,
-          title: string, 
-          rating: string, 
-          distance: string, 
-          recommended?: boolean 
-  }[] = [];
+  @Input() beaches: Beach[] = [];
 
-  trackByTitle(index: number, beach: { title: string }): string {
-    return beach.title;
+  trackByTitle(index: number, beach: Beach): string {
+    return beach.id;
   }
 }
