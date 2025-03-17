@@ -1,8 +1,5 @@
 <header class="header">
-
-    <a href="/" class="header__logo">
-        <h2 class="header__logo-text">Playea</h2>
-    </a>
+    <app-logo></app-logo>
 
     <nav class="header__nav">
         <ul class="header__nav-list">
@@ -20,8 +17,8 @@
             <a href="/login" class="header__auth-button">Login</a>
             <a href="/register" class="header__auth-button">Register</a>
         </div>
-        <a class="header__menu" (click)="togglePopup()">
-            <img src="/images/menu-list.svg" class="header__menu-image">
+        <a class="header__menu-toggle" (click)="togglePopup()">
+            <img src="/images/menu-list.svg" class="header__menu-icon">
         </a>
     </div>
 </header>
@@ -33,23 +30,13 @@
             <img src="/images/avatar.jpg" alt="UserIcon" class="popup__image">
         </div>
         <div class="popup__account-buttons">
-            <button class="popup__account-button">
-                <a href="#" class="popup__account-link">Añadir Cuenta</a>
-            </button>
-            <button class="popup__account-button">
-                <a href="#" class="popup__account-link">Cerrar Sesión</a>
-            </button>
+            <a href="#" class="popup__account-button popup__account-link">Añadir Cuenta</a>
+            <a href="https://api.playea.eu/auth/log-out" class="popup__account-button popup__account-link">Cerrar Sesión</a>
         </div>
-        <div class="popup__section-buttons">
-            <button class="popup__section-button">
-                <a href="/profile" class="popup__section-link">Perfil</a>
-            </button>
-            <button class="popup__section-button">
-                <a href="/favourites" class="popup__section-link">Favoritos</a>
-            </button>
-            <button class="popup__section-button popup__section-button--mobile">
-                <a href="/ranking" class="popup__section-link">Ranking</a>
-            </button>
+        <div class="popup__nav-buttons">
+            <a href="/profile" class="popup__nav-button popup__nav-link">Perfil</a>
+            <a href="/favourites" class="popup__nav-button popup__nav-link">Favoritos</a>
+            <a href="/ranking" class="popup__nav-button popup__nav-link popup__nav-button--mobile">Ranking</a>
         </div>
     </div>
 </div>
