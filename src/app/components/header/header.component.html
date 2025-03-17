@@ -13,10 +13,7 @@
     </nav>
 
     <div class="header__user-menu">
-        <div class="header__auth-buttons">
-            <a href="/login" class="header__auth-button">Login</a>
-            <a href="/register" class="header__auth-button">Register</a>
-        </div>
+        <app-user-header></app-user-header>
         <a class="header__menu-toggle" (click)="togglePopup()">
             <img src="/images/menu-list.svg" class="header__menu-icon">
         </a>
@@ -30,7 +27,7 @@
             <img src="/images/avatar.jpg" alt="UserIcon" class="popup__image">
         </div>
         <div class="popup__account-buttons">
-            <a href="#" class="popup__account-button popup__account-link">Añadir Cuenta</a>
+            <a href="/login" class="popup__account-button popup__account-link">Añadir Cuenta</a>
             <a href="https://api.playea.eu/auth/log-out" class="popup__account-button popup__account-link">Cerrar Sesión</a>
         </div>
         <div class="popup__nav-buttons">

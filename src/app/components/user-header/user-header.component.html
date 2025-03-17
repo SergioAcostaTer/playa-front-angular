@@ -1,0 +1,10 @@
+<div *ngIf="user; else guestTemplate" class="user-info">
+    <img [src]="user.avatarUrl || 'assets/default-avatar.png'" alt="User Avatar" class="avatar">
+    <span class="username">{{ user.name }}</span>
+  </div>
+  <ng-template #guestTemplate>
+    <div class="auth-buttons">
+      <button class="btn login">Login</button>
+      <button class="btn register">Register</button>
+    </div>
+  </ng-template>

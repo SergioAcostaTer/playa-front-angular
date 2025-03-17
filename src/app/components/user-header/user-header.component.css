@@ -1,0 +1,65 @@
+.header {
+  width: 100%;
+  background-color: #1e1e2f;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+}
+
+.username {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  padding: 8px 15px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.login {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.register {
+  background-color: #ff5722;
+  color: white;
+  border: 2px solid #ff5722;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
