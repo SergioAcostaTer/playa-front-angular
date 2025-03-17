@@ -1,10 +1,17 @@
 <div class="banner">
-    <h1 class="banner__title">Busca tu playa</h1>
-    <div class="banner__search">
-        <input class="banner__input" type="text" placeholder="Busca destinos...">
-    </div>
+  <h1 class="banner__title">Busca tu playa</h1>
+  <div class="banner__search">
+    <input class="banner__input" type="text" placeholder="Busca destinos...">
+  </div>
 </div>
 
+<!-- Show loading indicator if data is being fetched -->
+<div *ngIf="loading" class="loading-indicator">
+  <p>Loading...</p>
+  <!-- You can replace this with a spinner if preferred -->
+</div>
+
+<!-- Show the content when the loading is false -->
 <app-category-list [categories]="categories"></app-category-list>
 
-<app-beach-grid [beaches]="beaches"></app-beach-grid>
+<app-beach-grid *ngIf="!loading" [beaches]="beaches"></app-beach-grid>

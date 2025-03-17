@@ -1,11 +1,11 @@
 <div *ngIf="beaches?.length; else emptyState" class="beach-grid" role="list">
     <app-beach-card
         *ngFor="let beach of beaches; trackBy: trackByTitle"
-        [imageUrl]="beach.imageUrl"
-        [title]="beach.title"
-        [rating]="beach.rating"
-        [distance]="beach.distance"
-        [recommended]="beach.recommended"
+        [imageUrl]="beach.cover_url"
+        [title]="beach.name"
+        [rating]="beach.width.toString()"
+        [distance]="'14 km'"
+        [recommended]="true"
         class="beach-grid__item"
         role="listitem">
     </app-beach-card>

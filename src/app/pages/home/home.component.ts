@@ -4,6 +4,7 @@ import { categoriesList } from '../../constants/categoriesList';
 import { CategoryListComponent } from '../../components/category-list/category-list.component';
 import { BeachGridComponent } from '../../components/beach-grid/beach-grid.component';
 import { getHomeBeaches } from '../../services/getHomeBeaches';
+import { Beach } from '../../models/beach';
 
 @Component({
   selector: 'app-home',
@@ -14,13 +15,16 @@ import { getHomeBeaches } from '../../services/getHomeBeaches';
 })
 export class HomePageComponent implements OnInit {
   categories = categoriesList;
-  beaches = [];
+  beaches: Beach[] = [];
+  loading = true;
 
   async ngOnInit() {
     try {
       this.beaches = await getHomeBeaches();
     } catch (error) {
       console.error('Error fetching beaches:', error);
+    } finally {
+      this.loading = false;
     }
   }
 }

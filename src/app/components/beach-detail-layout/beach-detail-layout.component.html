@@ -1,6 +1,6 @@
-<section class="beach-detail-layout">
+<!-- <section class="beach-detail-layout">
     <div class="beach-detail-layout__image">
-        <img [src]="beach.imageUrl" [alt]="beach.title" class="beach-detail-layout__image-main" />
+        <img [src]="beach.coverUrl" [alt]="beach.name" class="beach-detail-layout__image-main" />
     </div>
 
     <div class="beach-detail-layout__sidebar">
@@ -28,5 +28,16 @@
         </section>
 
         <button class="beach-detail-layout__button">Ir a la playa</button>
+    </div>
+</section> -->
+<section class="beach-detail-layout">
+    <div class="beach-detail-layout__image">
+        <img [src]="beach.cover_url" [alt]="beach.name" class="beach-detail-layout__image-main" />
+    </div>
+
+    <div class="beach-detail-layout__sidebar">
+        <section class="beach-detail-layout__header">
+            <h1 class="beach-detail-layout__title">🏖️ {{ beach.name }}</h1>
+        </section>
     </div>
 </section>
