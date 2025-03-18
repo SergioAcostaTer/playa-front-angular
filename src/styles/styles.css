@@ -1,31 +1,31 @@
 
 :root {
   /* Primary Colors */
-  --primary-color: #896e00; /* Warm sand color */
-  --secondary-color: #0099cc; /* Ocean blue */
+  --primary-color: #ff385c; /* Warm sand color -> Cambiado por un tono rojizo similar */
+  --secondary-color: #e31c5f; /* Ocean blue */
   --accent-color: #00bfae; /* Seafoam green */
 
   /* Text Colors */
   --text-color: #333333; /* Dark text for readability */
   --header-text-color: #000000; /* White text for headers */
-  --footer-text-color: #f0e1a1; /* Light sandy beige for footer text */
+  --footer-text-color: #ffffff; /* Light sandy beige for footer text -> Cambiado a un tono rojizo */
 
   /* Background Colors */
   --header-background: #ffffff; /* Beachwood - dark wood for header */
-  --footer-background: #b78c3d; /* Darker sand tone for footer */
+  --footer-background: #e31c5f; /* Darker sand tone for footer -> Cambiado a un tono rojizo */
   --main-background: #ffffff; /* Clean white background */
   --section-background: #aee2d8; /* Light seafoam green for sections */
 
   /* Accent Colors */
-  --button-background: #ff7f50; /* Coral color for buttons */
+  --button-background: #e31c5f; /* Coral color for buttons */
   --button-text-color: #ffffff; /* White text on buttons */
   --link-color: #0099cc; /* Ocean blue for links */
-  --link-hover-color: #00bfae; /* Seafoam green on hover */
+  --link-hover-color: #ff385c; /* Seafoam green on hover -> Cambiado a un tono rojizo */
 
   /* Other Colors */
-  --light-sand: #f0e1a1; /* Light sandy beige */
+  --light-sand: #ff385c; /* Light sandy beige -> Cambiado a un tono rojizo claro */
   --sky-blue: #87ceeb; /* Clear sky blue */
-  --sunset-orange: #ff7043; /* Warm sunset orange */
+  --sunset-orange: #e31c5f; /* Warm sunset orange -> Cambiado a un tono rojizo */
   --seafoam: #aee2d8; /* Light seafoam green */
   --beachwood: #4e3629; /* Driftwood brown */
 
@@ -38,17 +38,18 @@
   --card-shadow: rgba(0, 0, 0, 0.1);
   --card-hover-shadow: rgba(0, 0, 0, 0.15);
 
-  --badge-bg-color: #ff385c;
-  --badge-bg-color-light: #ff385d17;
+  --badge-bg-color: #ff385c; /* Cambiado a tono rojizo */
+  --badge-bg-color-light: #ff385d17; /* Cambiado a tono rojizo claro */
   --badge-text-color: #fff;
 
   --card-title-color: #222;
   --card-text-color: #666;
   --card-hover-transform: -3px;
 
-  --rating-star-color: #ff385c;
-  --rating-text-color: #ff385c;
-  --change-user-image-color: #ff9800;
+  --rating-star-color: #ff385c; /* Cambiado a tono rojizo */
+  --rating-text-color: #fff; /* Cambiado a tono rojizo */
+  --change-user-image-color: #f5002c; /* Mantengo el tono naranjado porque no es amarillo puro */
+
   /* END CARDS */
 
   /* LOGIN */
@@ -56,12 +57,13 @@
   --login-secondary-bg: #f8f9fa; /* Fondo secundario: Un gris claro sutil para contraste */
   --login-text-color: #222222; /* Texto: Negro suave para buena legibilidad */
   --login-input-bg: #ffffff; /* Fondo de inputs: Blanco para simplicidad */
-  --login-button-color: #ff385c; /* Botón principal: Rojo rosado característico de Airbnb */
-  --login-button-hover: #e31c5f; /* Hover del botón: Un tono más fuerte para efecto visual */
+  --login-button-color: #ff385c; /* Cambiado a un tono rojizo */
+  --login-button-hover: #bd1746; /* Hover del botón: Un tono más fuerte para efecto visual */
   --login-border-color: #dddddd; /* Bordes y líneas: Gris claro para suavidad */
   --login-placeholder-color: #717171; /* Texto de placeholder: Gris medio, visible pero no invasivo */
   /* END LOGIN */
 }
+
 
 main {
   width: 100%;

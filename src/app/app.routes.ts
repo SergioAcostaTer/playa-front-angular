@@ -10,6 +10,7 @@ import { RankingPageComponent } from './pages/ranking/ranking.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { OTPVerificationComponent } from './pages/otp-verification/otp-verification.component';
 import { FavouritePageComponent } from './pages/favourites/favourite.component';
+import {ViewProfileComponent} from './pages/view-profile/view-profile.component';
 
 export const routes: Routes = [
   {
@@ -20,7 +21,8 @@ export const routes: Routes = [
       { path: 'favourites', component: FavouritePageComponent },
       { path: 'beach/:slug', component: BeachDetailPageComponent },
       { path: 'profile', component: ProfilePageComponent },
-      { path: 'ranking', component: RankingPageComponent }, 
+      { path: 'ranking', component: RankingPageComponent },
+      { path: 'view-profile', component: ViewProfileComponent },
     ],
   },
   {
