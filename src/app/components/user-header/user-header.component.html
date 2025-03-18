@@ -1,3 +1,4 @@
+<!-- user-header.component.html -->
 <div class="header-content">
   <!-- Loading State -->
   <div *ngIf="isLoading" class="loading-wrapper">
@@ -9,7 +10,7 @@
   <div *ngIf="!isLoading && user" class="header-content-wrapper">
     <!-- Authenticated User State -->
     <div *ngIf="user" class="user-section">
-      <div class="user-profile-wrapper">
+      <div class="user-profile-wrapper" (click)="toggleDropdown()">
         <div class="avatar-container">
           <img [src]="getAvatarUrl()" alt="{{ user.username }}'s avatar" class="avatar-image" loading="lazy"
             (error)="onImageError($event)">
@@ -19,10 +20,17 @@
           <span class="user-status">Online</span>
         </div>
       </div>
+
+      <!-- Dropdown Menu -->
+      <div *ngIf="isDropdownOpen" class="dropdown-menu">
+        <a routerLink="/profile" class="dropdown-item">Perfil</a>
+        <a href="#" class="dropdown-item">Settings</a>
+        <a href="#" class="dropdown-item" (click)="logout()">Cerrar Sesión</a> <!-- Logout link updated -->
+      </div>
     </div>
 
     <!-- Unauthenticated State -->
-    <nav *ngIf="!user && !isLoading" class="auth-navigation">
+    <nav *ngIf="(!user && !isLoading)" class="auth-navigation">
       <a routerLink="/login" class="auth-btn auth-btn--login" title="Sign in to your account">
         Sign In
       </a>
