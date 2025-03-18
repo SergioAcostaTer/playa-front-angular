@@ -1,10 +1,32 @@
-<div *ngIf="user; else guestTemplate" class="user-info">
-    <img [src]="user.avatarUrl || 'assets/default-avatar.png'" alt="User Avatar" class="avatar">
-    <span class="username">{{ user.name }}</span>
+<!-- user-header.component.html -->
+<div class="header-content">
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-wrapper">
+    <div class="spinner"></div>
+    <span class="loading-text">Loading profile...</span>
   </div>
-  <ng-template #guestTemplate>
-    <div class="auth-buttons">
-      <button class="btn login">Login</button>
-      <button class="btn register">Register</button>
+
+  <!-- Authenticated User State -->
+  <div *ngIf="!isLoading && user" class="user-section">
+    <div class="user-profile-wrapper">
+      <div class="avatar-container">
+        <img [src]="getAvatarUrl()" alt="{{ user.name }}'s avatar" class="avatar-image" loading="lazy"
+          (error)="onImageError($event)">
+      </div>
+      <div class="user-info">
+        <span class="user-name">{{ user.username }}</span>
+        <span class="user-status">Online</span>
+      </div>
     </div>
-  </ng-template>
+  </div>
+
+  <!-- Unauthenticated State -->
+  <nav *ngIf="!isLoading && !user" class="auth-navigation">
+    <a routerLink="/login" class="auth-btn auth-btn--login" title="Sign in to your account">
+      Sign In
+    </a>
+    <a routerLink="/register" class="auth-btn auth-btn--register" title="Create a new account">
+      Register
+    </a>
+  </nav>
+</div>
