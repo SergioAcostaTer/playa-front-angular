@@ -34,29 +34,8 @@
 }
 
 /* Elements */
-.header__menu-button {
-  display: none;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-.header__menu-icon {
-  width: 2rem;
-  height: 2rem;
-  fill: var(--header-text-color, #000);
-}
-
-.header__logo {
-  text-decoration: none;
-  color: inherit;
-}
-
-.header__logo-text {
-  color: var(--header-text-color, #000);
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 0;
+app-logo {
+  max-width: 100px;
 }
 
 .header__nav {
@@ -93,14 +72,14 @@
   gap: 1.2rem;
 }
 
-.header__menu {
+.header__menu-toggle {
   display: flex;
   align-items: center;
   width: 2.7rem;
   height: 2.7rem;
 }
 
-.header__menu-image {
+.header__menu-icon {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -179,14 +158,14 @@
   text-decoration: none;
 }
 
-.popup__section-buttons {
+.popup__nav-buttons {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
 }
 
-.popup__section-button {
+.popup__nav-button {
   flex-grow: 1;
   min-width: 150px;
   width: 90%;
@@ -199,15 +178,15 @@
   transition: box-shadow 0.2s ease-in-out;
 }
 
-.popup__section-button:hover {
+.popup__nav-button:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.popup__section-button--mobile {
+.popup__nav-button--mobile {
   display: none;
 }
 
-.popup__section-link {
+.popup__nav-link {
   display: block;
   width: 100%;
   height: 100%;
@@ -216,37 +195,37 @@
   padding: 0.5em 0;
 }
 
+/* Media Queries */
 @media (max-width: 768px) {
   .header__nav {
-    width: 80%;
+      width: 80%;
   }
 
   .header__nav-link {
-    font-size: 1.2rem;
+      font-size: 1.2rem;
   }
   
   .popup__container {
-    width: 90vw;
-    max-width: 300px;
+      width: 90vw;
+      max-width: 300px;
   }
 
   .header__auth-buttons {
-    width: 80%;
+      width: 80%;
   }
 
   .header__auth-button {
-    padding: 0.5rem 0.7rem;
-    font-size: 0.9em;
+      padding: 0.5rem 0.7rem;
+      font-size: 0.9em;
   }
 }
 
 @media (max-width: 550px) {
   .header__nav {
-    display: none;
+      display: none;
   }
   
-  .popup__section-button--mobile {
-    display: flex;
+  .popup__nav-button--mobile {
+      display: flex;
   }
 }
-
