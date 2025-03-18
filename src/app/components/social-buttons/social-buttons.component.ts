@@ -1,12 +1,19 @@
-import { Component } from '@angular/core';
-import { environment } from '../../../environments/environment';
+import { Component, OnInit } from '@angular/core';
+import { EnvironmentService } from '../../services/environment.service';
 
 @Component({
   selector: 'app-social-buttons',
   templateUrl: './social-buttons.component.html',
   styleUrls: ['./social-buttons.component.css' ],
 })
-export class SocialButtonsComponent {
+export class SocialButtonsComponent implements OnInit {
   // googleUrl = environment.apiUrl + '/auth/google';
-  googleUrl = 'http://localhost:8000/auth/google';
+  googleUrl = '';
+ constructor(
+    private envService: EnvironmentService
+  ) {}
+
+  ngOnInit(): void {
+    this.googleUrl = this.envService.getApiUrl() + '/auth/google';
+  }
 }

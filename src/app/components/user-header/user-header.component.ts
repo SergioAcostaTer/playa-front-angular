@@ -28,19 +28,19 @@ export class UserHeaderComponent implements OnInit {
   }
 
   private fetchUserData(): void {
-    this.isLoading = true; // Ensure loading is true during fetch
+    this.isLoading = true;
     const url = `${this.envService.getApiUrl()}${this.endpoint}`;
     
     this.http.get(url, { withCredentials: true }).subscribe({
       next: (response: any) => {
         console.log('API response:', response);
         this.user = response.data;
-        this.isLoading = false; // Loading off after success
+        this.isLoading = false;
       },
       error: (err) => {
         console.error('Error fetching user data:', err);
         this.user = null;
-        this.isLoading = false; // Loading off after error
+        this.isLoading = false;
       },
     });
   }
