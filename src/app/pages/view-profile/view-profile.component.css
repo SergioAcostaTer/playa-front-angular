@@ -55,7 +55,7 @@ main {
   display: flex; /* Elementos sociales en fila horizontal */
   justify-content: space-around;
   margin-top: 20px;
-  width: 100%; /* Ocupa todo el ancho disponible */
+  width: 100%; /* Ocupa  */
   gap: 15%;
 }
 
@@ -98,7 +98,7 @@ main {
 
   .user-container {
     flex-direction: column; /* En móviles, foto arriba, info abajo */
-    align-items: center; /* Centra todo en móviles */
+    align-items: center; /* Centra */
     text-align: center; /* Centra el texto en móviles */
   }
 
