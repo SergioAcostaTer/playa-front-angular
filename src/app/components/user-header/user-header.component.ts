@@ -9,7 +9,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
   styleUrls: ['./user-header.component.css']
 })
 export class UserHeaderComponent {
-  isRegistered: boolean = true;
+  isRegistered: boolean = false;
   isPopupVisible: boolean = false;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
@@ -21,7 +21,7 @@ export class UserHeaderComponent {
   checkRegistrationStatus(): void {
     if (isPlatformBrowser(this.platformId)) {
       const user = localStorage.getItem('user');
-      this.isRegistered = !!user; 
+      this.isRegistered = !!user;
     }
   }
 
@@ -33,12 +33,21 @@ export class UserHeaderComponent {
     this.isPopupVisible = false;
   }
 
+  logout(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem('user');
+      this.isRegistered = false;
+      this.closePopup();
+      window.location.reload();
+    }
+  }
+
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event): void {
     if (!isPlatformBrowser(this.platformId) || !this.isPopupVisible) return;
 
     const target = event.target as HTMLElement;
-    if (!target.closest('.popup__container') && !target.closest('.user-header__menu-toggle')) {
+    if (!target.closest('.user-header__popup') && !target.closest('.user-header__menu-toggle')) {
       this.closePopup();
     }
   }
