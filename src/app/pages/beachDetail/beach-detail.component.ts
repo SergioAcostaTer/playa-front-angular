@@ -22,7 +22,7 @@ import { Beach, Comment } from '../../models/beach'; // Ensure the interface is 
 })
 export class BeachDetailPageComponent implements OnInit {
   beach: Beach | null = null;
-  beaches: Beach[] = beachesList;
+  beaches: Beach[] | null = beachesList;
 
   constructor(private route: ActivatedRoute) {}
 

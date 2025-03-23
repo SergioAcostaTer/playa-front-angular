@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { Beach } from '../../models/beach';
 
 @Component({
   selector: 'app-beach-card',
@@ -10,10 +11,5 @@ import { Component, Input } from '@angular/core';
   host: { 'class': 'beach-card' }
 })
 export class BeachCardComponent {
-  @Input() imageUrl: string = 'assets/default-beach.jpg';
-  @Input() title: string = 'Playa Desconocida';
-  @Input() rating: string = '0';
-  @Input() distance: string = 'N/A';
-  @Input() recommended?: boolean = false;
-  @Input() description?: string;
+  @Input() beach: Beach | null = null;
 }

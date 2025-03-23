@@ -1,10 +1,11 @@
+// src/app/home.component.ts
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { categoriesList } from '../../constants/categoriesList';
 import { CategoryListComponent } from '../../components/category-list/category-list.component';
 import { BeachGridComponent } from '../../components/beach-grid/beach-grid.component';
 import { getHomeBeaches } from '../../services/getHomeBeaches';
 import { Beach } from '../../models/beach';
+import { categoriesList } from '../../constants/categoriesList';
 
 @Component({
   selector: 'app-home',

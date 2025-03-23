@@ -18,6 +18,7 @@
   width: 100%;
   border: 1px solid var(--card-border-color, #e0e0e0);
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  height: 100%;
 }
 
 .beach-card:hover {
@@ -26,19 +27,19 @@
 }
 
 /* ELEMENTOS */
-.beach-card__image {
+.beach-card__media {
   position: relative;
   width: 100%;
-  height: 230px;
+  height: 230px; /* Fija en escritorio */
 }
 
-.beach-card__image img {
+.beach-card__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.beach-card__badge {
+.beach-card__flag {
   position: absolute;
   top: 12px;
   left: 12px;
@@ -46,46 +47,60 @@
   font-size: 0.8em;
   font-weight: bold;
   border-radius: 8px;
-  color: var(--badge-text-color, #fff);
+  color: var(--flag-text-color, #fff);
 }
 
 /* MODIFICADORES */
-.beach-card__badge--recommended {
-  background-color: var(--badge-bg-color, #ff385c);
+.beach-card__flag--blue {
+  background-color: var(--blue-flag-color, #003087);
+  color: var(--flag-text-color, #fff);
   letter-spacing: 0.1em;
 }
 
-.beach-card__content {
+.beach-card__details {
   padding: 1.125rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 0;
 }
 
 .beach-card__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 0.5rem;
 }
 
-.beach-card__title {
-  font-size: 1em;
+.beach-card__name {
+  font-size: 1em; /* Base: 16px */
   font-weight: bold;
   flex-wrap: wrap;
   color: var(--card-title-color, #222);
   margin: 0;
   text-overflow: ellipsis;
   overflow: hidden;
+  white-space: nowrap;
+  max-width: 70%;
 }
 
-.beach-card__rating {
+.beach-card__location {
   display: flex;
   align-items: center;
   gap: 4px;
-  color: var(--rating-text-color, #ff385c);
+  color: var(--location-text-color, #ff385c);
 }
 
-.beach-card__rating-text {
-  font-size: 0.9em;
+.beach-card__island {
+  font-size: 0.7em; /* Base: ~14.4px */
+  text-transform: capitalize;
   font-weight: bold;
   margin-top: 0.1em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100px;
 }
 
 .beach-card__star-icon {
@@ -93,38 +108,60 @@
   height: 1.125em;
 }
 
-.beach-card__distance {
-  font-size: 0.9em;
+.beach-card__size {
+  font-size: 0.9em; /* Base: ~14.4px */
   color: var(--card-text-color, #666);
   margin-top: 0.375rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
+/* MEDIA QUERIES */
 @media (max-width: 768px) {
   .beach-card {
     width: 100%;
     aspect-ratio: 1 / 1;
-    font-size: 10px;
+    max-height: 300px;
   }
 
-  .beach-card__image {
-    height: 70%;
+  .beach-card__media {
+    height: 60%;
   }
 
-  .beach-card__image img {
+  .beach-card__media img {
     height: 100%;
     object-fit: cover;
   }
 
-  .beach-card__content {
-    height: 30%;
+  .beach-card__details {
+    padding: 0.5rem;
+    height: 40%;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
 
-  .beach-card__badge {
+  .beach-card__flag {
     position: absolute;
     top: 8px;
     left: 8px;
+  }
+
+  .beach-card__name {
+    font-size: 0.8em; /* ~14.4px */
+  }
+
+  .beach-card__province {
+    font-size: 0.7em; /* ~12.8px */
+    max-width: 80px;
+  }
+
+  .beach-card__size {
+    font-size: 0.7em; /* ~12.8px */
+  }
+
+  .beach-card__details {
+    height: 40%;
   }
 }

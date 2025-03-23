@@ -5,13 +5,13 @@
   </div>
 </div>
 
+<!-- Show the content when the loading is false -->
+<app-category-list [categories]="categories"></app-category-list>
+
+<app-beach-grid *ngIf="!loading" [beaches]="beaches"></app-beach-grid>
+
 <!-- Show loading indicator if data is being fetched -->
 <div *ngIf="loading" class="loading-indicator">
   <p>Loading...</p>
   <!-- You can replace this with a spinner if preferred -->
 </div>
-
-<!-- Show the content when the loading is false -->
-<app-category-list [categories]="categories"></app-category-list>
-
-<app-beach-grid *ngIf="!loading" [beaches]="beaches"></app-beach-grid>
