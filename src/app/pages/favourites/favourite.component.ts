@@ -4,6 +4,7 @@ import { categoriesList } from '../../constants/categoriesList';
 import { TitlePageComponent } from '../../components/title-page/title-page.component';
 import { BeachGridComponent } from '../../components/beach-grid/beach-grid.component';
 import { getBeaches } from '../../services/getBeaches';
+import { getCategories } from '../../services/getCategories';
 
 @Component({
   selector: 'app-user-favourites',
@@ -12,14 +13,18 @@ import { getBeaches } from '../../services/getBeaches';
   templateUrl: './favourite.component.html',
 })
 export class FavouritePageComponent {
-    categories = categoriesList;
-    beaches = [];
-  
-    async ngOnInit() {
-      try {
-        this.beaches = await getBeaches();
-      } catch (error) {
-        console.error('Error fetching beaches:', error);
-      }
+  categories = [];
+  beaches = [];
+  loading = true;
+
+  async ngOnInit() {
+    try {
+      this.beaches = await getBeaches();
+      this.categories = await getCategories();
+    } catch (error) {
+      console.error('Error fetching beaches:', error);
+    } finally {
+      this.loading = false;
     }
+  }
 }

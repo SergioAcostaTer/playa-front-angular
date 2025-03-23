@@ -102,3 +102,11 @@ ul {
 app-beach-card {
   width: 100%;
 }
+
+.loading-indicator {
+  font-size: large;
+  font-weight: 600;
+  color: #333;
+  margin-top: 15px;
+  justify-self: center;
+}
