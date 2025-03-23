@@ -1,5 +1,6 @@
 /* BLOQUE PRINCIPAL */
-.ranking-card {
+.beach-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,51 +14,150 @@
   text-decoration: none;
   color: inherit;
   max-width: 700px;
+  font-size: 16px;
 }
 
 /* EFECTO HOVER */
-.ranking-card:hover {
+.beach-card:hover {
   transform: scale(1.02);
 }
 
-/* MODIFICADOR */
-.ranking-card--recommended {
-  border-left: 5px solid var(--badge-bg-color);
-  background: var(--badge-bg-color-light);
+/* MODIFICADOR PARA BLUE FLAG */
+.beach-card--blue-flag {
+  border-left: 5px solid var(--blue-flag-color, #003087);
+  background: var(--blue-flag-bg-color-light, #e6f0fa);
 }
 
-/* ELEMENTOS */
-.ranking-card__image {
+/* BANDERA BLUE FLAG */
+.beach-card__flag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 0.5em 0.75em; /* Aumentado de 0.3125em 0.625em para hacerlo más grande */
+  font-size: 0.875em; /* Aumentado de 0.75em (12px) a 0.875em (14px cuando font-size es 16px) */
+  font-weight: bold;
+  border-radius: 4px;
+  z-index: 1;
+  display: flex; /* Usar flex para centrar el texto */
+  align-items: center; /* Centrar verticalmente */
+  justify-content: center; /* Centrar horizontalmente */
+  line-height: 1; /* Asegurar que el texto no tenga espacio extra */
+}
+
+.beach-card__flag--blue {
+  background-color: var(--blue-flag-color, #003087);
+  color: var(--flag-text-color, #fff);
+  letter-spacing: 0.1em;
+}
+
+/* CONTENEDOR DE LA IMAGEN */
+.beach-card__image-container {
   width: 100%;
-  max-height: 300px;
+  height: 200px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 8px;
+  position: relative;
+}
+
+/* IMAGEN */
+.beach-card__image {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  object-position: center;
   border-radius: 8px;
 }
 
-.ranking-card__info {
-  padding: 10px;
-  text-align: left;
-  justify-content: start;
+/* INFORMACIÓN */
+.beach-card__info {
+  padding: 0.625em;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.ranking-card__title {
-  font-size: 18px;
-  margin: 5px 0;
+/* SECCIÓN DE DETALLES */
+.beach-card__info--section {
+  padding: 0.4em;
+  text-align: right;
+}
+
+/* TÍTULO */
+.beach-card__title {
+  font-size: 1.375em;
+  margin: 0.3125em 0;
   color: #333;
 }
 
-.ranking-card__rating {
-  font-size: 14px;
+/* DETALLES */
+.beach-card__details {
+  font-size: 1em;
   color: #666;
-  margin: 5px 0;
+  margin: 0;
+  display: flex;
+  gap: 0.3125em;
+  align-items: center;
 }
 
-.ranking-card__distance {
+/* ESTILOS ESPECÍFICOS PARA CADA DATO */
+.beach-card__island,
+.beach-card__classification,
+.beach-card__length {
+  font-size: 1em;
+  color: #666;
+}
+
+.beach-card__classification {
   color: #ff9800;
   font-weight: bold;
 }
 
-.ranking-card__description {
-  font-size: 14px;
-  color: #444;
+/* MEDIA QUERY PARA MÓVILES (HASTA 576px) */
+@media (max-width: 576px) {
+  .beach-card {
+    padding: 0.625em;
+    font-size: 8px;
+  }
+
+  .beach-card__image-container {
+    height: 100px;
+  }
+
+  .beach-card__info {
+    flex-wrap: wrap;
+    gap: 0.3125em;
+  }
+
+  .beach-card__info--section {
+    text-align: left;
+  }
+
+  .beach-card__flag {
+    font-size: 1em; 
+    padding: 0.625em 0.875em;
+  }
+}
+
+/* MEDIA QUERY PARA TABLETS (ENTRE 577px Y 768px) */
+@media (min-width: 577px) and (max-width: 768px) {
+  .beach-card {
+    padding: 0.75em;
+    font-size: 12px;
+  }
+
+  .beach-card__image-container {
+    height: 150px;
+  }
+
+  .beach-card__info {
+    gap: 0.5em;
+  }
+
+  .beach-card__flag {
+    font-size: 0.9167em;
+    padding: 0.5833em 0.8333em;
+  }
 }

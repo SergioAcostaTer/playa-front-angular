@@ -1,15 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RankingCardComponent } from '../ranking-card/ranking-card.component';
-
-interface Beach {
-  title: string;
-  imageUrl: string;
-  rating: number;
-  distance: string;
-  description: string;
-  recommended: boolean;
-}
+import { Beach } from '../../models/beach';
 
 @Component({
   selector: 'app-ranking-list',
@@ -19,16 +11,9 @@ interface Beach {
   imports: [CommonModule, RankingCardComponent],
 })
 export class RankingListComponent {
-  @Input() beaches: { 
-    imageUrl: string; 
-    title: string; 
-    rating: string; 
-    distance: string; 
-    recommended?: boolean; 
-    description: string; 
-  }[] = [];
+  @Input() beaches: Beach[] = [];
 
-  trackByTitle(index: number, beach: { title: string }): string {
-    return beach.title; // Optimización de renderizado
+  trackById(index: number, beach: Beach): string {
+    return beach.id;
   }
 }
