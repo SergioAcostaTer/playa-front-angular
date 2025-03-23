@@ -12,19 +12,23 @@
             ¿No tienes una cuenta? <a href="/register" class="login__link">Regístrate</a>
         </p>
 
-        <form class="login__form">
-            <input type="email" placeholder="Correo electrónico" class="login__input login__input--email">
+        <form class="login__form" (ngSubmit)="onSubmit()">
+            <div class="login__input-wrapper">
+                <input type="email" placeholder="Correo electrónico" class="login__input login__input--email" [(ngModel)]="email" name="email" (input)="onEmailChange($event)" required>
+                <p class="login__validation-message" [ngClass]="{'valid': emailValid, 'invalid': !emailValid}">{{ emailMessage }}</p>
+            </div>
 
             <div class="login__password-wrapper">
-                <input id="login-password-text" type="password" placeholder="Contraseña" class="login__input login__input--password">
+                <input id="login-password-text" type="password" placeholder="Contraseña" class="login__input login__input--password" [(ngModel)]="password" name="password" (input)="onPasswordChange($event)" [style.border-color]="passwordColor" required>
                 <button type="button" class="login__password-toggle" (click)="togglePassword()">
                     <img id="login-toggle-icon" src="/images/NotShowing.png" alt="Mostrar Contraseña" class="login__password-icon">
                 </button>
+                <p class="login__validation-message" [ngClass]="{'valid': passwordValid, 'invalid': !passwordValid}">{{ passwordMessage }}</p>
             </div>
 
             <a class="login__forgot-link" href="/forgot-password">¿Olvidaste tu contraseña?</a>
 
-            <button type="submit" class="login__submit">Iniciar sesión</button>
+            <button type="submit" class="login__submit" [disabled]="!isFormValid()">Iniciar sesión</button>
 
             <div class="login__divider">
                 <span class="login__divider-text">O continúa con</span>
