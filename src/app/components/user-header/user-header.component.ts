@@ -1,23 +1,45 @@
-// user-header.component.ts
-import { Component, OnInit, HostListener } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-user-header',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule],
   templateUrl: './user-header.component.html',
-  styleUrls: ['./user-header.component.css'],
+  styleUrls: ['./user-header.component.css']
 })
 export class UserHeaderComponent {
-  isDropdownOpen = false;
+  isRegistered: boolean = true;
+  isPopupVisible: boolean = false;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(this.platformId)) {
+      // this.checkRegistrationStatus();
+    }
+  }
+
+  checkRegistrationStatus(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      const user = localStorage.getItem('user');
+      this.isRegistered = !!user; 
+    }
+  }
+
+  togglePopup(): void {
+    this.isPopupVisible = !this.isPopupVisible;
+  }
+
+  closePopup(): void {
+    this.isPopupVisible = false;
+  }
 
   @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent): void {
+  onClickOutside(event: Event): void {
+    if (!isPlatformBrowser(this.platformId) || !this.isPopupVisible) return;
+
     const target = event.target as HTMLElement;
-    if (!target.closest('.user-profile-wrapper')) {
-      this.isDropdownOpen = false;
+    if (!target.closest('.popup__container') && !target.closest('.user-header__menu-toggle')) {
+      this.closePopup();
     }
   }
 }

@@ -12,28 +12,6 @@
         </ul>
     </nav>
 
-    <div class="header__user-menu">
-        <app-user-header></app-user-header>
-        <a class="header__menu-toggle" (click)="togglePopup()">
-            <img src="/images/menu-list.svg" class="header__menu-icon">
-        </a>
-    </div>
+    <app-user-header></app-user-header>
 </header>
 
-<!-- POPUP -->
-<div *ngIf="isPopupVisible" class="popup">
-    <div class="popup__container">
-        <div class="popup__image-container">
-            <img src="/images/avatar.jpg" alt="UserIcon" class="popup__image">
-        </div>
-        <div class="popup__account-buttons">
-            <a href="/login" class="popup__account-button popup__account-link">Añadir Cuenta</a>
-            <a href="https://api.playea.eu/auth/log-out" class="popup__account-button popup__account-link">Cerrar Sesión</a>
-        </div>
-        <div class="popup__nav-buttons">
-            <a href="/profile" class="popup__nav-button popup__nav-link">Perfil</a>
-            <a href="/favourites" class="popup__nav-button popup__nav-link">Favoritos</a>
-            <a href="/ranking" class="popup__nav-button popup__nav-link popup__nav-button--mobile">Ranking</a>
-        </div>
-    </div>
-</div>
