@@ -7,6 +7,7 @@ import { validatePasswordLength  } from '../../utils/validatePasswordLength';
 import { validateEmail } from '../../utils/validateEmail';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -49,6 +50,8 @@ export class RegisterPageComponent {
     this.passwordMessage = validation.message;
     this.checkPasswordsMatch();
   }
+
+  constructor(private router: Router) {}
 
   onConfirmPasswordChange(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -93,12 +96,16 @@ export class RegisterPageComponent {
 
   onSubmit(): void {
     if (this.isFormValid()) {
-      console.log('Formulario válido, enviando datos:', {
+      const userData = {
         firstName: this.firstName,
         lastName: this.lastName,
         email: this.email,
         password: this.password,
-      });
+      };
+      localStorage.setItem('user', JSON.stringify(userData));
+      console.log('Usuario registrado y guardado en localStorage:', userData);
+
+      this.router.navigate(['/']);
     } else {
       console.log('Formulario no válido');
     }

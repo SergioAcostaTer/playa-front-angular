@@ -6,6 +6,7 @@ import { SocialButtonsComponent } from '../../components/social-buttons/social-b
 import { validateEmail } from '../../utils/validateEmail';
 import { validatePasswordLength } from '../../utils/validatePasswordLength';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -25,6 +26,8 @@ export class LoginPageComponent {
   passwordMessage: string = 'Ingresa tu contraseña';
   passwordColor: string = 'red';
 
+  constructor (private router: Router) {}
+  
   onEmailChange(event: Event): void {
     const input = event.target as HTMLInputElement;
     this.email = input.value;
@@ -52,11 +55,15 @@ export class LoginPageComponent {
 
   onSubmit(): void {
     if (this.isFormValid()) {
-      console.log('Formulario válido, enviando datos:', {
+      const userData = {
         email: this.email,
         password: this.password,
-      });
-      // Aquí puedes agregar la lógica para enviar los datos al backend
+      };
+      localStorage.setItem('user', JSON.stringify(userData));
+      console.log('Usuario registrado y guardado en localStorage:', userData);
+
+      // Redirigir a la ruta raíz usando Router
+      this.router.navigate(['/']);
     } else {
       console.log('Formulario no válido');
     }
