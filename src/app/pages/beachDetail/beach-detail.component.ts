@@ -5,8 +5,9 @@ import { beachesList } from '../../constants/beachesList';
 import { BeachDetailLayoutComponent } from '../../components/beach-detail-layout/beach-detail-layout.component';
 import { BeachMapComponent } from '../../components/beach-map/beach-map.component';
 import { BeachDescriptionComponent } from '../../components/beach-description/beach-description.component';
-import { BeachCommentsComponent } from '../../components/beach-comments/beach-comments.component';
-import { Beach, Comment } from '../../models/beach'; // Ensure the interface is imported
+import { Beach } from '../../models/beach';
+import { Comment } from '../../models/comment';
+
 
 @Component({
   selector: 'app-beach-detail',

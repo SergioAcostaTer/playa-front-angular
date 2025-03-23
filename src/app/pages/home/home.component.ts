@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { CategoryListComponent } from '../../components/category-list/category-list.component';
 import { BeachGridComponent } from '../../components/beach-grid/beach-grid.component';
-import { getHomeBeaches } from '../../services/getHomeBeaches';
+import { getBeaches } from '../../services/getBeaches';
+import { getCategories } from '../../services/getCategories';
 import { Beach } from '../../models/beach';
-import { categoriesList } from '../../constants/categoriesList';
 
 @Component({
   selector: 'app-home',
@@ -15,13 +15,14 @@ import { categoriesList } from '../../constants/categoriesList';
   styleUrls: ['./home.component.css'],
 })
 export class HomePageComponent implements OnInit {
-  categories = categoriesList;
+  categories = [];
   beaches: Beach[] = [];
   loading = true;
 
   async ngOnInit() {
     try {
-      this.beaches = await getHomeBeaches();
+      this.beaches = await getBeaches();
+      this.categories = await getCategories();
     } catch (error) {
       console.error('Error fetching beaches:', error);
     } finally {

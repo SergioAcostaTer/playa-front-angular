@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { categoriesList } from '../../constants/categoriesList';
 import { TitlePageComponent } from '../../components/title-page/title-page.component';
 import { BeachGridComponent } from '../../components/beach-grid/beach-grid.component';
-import { getHomeBeaches } from '../../services/getHomeBeaches';
+import { getBeaches } from '../../services/getBeaches';
 
 @Component({
   selector: 'app-user-favourites',
@@ -17,7 +17,7 @@ export class FavouritePageComponent {
   
     async ngOnInit() {
       try {
-        this.beaches = await getHomeBeaches();
+        this.beaches = await getBeaches();
       } catch (error) {
         console.error('Error fetching beaches:', error);
       }
