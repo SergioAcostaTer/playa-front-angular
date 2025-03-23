@@ -14,7 +14,7 @@ export class UserHeaderComponent {
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     if (isPlatformBrowser(this.platformId)) {
-      // this.checkRegistrationStatus();
+      this.checkRegistrationStatus();
     }
   }
 

@@ -10,34 +10,47 @@
         <h2 class="register__subtitle">Crear una cuenta</h2>
         <p class="register__text">¿Ya tienes una cuenta? <a href="/login" class="register__link">Iniciar sesión</a></p>
 
-        <form class="register__form">
+        <form class="register__form" (ngSubmit)="onSubmit()">
+
             <div class="register__input-group">
-                <input type="text" placeholder="Nombre" class="register__input register__input--first-name">
-                <input type="text" placeholder="Apellido" class="register__input register__input--last-name">
+                <input type="text" placeholder="Nombre" class="register__input register__input--first-name" [(ngModel)]="firstName" name="firstName" (input)="onFirstNameChange($event)" required>
+                <input type="text" placeholder="Apellido" class="register__input register__input--last-name" [(ngModel)]="lastName" name="lastName" (input)="onLastNameChange($event)" required>
             </div>
-            <input type="email" placeholder="Correo electrónico" class="register__input register__input--email">
-            <div class="register__password-wrapper">
-                <input id="register-password-text" type="password" placeholder="Ingresa tu contraseña" class="register__input register__input--password" minlength="8">
-                <button type="button" class="register__password-toggle" (click)="togglePassword()">
-                    <img id="register-toggle-icon" src="/images/NotShowing.png" alt="Mostrar Contraseña" class="register__password-icon">
-                </button>
+
+
+            <div class="register__input-wrapper">
+                <input type="email" placeholder="Correo electrónico" class="register__input register__input--email" [(ngModel)]="email" name="email" (input)="onEmailChange($event)" required>
+                <p class="register__validation-message" [ngClass]="{'valid': emailValid, 'invalid': !emailValid}">{{ emailMessage }}</p>
             </div>
+
+
+            <div class="register__password-wrapper--initial">
+                <div class="register__password-wrapper">
+                    <input id="register-password-text" type="password" placeholder="Ingresa tu contraseña" class="register__input register__input--password" [(ngModel)]="password" name="password" (input)="onPasswordChange($event)" [style.border-color]="passwordColor" minlength="8" required>
+                    <button type="button" class="register__password-toggle" (click)="togglePassword()">
+                        <img id="register-toggle-icon" src="/images/NotShowing.png" alt="Mostrar Contraseña" class="register__password-icon">
+                    </button>
+                </div>
+                <p class="register__validation-message" [ngClass]="{'valid': passwordValid, 'invalid': !passwordValid}">{{ passwordMessage }}</p>
+            </div>
+
 
             <div class="register__password-wrapper-confirmation">
                 <div class="register__password-wrapper">
-                    <input id="register-password-confirmation-text" type="password" placeholder="Confirma tu contraseña" class="register__input register__input--password" minlength="8">
-                <button type="button" class="register__password-toggle" (click)="toggleConfirmationPassword()">
-                    <img id="confirmation-toggle-icon" src="/images/NotShowing.png" alt="Mostrar Contraseña" class="register__password-icon">
-                </button>
+                    <input id="register-password-confirmation-text" type="password" placeholder="Confirma tu contraseña" class="register__input register__input--password" [(ngModel)]="confirmPassword" name="confirmPassword" (input)="onConfirmPasswordChange($event)" [style.border-color]="passwordColor" minlength="8" required>
+                    <button type="button" class="register__password-toggle" (click)="toggleConfirmationPassword()">
+                        <img id="confirmation-toggle-icon" src="/images/NotShowing.png" alt="Mostrar Contraseña" class="register__password-icon">
+                    </button>
                 </div>
+                <p class="register__validation-message" [ngClass]="{'valid': passwordsMatchValid, 'invalid': !passwordsMatchValid}">{{ passwordsMatchMessage }}</p>
             </div>
 
             <div class="register__checkbox-group">
-                <input type="checkbox" id="terms" class="register__checkbox">
+                <input type="checkbox" id="terms" class="register__checkbox" [(ngModel)]="termsAccepted" name="terms" (change)="onTermsChange($event)" required>
                 <label for="terms" class="register__terms-label">Acepto los <a href="#" class="register__terms-link">Términos y Condiciones</a></label>
             </div>
 
-            <button type="submit" class="register__button">Crear cuenta</button>
+            <button type="submit" class="register__button" [disabled]="!isFormValid()">Crear cuenta</button>
 
             <div class="register__divider">
                 <span class="register__or-text">O regístrate con</span>
