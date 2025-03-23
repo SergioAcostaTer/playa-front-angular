@@ -6,6 +6,7 @@ import { BeachGridComponent } from '../../components/beach-grid/beach-grid.compo
 import { getBeaches } from '../../services/getBeaches';
 import { getCategories } from '../../services/getCategories';
 import { Beach } from '../../models/beach';
+import { Category } from '../../models/category';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,7 @@ import { Beach } from '../../models/beach';
   styleUrls: ['./home.component.css'],
 })
 export class HomePageComponent implements OnInit {
-  categories = [];
+  categories: Category[] = [];
   beaches: Beach[] = [];
   loading = true;
 

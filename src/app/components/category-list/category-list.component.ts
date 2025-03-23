@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { CategoryComponent } from '../category/category.component';
+import { Category } from '../../models/category';
 
 @Component({
   selector: 'app-category-list',
@@ -10,9 +11,9 @@ import { CategoryComponent } from '../category/category.component';
   styleUrls: [ './category-list.component.css' ],
 })
 export class CategoryListComponent {
-  @Input() categories: { name: string, image: string }[] = [];
+  @Input() categories: Category[] = [];
 
-  trackByName(index: number, category: { name: string }): string {
-    return category.name;
+  trackById(index: number, category: { id: string }): string {
+    return category.id;
   }
 }

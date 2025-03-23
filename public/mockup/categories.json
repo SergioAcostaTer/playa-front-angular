@@ -1,107 +1,107 @@
 [
     {
-        "id": 1,
+        "id": "1",
         "name": "Arena", 
-        "image": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
     },
     { 
-        "id": 2,
+        "id": "2",
         "name": "Rocas", 
-        "image": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
     },
     {  
-        "id": 3,
+        "id": "3",
         "name": "Olas", 
-        "image": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
     },
     { 
-        "id": 4,
+        "id": "4",
         "name": "Calma", 
-        "image": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
     },
     { 
-        "id": 5,
+        "id": "5",
         "name": "Sol", 
-        "image": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
     },
     { 
-        "id": 6,
+        "id": "6",
         "name": "Sombra", 
-        "image": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
     },
     { 
-        "id": 7,
+        "id": "7",
         "name": "Buceo", 
-        "image": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
     },
     { 
-        "id": 8,
+        "id": "8",
         "name": "Comida", 
-        "image": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
     },
     { 
-        "id": 9,
+        "id": "9",
         "name": "Baños", 
-        "image": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
     },
     { 
-        "id": 10,
+        "id": "10",
         "name": "Duchas", 
-        "image": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
     },
     { 
-        "id": 11,
+        "id": "11",
         "name": "Tiendas", 
-        "image": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
     },
     { 
-        "id": 12,
+        "id": "12",
         "name": "Hoteles", 
-        "image": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
     },
     { 
-        "id": 13,
+        "id": "13",
         "name": "Mascotas", 
-        "image": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
     },
     { 
-        "id": 14,
+        "id": "14",
         "name": "Parking", 
-        "image": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
     },
     { 
-        "id": 15,
+        "id": "15",
         "name": "Privada", 
-        "image": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
     },
     { 
-        "id": 16,
+        "id": "16",
         "name": "Pública", 
-        "image": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
     },
     { 
-        "id": 17,
+        "id": "17",
         "name": "Nudista", 
-        "image": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
     },
     { 
-        "id": 18,
+        "id": "18",
         "name": "Remota", 
-        "image": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
     },
     { 
-        "id": 19,
+        "id": "19",
         "name": "Popular", 
-        "image": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
     },
     { 
-        "id": 20,
+        "id": "20",
         "name": "Secreta", 
-        "image": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
     },
     { 
-        "id": 21,
+        "id": "21",
         "name": "Urbana", 
-        "image": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
     }
 ]
