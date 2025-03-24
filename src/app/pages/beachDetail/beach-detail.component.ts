@@ -34,10 +34,9 @@ export class BeachDetailPageComponent implements OnInit {
     this.beaches = await getBeaches();
 
     if (slug) {
-      // Find the beach with a matching normalized name
       this.beach = this.beaches?.find((beach: Beach) =>
         beach.name?.replace(/ /g, '-')?.toLowerCase() === slug.toLowerCase()
-      ) || null; // Ensure it returns null if no beach is found
+      ) || null;
     }
   }
 
