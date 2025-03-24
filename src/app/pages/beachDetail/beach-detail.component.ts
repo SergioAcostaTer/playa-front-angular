@@ -17,7 +17,7 @@ import { MaplibreMapComponent } from "../../maplibre-map/maplibre-map.component"
     CommonModule,
     BeachDetailLayoutComponent,
     BeachDescriptionComponent,
-    // MaplibreMapComponent
+    MaplibreMapComponent
 ],
   templateUrl: './beach-detail.component.html',
   styleUrls: ['./beach-detail.component.css'],
