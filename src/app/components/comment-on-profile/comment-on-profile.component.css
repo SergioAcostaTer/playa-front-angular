@@ -1,0 +1,91 @@
+.comments-container {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.comment-card {
+  border: 1px solid var(--card-border-color); /* #e0e0e0 */
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: var(--card-bg-color); /* #fff */
+  display: flex;
+  align-items: flex-start;
+}
+
+.beach-info {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.beach-cover {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.beach-name {
+  font-weight: bold;
+  margin: 5px 0 0 10px;
+  color: var(--card-title-color); /* #222 */
+  max-width: 150px; /* Limita el ancho para evitar que ocupe demasiado */
+  word-break: break-word; /* Permite que se divida en varias líneas */
+  line-height: 1.2; /* Mejora la legibilidad en varias líneas */
+}
+
+.comment-content {
+  flex: 1;
+}
+
+.comment-text {
+  margin: 5px 0;
+  color: var(--card-text-color); /* #666 */
+}
+
+.rating {
+  font-size: 0.9em;
+  color: var(--login-button-color); /* #ff385c */
+  margin: 5px 0;
+}
+
+.date {
+  font-size: 0.8em;
+  color: var(--login-placeholder-color); /* #717171 */
+  margin: 5px 0;
+}
+
+/* Media query para dispositivos pequeños */
+@media (max-width: 768px) {
+  .comment-card {
+    flex-direction: column; /* Apila los elementos verticalmente */
+    align-items: stretch; /* Asegura que los elementos ocupen todo el ancho */
+  }
+
+  .beach-info {
+    flex-direction: column; /* Foto arriba, nombre debajo */
+    align-items: center; /* Centra la foto y el nombre */
+    margin-right: 0; /* Elimina el margen derecho */
+    margin-bottom: 10px; /* Añade espacio debajo */
+  }
+
+  .beach-cover {
+    width: 80px; /* Reduce el tamaño de la imagen en pantallas pequeñas */
+    height: 80px;
+  }
+
+  .beach-name {
+    margin: 10px 0 0 0; /* Ajusta el margen para centrarlo debajo de la foto */
+    text-align: center; /* Centra el texto */
+    max-width: 100%; /* Permite que ocupe todo el ancho disponible */
+  }
+
+  .comment-content {
+    text-align: left; /* Mantiene el texto alineado a la izquierda */
+  }
+
+  .rating, .date {
+    text-align: left; /* Alinea rating y fecha a la izquierda */
+  }
+}

@@ -1,0 +1,23 @@
+<div *ngIf="isLoading" class="loading">
+  <p>Cargando comentarios...</p>
+</div>
+
+<div *ngIf="!isLoading && comments.length === 0" class="no-comments">
+  <p>No hay comentarios disponibles.</p>
+</div>
+
+<div *ngIf="!isLoading && comments.length > 0" class="comments-container">
+  <div *ngFor="let comment of comments" class="comment-card">
+    <div class="beach-info">
+      <img [src]="comment.beach.coverUrl" alt="{{ comment.beach.name }}" class="beach-cover">
+      <div>
+        <p class="beach-name">{{ comment.beach.name }}</p>
+      </div>
+    </div>
+    <div class="comment-content">
+      <p class="comment-text">{{ comment.comment.text }}</p>
+      <p class="rating">Calificación: {{ comment.comment.rating }}/5</p>
+      <p class="date">Publicado: {{ comment.comment.createdAt | date: 'medium' }}</p>
+    </div>
+  </div>
+</div>

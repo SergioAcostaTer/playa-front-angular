@@ -1,22 +1,25 @@
 main {
   display: flex;
-  flex-direction: column; /* Perfil arriba, comentarios abajo */
+  flex-direction: column;
   gap: 30px;
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
   -ms-flex-align: center;
+  align-items: center;
 }
 
 .user-container {
   padding: 20px;
   background-color: white;
-  display: flex; /* Cambiamos a flex horizontal para foto e info */
-  flex-direction: row; /* Foto a la izquierda, info a la derecha */
-  align-items: center; /* Alinea verticalmente foto e info */
-  justify-content: flex-start; /* Asegura que los elementos comiencen desde la izquierda */
-  width: 100%;
-  gap: 30px; /* Espacio entre la foto y la info */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center; /* Centra el contenido interno horizontalmente */
+  max-width: 800px; /* Limita el ancho para que no ocupe todo el main */
+  width: 100%; /* Mantiene la responsividad */
+  gap: 30px;
+  margin: 0 auto; /* Centra el contenedor dentro del main */
 }
 
 .profile-picture {
@@ -24,14 +27,14 @@ main {
   width: 150px;
   height: 150px;
   object-fit: cover;
-  flex-shrink: 0; /* Evita que la imagen se reduzca */
+  flex-shrink: 0;
 }
 
 .user-social-info {
   display: flex;
-  flex-direction: column; /* Info sigue en columna */
-  align-items: flex-start; /* Alinea el texto a la izquierda */
-  text-align: left; /* Asegura que el texto no esté centrado */
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
   gap: 15px;
 }
 
@@ -52,10 +55,10 @@ main {
 }
 
 .socials {
-  display: flex; /* Elementos sociales en fila horizontal */
+  display: flex;
   justify-content: space-around;
   margin-top: 20px;
-  width: 100%; /* Ocupa  */
+  width: 100%;
   gap: 15%;
 }
 
@@ -83,27 +86,27 @@ main {
 }
 
 .nameAndFollow {
-  display: flex; /* Cambiamos a flex horizontal para foto e info */
-  flex-direction: row; /* Foto a la izquierda, info a la derecha */
-  align-items: center; /* Alinea verticalmente foto e info */
-  justify-content: flex-start; /* Asegura que los elementos comiencen desde la izquierda */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
   gap: 10%;
 }
 
-/* Estilos responsivos para pantallas más pequeñas */
+/* Estilos responsivos */
 @media (max-width: 768px) {
   main {
     gap: 15px;
   }
 
   .user-container {
-    flex-direction: column; /* En móviles, foto arriba, info abajo */
-    align-items: center; /* Centra */
-    text-align: center; /* Centra el texto en móviles */
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
   .user-social-info {
-    align-items: center; /* Centra la info en móviles */
+    align-items: center;
   }
 
   .profile-picture {
@@ -115,11 +118,11 @@ main {
     font-size: 12px;
   }
 
-  .socials {
-    flex-direction: column;
-    align-items: center;
-    max-width: none;
-  }
+  /*.socials {*/
+  /*  flex-direction: column;*/
+  /*  align-items: center;*/
+  /*  max-width: none;*/
+  /*}*/
 
   .social-element {
     margin-bottom: 10px;
