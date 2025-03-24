@@ -2,9 +2,9 @@ import axios from 'axios';
 import { environment } from '../../environments/environment';
 
 
-export const getAllBeaches = async () => {
+export const getBeachBySlug = async (slug: string) => {
   try {
-    const { data } = (await axios.get(`${environment.apiUrl}/beaches?limit=30`)).data;
+    const { data } = (await axios.get(`${environment.apiUrl}/beaches/${slug}`)).data;
     return data;
   } catch (error) {
     console.error('Error creating review:', error);

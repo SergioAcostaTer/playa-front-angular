@@ -7,6 +7,7 @@ import { BeachMapComponent } from '../../components/beach-map/beach-map.componen
 import { BeachDescriptionComponent } from '../../components/beach-description/beach-description.component';
 import { BeachCommentsComponent } from '../../components/beach-comments/beach-comments.component';
 import { Beach, Comment } from '../../models/beach'; // Ensure the interface is imported
+import { getBeachBySlug } from '../../services/getBeachById';
 
 @Component({
   selector: 'app-beach-detail',
@@ -26,23 +27,13 @@ export class BeachDetailPageComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     const slug = this.route.snapshot.paramMap.get('slug');
 
     if (slug) {
       // Find the beach with a matching normalized name
-      this.beach = this.beaches?.find((beach: Beach) =>
-        beach.name?.replace(/ /g, '-')?.toLowerCase() === slug.toLowerCase()
-      ) || null; // Ensure it returns null if no beach is found
+      this.beach = await getBeachBySlug(slug);
     }
   }
 
-  // addComment(newComment: Comment) {
-  //   if (this.beach) {
-  //     if (!this.beach.comments) {
-  //       this.beach.comments = []; // Initialize the comments array if undefined
-  //     }
-  //     this.beach.comments.push(newComment); // Add the new comment
-  //   }
-  // }
 }
