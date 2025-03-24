@@ -8,6 +8,7 @@ import { BeachDescriptionComponent } from '../../components/beach-description/be
 import { Beach } from '../../models/beach';
 import { Comment } from '../../models/comment';
 import { MaplibreMapComponent } from "../../maplibre-map/maplibre-map.component";
+import { getBeaches } from '../../services/getBeaches';
 
 
 @Component({
@@ -24,12 +25,13 @@ import { MaplibreMapComponent } from "../../maplibre-map/maplibre-map.component"
 })
 export class BeachDetailPageComponent implements OnInit {
   beach: Beach | null = null;
-  beaches: Beach[] | null = beachesList;
+  beaches: Beach[] = []
 
   constructor(private route: ActivatedRoute) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     const slug = this.route.snapshot.paramMap.get('slug');
+    this.beaches = await getBeaches();
 
     if (slug) {
       // Find the beach with a matching normalized name
