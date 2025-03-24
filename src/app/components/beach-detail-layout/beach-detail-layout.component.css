@@ -46,7 +46,7 @@
 }
 
 .beach-detail-layout__services-title,
-.beach-detail-layout__weather-title {
+.beach-detail-layout__title {
   font-size: 1.5em;
   margin-bottom: 10px;
 }
@@ -60,7 +60,7 @@
   margin-bottom: 8px;
 }
 
-.beach-detail-layout__weather-text {
+.beach-detail-layout__text {
   margin: 0;
 }
 

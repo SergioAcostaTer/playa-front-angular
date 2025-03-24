@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiBaseUrl: '' // URL base en producción
+    apiBaseUrl: 'http://playea.eu' // URL base en producción
 };
