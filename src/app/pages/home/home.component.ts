@@ -6,6 +6,7 @@ import { BeachGridComponent } from '../../components/beach-grid/beach-grid.compo
 import { getHomeBeaches } from '../../services/getHomeBeaches';
 import { Beach } from '../../models/beach';
 import { categoriesList } from '../../constants/categoriesList';
+import { getAllBeaches } from '../../services/getBeaches';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,7 @@ export class HomePageComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      this.beaches = await getHomeBeaches();
+      this.beaches = await getAllBeaches();
     } catch (error) {
       console.error('Error fetching beaches:', error);
     } finally {
