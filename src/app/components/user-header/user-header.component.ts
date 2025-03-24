@@ -47,7 +47,7 @@ export class UserHeaderComponent {
     if (!isPlatformBrowser(this.platformId) || !this.isPopupVisible) return;
 
     const target = event.target as HTMLElement;
-    if (!target.closest('.user-header__popup') && !target.closest('.user-header__menu-toggle')) {
+    if (!target.closest('.popup__container') && !target.closest('.user-header__menu-toggle')) {
       this.closePopup();
     }
   }

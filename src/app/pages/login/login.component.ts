@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // Necesario para ngModel
+import { FormsModule } from '@angular/forms';
 import { togglePasswordView } from '../../utils/toggle-password-view';
 import { PanelImageComponent } from '../../components/panel-image/panel-image.component';
 import { SocialButtonsComponent } from '../../components/social-buttons/social-buttons.component';
