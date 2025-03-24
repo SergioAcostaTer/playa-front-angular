@@ -24,7 +24,10 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles/styles.css"],
+            "styles": [
+              "src/styles/styles.css",
+              "node_modules/maplibre-gl/dist/maplibre-gl.css"
+            ],
             "scripts": [],
             "ssr": {
               "entry": "src/server.ts"

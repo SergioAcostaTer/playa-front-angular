@@ -7,6 +7,7 @@ import { BeachMapComponent } from '../../components/beach-map/beach-map.componen
 import { BeachDescriptionComponent } from '../../components/beach-description/beach-description.component';
 import { Beach } from '../../models/beach';
 import { Comment } from '../../models/comment';
+import { MaplibreMapComponent } from "../../maplibre-map/maplibre-map.component";
 
 
 @Component({
@@ -15,8 +16,8 @@ import { Comment } from '../../models/comment';
   imports: [
     CommonModule,
     BeachDetailLayoutComponent,
-    BeachMapComponent,
-    BeachDescriptionComponent
+    BeachDescriptionComponent,
+    MaplibreMapComponent
 ],
   templateUrl: './beach-detail.component.html',
   styleUrls: ['./beach-detail.component.css'],
