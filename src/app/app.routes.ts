@@ -10,7 +10,8 @@ import { RankingPageComponent } from './pages/ranking/ranking.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { OTPVerificationComponent } from './pages/otp-verification/otp-verification.component';
 import { FavouritePageComponent } from './pages/favourites/favourite.component';
-import {ViewProfileComponent} from './pages/view-profile/view-profile.component';
+import { ViewProfileComponent } from './pages/view-profile/view-profile.component';
+import { SearchComponent } from './pages/search/search.component';
 
 export const routes: Routes = [
   {
@@ -23,6 +24,7 @@ export const routes: Routes = [
       { path: 'profile', component: ProfilePageComponent },
       { path: 'ranking', component: RankingPageComponent },
       { path: 'view-profile', component: ViewProfileComponent },
+      { path: 'search', component: SearchComponent },
     ],
   },
   {
@@ -32,7 +34,10 @@ export const routes: Routes = [
       { path: 'register', component: RegisterPageComponent },
       { path: 'login', component: LoginPageComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
-      { path: 'forgot-password/otp-verification', component: OTPVerificationComponent },
+      {
+        path: 'forgot-password/otp-verification',
+        component: OTPVerificationComponent,
+      },
     ],
-  }
+  },
 ];
