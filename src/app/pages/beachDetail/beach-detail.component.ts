@@ -6,8 +6,9 @@ import { BeachDetailLayoutComponent } from '../../components/beach-detail-layout
 import { BeachMapComponent } from '../../components/beach-map/beach-map.component';
 import { BeachDescriptionComponent } from '../../components/beach-description/beach-description.component';
 import { BeachCommentsComponent } from '../../components/beach-comments/beach-comments.component';
-import { Beach, Comment } from '../../models/beach'; // Ensure the interface is imported
+import { Beach } from '../../models/beach'; // Ensure the interface is imported
 import { getBeachBySlug } from '../../services/getBeachById';
+import { getAllBeaches } from '../../services/getBeaches';
 
 @Component({
   selector: 'app-beach-detail',
@@ -15,8 +16,7 @@ import { getBeachBySlug } from '../../services/getBeachById';
   imports: [
     CommonModule,
     BeachDetailLayoutComponent,
-    BeachDescriptionComponent,
-    MaplibreMapComponent
+    BeachDescriptionComponent
 ],
   templateUrl: './beach-detail.component.html',
   styleUrls: ['./beach-detail.component.css'],
@@ -29,7 +29,7 @@ export class BeachDetailPageComponent implements OnInit {
 
   async ngOnInit() {
     const slug = this.route.snapshot.paramMap.get('slug');
-    this.beaches = await getBeaches();
+    this.beaches = await getAllBeaches();
 
     if (slug) {
       // Find the beach with a matching normalized name
