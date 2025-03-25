@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { BeachGridComponent } from '../../components/beach-grid/beach-grid.component';
 import { Beach } from '../../models/beach';
 import { searchBeaches } from '../../services/search';
-import { categoriesList } from '../../constants/categoriesList';
 import { debounceTime, switchMap, Subject } from 'rxjs';
 
 @Component({
@@ -20,7 +19,6 @@ import { debounceTime, switchMap, Subject } from 'rxjs';
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent implements OnInit {
-  categories = categoriesList;
   beaches: Beach[] = [];
   loading = true;
   searchQuery: string = '';

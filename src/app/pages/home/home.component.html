@@ -19,7 +19,9 @@
 <!-- Show the content when the loading is false -->
 <!-- <app-category-list [categories]="categories"></app-category-list> -->
 
-<app-beach-grid *ngIf="!loading" [beaches]="beaches"></app-beach-grid>
+<div style="padding: 2rem;">
+  <app-beach-grid *ngIf="!loading" [beaches]="beaches"></app-beach-grid>
+</div>
 
 <div *ngIf="loading" class="loading-indicator">
   <p>Loading...</p>
