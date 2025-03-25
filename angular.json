@@ -28,15 +28,7 @@
               "src/styles/styles.css",
               "node_modules/maplibre-gl/dist/maplibre-gl.css"
             ],
-            "scripts": [],
-            "ssr": {
-              "entry": "src/server.ts"
-            },
-            "server": "src/main.server.ts",
-            "prerender": {
-              "discoverRoutes": true,
-              "routesFile": "routes.txt"
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
