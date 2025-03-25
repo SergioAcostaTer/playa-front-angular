@@ -1,4 +1,5 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges, PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import * as maplibre from 'maplibre-gl';
 
 @Component({
@@ -13,14 +14,16 @@ export class MaplibreMapComponent implements OnInit, OnChanges {
 
   private map: maplibre.Map | undefined;
 
-  constructor() {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit(): void {
-    this.initMap();
+    if (isPlatformBrowser(this.platformId)) {
+      this.initMap();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.map) {
+    if (isPlatformBrowser(this.platformId) && this.map) {
       if (changes['latitude'] || changes['longitude']) {
         this.updateMap();
       }
@@ -33,6 +36,7 @@ export class MaplibreMapComponent implements OnInit, OnChanges {
       style: 'https://api.maptiler.com/maps/satellite/style.json?key=bI4oYGzzakPOHE0Vtk5q',
       center: [this.longitude, this.latitude],
       zoom: this.zoom,
+      attributionControl: false
     });
 
     new maplibre.Marker()

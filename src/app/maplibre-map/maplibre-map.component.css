@@ -6,3 +6,14 @@
 #map {
   height: 100%;
 }
+
+@media screen and (max-width: 768px) {
+  :host {
+    height: 100%;
+  }
+
+  #map {
+    height: 200px !important;
+  }
+  
+}

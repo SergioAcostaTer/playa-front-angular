@@ -2,13 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
-import { CategoryListComponent } from '../../components/category-list/category-list.component';
+// import { CategoryListComponent } from '../../components/category-list/category-list.component';
 import { BeachGridComponent } from '../../components/beach-grid/beach-grid.component';
-import { getBeaches } from '../../services/getBeaches';
-import { getCategories } from '../../services/getCategories';
 import { Beach } from '../../models/beach';
-import { categoriesList } from '../../constants/categoriesList';
 import { getAllBeaches } from '../../services/getBeaches';
+import { Category } from '../../models/category';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +14,7 @@ import { getAllBeaches } from '../../services/getBeaches';
   imports: [
     CommonModule,
     FormsModule,
-    CategoryListComponent,
+    // CategoryListComponent,
     BeachGridComponent
   ],
   templateUrl: './home.component.html',

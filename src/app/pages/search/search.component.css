@@ -1,0 +1,163 @@
+.search-container {
+  display: flex;
+  max-width: 100%;
+  margin: 0;
+  padding: 1rem;
+}
+
+.search-wrapper {
+  width: 100%;
+}
+
+.search-header {
+  margin-bottom: 2rem;
+}
+
+.search-input-wrapper {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #d1d5db;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #6b7280;
+}
+
+.content-container {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+}
+
+.filter-panel {
+  /* position: sticky; */
+  top: 1rem;
+  width: 250px;
+  padding: 1.25rem;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  height: calc(100vh - 2rem);
+}
+
+.filter-title {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+.filter-section {
+  margin-bottom: 1.5rem;
+}
+
+.filter-section h4 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #6b7280;
+}
+
+.filter-select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 1rem;
+}
+
+.filter-checkbox {
+  display: block;
+  margin: 0.5rem 0;
+  color: #374151;
+}
+
+.results-section {
+  flex: 1;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.loading-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid #e5e7eb;
+  border-top: 3px solid #6b7280;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.no-results {
+  text-align: center;
+  padding: 2rem;
+  color: #6b7280;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .content-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .filter-panel {
+    width: 100%;
+    height: auto;
+  }
+
+  .search-input-wrapper {
+    max-width: 100%;
+  }
+
+  .search-input {
+    padding: 0.5rem 0.5rem 0.5rem 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-input {
+    padding: 0.5rem 0.5rem 0.5rem 2rem;
+  }
+
+  .filter-panel {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .filter-checkbox {
+    font-size: 0.9rem;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

@@ -1,23 +1,69 @@
-<div class="banner">
-    <h1 class="banner__title">Resultados de Búsqueda</h1>
-    <div class="banner__search">
-      <input 
-        class="banner__input" 
-        type="text" 
-        [(ngModel)]="searchQuery" 
-        placeholder="Busca destinos..." 
-        (input)="onSearchInputChange($event)"
-      />
+<div class="search-container">
+  <div class="search-wrapper">
+    <!-- Search Input -->
+    <div class="search-header">
+      <div class="search-input-wrapper">
+        <input 
+          type="text" 
+          [(ngModel)]="searchQuery"
+          (input)="onSearchInputChange($event)"
+          placeholder="Search beaches..."
+          class="search-input"
+        >
+        <svg class="search-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Main Content with Aside -->
+    <div class="content-container">
+      <!-- Filter Aside -->
+      <aside class="filter-panel">
+        <h3 class="filter-title">Filters</h3>
+        
+        <!-- Location Filter -->
+        <div class="filter-section">
+          <h4>Location</h4>
+          <select class="filter-select">
+            <option value="">All Locations</option>
+            <option value="north">North Coast</option>
+            <option value="south">South Coast</option>
+            <option value="east">East Coast</option>
+            <option value="west">West Coast</option>
+          </select>
+        </div>
+
+        <!-- Features Filter -->
+        <div class="filter-section">
+          <h4>Features</h4>
+          <label class="filter-checkbox">
+            <input type="checkbox"> Swimming
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox"> Surfing
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox"> Parking
+          </label>
+        </div>
+      </aside>
+
+      <!-- Results Section -->
+      <div class="results-section">
+        <div *ngIf="loading" class="loading-state">
+          <div class="spinner"></div>
+        </div>
+
+        <div *ngIf="!loading && beaches.length === 0" class="no-results">
+          <p>No beaches found matching your search</p>
+        </div>
+
+        <app-beach-grid 
+          *ngIf="!loading && beaches.length > 0"
+          [beaches]="beaches"
+        ></app-beach-grid>
+      </div>
     </div>
   </div>
-  
-  <!-- Show the content when the loading is false -->
-  <app-category-list [categories]="categories"></app-category-list>
-  
-  <app-beach-grid *ngIf="!loading" [beaches]="beaches"></app-beach-grid>
-  
-  <!-- Show loading indicator if data is being fetched -->
-  <div *ngIf="loading" class="loading-indicator">
-    <p>Loading...</p>
-  </div>
-  
+</div>

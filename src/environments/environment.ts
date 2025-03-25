@@ -1,4 +1,5 @@
 export const environment = {
-    production: true,
-    apiBaseUrl: 'https://playea.eu'
+    apiUrl: 'http://localhost:8000',
+    clientUrl: 'http://localhost:4200',
+    production: false,
 };

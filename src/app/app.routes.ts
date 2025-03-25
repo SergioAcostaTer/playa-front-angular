@@ -25,6 +25,7 @@ export const routes: Routes = [
       { path: 'ranking', component: RankingPageComponent },
       { path: 'search', component: SearchComponent },
       { path: 'view-profile/:username', component: ViewProfileComponent },
+      { path: 'view-profile', component: ViewProfileComponent },
     ],
   },
   {
