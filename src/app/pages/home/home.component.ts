@@ -32,7 +32,6 @@ export class HomePageComponent implements OnInit {
     try {
       this.beaches = await getAllBeaches();
     } catch (error) {
-      console.error('Error fetching beaches:', error);
     } finally {
       this.loading = false;
     }

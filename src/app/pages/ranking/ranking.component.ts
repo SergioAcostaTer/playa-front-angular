@@ -19,7 +19,6 @@ export class RankingPageComponent {
       try {
         this.beaches = await getAllBeaches();
       } catch (error) {
-        console.error('Error fetching beaches:', error);
       }
     }
 }

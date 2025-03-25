@@ -11,8 +11,6 @@ export const createReview = async (beachId: any, rating: any, comment: any) => {
     console.log('Review created:', data);
     return data;
   } catch (error) {
-    console.error('Error creating review:', error);
-    throw error;
   }
 };
 
@@ -23,8 +21,6 @@ export const getReviewsByBeach = async (beachId: any) => {
     console.log('Reviews for beach:', data);
     return data.reviews;
   } catch (error) {
-    console.error('Error fetching reviews:', error);
-    throw error;
   }
 };
 
@@ -38,8 +34,6 @@ export const updateReview = async (reviewId: any, rating: any, comment: any) => 
     console.log('Review updated:', data);
     return data;
   } catch (error) {
-    console.error('Error updating review:', error);
-    throw error;
   }
 };
 
@@ -50,8 +44,6 @@ export const deleteReview = async (reviewId: any) => {
     console.log('Review deleted:', data);
     return data;
   } catch (error) {
-    console.error('Error deleting review:', error);
-    throw error;
   }
 };
 

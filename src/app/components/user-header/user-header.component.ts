@@ -17,7 +17,6 @@ export class UserHeaderComponent implements OnInit {
     try {
       this.user = await getMe();
     } catch (error) {
-      console.error('Failed to fetch user data:', error);
     } finally {
       this.loading = false;
     }

@@ -56,12 +56,10 @@ export class ViewProfileComponent implements OnInit {
             console.warn(`User with username "${username}" not found in mock data`);
           }
         } else {
-          console.error('Expected an array response but received:', response);
           this.user = null;
         }
       },
       error: (err) => {
-        console.error('Failed to fetch user data:', err);
         this.user = null;
       },
       complete: () => {

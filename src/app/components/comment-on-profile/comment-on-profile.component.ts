@@ -49,7 +49,6 @@ export class CommentOnProfileComponent implements OnInit {
         this.isLoading = false;
       },
       (error) => {
-        console.error('Error loading comments:', error);
         this.isLoading = false;
       }
     );

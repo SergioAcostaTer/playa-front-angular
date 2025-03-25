@@ -7,7 +7,6 @@ export const getAllBeaches = async () => {
     const { data } = (await axios.get(`${environment.apiUrl}/beaches?limit=30`)).data;
     return data;
   } catch (error) {
-    console.error('Error creating review:', error);
     throw error;
   }
 };
