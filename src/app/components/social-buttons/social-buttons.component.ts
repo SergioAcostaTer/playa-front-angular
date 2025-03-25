@@ -7,7 +7,7 @@ import { EnvironmentService } from '../../services/environment.service';
   styleUrls: ['./social-buttons.component.css' ],
 })
 export class SocialButtonsComponent implements OnInit {
-  // googleUrl = environment.apiUrl + '/auth/google';
+  
   googleUrl = '';
  constructor(
     private envService: EnvironmentService
@@ -15,5 +15,6 @@ export class SocialButtonsComponent implements OnInit {
 
   ngOnInit(): void {
     this.googleUrl = this.envService.getApiUrl() + '/auth/google';
+    console.log(this.googleUrl)
   }
 }
