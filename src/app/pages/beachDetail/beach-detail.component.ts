@@ -1,15 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { beachesList } from '../../constants/beachesList';
 import { BeachDetailLayoutComponent } from '../../components/beach-detail-layout/beach-detail-layout.component';
-import { BeachMapComponent } from '../../components/beach-map/beach-map.component';
 import { BeachDescriptionComponent } from '../../components/beach-description/beach-description.component';
 import { Beach } from '../../models/beach';
-import { Comment } from '../../models/comment';
-import { MaplibreMapComponent } from "../../maplibre-map/maplibre-map.component";
-
 import { getBeachBySlug } from '../../services/getBeachById';
+import { getAllBeaches } from '../../services/getBeaches';
+import { MaplibreMapComponent } from '../../maplibre-map/maplibre-map.component';
 
 @Component({
   selector: 'app-beach-detail',
@@ -17,7 +14,8 @@ import { getBeachBySlug } from '../../services/getBeachById';
   imports: [
     CommonModule,
     BeachDetailLayoutComponent,
-    BeachDescriptionComponent
+    BeachDescriptionComponent,
+    MaplibreMapComponent
 ],
   templateUrl: './beach-detail.component.html',
   styleUrls: ['./beach-detail.component.css'],
