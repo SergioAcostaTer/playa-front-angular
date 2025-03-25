@@ -48,3 +48,19 @@
 .login-button:hover {
   background-color: #0056b3;
 }
+
+@media screen and (max-width: 600px) {
+  .user-info {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .user-details {
+    display: none;
+  }
+
+  .avatar {
+    width: 45px;
+    height: 45px;
+  }
+}
