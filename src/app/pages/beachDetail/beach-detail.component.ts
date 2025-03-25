@@ -6,7 +6,7 @@ import { BeachDescriptionComponent } from '../../components/beach-description/be
 import { Beach } from '../../models/beach';
 import { getBeachBySlug } from '../../services/getBeachById';
 import { getAllBeaches } from '../../services/getBeaches';
-import { MaplibreMapComponent } from '../../maplibre-map/maplibre-map.component';
+// import { MaplibreMapComponent } from '../../maplibre-map/maplibre-map.component';
 
 @Component({
   selector: 'app-beach-detail',
@@ -15,7 +15,7 @@ import { MaplibreMapComponent } from '../../maplibre-map/maplibre-map.component'
     CommonModule,
     BeachDetailLayoutComponent,
     BeachDescriptionComponent,
-    MaplibreMapComponent
+    // MaplibreMapComponent
 ],
   templateUrl: './beach-detail.component.html',
   styleUrls: ['./beach-detail.component.css'],
