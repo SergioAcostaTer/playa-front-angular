@@ -51,7 +51,7 @@
 }
 
 .filter-panel {
-  position: sticky;
+  /* position: sticky; */
   top: 1rem;
   width: 250px;
   padding: 1.25rem;
