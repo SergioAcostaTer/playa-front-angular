@@ -67,6 +67,10 @@
   max-width: 500px;
 }
 
+.login__input-wrapper {
+  width: 100%;
+}
+
 .login__password-wrapper {
   position: relative;
   width: 100%;
@@ -115,7 +119,7 @@
   border: none;
   padding: 12px;
   border-radius: 5px;
-  color: white;
+  color: var(--button-text-color); /* Cambiado a blanco para mejor contraste */
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.3s;
@@ -127,11 +131,30 @@
   background-color: var(--login-button-hover);
 }
 
+.login__submit:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
 .login__divider {
   text-align: center;
   margin: 10px 0;
   font-size: 0.9rem;
   opacity: 0.8;
+}
+
+.login__validation-message {
+  font-size: 0.8rem;
+  margin-top: 5px;
+  text-align: left;
+}
+
+.login__validation-message.valid {
+  color: green;
+}
+
+.login__validation-message.invalid {
+  color: red;
 }
 
 @media (max-width: 430px) {

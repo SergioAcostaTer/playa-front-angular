@@ -1,12 +1,7 @@
 <div *ngIf="beaches?.length; else emptyState" class="ranking-list" role="list">
   <app-ranking-card 
-    *ngFor="let beach of beaches; trackBy: trackByTitle"
-    [title]="beach.title"
-    [imageUrl]="beach.imageUrl"
-    [rating]="beach.rating"
-    [distance]="beach.distance"
-    [description]="beach.description"
-    [recommended]="beach.recommended"
+    *ngFor="let beach of beaches; trackBy: trackById"
+    [beach]="beach"
     class="ranking-list__item"
     role="listitem">
   </app-ranking-card>

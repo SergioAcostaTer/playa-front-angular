@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { Beach } from '../../models/beach';
 
 @Component({
   selector: 'app-ranking-card',
@@ -9,10 +10,5 @@ import { Component, Input } from '@angular/core';
   imports: [CommonModule],
 })
 export class RankingCardComponent {
-  @Input() title!: string;
-  @Input() imageUrl!: string;
-  @Input() rating!: string;
-  @Input() distance!: string;
-  @Input() description!: string;
-  @Input() recommended?: boolean = false;
+  @Input() beach: Beach | null = null;
 }

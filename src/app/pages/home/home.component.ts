@@ -4,10 +4,9 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { CategoryListComponent } from '../../components/category-list/category-list.component';
 import { BeachGridComponent } from '../../components/beach-grid/beach-grid.component';
-import { getHomeBeaches } from '../../services/getHomeBeaches';
 import { Beach } from '../../models/beach';
-import { categoriesList } from '../../constants/categoriesList';
 import { getAllBeaches } from '../../services/getBeaches';
+import { Category } from '../../models/category';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +21,7 @@ import { getAllBeaches } from '../../services/getBeaches';
   styleUrls: ['./home.component.css'],
 })
 export class HomePageComponent implements OnInit {
-  categories = categoriesList;
+  categories: Category[] = [];
   beaches: Beach[] = [];
   loading = true;
   searchQuery: string = '';

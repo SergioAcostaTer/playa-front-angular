@@ -15,14 +15,42 @@
   object-fit: cover;
 }
 
-.beach-detail-layout__sidebar {
+.beach-detail-layout__sidebar-container {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.beach-detail-layout__sidebar {
   display: flex;
   flex-direction: column;
   gap: 1.5em;
   border: 1px solid #0002;
   border-radius: 10px;
   padding: 1em 2em;
+}
+
+.beach-detail-layout__sidebar.blue-flag-border {
+  border: 2px solid #1e90ff; /* Borde azul para playas con Bandera Azul */
+  box-shadow: 0 0 8px rgba(30, 144, 255, 0.3); /* Sombra suave para resaltar */
+}
+
+.beach-detail-layout__blue-flag-info {
+  font-size: 0.9em;
+  color: #1e90ff;
+  font-style: italic;
+  text-align: left;
+  margin: 0;
+  padding: 0.5em 1em;
+  background-color: rgba(30, 144, 255, 0.05); /* Fondo sutil */
+  border-left: 3px solid #1e90ff; /* Línea izquierda azul */
+  border-radius: 3px;
+}
+
+.beach-detail-layout__blue-flag-info strong {
+  color: #1e90ff;
+  font-weight: 600;
 }
 
 .beach-detail-layout__header {
@@ -46,7 +74,7 @@
 }
 
 .beach-detail-layout__services-title,
-.beach-detail-layout__weather-title {
+.beach-detail-layout__title {
   font-size: 1.5em;
   margin-bottom: 10px;
 }
@@ -60,7 +88,7 @@
   margin-bottom: 8px;
 }
 
-.beach-detail-layout__weather-text {
+.beach-detail-layout__text {
   margin: 0;
 }
 
@@ -88,6 +116,11 @@
   .beach-detail-layout__sidebar {
     padding: 1em;
   }
+
+  .beach-detail-layout__blue-flag-info {
+    font-size: 0.85em;
+    padding: 0.5em;
+  }
 }
 
 @media (max-width: 500px) {
@@ -99,5 +132,9 @@
   .beach-detail-layout__sidebar {
     padding: 1em;
   }
-}
 
+  .beach-detail-layout__blue-flag-info {
+    font-size: 0.8em;
+    padding: 0.5em;
+  }
+}

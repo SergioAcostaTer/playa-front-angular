@@ -11,23 +11,4 @@ import { UserHeaderComponent } from "../user-header/user-header.component";
   imports: [CommonModule, LogoComponent, UserHeaderComponent, UserHeaderComponent]
 })
 export class HeaderComponent {
-  isPopupVisible: boolean = false;
-
-  togglePopup(): void {
-    this.isPopupVisible = !this.isPopupVisible;
-  }
-
-  closePopup(): void {
-    this.isPopupVisible = false;
-  }
-
-  @HostListener('document:click', ['$event'])
-  onClickOutside(event: Event): void {
-    if (!this.isPopupVisible) return;
-
-    const target = event.target as HTMLElement;
-    if (!target.closest('.header__popup') && !target.closest('.header__menu-toggle')) {
-      this.closePopup();
-    }
-  }
 }

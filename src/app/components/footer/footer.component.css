@@ -1,9 +1,9 @@
 /* BLOQUE PRINCIPAL */
 .footer {
 	width: 100%;
-	background-color: var(--footer-background, #b78c3d);
+	background-color: var(--hover-darken);
 	padding: 1rem;
-	color: var(--footer-text-color, #f0e1a1);
+	color: var(--footer-text-color);
 	text-align: center;
 	font-size: 1rem;
 }

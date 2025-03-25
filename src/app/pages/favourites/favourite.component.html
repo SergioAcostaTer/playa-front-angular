@@ -1,3 +1,9 @@
 <app-title-page [title]="'Tus playas favoritas'"></app-title-page>
 
 <app-beach-grid [beaches]="beaches"></app-beach-grid>
+
+<app-beach-grid *ngIf="!loading" [beaches]="beaches"></app-beach-grid>
+
+<div *ngIf="loading" class="loading-indicator">
+  <p>Loading...</p>
+</div>

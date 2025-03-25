@@ -1,42 +1,27 @@
-<!-- user-header.component.html -->
-<div class="header-content">
-  <!-- Loading State -->
-  <div *ngIf="isLoading" class="loading-wrapper">
-    <div class="spinner"></div>
-    <span class="loading-text">Loading profile...</span>
+<div class="user-header">
+  <div *ngIf="!isRegistered" class="user-header__auth-buttons">
+    <a href="/login" class="user-header__button user-header__button--login">Login</a>
+    <a href="/register" class="user-header__button user-header__button--register">Register</a>
   </div>
-
-  <!-- Content State (only shown when not loading) -->
-  <div *ngIf="!isLoading && user" class="header-content-wrapper">
-    <!-- Authenticated User State -->
-    <div *ngIf="user" class="user-section">
-      <div class="user-profile-wrapper" (click)="toggleDropdown()">
-        <div class="avatar-container">
-          <img [src]="getAvatarUrl()" alt="{{ user.username }}'s avatar" class="avatar-image" loading="lazy"
-            (error)="onImageError($event)">
-        </div>
-        <div class="user-info">
-          <span class="user-name">{{ user.username }}</span>
-          <span class="user-status">Online</span>
-        </div>
+  <div *ngIf="isRegistered" class="user-header__user-menu">
+    <a class="user-header__menu-toggle" (click)="togglePopup()">
+      <img src="/images/avatar.jpg" class="user-header__menu-icon" alt="User Avatar">
+    </a>
+  </div>
+  <div *ngIf="isPopupVisible" class="user-header__popup">
+    <div class="popup__container">
+      <img src="/images/avatar.jpg" alt="UserIcon" class="popup__image">
+      <div class="popup__account-buttons">
+        <a href="/login" class="popup__account-button popup__account-link">Añadir Cuenta</a>
+        <a (click)="logout()" class="popup__account-button popup__account-link" style="cursor: pointer;">Cerrar Sesión</a>
       </div>
-
-      <!-- Dropdown Menu -->
-      <div *ngIf="isDropdownOpen" class="dropdown-menu">
-        <a routerLink="/profile" class="dropdown-item">Perfil</a>
-        <a href="#" class="dropdown-item">Settings</a>
-        <a href="#" class="dropdown-item" (click)="logout()">Cerrar Sesión</a> <!-- Logout link updated -->
+      <div class="popup__nav-buttons">
+        <a href="/profile" class="popup__nav-button popup__nav-link">Perfil</a>
+        <a href="/favourites" class="popup__nav-button popup__nav-link">Favoritos</a>
+        <span class="popup__nav-button--mobile">
+          <a href="/ranking" class="popup__nav-button popup__nav-link">Ranking</a>
+        </span>
       </div>
     </div>
-
-    <!-- Unauthenticated State -->
-    <nav *ngIf="(!user && !isLoading)" class="auth-navigation">
-      <a routerLink="/login" class="auth-btn auth-btn--login" title="Sign in to your account">
-        Sign In
-      </a>
-      <a routerLink="/register" class="auth-btn auth-btn--register" title="Create a new account">
-        Register
-      </a>
-    </nav>
   </div>
 </div>

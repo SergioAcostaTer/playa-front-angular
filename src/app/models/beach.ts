@@ -46,14 +46,3 @@ export interface Beach {
   waterSportsRentals: boolean;
   wheelchairAccess: boolean;
 }
-
-export interface BeachDescription {
-  intro: string;
-  paragraph: string;
-}
-
-export interface Comment {
-  author: string;
-  rating: number;
-  text: string;
-}

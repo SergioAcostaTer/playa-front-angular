@@ -1,6 +1,6 @@
 <div *ngIf="beaches?.length; else emptyState" class="beach-grid" role="list">
     <app-beach-card
-        *ngFor="let beach of beaches; trackBy: trackByTitle"
+        *ngFor="let beach of beaches; trackBy: trackById"
         [beach]="beach"
         class="beach-grid__item"
         role="listitem">

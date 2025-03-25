@@ -50,6 +50,18 @@
   --rating-text-color: #fff; /* Cambiado a tono rojizo */
   --change-user-image-color: #f5002c; /* Mantengo el tono naranjado porque no es amarillo puro */
 
+  /* Nuevos colores propuestos */
+  --tertiary-color: #ff6f61; 
+  --complement-color: #007a7a;
+  --neutral-dark: #2a2a2a; 
+  --neutral-light: #f5f5f5; 
+  --highlight-color: #ff9f1c; 
+  --muted-red: #d13f5b;
+  --deep-sea: #004d4d;
+  --soft-beige: #f9e8d9; 
+  --warm-gray: #8d552b;
+  --hover-darken: #b0123f;
+
   /* END CARDS */
 
   /* LOGIN */
@@ -101,4 +113,12 @@ ul {
 
 app-beach-card {
   width: 100%;
+}
+
+.loading-indicator {
+  font-size: large;
+  font-weight: 600;
+  color: #333;
+  margin-top: 15px;
+  justify-self: center;
 }

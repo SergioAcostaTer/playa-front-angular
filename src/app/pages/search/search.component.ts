@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'; 
 import { FormsModule } from '@angular/forms'; 
-import { CategoryListComponent } from '../../components/category-list/category-list.component';
+// import { CategoryListComponent } from '../../components/category-list/category-list.component';
 import { BeachGridComponent } from '../../components/beach-grid/beach-grid.component';
 import { Beach } from '../../models/beach';
 import { searchBeaches } from '../../services/search';
@@ -15,7 +15,7 @@ import { debounceTime, switchMap, Subject } from 'rxjs';
   imports: [
     CommonModule,
     FormsModule,
-    CategoryListComponent,
+    // CategoryListComponent,
     BeachGridComponent
   ],
   templateUrl: './search.component.html',

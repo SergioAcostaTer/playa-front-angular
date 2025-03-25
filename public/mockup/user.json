@@ -1,0 +1,67 @@
+[
+  {
+    "data": {
+      "id": 13,
+      "name": "pepe",
+      "username": "pepito",
+      "email": "pepito@gmail.com",
+      "googleHash": "123456789012345678901",
+      "createdAt": "2025-03-17T20:08:19.838Z",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "message": "OK",
+    "status": 200
+  },
+  {
+    "data": {
+      "id": 14,
+      "name": "Ana",
+      "username": "anita",
+      "email": "ana@gmail.com",
+      "googleHash": "987654321098765432109",
+      "createdAt": "2025-03-18T10:15:00.000Z",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "message": "OK",
+    "status": 200
+  },
+  {
+    "data": {
+      "id": 15,
+      "name": "Carlos",
+      "username": "carlitos",
+      "email": "carlos@gmail.com",
+      "googleHash": "456789123456789123456",
+      "createdAt": "2025-03-19T14:30:00.000Z",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "message": "OK",
+    "status": 200
+  },
+  {
+    "data": {
+      "id": 16,
+      "name": "María",
+      "username": "maria123",
+      "email": "maria@gmail.com",
+      "googleHash": "321654987321654987321",
+      "createdAt": "2025-03-20T09:45:00.000Z",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "message": "OK",
+    "status": 200
+  },
+  {
+    "data": {
+      "id": 17,
+      "name": "Luis",
+      "username": "luisin",
+      "email": "luis@gmail.com",
+      "googleHash": "789123456789123456789",
+      "createdAt": "2025-03-21T16:20:00.000Z",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "message": "OK",
+    "status": 200
+  }
+]

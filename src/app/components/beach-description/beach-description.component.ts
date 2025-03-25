@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { BeachDescription } from '../../models/beach';
 
 @Component({
   selector: 'app-beach-description',
@@ -10,5 +9,4 @@ import { BeachDescription } from '../../models/beach';
 })
 export class BeachDescriptionComponent {
   @Input() title!: string;
-  @Input() description!: BeachDescription;
 }

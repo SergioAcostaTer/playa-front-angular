@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Environment } from '../models/environment.model';
 import { environment } from '../../environments/environment';
+import { Environment } from '../models/environment.model';
 
 @Injectable({
   providedIn: 'root',
