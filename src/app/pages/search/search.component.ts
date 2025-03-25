@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'; 
 import { FormsModule } from '@angular/forms'; 
-// import { CategoryListComponent } from '../../components/category-list/category-list.component';
 import { BeachGridComponent } from '../../components/beach-grid/beach-grid.component';
 import { Beach } from '../../models/beach';
 import { searchBeaches } from '../../services/search';
@@ -15,7 +14,6 @@ import { debounceTime, switchMap, Subject } from 'rxjs';
   imports: [
     CommonModule,
     FormsModule,
-    // CategoryListComponent,
     BeachGridComponent
   ],
   templateUrl: './search.component.html',
@@ -26,21 +24,20 @@ export class SearchComponent implements OnInit {
   beaches: Beach[] = [];
   loading = true;
   searchQuery: string = '';
-  private searchQuerySubject = new Subject<string>();  // Subject to handle search query changes
+  private searchQuerySubject = new Subject<string>();
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    // Set up the debounced search pipeline first
     this.searchQuerySubject.pipe(
-      debounceTime(500), // Wait for 500ms after the user stops typing
+      debounceTime(500),
       switchMap((query: string) => {
-        this.loading = true; // Set loading to true before fetching
-        return searchBeaches(query); // Call the search API/service with the query
+        this.loading = true;
+        return searchBeaches(query);
       })
     ).subscribe({
       next: (beaches) => {
-        this.beaches = beaches;  // Update beaches with the search result
+        this.beaches = beaches;
         this.loading = false;
       },
       error: (error) => {
@@ -49,7 +46,6 @@ export class SearchComponent implements OnInit {
       }
     });
 
-    // Listen to query parameter changes and trigger the search
     this.route.queryParams.subscribe(params => {
       const query = params['q'] || '';
       this.searchQuery = query;
@@ -57,16 +53,15 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  // Update the URL with the search query
   updateQueryParam(query: string) {
     if (query.trim()) {
       this.router.navigate([], {
         relativeTo: this.route,
         queryParams: { q: query.trim() },
-        queryParamsHandling: 'merge', // Merge with existing query params
+        queryParamsHandling: 'merge',
       });
-      this.searchQuerySubject.next(query);  // Trigger the search with the updated query
-      this.loading = true;  // Set loading to true while fetching
+      this.searchQuerySubject.next(query);
+      this.loading = true;
     }
   }
 
