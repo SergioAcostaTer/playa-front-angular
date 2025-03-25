@@ -1,100 +1,54 @@
-// user-header.component.ts
-import { Component, OnInit, HostListener } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { EnvironmentService } from '../../services/environment.service';
-import { Router } from '@angular/router';  // Import Router for navigation after logout
+import { Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-user-header',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule],
   templateUrl: './user-header.component.html',
-  styleUrls: ['./user-header.component.css'],
+  styleUrls: ['./user-header.component.css']
 })
-export class UserHeaderComponent implements OnInit {
-  private readonly endpoint = '/me';
-  private readonly logOutEndpoint = '/auth/log-out';  // Endpoint for logout
-  private readonly defaultAvatar = '/images/avatar.jpg';
-  user: any = null;
-  isLoading = true;
-  avatarError = false;
-  isDropdownOpen = false;
-  showButtons = false;
-  showProfile = false;
+export class UserHeaderComponent {
+  isRegistered: boolean = false;
+  isPopupVisible: boolean = false;
 
-  constructor(
-    private http: HttpClient,
-    private envService: EnvironmentService,
-    private router: Router  // Inject Router to navigate after logout
-  ) {}
-
-  ngOnInit(): void {
-    this.fetchUserData();
-  }
-
-  private fetchUserData(): void {
-    this.isLoading = true;
-    const url = `${this.envService.getApiUrl()}${this.endpoint}`;
-    
-    this.http.get(url, { withCredentials: true }).subscribe({
-      next: (response: any) => {
-        console.log('API response:', response);
-        this.user = response.data;
-        this.isLoading = false;
-        this.showProfile = true;
-        this.showButtons = false;
-      },
-      error: (err) => {
-        console.error('Error fetching user data:', err);
-        this.user = null;
-        this.isLoading = false;
-        this.showProfile = false;
-        this.showButtons = true;
-      },
-    });
-  }
-
-  getAvatarUrl(): string {
-    if (!this.user || this.avatarError) {
-      return this.defaultAvatar;
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.checkRegistrationStatus();
     }
-    return this.user.avatarUrl || this.defaultAvatar;
   }
 
-  onImageError(event: Event): void {
-    this.avatarError = true;
-    const imgElement = event.target as HTMLImageElement;
-    imgElement.src = this.defaultAvatar;
+  checkRegistrationStatus(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      const user = localStorage.getItem('user');
+      this.isRegistered = !!user;
+    }
   }
 
-  toggleDropdown(): void {
-    this.isDropdownOpen = !this.isDropdownOpen;
+  togglePopup(): void {
+    this.isPopupVisible = !this.isPopupVisible;
   }
 
-  // Logout method
+  closePopup(): void {
+    this.isPopupVisible = false;
+  }
+
   logout(): void {
-    const url = `${this.envService.getApiUrl()}${this.logOutEndpoint}`;
-    
-    this.http.post(url, {}, { withCredentials: true }).subscribe({
-      next: () => {
-        this.user = null;
-        this.isLoading = false;
-        this.router.navigate(['/'], { replaceUrl: true });
-      },
-      error: (err) => {
-        console.error('Error logging out:', err);
-        this.isLoading = false;
-      },
-    });
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem('user');
+      this.isRegistered = false;
+      this.closePopup();
+      window.location.reload();
+    }
   }
 
   @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent): void {
+  onClickOutside(event: Event): void {
+    if (!isPlatformBrowser(this.platformId) || !this.isPopupVisible) return;
+
     const target = event.target as HTMLElement;
-    if (!target.closest('.user-profile-wrapper')) {
-      this.isDropdownOpen = false;
+    if (!target.closest('.popup__container') && !target.closest('.user-header__menu-toggle')) {
+      this.closePopup();
     }
   }
 }

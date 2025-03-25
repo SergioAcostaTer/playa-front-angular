@@ -65,6 +65,11 @@
   gap: 10px;
 }
 
+.register__input-wrapper {
+  width: 100%;
+  position: relative; /* Asegura que el mensaje no afecte el layout del input */
+}
+
 .register__input {
   background-color: var(--login-input-bg);
   border: 1px solid var(--login-border-color);
@@ -102,7 +107,7 @@
   border: none;
   padding: 12px;
   border-radius: 5px;
-  color: var(--login-text-color);
+  color: var(--button-text-color);
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.3s;
@@ -113,13 +118,17 @@
   background-color: var(--login-button-hover);
 }
 
+.register__button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
 .register__divider {
   text-align: center;
   margin: 10px 0;
   font-size: 0.9rem;
   opacity: 0.8;
 }
-
 
 .register__password-wrapper {
   position: relative;
@@ -129,18 +138,34 @@
 .register__password-toggle {
   position: absolute;
   right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 50%; /* Centrado respecto al input */
+  transform: translateY(-50%); /* Centrado vertical exacto */
   cursor: pointer;
-  font-size: 1.5rem;
-  padding: 5px;
+  padding: 0; /* Elimina padding innecesario */
   border: none;
   background: none;
+  display: flex;
+  align-items: center;
+  height: 100%; /* Asegura que ocupe la altura del input */
 }
 
 .register__password-icon {
   width: 15px;
   height: 15px;
+}
+
+.register__validation-message {
+  font-size: 0.8rem;
+  margin-top: 5px;
+  text-align: left;
+}
+
+.register__validation-message.valid {
+  color: green;
+}
+
+.register__validation-message.invalid {
+  color: red;
 }
 
 @media (max-width: 430px) {

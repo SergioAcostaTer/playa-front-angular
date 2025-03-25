@@ -1,191 +1,191 @@
-/* user-header.component.css */
-.header-container {
-  background-color: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
-  padding: 1rem 2rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.header-content {
-  max-width: 1200px;
-  margin: 0 auto;
+.user-header {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
-  align-items: center;
+  padding: 10px 20px;
 }
 
-/* Loading Styles */
-.loading-wrapper {
+.user-header__auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.user-header__button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.user-header__button--login {
+  background-color: var(--secondary-color); /* #e31c5f */
+  color: var(--button-text-color); /* #ffffff */
+}
+
+.user-header__button--login:hover {
+  background-color: var(--hover-darken); /* #b0123f */
+}
+
+.user-header__button--register {
+  background-color: var(--tertiary-color); /* #ff6f61 */
+  color: var(--button-text-color); /* #ffffff */
+}
+
+.user-header__button--register:hover {
+  background-color: var(--muted-red); /* #d13f5b */
+}
+
+.user-header__user-menu {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.user-header__menu-toggle {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  width: 2.7rem;
+  height: 2.7rem;
 }
 
-.spinner {
-  width: 1.5rem;
-  height: 1.5rem;
-  border: 2px solid #e5e7eb;
-  border-top: 2px solid #3b82f6;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-.loading-text {
-  color: #6b7280;
-  font-size: 0.875rem;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/* User Profile Styles */
-.user-section {
-  display: flex;
-  align-items: center;
-}
-
-.user-profile-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.avatar-container {
-  position: relative;
-}
-
-.avatar-image {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
+.user-header__menu-icon {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border: 2px solid #e5e7eb;
-  transition: border-color 0.2s ease;
+  cursor: pointer;
+  border: 1px solid #000;
+  border-radius: 100%;
 }
 
-.user-info {
+.user-header__popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.popup__container {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #fff;
+  height: 100vh;
+  max-height: 500px;
+  width: 40vw;
+  max-width: 400px;
+  box-shadow: 0 0 10px 0 #0004;
+  z-index: 1000;
+  border-radius: 15px;
+  padding: 20px 10px;
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
 }
 
-.user-name {
-  font-size: 1rem;
-  font-weight: 500;
-  color: #1f2937;
+.popup__image {
+  max-width: 80px;
+  max-height: 80px;
+  border-radius: 50%;
+  border: 1px solid #000;
+  margin-bottom: 1em;
 }
 
-.user-status {
-  font-size: 0.75rem;
-  color: #10b981;
-}
-
-/* Auth Navigation Styles */
-.auth-navigation {
+.popup__account-buttons {
   display: flex;
-  gap: 1rem;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
-.auth-btn {
-  padding: 0.5rem 1.25rem;
-  border-radius: 0.375rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.auth-btn--login {
-  background-color: #ffffff;
-  border: 1px solid #d1d5db;
-  color: #374151;
-}
-
-.auth-btn--login:hover {
-  background-color: #f9fafb;
-  border-color: #9ca3af;
-}
-
-.auth-btn--register {
-  background-color: #3b82f6;
-  color: #ffffff;
+.popup__account-button {
+  padding: 0.5em 1.5em;
+  max-width: 48%;
+  box-shadow: 0 0 2px 0 #0008;
   border: none;
-}
-
-.auth-btn--register:hover {
-  background-color: #2563eb;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .header-container {
-    padding: 0.75rem 1rem;
-  }
-
-  .auth-btn {
-    padding: 0.375rem 1rem;
-    font-size: 0.8125rem;
-  }
-
-  .avatar-image {
-    width: 2rem;
-    height: 2rem;
-  }
-}
-
-/* user-header.component.css */
-.header-content {
-  position: relative;
-}
-
-/* Existing styles remain unchanged */
-
-.user-profile-wrapper {
   cursor: pointer;
-  position: relative;
+  border-radius: 5px;
+  text-align: center;
+  transition: box-shadow 0.2s ease-in-out;
 }
 
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background: white;
-  border-radius: 4px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  min-width: 150px;
-  z-index: 1000;
-  overflow: hidden;
+.popup__account-button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #0002;
 }
 
-.dropdown-item {
-  display: block;
-  padding: 8px 15px;
-  color: #333;
+.popup__account-link {
+  color: #000;
   text-decoration: none;
-  transition: background-color 0.2s;
 }
 
-.dropdown-item:hover {
-  background-color: #f5f5f5;
+.popup__nav-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-/* Add some animation */
-@keyframes dropdownFade {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
+.popup__nav-button {
+  flex-grow: 1;
+  min-width: 150px;
+  width: 90%;
+  padding: 0.2em 2em;
+  text-align: center;
+  border: 1px solid #000;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 5px;
+  transition: box-shadow 0.2s ease-in-out;
+  color: #000;
+}
+
+.popup__nav-button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.popup__nav-button--mobile {
+  display: none;
+}
+
+.popup__nav-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  padding: 0.5em 0;
+  text-align: center;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .popup__container {
+    width: 90vw;
+    max-width: 300px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
-.dropdown-menu {
-  animation: dropdownFade 0.2s ease-out;
+@media (max-width: 550px) {
+  .popup__nav-button--mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
 }

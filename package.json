@@ -24,6 +24,7 @@
     "@tailwindcss/postcss": "^4.0.3",
     "axios": "^1.8.2",
     "express": "^4.18.2",
+    "maplibre-gl": "^5.2.0",
     "postcss": "^8.5.1",
     "rxjs": "~7.8.0",
     "tailwindcss": "^4.0.3",

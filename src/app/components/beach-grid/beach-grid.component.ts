@@ -13,7 +13,7 @@ import { Beach } from '../../models/beach';
 export class BeachGridComponent {
   @Input() beaches: Beach[] = [];
 
-  trackByTitle(index: number, beach: Beach): string {
+  trackById(index: number, beach: Beach): string {
     return beach.id;
   }
 }

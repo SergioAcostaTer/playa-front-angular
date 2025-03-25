@@ -1,0 +1,362 @@
+[
+  {
+    "commentId": 1,
+    "user": {
+      "id": 13,
+      "name": "pepe",
+      "username": "pepito",
+      "avatarUrl": "images/avatar.jpg"
+    },
+    "beach": {
+      "id": "1",
+      "name": "Caleta de Fuste",
+      "island": "Fuerteventura",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/1.webp"
+    },
+    "comment": {
+      "text": "¡Una playa perfecta para familias! El agua es súper tranquila y hay muchas comodidades como duchas y alquiler de sombrillas.",
+      "rating": 4.5,
+      "createdAt": "2025-03-22T10:30:00.000Z",
+      "updatedAt": "2025-03-22T10:30:00.000Z"
+    }
+  },
+  {
+    "commentId": 2,
+    "user": {
+      "id": 14,
+      "name": "Ana",
+      "username": "anita",
+      "avatarUrl": "images/ana.jpg"
+    },
+    "beach": {
+      "id": "1",
+      "name": "Caleta de Fuste",
+      "island": "Fuerteventura",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/1.webp"
+    },
+    "comment": {
+      "text": "Me encantó lo fácil que es llegar y la bandera azul. Ideal para un día relajado.",
+      "rating": 4.7,
+      "createdAt": "2025-03-23T12:00:00.000Z",
+      "updatedAt": "2025-03-23T12:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 3,
+    "user": {
+      "id": 15,
+      "name": "Carlos",
+      "username": "carlitos",
+      "avatarUrl": "images/carlos.jpg"
+    },
+    "beach": {
+      "id": "1",
+      "name": "Caleta de Fuste",
+      "island": "Fuerteventura",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/1.webp"
+    },
+    "comment": {
+      "text": "El agua está genial para nadar, pero en temporada alta hay demasiada gente.",
+      "rating": 4.0,
+      "createdAt": "2025-03-24T15:15:00.000Z",
+      "updatedAt": "2025-03-24T15:15:00.000Z"
+    }
+  },
+  {
+    "commentId": 4,
+    "user": {
+      "id": 16,
+      "name": "María",
+      "username": "maria123",
+      "avatarUrl": "images/maria.jpg"
+    },
+    "beach": {
+      "id": "1",
+      "name": "Caleta de Fuste",
+      "island": "Fuerteventura",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/1.webp"
+    },
+    "comment": {
+      "text": "Las duchas y los alquileres son un gran plus. ¡Volvería sin duda!",
+      "rating": 4.8,
+      "createdAt": "2025-03-25T09:30:00.000Z",
+      "updatedAt": "2025-03-25T09:30:00.000Z"
+    }
+  },
+
+  {
+    "commentId": 5,
+    "user": {
+      "id": 13,
+      "name": "pepe",
+      "username": "pepito",
+      "avatarUrl": "images/avatar.jpg"
+    },
+    "beach": {
+      "id": "53",
+      "name": "Cofete",
+      "island": "Fuerteventura",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/53.webp"
+    },
+    "comment": {
+      "text": "Pequeña pero bonita, con arena dorada. Eso sí, no hay muchas comodidades, así que hay que ir preparado.",
+      "rating": 3.5,
+      "createdAt": "2025-03-24T09:15:00.000Z",
+      "updatedAt": "2025-03-24T09:15:00.000Z"
+    }
+  },
+  {
+    "commentId": 6,
+    "user": {
+      "id": 17,
+      "name": "Luis",
+      "username": "luisin",
+      "avatarUrl": "images/luis.jpg"
+    },
+    "beach": {
+      "id": "53",
+      "name": "Cofete",
+      "island": "Fuerteventura",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/53.webp"
+    },
+    "comment": {
+      "text": "Un lugar tranquilo para desconectar, aunque el acceso no es el mejor.",
+      "rating": 3.8,
+      "createdAt": "2025-03-25T11:45:00.000Z",
+      "updatedAt": "2025-03-25T11:45:00.000Z"
+    }
+  },
+  {
+    "commentId": 7,
+    "user": {
+      "id": 14,
+      "name": "Ana",
+      "username": "anita",
+      "avatarUrl": "images/ana.jpg"
+    },
+    "beach": {
+      "id": "53",
+      "name": "Cofete",
+      "island": "Fuerteventura",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/53.webp"
+    },
+    "comment": {
+      "text": "La arena dorada es preciosa, pero me hubiera gustado que tuviera duchas.",
+      "rating": 3.6,
+      "createdAt": "2025-03-26T14:20:00.000Z",
+      "updatedAt": "2025-03-26T14:20:00.000Z"
+    }
+  },
+
+  {
+    "commentId": 8,
+    "user": {
+      "id": 13,
+      "name": "pepe",
+      "username": "pepito",
+      "avatarUrl": "images/avatar.jpg"
+    },
+    "beach": {
+      "id": "375",
+      "name": "Charca de los Pérez",
+      "island": "Gran Canaria",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/375.webp"
+    },
+    "comment": {
+      "text": "Me encantó la tranquilidad y la arena oscura, pero el viento puede ser molesto algunos días.",
+      "rating": 4.0,
+      "createdAt": "2025-03-25T14:20:00.000Z",
+      "updatedAt": "2025-03-25T14:20:00.000Z"
+    }
+  },
+  {
+    "commentId": 9,
+    "user": {
+      "id": 15,
+      "name": "Carlos",
+      "username": "carlitos",
+      "avatarUrl": "images/carlos.jpg"
+    },
+    "beach": {
+      "id": "375",
+      "name": "Charca de los Pérez",
+      "island": "Gran Canaria",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/375.webp"
+    },
+    "comment": {
+      "text": "Las olas son perfectas para un chapuzón rápido. ¡La arena oscura es única!",
+      "rating": 4.2,
+      "createdAt": "2025-03-26T10:00:00.000Z",
+      "updatedAt": "2025-03-26T10:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 10,
+    "user": {
+      "id": 16,
+      "name": "María",
+      "username": "maria123",
+      "avatarUrl": "images/maria.jpg"
+    },
+    "beach": {
+      "id": "375",
+      "name": "Charca de los Pérez",
+      "island": "Gran Canaria",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/375.webp"
+    },
+    "comment": {
+      "text": "Muy tranquila, pero el viento me arruinó un poco el día. Sin servicios cerca.",
+      "rating": 3.7,
+      "createdAt": "2025-03-27T13:30:00.000Z",
+      "updatedAt": "2025-03-27T13:30:00.000Z"
+    }
+  },
+  {
+    "commentId": 11,
+    "user": {
+      "id": 13,
+      "name": "pepe",
+      "username": "pepito",
+      "avatarUrl": "images/avatar.jpg"
+    },
+    "beach": {
+      "id": "375",
+      "name": "Charca de los Pérez",
+      "island": "Gran Canaria",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/375.webp"
+    },
+    "comment": {
+      "text": "Las olas moderadas son geniales para nadar, pero faltan servicios como duchas o baños.",
+      "rating": 3.8,
+      "createdAt": "2025-03-27T16:30:00.000Z",
+      "updatedAt": "2025-03-27T16:30:00.000Z"
+    }
+  },
+
+  {
+    "commentId": 12,
+    "user": {
+      "id": 13,
+      "name": "pepe",
+      "username": "pepito",
+      "avatarUrl": "images/avatar.jpg"
+    },
+    "beach": {
+      "id": "96",
+      "name": "Caleta del Guincho",
+      "island": "Lanzarote",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/96.webp"
+    },
+    "comment": {
+      "text": "Gran playa urbana con muchas opciones para deportes y alquiler de hamacas. Ideal para pasar el día.",
+      "rating": 4.8,
+      "createdAt": "2025-03-26T11:00:00.000Z",
+      "updatedAt": "2025-03-26T11:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 13,
+    "user": {
+      "id": 17,
+      "name": "Luis",
+      "username": "luisin",
+      "avatarUrl": "images/luis.jpg"
+    },
+    "beach": {
+      "id": "96",
+      "name": "Caleta del Guincho",
+      "island": "Lanzarote",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/96.webp"
+    },
+    "comment": {
+      "text": "Perfecta para deportes acuáticos y relajarse con las hamacas. Muy bien cuidada.",
+      "rating": 4.9,
+      "createdAt": "2025-03-27T09:15:00.000Z",
+      "updatedAt": "2025-03-27T09:15:00.000Z"
+    }
+  },
+  {
+    "commentId": 14,
+    "user": {
+      "id": 14,
+      "name": "Ana",
+      "username": "anita",
+      "avatarUrl": "images/ana.jpg"
+    },
+    "beach": {
+      "id": "96",
+      "name": "Caleta del Guincho",
+      "island": "Lanzarote",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/96.webp"
+    },
+    "comment": {
+      "text": "Me encanta que sea urbana y tenga tantas opciones. ¡Ideal para un día completo!",
+      "rating": 4.6,
+      "createdAt": "2025-03-28T14:45:00.000Z",
+      "updatedAt": "2025-03-28T14:45:00.000Z"
+    }
+  },
+  {
+    "commentId": 15,
+    "user": {
+      "id": 13,
+      "name": "pepe",
+      "username": "pepito",
+      "avatarUrl": "images/avatar.jpg"
+    },
+    "beach": {
+      "id": "552",
+      "name": "Charco del Baño",
+      "island": "Tenerife",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/552.webp"
+    },
+    "comment": {
+      "text": "El mar está bravo, pero la arena oscura le da un toque especial. No es para niños.",
+      "rating": 3.5,
+      "createdAt": "2025-03-28T12:15:00.000Z",
+      "updatedAt": "2025-03-28T12:15:00.000Z"
+    }
+  },
+  {
+    "commentId": 16,
+    "user": {
+      "id": 15,
+      "name": "Carlos",
+      "username": "carlitos",
+      "avatarUrl": "images/carlos.jpg"
+    },
+    "beach": {
+      "id": "552",
+      "name": "Charco del Baño",
+      "island": "Tenerife",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/552.webp"
+    },
+    "comment": {
+      "text": "Las olas fuertes son emocionantes, pero no hay servicios. ¡Aventura total!",
+      "rating": 3.9,
+      "createdAt": "2025-03-29T10:30:00.000Z",
+      "updatedAt": "2025-03-29T10:30:00.000Z"
+    }
+  },
+  {
+    "commentId": 17,
+    "user": {
+      "id": 16,
+      "name": "María",
+      "username": "maria123",
+      "avatarUrl": "images/maria.jpg"
+    },
+    "beach": {
+      "id": "552",
+      "name": "Charco del Baño",
+      "island": "Tenerife",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/552.webp"
+    },
+    "comment": {
+      "text": "La arena oscura es preciosa, pero el mar bravo no me dejó relajarme mucho.",
+      "rating": 3.6,
+      "createdAt": "2025-03-30T13:00:00.000Z",
+      "updatedAt": "2025-03-30T13:00:00.000Z"
+    }
+  }
+]
