@@ -1,107 +1,37 @@
 [
     {
         "id": "1",
-        "name": "Arena", 
-        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "name": "Lanzarote",
+        "imageUrl": "/images/LNZ.jpg"
     },
-    { 
+    {
         "id": "2",
-        "name": "Rocas", 
-        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "name": "Fuerteventura",
+        "imageUrl": "/images/FTV.jpg"
     },
-    {  
+    {
         "id": "3",
-        "name": "Olas", 
-        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "name": "Gran Canaria",
+        "imageUrl": "/images/GC.jpg"
     },
-    { 
+    {
         "id": "4",
-        "name": "Calma", 
-        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+        "name": "Tenerife",
+        "imageUrl": "/images/TNF.jpg"
     },
-    { 
-        "id": "5",
-        "name": "Sol", 
-        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+    {
+      "id": "5",
+      "name": "La Gomera",
+      "imageUrl": "/images/gomera.jpg"
     },
-    { 
-        "id": "6",
-        "name": "Sombra", 
-        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+    {
+      "id": "6",
+      "name": "El hierro",
+      "imageUrl": "/images/Hierro.jpg"
     },
-    { 
-        "id": "7",
-        "name": "Buceo", 
-        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
-    },
-    { 
-        "id": "8",
-        "name": "Comida", 
-        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
-    },
-    { 
-        "id": "9",
-        "name": "Baños", 
-        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
-    },
-    { 
-        "id": "10",
-        "name": "Duchas", 
-        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
-    },
-    { 
-        "id": "11",
-        "name": "Tiendas", 
-        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
-    },
-    { 
-        "id": "12",
-        "name": "Hoteles", 
-        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
-    },
-    { 
-        "id": "13",
-        "name": "Mascotas", 
-        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
-    },
-    { 
-        "id": "14",
-        "name": "Parking", 
-        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
-    },
-    { 
-        "id": "15",
-        "name": "Privada", 
-        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
-    },
-    { 
-        "id": "16",
-        "name": "Pública", 
-        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
-    },
-    { 
-        "id": "17",
-        "name": "Nudista", 
-        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
-    },
-    { 
-        "id": "18",
-        "name": "Remota", 
-        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
-    },
-    { 
-        "id": "19",
-        "name": "Popular", 
-        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
-    },
-    { 
-        "id": "20",
-        "name": "Secreta", 
-        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
-    },
-    { 
-        "id": "21",
-        "name": "Urbana", 
-        "imageUrl": "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg"
+    {
+      "id": "7",
+      "name": "La palma",
+      "imageUrl": "/images/palma.jpg"
     }
 ]

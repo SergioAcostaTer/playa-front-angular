@@ -1,13 +1,13 @@
 <div *ngIf="categories?.length; else emptyState" class="category-list" role="list">
-    <app-category
-        *ngFor="let category of categories; trackBy: trackById"
-        [category]="category"
-        class="category-list__item"
-        role="listitem">
-    </app-category>
+  <app-category
+    *ngFor="let category of categories; trackBy: trackById"
+    [category]="category"
+    class="category-list__item"
+    role="listitem">
+  </app-category>
 </div>
 
 <!-- Mensaje cuando no hay categorías -->
 <ng-template #emptyState>
-    <p class="category-list category-list--empty">No hay categorías disponibles.</p>
+  <p class="category-list category-list--empty">No hay categorías disponibles.</p>
 </ng-template>

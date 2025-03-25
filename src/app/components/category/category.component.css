@@ -17,12 +17,14 @@
   border-bottom-color: var(--primary-color, #007bff);
 }
 
-/* ELEMENTOS */
 .category__image {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 80px;
+  height: 80px;
+  max-height: 100%;
   margin-bottom: 0.5rem;
+  object-fit: cover;
 }
+/* ELEMENTOS */
 
 .category__text {
   font-size: 0.8rem;
