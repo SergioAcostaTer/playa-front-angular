@@ -1,14 +1,29 @@
 <div class="banner">
-  <h1 class="banner__title">Busca tu playa</h1>
-  <div class="banner__search">
-    <input class="banner__input" type="text" placeholder="Busca destinos...">
+  <div class="banner__content">
+    <h1 class="banner__title">Encuentra tu playa perfecta</h1>
+    <div class="banner__search">
+      <form (ngSubmit)="searchBeaches()">
+        <div class="search-container">
+          <input class="banner__input" type="text" [(ngModel)]="searchQuery" name="searchQuery"
+            placeholder="Busca destinos, playas o ciudades..." required />
+          <button type="submit" class="search-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 
-<!-- Show the content when the loading is false -->
 <app-category-list [categories]="categories"></app-category-list>
 
-<app-beach-grid *ngIf="!loading" [beaches]="beaches"></app-beach-grid>
+<div style="padding: 0.5rem;">
+  <app-beach-grid *ngIf="!loading" [beaches]="beaches"></app-beach-grid>
+</div>
 
 <div *ngIf="loading" class="loading-indicator">
   <p>Loading...</p>

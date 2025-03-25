@@ -2,72 +2,124 @@
   background-image: url("/images/las-canteras.jpg");
   background-size: cover;
   background-position: center;
-  height: 25vh;
+  height: 30vh; /* Taller for a more immersive feel */
+  position: relative;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-size: 2.5rem;
-  font-weight: 700;
-  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+
+.banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Subtle overlay for contrast */
+  z-index: 1;
+}
+
+.banner__content {
   position: relative;
-  padding: 0 20px;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  padding: 0 1rem;
 }
 
 .banner__title {
-  margin: 0;
-  text-align: center;
+  font-size: 2.25rem; /* Clean, readable size */
+  font-weight: 600; /* Bold but not overly heavy */
+  margin-bottom: 1.5rem;
   line-height: 1.2;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .banner__search {
-  width: 80%;
-  margin-top: 20px;
-  position: absolute;
-  margin: auto 0;
-  bottom: -22px;
+  max-width: 600px; /* Constrain width like Airbnb */
+  width: 100%;
+  margin: 0 auto;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 32px; /* Rounded, modern look */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Soft shadow */
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.search-container:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Hover effect */
 }
 
 .banner__input {
-  width: 100%;
-  padding: 0.5rem;
-  font-size: 1.2rem;
+  flex: 1;
   border: none;
-  border-radius: 50px;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
   color: #333;
-  background-color: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: transparent;
   outline: none;
-  transition: all 0.3s ease;
 }
 
 .banner__input::placeholder {
-  color: #888;
+  color: #666;
+  font-weight: 400;
 }
 
-.banner__input:focus {
-  background-color: #fff;
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+.search-button {
+  background: #ff385c; /* Airbnb-like vibrant color */
+  border: none;
+  padding: 0.75rem;
+  border-radius: 50%;
+  margin: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
 
+.search-button:hover {
+  background: #e31c5f; /* Darker shade on hover */
+}
+
+.search-button svg {
+  color: white;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .banner {
     height: 30vh;
   }
 
   .banner__title {
-    font-size: 4rem;
+    font-size: 1.75rem;
+  }
+
+  .search-container {
+    margin: 0 1rem;
   }
 }
 
-@media (max-width: 768px) {
-  .banner {
-    height: 25vh;
+@media (max-width: 480px) {
+  .banner__title {
+    font-size: 1.5rem;
   }
 
-  .banner__title {
-    font-size: 2.5rem;
+  .banner__input {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .search-button {
+    padding: 0.5rem;
   }
 }
