@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { getMe } from '../../services/getMe'; // import getMe function
+import { getMe } from '../../services/getMe';
 
 @Component({
   selector: 'app-user-header',
@@ -10,13 +10,16 @@ import { getMe } from '../../services/getMe'; // import getMe function
   styleUrls: ['./user-header.component.css'],
 })
 export class UserHeaderComponent implements OnInit {
-  user: any = null; // To hold user data
+  user: any = null;
+  loading: boolean = true;
 
   async ngOnInit() {
     try {
       this.user = await getMe();
     } catch (error) {
       console.error('Failed to fetch user data:', error);
+    } finally {
+      this.loading = false;
     }
   }
 
