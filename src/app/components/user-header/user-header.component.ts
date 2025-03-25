@@ -15,7 +15,7 @@ import { Router } from '@angular/router';  // Import Router for navigation after
 })
 export class UserHeaderComponent implements OnInit {
   private readonly endpoint = '/me';
-  private readonly logOutEndpoint = '/auth/log-out';  // Endpoint for logout
+  private readonly logOutEndpoint = '/auth/log-out';
   private readonly defaultAvatar = '/images/avatar.jpg';
   user: any = null;
   isLoading = true;
@@ -27,7 +27,7 @@ export class UserHeaderComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private envService: EnvironmentService,
-    private router: Router  // Inject Router to navigate after logout
+    private router: Router 
   ) {}
 
   ngOnInit(): void {
