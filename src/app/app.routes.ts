@@ -11,6 +11,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { OTPVerificationComponent } from './pages/otp-verification/otp-verification.component';
 import { FavouritePageComponent } from './pages/favourites/favourite.component';
 import {ViewProfileComponent} from './pages/view-profile/view-profile.component';
+import { SearchComponent } from './pages/search/search.component';
 
 export const routes: Routes = [
   {
@@ -23,6 +24,7 @@ export const routes: Routes = [
       { path: 'profile', component: ProfilePageComponent },
       { path: 'ranking', component: RankingPageComponent },
       { path: 'view-profile/:username', component: ViewProfileComponent },
+      { path: 'search', component: SearchComponent },
     ],
   },
   {
