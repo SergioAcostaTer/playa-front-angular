@@ -10,6 +10,7 @@ import { Comment } from '../../models/comment';
 import { MaplibreMapComponent } from "../../maplibre-map/maplibre-map.component";
 
 import { getBeachBySlug } from '../../services/getBeachById';
+import { BeachCommentsComponent } from "../../components/beach-comments/beach-comments.component";
 
 @Component({
   selector: 'app-beach-detail',
@@ -18,7 +19,8 @@ import { getBeachBySlug } from '../../services/getBeachById';
     CommonModule,
     BeachDetailLayoutComponent,
     BeachDescriptionComponent,
-    MaplibreMapComponent
+    MaplibreMapComponent,
+    BeachCommentsComponent
 ],
   templateUrl: './beach-detail.component.html',
   styleUrls: ['./beach-detail.component.css'],
