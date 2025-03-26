@@ -21,12 +21,10 @@
 
 /* ELEMENTOS */
 .category__image {
-  width: 100%; /* Ocupa el ancho disponible */
-  max-width: 80px; /* Máximo por defecto */
-  height: auto; /* Respeta las proporciones naturales */
-  max-height: 80px; /* Límite superior para evitar que crezca demasiado */
-  min-height: 20px; /* Límite inferior */
-  object-fit: contain; /* Muestra la imagen completa, sin recortar */
+  width: 100%; /* Fills the container's width */
+  height: 100%; /* Fills the container's height */
+  margin-bottom: 0.5rem; /* Keeps your margin */
+  object-fit: fill;
 }
 
 /* Texto */

@@ -6,7 +6,7 @@
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  gap: 1rem; /* Espacio entre ítems */
+  gap: 1rem;
   align-items: center;
   justify-content: flex-start;
   height: 150px; /* Altura base */
