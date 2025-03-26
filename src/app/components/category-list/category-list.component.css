@@ -73,3 +73,9 @@
   text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es largo */
   white-space: nowrap; /* Fuerza el texto a una sola línea */
 }
+
+@media (max-width: 730px) {
+  .category-list {
+    max-height: 50px;
+  }
+}

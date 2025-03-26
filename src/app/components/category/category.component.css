@@ -1,33 +1,86 @@
 /* BLOQUE PRINCIPAL */
+.category-list {
+  width: 100%;
+  margin-top: 1.25rem;
+  padding: 0;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ELEMENTOS */
+.category-list__item {
+  flex: 0 0 5rem; /* Tamaño fijo de 5rem */
+  scroll-snap-align: center;
+  width: 5rem; /* Refuerza el ancho fijo */
+}
+
+/* MODIFICADOR */
+.category-list--empty {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--text-color, #333);
+  padding: 2rem;
+}
+
+/* Ocultar scrollbar en navegadores modernos */
+.category-list {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.category-list::-webkit-scrollbar {
+  display: none;
+}
+
+/* BLOQUE PRINCIPAL */
 .category {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   cursor: pointer;
-  min-width: 5rem;
-  max-width: 5rem;
-  scroll-snap-align: center;
+  width: 5rem; /* Ancho fijo para coincidir con category-list__item */
   border-bottom: 2px solid transparent;
   padding: 1.25rem 0.3125rem 0.625rem;
   transition: border-bottom 0.2s ease-in-out, transform 0.3s ease-in-out;
+  box-sizing: border-box; /* Incluye padding en el ancho */
+  height: 100%; /* Asegura que tome la altura disponible del padre */
 }
 
+/* Efecto hover */
 .category:hover {
   border-bottom-color: var(--primary-color, #007bff);
 }
 
+/* ELEMENTOS */
 .category__image {
-  width: 80px;
-  height: 80px;
-  max-height: 100%;
+  max-width: 80px;
+  width: 100%;
+  height: 100%; 
   margin-bottom: 0.5rem;
   object-fit: cover;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
-/* ELEMENTOS */
 
 .category__text {
   font-size: 0.8rem;
   margin: 0;
   color: var(--text-color, #333);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Media query */
+@media (max-width: 730px) {
+  .category-list {
+    max-height: 50px;
+  }
 }
