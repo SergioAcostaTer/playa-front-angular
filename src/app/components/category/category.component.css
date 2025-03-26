@@ -18,11 +18,14 @@
 }
 
 .category__image {
-  width: 80px;
-  height: 80px;
-  max-height: 100%;
-  margin-bottom: 0.5rem;
-  object-fit: cover;
+  width: 100%; /* Fills the container's width */
+  height: 100%; /* Fills the container's height */
+  max-width: 80px; /* Maximum width of 80px */
+  max-height: 80px; /* Maximum height of 80px */
+  min-width: 20px; /* Minimum width of 20px */
+  min-height: 20px; /* Minimum height of 20px */
+  margin-bottom: 0.5rem; /* Keeps your margin */
+  object-fit: cover; /* Ensures the image covers the space without distortion */
 }
 /* ELEMENTOS */
 

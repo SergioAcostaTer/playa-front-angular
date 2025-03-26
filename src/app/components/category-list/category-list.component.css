@@ -13,7 +13,7 @@
 
 /* ELEMENTOS */
 .category-list__item {
-  flex: 0 0 5rem; /* Tamaño fijo de 5rem */
+  flex: 0 0 5rem; /* Tamaño fijo de 5rem por defecto */
   scroll-snap-align: center;
   width: 5rem; /* Refuerza el ancho fijo */
 }
@@ -44,7 +44,7 @@
   align-items: center;
   text-align: center;
   cursor: pointer;
-  width: 5rem; /* Reemplaza min-width y max-width por un valor fijo */
+  width: 5rem; /* Tamaño fijo por defecto */
   scroll-snap-align: center;
   border-bottom: 2px solid transparent;
   padding: 1.25rem 0.3125rem 0.625rem;
@@ -58,7 +58,7 @@
 
 /* ELEMENTOS */
 .category__image {
-  width: 100%; /* Ocupa todo el ancho de .category (5rem) */
+  width: 100%; /* Ocupa todo el ancho de .category */
   height: auto;
   max-height: 100%; /* Limita la altura si el contenedor tiene una altura definida */
   margin-bottom: 0.5rem;
@@ -72,4 +72,46 @@
   overflow: hidden; /* Evita que el texto se desborde */
   text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es largo */
   white-space: nowrap; /* Fuerza el texto a una sola línea */
+}
+
+/* Media query para pantallas pequeñas (≤ 768px) */
+@media (max-width: 768px) {
+  .category-list__item {
+    flex: 0 0 3.5rem; /* Reduce el tamaño a 3.5rem */
+    width: 3.5rem;
+  }
+
+  .category {
+    width: 3.5rem; /* Ajusta el ancho de .category */
+    padding: 0.75rem 0.25rem 0.5rem; /* Reduce el padding */
+  }
+
+  .category__image {
+    max-height: 80px; /* Limita la altura de la imagen */
+  }
+
+  .category__text {
+    font-size: 0.7rem; /* Reduce el tamaño del texto */
+  }
+}
+
+/* Media query para pantallas medianas (768px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .category-list__item {
+    flex: 0 0 4rem; /* Tamaño intermedio de 4rem */
+    width: 4rem;
+  }
+
+  .category {
+    width: 4rem; /* Ajusta el ancho de .category */
+    padding: 1rem 0.25rem 0.5rem; /* Padding ajustado */
+  }
+
+  .category__image {
+    max-height: 100px; /* Altura intermedia */
+  }
+
+  .category__text {
+    font-size: 0.75rem; /* Tamaño de texto intermedio */
+  }
 }

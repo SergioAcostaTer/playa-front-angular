@@ -60,32 +60,64 @@
 @media (max-width: 768px) {
   .comment-card {
     flex-direction: column; /* Apila los elementos verticalmente */
-    align-items: stretch; /* Asegura que los elementos ocupen todo el ancho */
+    align-items: stretch;
   }
 
   .beach-info {
-    flex-direction: column; /* Foto arriba, nombre debajo */
-    align-items: center; /* Centra la foto y el nombre */
-    margin-right: 0; /* Elimina el margen derecho */
-    margin-bottom: 10px; /* Añade espacio debajo */
-  }
-
-  .beach-cover {
-    width: 80px; /* Reduce el tamaño de la imagen en pantallas pequeñas */
-    height: 80px;
+    display: flex;
+    flex-direction: column; /* Nombre arriba, foto debajo */
+    align-items: flex-start; /* Alinea a la izquierda */
+    margin-right: 10px; /* Espacio a la derecha para separar de .comment-content */
+    margin-bottom: 10px; /* Espacio debajo */
+    width: auto; /* Deja que el ancho se ajuste al contenido */
   }
 
   .beach-name {
-    margin: 10px 0 0 0; /* Ajusta el margen para centrarlo debajo de la foto */
-    text-align: center; /* Centra el texto */
-    max-width: 100%; /* Permite que ocupe todo el ancho disponible */
+    order: -1; /* Coloca el nombre antes de la foto */
+    margin: 0 0 10px 0; /* Sin margen lateral, espacio solo debajo */
+    max-width: 100%; /* Permite que el nombre use todo el ancho disponible */
+    text-align: left; /* Alineado a la izquierda */
+  }
+
+  .beach-cover {
+    width: 80px; /* Tamaño reducido para pantallas pequeñas */
+    height: 80px;
   }
 
   .comment-content {
-    text-align: left; /* Mantiene el texto alineado a la izquierda */
+    display: flex;
+    flex-direction: column; /* Organiza el contenido verticalmente */
+    flex: 1; /* Ocupa el espacio restante */
   }
 
-  .rating, .date {
-    text-align: left; /* Alinea rating y fecha a la izquierda */
+  .comment-text {
+    margin: 0 0 10px 0; /* Espacio debajo del texto */
+    text-align: left; /* Alineado a la izquierda */
+  }
+
+  .rating {
+    order: 1; /* Coloca el rating después del texto */
+    margin: 0; /* Sin márgenes adicionales */
+    text-align: left;
+  }
+
+  .date {
+    order: 2; /* Coloca la fecha al final */
+    margin: 5px 0 0 0; /* Espacio solo arriba */
+    text-align: left;
+  }
+
+  /* Ajuste para mantener foto a la izquierda y contenido a la derecha */
+  .comment-card {
+    flex-direction: row; /* Vuelve a flex horizontal para foto y contenido */
+    flex-wrap: wrap; /* Permite que los elementos se ajusten */
+  }
+
+  .beach-info {
+    flex: 0 0 auto; /* No crece, usa el tamaño de la foto */
+  }
+
+  .comment-content {
+    flex: 1; /* Ocupa el resto del espacio a la derecha */
   }
 }
