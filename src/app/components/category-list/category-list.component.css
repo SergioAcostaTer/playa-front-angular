@@ -6,16 +6,18 @@
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  gap: 0.5rem;
+  gap: 1rem; /* Espacio entre ítems */
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  height: 150px; /* Altura base */
 }
 
 /* ELEMENTOS */
 .category-list__item {
-  flex: 0 0 5rem; /* Tamaño fijo de 5rem */
+  flex: 0 0 5rem; /* Tamaño fijo por defecto */
   scroll-snap-align: center;
-  width: 5rem; /* Refuerza el ancho fijo */
+  width: 5rem;
+  height: 100%; /* Hereda la altura de .category-list */
 }
 
 /* MODIFICADOR */
@@ -37,45 +39,60 @@
   display: none;
 }
 
-/* BLOQUE PRINCIPAL */
-.category {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  cursor: pointer;
-  width: 5rem; /* Reemplaza min-width y max-width por un valor fijo */
-  scroll-snap-align: center;
-  border-bottom: 2px solid transparent;
-  padding: 1.25rem 0.3125rem 0.625rem;
-  transition: border-bottom 0.2s ease-in-out, transform 0.3s ease-in-out;
-  box-sizing: border-box; /* Incluye padding en el ancho */
-}
-
-.category:hover {
-  border-bottom-color: var(--primary-color, #007bff);
-}
-
-/* ELEMENTOS */
-.category__image {
-  width: 100%; /* Ocupa todo el ancho de .category (5rem) */
-  height: auto;
-  max-height: 100%; /* Limita la altura si el contenedor tiene una altura definida */
-  margin-bottom: 0.5rem;
-  object-fit: cover;
-}
-
-.category__text {
-  font-size: 0.8rem;
-  margin: 0;
-  color: var(--text-color, #333);
-  overflow: hidden; /* Evita que el texto se desborde */
-  text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es largo */
-  white-space: nowrap; /* Fuerza el texto a una sola línea */
-}
-
-@media (max-width: 730px) {
+/* Media query para móviles (≤ 768px) */
+@media (max-width: 768px) {
   .category-list {
-    max-height: 50px;
+    height: 100px; /* Reducimos la altura del carrusel */
+    gap: 0.75rem; /* Gap más pequeño */
+  }
+
+  .category-list__item {
+    flex: 0 0 3rem; /* Reducimos el ancho */
+    width: 3rem;
+  }
+
+  .category {
+    width: 3rem;
+    padding: 0.75rem 0.25rem 0.5rem; /* Reducimos padding */
+    gap: 0.3rem; /* Gap más pequeño */
+  }
+
+  .category__image {
+    max-width: 50px; /* Imagen más pequeña */
+    max-height: 50px; /* Alt部分: Altura máxima reducida */
+    height: auto; /* Respeta proporciones */
+  }
+
+  .category__text {
+    font-size: 0.6rem; /* Texto más pequeño */
+  }
+}
+
+/* Media query para tablets (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .category-list {
+    height: 120px; /* Altura intermedia */
+    gap: 0.85rem; /* Gap intermedio */
+  }
+
+  .category-list__item {
+    flex: 0 0 4rem; /* Tamaño intermedio */
+    width: 4rem;
+  }
+
+  .category {
+    width: 4rem;
+    padding: 1rem 0.25rem 0.5rem; /* Padding intermedio */
+    gap: 0.4rem; /* Gap intermedio */
+  }
+
+  .category__image {
+    max-width: 60px; /* Imagen intermedia */
+    max-height: 60px; /* Altura máxima intermedia */
+    height: auto; /* Respeta proporciones */
+  }
+
+  .category__text {
+    font-size: 0.7rem; /* Texto intermedio */
   }
 }
