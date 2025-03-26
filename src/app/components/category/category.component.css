@@ -5,34 +5,39 @@
   align-items: center;
   text-align: center;
   cursor: pointer;
-  width: 5rem; /* Ancho por defecto */
-  height: 100%; /* Toma la altura del contenedor padre */
+  max-width: 10rem;
+  scroll-snap-align: center;
   border-bottom: 2px solid transparent;
-  padding: 1.25rem 0.3125rem 0.625rem;
+  padding: 1.25em 0.3125em 0.625em;
   transition: border-bottom 0.2s ease-in-out, transform 0.3s ease-in-out;
-  box-sizing: border-box;
-  gap: 0.5rem; /* Espacio entre imagen y texto */
 }
 
-/* Efecto hover */
 .category:hover {
   border-bottom-color: var(--primary-color, #007bff);
 }
 
-/* ELEMENTOS */
 .category__image {
   width: 100%; /* Fills the container's width */
   height: 100%; /* Fills the container's height */
   margin-bottom: 0.5rem; /* Keeps your margin */
   object-fit: fill;
 }
+/* ELEMENTOS */
 
-/* Texto */
 .category__text {
-  font-size: 0.8rem; /* Tamaño por defecto */
+  font-size: 0.75em;
   margin: 0;
   color: var(--text-color, #333);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+}
+
+@media (max-width: 769px) {
+  .category {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 570px) {
+  .category {
+    font-size: 12px;
+  }
 }
