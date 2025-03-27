@@ -29,13 +29,15 @@ export class SearchComponent implements OnInit {
   loading = false;
   searchQuery: string = '';
   islandFilter: string = '';
-  hasLifeguard: boolean = false;
-  hasSand: boolean = false;
-  hasRock: boolean = false;
-  hasShowers: boolean = false;
-  hasToilets: boolean = false;
-  hasFootShowers: boolean = false;
-  private searchQuerySubject = new Subject<any>();
+  filters = {
+    hasLifeguard: false,
+    hasSand: false,
+    hasRock: false,
+    hasShowers: false,
+    hasToilets: false,
+    hasFootShowers: false
+  };
+  private searchSubject = new Subject<{ query: string, island: string, filters: any }>();
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
@@ -46,11 +48,11 @@ export class SearchComponent implements OnInit {
       console.error('Error fetching categories:', error);
     });
 
-    this.searchQuerySubject.pipe(
+    this.searchSubject.pipe(
       debounceTime(500),
-      switchMap(({ query, filters }) => {
+      switchMap(({ query, island, filters }) => {
         this.loading = true;
-        return searchBeaches(query, filters);
+        return searchBeaches(query, { island, ...filters });
       })
     ).subscribe({
       next: (beaches) => {
@@ -68,53 +70,48 @@ export class SearchComponent implements OnInit {
       const island = params['island'] || '';
       this.searchQuery = query;
       this.islandFilter = island;
-      this.searchQuerySubject.next({ 
-        query, 
-        filters: this.getFilters()
-      });
+      this.triggerSearch();
     });
   }
 
-  getFilters() {
-    return {
+  triggerSearch() {
+    this.searchSubject.next({
+      query: this.searchQuery,
       island: this.islandFilter,
-      hasLifeguard: this.hasLifeguard,
-      hasSand: this.hasSand,
-      hasRock: this.hasRock,
-      hasShowers: this.hasShowers,
-      hasToilets: this.hasToilets,
-      hasFootShowers: this.hasFootShowers
-    };
+      filters: this.filters
+    });
   }
 
-  updateQueryParam(query: string, filters: any) {
+  updateQueryParams() {
     const queryParams: { [key: string]: string } = {};
-    if (query.trim()) queryParams['q'] = query.trim();
-    if (filters.island.trim()) queryParams['island'] = filters.island.trim();
+    if (this.searchQuery.trim()) queryParams['q'] = this.searchQuery.trim();
+    if (this.islandFilter.trim()) queryParams['island'] = this.islandFilter.trim();
+    else delete queryParams['island'];
 
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams,
       queryParamsHandling: 'merge',
     });
-    this.searchQuerySubject.next({ query, filters });
-    this.loading = true;
   }
 
   onSearchInputChange(event: any) {
-    const query = event.target.value;
-    this.searchQuery = query;
-    this.updateQueryParam(query, this.getFilters());
+    this.searchQuery = event.target.value;
+    this.updateQueryParams();
+    this.triggerSearch();
   }
 
   onFiltersChange(filters: any) {
     this.islandFilter = filters.island;
-    this.hasLifeguard = filters.hasLifeguard;
-    this.hasSand = filters.hasSand;
-    this.hasRock = filters.hasRock;
-    this.hasShowers = filters.hasShowers;
-    this.hasToilets = filters.hasToilets;
-    this.hasFootShowers = filters.hasFootShowers;
-    this.updateQueryParam(this.searchQuery, filters);
+    this.filters = {
+      hasLifeguard: filters.hasLifeguard,
+      hasSand: filters.hasSand,
+      hasRock: filters.hasRock,
+      hasShowers: filters.hasShowers,
+      hasToilets: filters.hasToilets,
+      hasFootShowers: filters.hasFootShowers
+    };
+    this.updateQueryParams();
+    this.triggerSearch();
   }
 }

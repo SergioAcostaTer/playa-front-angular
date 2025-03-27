@@ -6,8 +6,8 @@
         <h4 class="filter-panel__section-title">Lugar</h4>
         <select 
             class="filter-panel__select"
-            [value]="selectedIsland"
-            (change)="onIslandChange($event)"
+            [ngModel]="filters.island"
+            (ngModelChange)="onIslandChange($event)"
         >
             <option value="">Selecciona tu isla</option>
             <option 
@@ -24,42 +24,42 @@
         <label class="filter-panel__checkbox">
             <input 
                 type="checkbox" 
-                [(ngModel)]="hasLifeguard"
+                [(ngModel)]="filters.hasLifeguard"
                 (change)="onFilterChange()"
             > Socorrista
         </label>
         <label class="filter-panel__checkbox">
             <input 
                 type="checkbox" 
-                [(ngModel)]="hasSand"
+                [(ngModel)]="filters.hasSand"
                 (change)="onFilterChange()"
             > Arena
         </label>
         <label class="filter-panel__checkbox">
             <input 
                 type="checkbox" 
-                [(ngModel)]="hasRock"
+                [(ngModel)]="filters.hasRock"
                 (change)="onFilterChange()"
             > Rocas
         </label>
         <label class="filter-panel__checkbox">
             <input 
                 type="checkbox" 
-                [(ngModel)]="hasShowers"
+                [(ngModel)]="filters.hasShowers"
                 (change)="onFilterChange()"
             > Duchas
         </label>
         <label class="filter-panel__checkbox">
             <input 
                 type="checkbox" 
-                [(ngModel)]="hasToilets"
+                [(ngModel)]="filters.hasToilets"
                 (change)="onFilterChange()"
             > Baños
         </label>
         <label class="filter-panel__checkbox">
             <input 
                 type="checkbox" 
-                [(ngModel)]="hasFootShowers"
+                [(ngModel)]="filters.hasFootShowers"
                 (change)="onFilterChange()"
             > Lavapiés
         </label>

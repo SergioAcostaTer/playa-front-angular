@@ -16,32 +16,30 @@ export class FilterPanelComponent {
   @Input() islands: Category[] = [];
   @Output() filtersChange = new EventEmitter<any>();
 
-  // Individual filter properties
-  hasLifeguard: boolean = false;
-  hasSand: boolean = false;
-  hasRock: boolean = false;
-  hasShowers: boolean = false;
-  hasToilets: boolean = false;
-  hasFootShowers: boolean = false;
+  filters = {
+    island: '',
+    hasLifeguard: false,
+    hasSand: false,
+    hasRock: false,
+    hasShowers: false,
+    hasToilets: false,
+    hasFootShowers: false
+  };
+
+  ngOnChanges() {
+    this.filters.island = this.selectedIsland;
+  }
 
   trackById(index: number, category: Category): string {
     return category.id;
   }
 
   onFilterChange() {
-    this.filtersChange.emit({
-      island: this.selectedIsland,
-      hasLifeguard: this.hasLifeguard,
-      hasSand: this.hasSand,
-      hasRock: this.hasRock,
-      hasShowers: this.hasShowers,
-      hasToilets: this.hasToilets,
-      hasFootShowers: this.hasFootShowers
-    });
+    this.filtersChange.emit({ ...this.filters });
   }
 
-  onIslandChange(event: any) {
-    this.selectedIsland = event.target.value;
+  onIslandChange(value: string) {
+    this.filters.island = value;
     this.onFilterChange();
   }
 }
