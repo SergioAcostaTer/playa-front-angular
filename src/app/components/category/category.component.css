@@ -6,6 +6,7 @@
   text-align: center;
   cursor: pointer;
   max-width: 10rem;
+  font-size: 15px;
   scroll-snap-align: center;
   border-bottom: 2px solid transparent;
   padding: 1.25em 0.3125em 0.625em;
