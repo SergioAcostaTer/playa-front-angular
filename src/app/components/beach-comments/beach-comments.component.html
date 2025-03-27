@@ -1,31 +1,32 @@
 <div class="beach-comments">
-    <h3 class="beach-comments__title">Comentarios</h3>
-    <div class="beach-comments__list">
-      <app-comment-item *ngFor="let comment of comments" [comment]="comment"></app-comment-item>
-    </div>
+  <h3 class="beach-comments__title">Comentarios</h3>
+  <div class="beach-comments__list">
+    <app-comment-item *ngFor="let comment of comments" [comment]="comment"></app-comment-item>
+  </div>
 
-    <div class="beach-comments__add">
-        <h4 class="beach-comments__add-title">Escribe un comentario</h4>
-        <div class="beach-comments__form">
-        <select
-            class="beach-comments__select"
-            [(ngModel)]="newCommentRating"
-        >
-            <option *ngFor="let rating of [1, 2, 3, 4, 5]" [value]="rating">{{ rating }} ★</option>
-        </select>
-        <textarea
-            class="beach-comments__textarea" maxlength="160"
-            [(ngModel)]="newCommentText"
-            placeholder="Tu comentario..."
-            required
-        ></textarea>
-        <button
-            class="beach-comments__submit"
-            (click)="onAddComment()"
-            [disabled]="!newCommentText.trim()"
-        >
-            Enviar comentario
-        </button>
-        </div>
+  <div class="beach-comments__add">
+    <h4 class="beach-comments__add-title">Escribe un comentario</h4>
+    <div class="beach-comments__form">
+      <select
+        class="beach-comments__select"
+        [(ngModel)]="newCommentRating"
+      >
+        <option *ngFor="let rating of [1, 2, 3, 4, 5]" [value]="rating">{{ rating }} ★</option>
+      </select>
+      <textarea
+        class="beach-comments__textarea"
+        maxlength="160"
+        [(ngModel)]="newCommentText"
+        placeholder="Tu comentario..."
+        required
+      ></textarea>
+      <button
+        class="beach-comments__submit"
+        (click)="onAddComment()"
+        [disabled]="!newCommentText.trim()"
+      >
+        Enviar comentario
+      </button>
     </div>
+  </div>
 </div>

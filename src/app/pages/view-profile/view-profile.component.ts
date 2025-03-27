@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { CommentOnProfileComponent } from '../../components/comment-on-profile/comment-on-profile.component';
 import { ActivatedRoute } from '@angular/router';
+import { CommentOnProfileComponent } from '../../components/comment-on-profile/comment-on-profile.component';
+import { GetCommentsService } from '../../services/getComments.service'; // Importamos el servicio
+import { Comment } from '../../models/comment'; // Asegúrate de que la ruta sea correcta
 
 interface User {
   id: number;
@@ -28,15 +30,19 @@ interface UserResponse {
   styleUrls: ['./view-profile.component.css']
 })
 export class ViewProfileComponent implements OnInit {
-  user: User | null = null; // Cambiado de undefined a null para mejor manejo en el HTML
+  user: User | null = null;
+  comments: Comment[] = [];
+  isLoadingComments = true;
 
   constructor(
     private http: HttpClient,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private commentService: GetCommentsService // Inyectamos el servicio
   ) {}
 
   ngOnInit(): void {
     this.loadUserData();
+    this.loadComments();
   }
 
   loadUserData(): void {
@@ -63,9 +69,27 @@ export class ViewProfileComponent implements OnInit {
       error: (err) => {
         console.error('Failed to fetch user data:', err);
         this.user = null;
+      }
+    });
+  }
+
+  loadComments(): void {
+    const username = this.route.snapshot.paramMap.get('username');
+    if (!username) {
+      console.error('No username provided for filtering comments');
+      this.isLoadingComments = false;
+      return;
+    }
+
+    this.commentService.getComments().subscribe({
+      next: (comments) => {
+        this.comments = comments.filter(comment => comment.user.username === username);
+        this.isLoadingComments = false;
       },
-      complete: () => {
-        // console.log('User data fetch completed, user:', this.user);
+      error: (err) => {
+        console.error('Error loading comments:', err);
+        this.comments = [];
+        this.isLoadingComments = false;
       }
     });
   }

@@ -5,19 +5,19 @@
       "id": 13,
       "name": "pepe",
       "username": "pepito",
-      "avatarUrl": "images/avatar.jpg"
+      "avatarUrl": "/images/avatar.jpg"
     },
     "beach": {
-      "id": "1",
-      "name": "Caleta de Fuste",
-      "island": "Fuerteventura",
-      "coverUrl": "https://api.playea.eu/storage/public/beaches/1.webp"
+      "id": "181",
+      "name": "Barranco de las Pilas",
+      "island": "Lanzarote",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/181.webp"
     },
     "comment": {
-      "text": "¡Una playa perfecta para familias! El agua es súper tranquila y hay muchas comodidades como duchas y alquiler de sombrillas.",
-      "rating": 4.5,
-      "createdAt": "2025-03-22T10:30:00.000Z",
-      "updatedAt": "2025-03-22T10:30:00.000Z"
+      "text": "Una playa aislada con arena oscura, perfecta para desconectar. Eso sí, llegar a pie es complicado.",
+      "rating": 3.8,
+      "createdAt": "2025-03-22T09:00:00.000Z",
+      "updatedAt": "2025-03-22T09:00:00.000Z"
     }
   },
   {
@@ -26,19 +26,19 @@
       "id": 14,
       "name": "Ana",
       "username": "anita",
-      "avatarUrl": "images/ana.jpg"
+      "avatarUrl": "/images/avatar.jpg"
     },
     "beach": {
-      "id": "1",
-      "name": "Caleta de Fuste",
-      "island": "Fuerteventura",
-      "coverUrl": "https://api.playea.eu/storage/public/beaches/1.webp"
+      "id": "169",
+      "name": "Barranco del Burro",
+      "island": "Lanzarote",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/169.webp"
     },
     "comment": {
-      "text": "Me encantó lo fácil que es llegar y la bandera azul. Ideal para un día relajado.",
-      "rating": 4.7,
-      "createdAt": "2025-03-23T12:00:00.000Z",
-      "updatedAt": "2025-03-23T12:00:00.000Z"
+      "text": "El mar está bravo y el viento no ayuda, pero la arena oscura tiene su encanto.",
+      "rating": 3.5,
+      "createdAt": "2025-03-22T10:15:00.000Z",
+      "updatedAt": "2025-03-22T10:15:00.000Z"
     }
   },
   {
@@ -47,19 +47,19 @@
       "id": 15,
       "name": "Carlos",
       "username": "carlitos",
-      "avatarUrl": "images/carlos.jpg"
+      "avatarUrl": "/images/avatar.jpg"
     },
     "beach": {
-      "id": "1",
-      "name": "Caleta de Fuste",
-      "island": "Fuerteventura",
-      "coverUrl": "https://api.playea.eu/storage/public/beaches/1.webp"
+      "id": "196",
+      "name": "Blanca",
+      "island": "Lanzarote",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/196.webp"
     },
     "comment": {
-      "text": "El agua está genial para nadar, pero en temporada alta hay demasiada gente.",
-      "rating": 4.0,
-      "createdAt": "2025-03-24T15:15:00.000Z",
-      "updatedAt": "2025-03-24T15:15:00.000Z"
+      "text": "Playa urbana con bandera azul, agua tranquila y acceso para silla de ruedas. ¡Muy recomendable!",
+      "rating": 4.6,
+      "createdAt": "2025-03-22T11:30:00.000Z",
+      "updatedAt": "2025-03-22T11:30:00.000Z"
     }
   },
   {
@@ -68,62 +68,61 @@
       "id": 16,
       "name": "María",
       "username": "maria123",
-      "avatarUrl": "images/maria.jpg"
+      "avatarUrl": "/images/avatar.jpg"
     },
     "beach": {
-      "id": "1",
-      "name": "Caleta de Fuste",
-      "island": "Fuerteventura",
-      "coverUrl": "https://api.playea.eu/storage/public/beaches/1.webp"
+      "id": "253",
+      "name": "Boca Barranco",
+      "island": "Gran Canaria",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/253.webp"
     },
     "comment": {
-      "text": "Las duchas y los alquileres son un gran plus. ¡Volvería sin duda!",
-      "rating": 4.8,
-      "createdAt": "2025-03-25T09:30:00.000Z",
-      "updatedAt": "2025-03-25T09:30:00.000Z"
+      "text": "El mar está fuerte, pero la arena dorada es preciosa. Ideal para los que buscan aventura.",
+      "rating": 3.9,
+      "createdAt": "2025-03-22T13:00:00.000Z",
+      "updatedAt": "2025-03-22T13:00:00.000Z"
     }
   },
-
   {
     "commentId": 5,
     "user": {
-      "id": 13,
-      "name": "pepe",
-      "username": "pepito",
-      "avatarUrl": "images/avatar.jpg"
+      "id": 17,
+      "name": "Luis",
+      "username": "luisin",
+      "avatarUrl": "/images/avatar.jpg"
     },
     "beach": {
-      "id": "53",
-      "name": "Cofete",
-      "island": "Fuerteventura",
-      "coverUrl": "https://api.playea.eu/storage/public/beaches/53.webp"
+      "id": "511",
+      "name": "Bufadero",
+      "island": "Tenerife",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/511.webp"
     },
     "comment": {
-      "text": "Pequeña pero bonita, con arena dorada. Eso sí, no hay muchas comodidades, así que hay que ir preparado.",
-      "rating": 3.5,
-      "createdAt": "2025-03-24T09:15:00.000Z",
-      "updatedAt": "2025-03-24T09:15:00.000Z"
+      "text": "Zona rocosa y urbana, pero peligrosa para bañarse. Mejor para fotos que para nadar.",
+      "rating": 3.2,
+      "createdAt": "2025-03-22T14:45:00.000Z",
+      "updatedAt": "2025-03-22T14:45:00.000Z"
     }
   },
   {
     "commentId": 6,
     "user": {
-      "id": 17,
-      "name": "Luis",
-      "username": "luisin",
-      "avatarUrl": "images/luis.jpg"
+      "id": 13,
+      "name": "pepe",
+      "username": "pepito",
+      "avatarUrl": "/images/avatar.jpg"
     },
     "beach": {
-      "id": "53",
-      "name": "Cofete",
-      "island": "Fuerteventura",
-      "coverUrl": "https://api.playea.eu/storage/public/beaches/53.webp"
+      "id": "271",
+      "name": "Cala Cañada del Canario",
+      "island": "Gran Canaria",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/271.webp"
     },
     "comment": {
-      "text": "Un lugar tranquilo para desconectar, aunque el acceso no es el mejor.",
-      "rating": 3.8,
-      "createdAt": "2025-03-25T11:45:00.000Z",
-      "updatedAt": "2025-03-25T11:45:00.000Z"
+      "text": "Lugar aislado y rocoso, difícil de llegar pero con vistas espectaculares.",
+      "rating": 3.7,
+      "createdAt": "2025-03-23T08:30:00.000Z",
+      "updatedAt": "2025-03-23T08:30:00.000Z"
     }
   },
   {
@@ -132,83 +131,82 @@
       "id": 14,
       "name": "Ana",
       "username": "anita",
-      "avatarUrl": "images/ana.jpg"
+      "avatarUrl": "/images/avatar.jpg"
     },
     "beach": {
-      "id": "53",
-      "name": "Cofete",
-      "island": "Fuerteventura",
-      "coverUrl": "https://api.playea.eu/storage/public/beaches/53.webp"
+      "id": "367",
+      "name": "Cala de Castellano",
+      "island": "Gran Canaria",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/367.webp"
     },
     "comment": {
-      "text": "La arena dorada es preciosa, pero me hubiera gustado que tuviera duchas.",
-      "rating": 3.6,
-      "createdAt": "2025-03-26T14:20:00.000Z",
-      "updatedAt": "2025-03-26T14:20:00.000Z"
+      "text": "Prohibido bañarse y ventoso, pero la zona urbana tiene su encanto.",
+      "rating": 3.4,
+      "createdAt": "2025-03-23T10:00:00.000Z",
+      "updatedAt": "2025-03-23T10:00:00.000Z"
     }
   },
-
   {
     "commentId": 8,
     "user": {
-      "id": 13,
-      "name": "pepe",
-      "username": "pepito",
-      "avatarUrl": "images/avatar.jpg"
+      "id": 15,
+      "name": "Carlos",
+      "username": "carlitos",
+      "avatarUrl": "/images/avatar.jpg"
     },
     "beach": {
-      "id": "375",
-      "name": "Charca de los Pérez",
-      "island": "Gran Canaria",
-      "coverUrl": "https://api.playea.eu/storage/public/beaches/375.webp"
+      "id": "184",
+      "name": "Caleta Larga",
+      "island": "Lanzarote",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/184.webp"
     },
     "comment": {
-      "text": "Me encantó la tranquilidad y la arena oscura, pero el viento puede ser molesto algunos días.",
+      "text": "Agua calma y arena oscura, pero el acceso difícil lo hace especial.",
       "rating": 4.0,
-      "createdAt": "2025-03-25T14:20:00.000Z",
-      "updatedAt": "2025-03-25T14:20:00.000Z"
+      "createdAt": "2025-03-23T11:15:00.000Z",
+      "updatedAt": "2025-03-23T11:15:00.000Z"
     }
   },
   {
     "commentId": 9,
     "user": {
-      "id": 15,
-      "name": "Carlos",
-      "username": "carlitos",
-      "avatarUrl": "images/carlos.jpg"
+      "id": 16,
+      "name": "María",
+      "username": "maria123",
+      "avatarUrl": "/images/avatar.jpg"
     },
     "beach": {
-      "id": "375",
-      "name": "Charca de los Pérez",
+      "id": "249",
+      "name": "Caleta de Abajo",
       "island": "Gran Canaria",
-      "coverUrl": "https://api.playea.eu/storage/public/beaches/375.webp"
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/249.webp"
     },
     "comment": {
-      "text": "Las olas son perfectas para un chapuzón rápido. ¡La arena oscura es única!",
-      "rating": 4.2,
-      "createdAt": "2025-03-26T10:00:00.000Z",
-      "updatedAt": "2025-03-26T10:00:00.000Z"
+      "text": "Mar bravo y ventoso, pero las rocas le dan un toque único.",
+      "rating": 3.8,
+      "createdAt": "2025-03-23T12:30:00.000Z",
+      "updatedAt": "2025-03-23T12:30:00.000Z"
     }
   },
   {
     "commentId": 10,
     "user": {
-      "id": 16,
-      "name": "María",
-      "username": "maria123",
-      "avatarUrl": "images/maria.jpg"
+      "id": 17,
+      "name": "Luis",
+      "username": "luisin",
+      "avatarUrl": "/images/avatar.jpg"
     },
     "beach": {
-      "id": "375",
-      "name": "Charca de los Pérez",
-      "island": "Gran Canaria",
-      "coverUrl": "https://api.playea.eu/storage/public/beaches/375.webp"
+      "id": "148",
+      "name": "Caleta de Arriba",
+      "island": "Lanzarote",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/148.webp"
     },
     "comment": {
-      "text": "Muy tranquila, pero el viento me arruinó un poco el día. Sin servicios cerca.",
-      "rating": 3.7,
-      "createdAt": "2025-03-27T13:30:00.000Z",
-      "updatedAt": "2025-03-27T13:30:00.000Z"
+      "text": "Arena blanca y agua tranquila, aunque el viento puede ser un inconveniente.",
+      "rating": 4.1,
+      "createdAt": "2025-03-23T14:00:00.000Z",
+      "updatedAt": "2025-03-23T14:00:00.000Z"
     }
   },
   {
@@ -217,7 +215,427 @@
       "id": 13,
       "name": "pepe",
       "username": "pepito",
-      "avatarUrl": "images/avatar.jpg"
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "14",
+      "name": "Caleta de Beatriz",
+      "island": "Fuerteventura",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/14.webp"
+    },
+    "comment": {
+      "text": "Playa tranquila con arena blanca, perfecta para un día relajado.",
+      "rating": 4.2,
+      "createdAt": "2025-03-24T09:00:00.000Z",
+      "updatedAt": "2025-03-24T09:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 12,
+    "user": {
+      "id": 14,
+      "name": "Ana",
+      "username": "anita",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "1",
+      "name": "Caleta de Fuste",
+      "island": "Fuerteventura",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/1.webp"
+    },
+    "comment": {
+      "text": "Ideal para familias, con agua calma y muchas comodidades. ¡Bandera azul bien merecida!",
+      "rating": 4.7,
+      "createdAt": "2025-03-24T10:30:00.000Z",
+      "updatedAt": "2025-03-24T10:30:00.000Z"
+    }
+  },
+  {
+    "commentId": 13,
+    "user": {
+      "id": 15,
+      "name": "Carlos",
+      "username": "carlitos",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "101",
+      "name": "Caleta de José María",
+      "island": "Lanzarote",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/101.webp"
+    },
+    "comment": {
+      "text": "Olas moderadas y arena blanca, un sitio aislado pero bonito.",
+      "rating": 4.0,
+      "createdAt": "2025-03-24T12:00:00.000Z",
+      "updatedAt": "2025-03-24T12:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 14,
+    "user": {
+      "id": 16,
+      "name": "María",
+      "username": "maria123",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "625",
+      "name": "Caleta de Las Viejas",
+      "island": "Tenerife",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/625.webp"
+    },
+    "comment": {
+      "text": "Semiurbana y tranquila, perfecta para un baño rápido entre rocas y arena.",
+      "rating": 3.9,
+      "createdAt": "2025-03-24T13:30:00.000Z",
+      "updatedAt": "2025-03-24T13:30:00.000Z"
+    }
+  },
+  {
+    "commentId": 15,
+    "user": {
+      "id": 17,
+      "name": "Luis",
+      "username": "luisin",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "107",
+      "name": "Caleta del Campo",
+      "island": "Lanzarote",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/107.webp"
+    },
+    "comment": {
+      "text": "Lugar ventoso con rocas, pero las olas moderadas son interesantes.",
+      "rating": 3.6,
+      "createdAt": "2025-03-24T15:00:00.000Z",
+      "updatedAt": "2025-03-24T15:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 16,
+    "user": {
+      "id": 13,
+      "name": "pepe",
+      "username": "pepito",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "187",
+      "name": "Caleta del Congrio",
+      "island": "Lanzarote",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/187.webp"
+    },
+    "comment": {
+      "text": "Arena blanca y agua calma, muy concurrida pero vale la pena.",
+      "rating": 4.5,
+      "createdAt": "2025-03-25T08:45:00.000Z",
+      "updatedAt": "2025-03-25T08:45:00.000Z"
+    }
+  },
+  {
+    "commentId": 17,
+    "user": {
+      "id": 14,
+      "name": "Ana",
+      "username": "anita",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "179",
+      "name": "Caleta del Fuego",
+      "island": "Lanzarote",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/179.webp"
+    },
+    "comment": {
+      "text": "Aislada y con arena oscura, el acceso difícil la hace especial.",
+      "rating": 3.8,
+      "createdAt": "2025-03-25T10:15:00.000Z",
+      "updatedAt": "2025-03-25T10:15:00.000Z"
+    }
+  },
+  {
+    "commentId": 18,
+    "user": {
+      "id": 15,
+      "name": "Carlos",
+      "username": "carlitos",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "96",
+      "name": "Caleta del Guincho",
+      "island": "Lanzarote",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/96.webp"
+    },
+    "comment": {
+      "text": "Ventosa y con rocas, pero las olas moderadas son divertidas.",
+      "rating": 3.7,
+      "createdAt": "2025-03-25T11:45:00.000Z",
+      "updatedAt": "2025-03-25T11:45:00.000Z"
+    }
+  },
+  {
+    "commentId": 19,
+    "user": {
+      "id": 16,
+      "name": "María",
+      "username": "maria123",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "165",
+      "name": "Caleta del Mariscadero",
+      "island": "Lanzarote",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/165.webp"
+    },
+    "comment": {
+      "text": "Mar bravo y arena oscura, perfecta para los que buscan emociones.",
+      "rating": 4.0,
+      "createdAt": "2025-03-25T13:15:00.000Z",
+      "updatedAt": "2025-03-25T13:15:00.000Z"
+    }
+  },
+  {
+    "commentId": 20,
+    "user": {
+      "id": 17,
+      "name": "Luis",
+      "username": "luisin",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "90",
+      "name": "Caleta del Mojón",
+      "island": "Lanzarote",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/90.webp"
+    },
+    "comment": {
+      "text": "Arena blanca y olas moderadas, aunque el acceso es un reto.",
+      "rating": 4.1,
+      "createdAt": "2025-03-25T14:30:00.000Z",
+      "updatedAt": "2025-03-25T14:30:00.000Z"
+    }
+  },
+  {
+    "commentId": 21,
+    "user": {
+      "id": 13,
+      "name": "pepe",
+      "username": "pepito",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "88",
+      "name": "Caletón Blanco",
+      "island": "Lanzarote",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/88.webp"
+    },
+    "comment": {
+      "text": "Muy concurrida, pero el agua calma y la arena blanca son un lujo.",
+      "rating": 4.6,
+      "createdAt": "2025-03-26T09:00:00.000Z",
+      "updatedAt": "2025-03-26T09:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 22,
+    "user": {
+      "id": 14,
+      "name": "Ana",
+      "username": "anita",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "191",
+      "name": "Caletón de San Marcial",
+      "island": "Lanzarote",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/191.webp"
+    },
+    "comment": {
+      "text": "Pequeña pero bonita, con arena blanca y agua tranquila.",
+      "rating": 4.4,
+      "createdAt": "2025-03-26T10:30:00.000Z",
+      "updatedAt": "2025-03-26T10:30:00.000Z"
+    }
+  },
+  {
+    "commentId": 23,
+    "user": {
+      "id": 15,
+      "name": "Carlos",
+      "username": "carlitos",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "247",
+      "name": "Caletón de los Cangrejos",
+      "island": "Gran Canaria",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/247.webp"
+    },
+    "comment": {
+      "text": "Mar bravo y rocoso, no es para todos pero tiene su encanto.",
+      "rating": 3.5,
+      "createdAt": "2025-03-26T12:00:00.000Z",
+      "updatedAt": "2025-03-26T12:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 24,
+    "user": {
+      "id": 16,
+      "name": "María",
+      "username": "maria123",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "192",
+      "name": "Caletón del Cobre",
+      "island": "Lanzarote",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/192.webp"
+    },
+    "comment": {
+      "text": "Arena blanca y agua calma, muy concurrida pero hermosa.",
+      "rating": 4.5,
+      "createdAt": "2025-03-26T13:30:00.000Z",
+      "updatedAt": "2025-03-26T13:30:00.000Z"
+    }
+  },
+  {
+    "commentId": 25,
+    "user": {
+      "id": 17,
+      "name": "Luis",
+      "username": "luisin",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "450",
+      "name": "Callado de El Mudo",
+      "island": "La Palma",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/450.webp"
+    },
+    "comment": {
+      "text": "Prohibido bañarse, pero el paisaje merece una visita.",
+      "rating": 3.3,
+      "createdAt": "2025-03-26T15:00:00.000Z",
+      "updatedAt": "2025-03-26T15:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 26,
+    "user": {
+      "id": 13,
+      "name": "pepe",
+      "username": "pepito",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "546",
+      "name": "Callao Hondo",
+      "island": "Tenerife",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/546.webp"
+    },
+    "comment": {
+      "text": "Olas moderadas y rocas, un lugar para aventureros.",
+      "rating": 3.9,
+      "createdAt": "2025-03-27T08:30:00.000Z",
+      "updatedAt": "2025-03-27T08:30:00.000Z"
+    }
+  },
+  {
+    "commentId": 27,
+    "user": {
+      "id": 14,
+      "name": "Ana",
+      "username": "anita",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "403",
+      "name": "Callao de las Mozas",
+      "island": "La Gomera",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/403.webp"
+    },
+    "comment": {
+      "text": "Mar bravo y arena, un sitio salvaje pero bonito.",
+      "rating": 3.7,
+      "createdAt": "2025-03-27T10:00:00.000Z",
+      "updatedAt": "2025-03-27T10:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 28,
+    "user": {
+      "id": 15,
+      "name": "Carlos",
+      "username": "carlitos",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "542",
+      "name": "Cardones",
+      "island": "Tenerife",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/542.webp"
+    },
+    "comment": {
+      "text": "Agua calma y arena dorada, un lugar tranquilo para disfrutar.",
+      "rating": 4.2,
+      "createdAt": "2025-03-27T11:30:00.000Z",
+      "updatedAt": "2025-03-27T11:30:00.000Z"
+    }
+  },
+  {
+    "commentId": 29,
+    "user": {
+      "id": 16,
+      "name": "María",
+      "username": "maria123",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "223",
+      "name": "Cañada de Los Conejos",
+      "island": "Gran Canaria",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/223.webp"
+    },
+    "comment": {
+      "text": "Rocosa y urbana, con olas moderadas. No es para bañarse mucho.",
+      "rating": 3.4,
+      "createdAt": "2025-03-27T13:00:00.000Z",
+      "updatedAt": "2025-03-27T13:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 30,
+    "user": {
+      "id": 17,
+      "name": "Luis",
+      "username": "luisin",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "368",
+      "name": "Charca de Taliarte",
+      "island": "Gran Canaria",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/368.webp"
+    },
+    "comment": {
+      "text": "Urbana y concurrida, el agua calma es perfecta para un chapuzón.",
+      "rating": 4.3,
+      "createdAt": "2025-03-27T14:30:00.000Z",
+      "updatedAt": "2025-03-27T14:30:00.000Z"
+    }
+  },
+  {
+    "commentId": 31,
+    "user": {
+      "id": 13,
+      "name": "pepe",
+      "username": "pepito",
+      "avatarUrl": "/images/avatar.jpg"
     },
     "beach": {
       "id": "375",
@@ -226,125 +644,334 @@
       "coverUrl": "https://api.playea.eu/storage/public/beaches/375.webp"
     },
     "comment": {
-      "text": "Las olas moderadas son geniales para nadar, pero faltan servicios como duchas o baños.",
-      "rating": 3.8,
-      "createdAt": "2025-03-27T16:30:00.000Z",
-      "updatedAt": "2025-03-27T16:30:00.000Z"
-    }
-  },
-
-  {
-    "commentId": 12,
-    "user": {
-      "id": 13,
-      "name": "pepe",
-      "username": "pepito",
-      "avatarUrl": "images/avatar.jpg"
-    },
-    "beach": {
-      "id": "96",
-      "name": "Caleta del Guincho",
-      "island": "Lanzarote",
-      "coverUrl": "https://api.playea.eu/storage/public/beaches/96.webp"
-    },
-    "comment": {
-      "text": "Gran playa urbana con muchas opciones para deportes y alquiler de hamacas. Ideal para pasar el día.",
-      "rating": 4.8,
-      "createdAt": "2025-03-26T11:00:00.000Z",
-      "updatedAt": "2025-03-26T11:00:00.000Z"
+      "text": "Tranquila pero ventosa, la arena oscura es única.",
+      "rating": 4.0,
+      "createdAt": "2025-03-27T16:00:00.000Z",
+      "updatedAt": "2025-03-27T16:00:00.000Z"
     }
   },
   {
-    "commentId": 13,
-    "user": {
-      "id": 17,
-      "name": "Luis",
-      "username": "luisin",
-      "avatarUrl": "images/luis.jpg"
-    },
-    "beach": {
-      "id": "96",
-      "name": "Caleta del Guincho",
-      "island": "Lanzarote",
-      "coverUrl": "https://api.playea.eu/storage/public/beaches/96.webp"
-    },
-    "comment": {
-      "text": "Perfecta para deportes acuáticos y relajarse con las hamacas. Muy bien cuidada.",
-      "rating": 4.9,
-      "createdAt": "2025-03-27T09:15:00.000Z",
-      "updatedAt": "2025-03-27T09:15:00.000Z"
-    }
-  },
-  {
-    "commentId": 14,
+    "commentId": 32,
     "user": {
       "id": 14,
       "name": "Ana",
       "username": "anita",
-      "avatarUrl": "images/ana.jpg"
+      "avatarUrl": "/images/avatar.jpg"
     },
     "beach": {
-      "id": "96",
-      "name": "Caleta del Guincho",
-      "island": "Lanzarote",
-      "coverUrl": "https://api.playea.eu/storage/public/beaches/96.webp"
+      "id": "420",
+      "name": "Charco Azul",
+      "island": "El Hierro",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/420.webp"
     },
     "comment": {
-      "text": "Me encanta que sea urbana y tenga tantas opciones. ¡Ideal para un día completo!",
-      "rating": 4.6,
-      "createdAt": "2025-03-28T14:45:00.000Z",
-      "updatedAt": "2025-03-28T14:45:00.000Z"
+      "text": "Rocoso y aislado, las olas moderadas lo hacen emocionante.",
+      "rating": 3.8,
+      "createdAt": "2025-03-28T09:00:00.000Z",
+      "updatedAt": "2025-03-28T09:00:00.000Z"
     }
   },
   {
-    "commentId": 15,
-    "user": {
-      "id": 13,
-      "name": "pepe",
-      "username": "pepito",
-      "avatarUrl": "images/avatar.jpg"
-    },
-    "beach": {
-      "id": "552",
-      "name": "Charco del Baño",
-      "island": "Tenerife",
-      "coverUrl": "https://api.playea.eu/storage/public/beaches/552.webp"
-    },
-    "comment": {
-      "text": "El mar está bravo, pero la arena oscura le da un toque especial. No es para niños.",
-      "rating": 3.5,
-      "createdAt": "2025-03-28T12:15:00.000Z",
-      "updatedAt": "2025-03-28T12:15:00.000Z"
-    }
-  },
-  {
-    "commentId": 16,
+    "commentId": 33,
     "user": {
       "id": 15,
       "name": "Carlos",
       "username": "carlitos",
-      "avatarUrl": "images/carlos.jpg"
+      "avatarUrl": "/images/avatar.jpg"
     },
     "beach": {
-      "id": "552",
-      "name": "Charco del Baño",
-      "island": "Tenerife",
-      "coverUrl": "https://api.playea.eu/storage/public/beaches/552.webp"
+      "id": "467",
+      "name": "Charco Azul",
+      "island": "La Palma",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/467.webp"
     },
     "comment": {
-      "text": "Las olas fuertes son emocionantes, pero no hay servicios. ¡Aventura total!",
+      "text": "Muy concurrida, con duchas y baños. Ideal para familias.",
+      "rating": 4.5,
+      "createdAt": "2025-03-28T10:30:00.000Z",
+      "updatedAt": "2025-03-28T10:30:00.000Z"
+    }
+  },
+  {
+    "commentId": 34,
+    "user": {
+      "id": 16,
+      "name": "María",
+      "username": "maria123",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "758",
+      "name": "Charco Blanco",
+      "island": "Tenerife",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/758.webp"
+    },
+    "comment": {
+      "text": "Prohibido bañarse, pero las rocas y grava tienen su belleza.",
+      "rating": 3.3,
+      "createdAt": "2025-03-28T12:00:00.000Z",
+      "updatedAt": "2025-03-28T12:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 35,
+    "user": {
+      "id": 17,
+      "name": "Luis",
+      "username": "luisin",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "419",
+      "name": "Charco La Laja",
+      "island": "El Hierro",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/419.webp"
+    },
+    "comment": {
+      "text": "Aislado y rocoso, las olas moderadas son perfectas para un baño rápido.",
       "rating": 3.9,
+      "createdAt": "2025-03-28T13:30:00.000Z",
+      "updatedAt": "2025-03-28T13:30:00.000Z"
+    }
+  },
+  {
+    "commentId": 36,
+    "user": {
+      "id": 13,
+      "name": "pepe",
+      "username": "pepito",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "236",
+      "name": "Charco Lajial (Las Salinas)",
+      "island": "Gran Canaria",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/236.webp"
+    },
+    "comment": {
+      "text": "Agua calma pero peligrosa, las rocas le dan un toque especial.",
+      "rating": 3.8,
+      "createdAt": "2025-03-28T15:00:00.000Z",
+      "updatedAt": "2025-03-28T15:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 37,
+    "user": {
+      "id": 14,
+      "name": "Ana",
+      "username": "anita",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "617",
+      "name": "Charco Verde",
+      "island": "Tenerife",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/617.webp"
+    },
+    "comment": {
+      "text": "Aislado y rocoso, un sitio para explorar más que para bañarse.",
+      "rating": 3.5,
+      "createdAt": "2025-03-29T09:00:00.000Z",
+      "updatedAt": "2025-03-29T09:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 38,
+    "user": {
+      "id": 15,
+      "name": "Carlos",
+      "username": "carlitos",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "431",
+      "name": "Charco de Agua Azul",
+      "island": "El Hierro",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/431.webp"
+    },
+    "comment": {
+      "text": "Rocoso y peligroso, pero las olas moderadas son emocionantes.",
+      "rating": 3.7,
       "createdAt": "2025-03-29T10:30:00.000Z",
       "updatedAt": "2025-03-29T10:30:00.000Z"
     }
   },
   {
-    "commentId": 17,
+    "commentId": 39,
     "user": {
       "id": 16,
       "name": "María",
       "username": "maria123",
-      "avatarUrl": "images/maria.jpg"
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "581",
+      "name": "Charco de Graciliano",
+      "island": "Tenerife",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/581.webp"
+    },
+    "comment": {
+      "text": "Arena oscura y urbana, perfecta para un baño tranquilo.",
+      "rating": 4.1,
+      "createdAt": "2025-03-29T12:00:00.000Z",
+      "updatedAt": "2025-03-29T12:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 40,
+    "user": {
+      "id": 17,
+      "name": "Luis",
+      "username": "luisin",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "618",
+      "name": "Charco de La Arena",
+      "island": "Tenerife",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/618.webp"
+    },
+    "comment": {
+      "text": "Aislado y rocoso, un lugar para los que buscan paz.",
+      "rating": 3.6,
+      "createdAt": "2025-03-29T13:30:00.000Z",
+      "updatedAt": "2025-03-29T13:30:00.000Z"
+    }
+  },
+  {
+    "commentId": 41,
+    "user": {
+      "id": 13,
+      "name": "pepe",
+      "username": "pepito",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "693",
+      "name": "Charco de La Laja",
+      "island": "Tenerife",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/693.webp"
+    },
+    "comment": {
+      "text": "Mar bravo y concurrido, una experiencia intensa.",
+      "rating": 4.0,
+      "createdAt": "2025-03-29T15:00:00.000Z",
+      "updatedAt": "2025-03-29T15:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 42,
+    "user": {
+      "id": 14,
+      "name": "Ana",
+      "username": "anita",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "615",
+      "name": "Charco de La Pulga",
+      "island": "Tenerife",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/615.webp"
+    },
+    "comment": {
+      "text": "Rocas y arena, un sitio curioso pero no para todos.",
+      "rating": 3.4,
+      "createdAt": "2025-03-30T09:00:00.000Z",
+      "updatedAt": "2025-03-30T09:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 43,
+    "user": {
+      "id": 15,
+      "name": "Carlos",
+      "username": "carlitos",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "235",
+      "name": "Charco de Las Palomas",
+      "island": "Gran Canaria",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/235.webp"
+    },
+    "comment": {
+      "text": "Mar bravo y rocoso, perfecto para un rato salvaje.",
+      "rating": 3.9,
+      "createdAt": "2025-03-30T10:30:00.000Z",
+      "updatedAt": "2025-03-30T10:30:00.000Z"
+    }
+  },
+  {
+    "commentId": 44,
+    "user": {
+      "id": 16,
+      "name": "María",
+      "username": "maria123",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "750",
+      "name": "Charco de la Araña",
+      "island": "Tenerife",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/750.webp"
+    },
+    "comment": {
+      "text": "Arena oscura y olas moderadas, un lugar agradable para pasear.",
+      "rating": 4.2,
+      "createdAt": "2025-03-30T12:00:00.000Z",
+      "updatedAt": "2025-03-30T12:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 45,
+    "user": {
+      "id": 17,
+      "name": "Luis",
+      "username": "luisin",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "399",
+      "name": "Charco de la Condesa",
+      "island": "La Gomera",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/399.webp"
+    },
+    "comment": {
+      "text": "Rocoso y con olas moderadas, un sitio para aventureros.",
+      "rating": 3.7,
+      "createdAt": "2025-03-30T13:30:00.000Z",
+      "updatedAt": "2025-03-30T13:30:00.000Z"
+    }
+  },
+  {
+    "commentId": 46,
+    "user": {
+      "id": 13,
+      "name": "pepe",
+      "username": "pepito",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "203",
+      "name": "Charco de los Clicos",
+      "island": "Lanzarote",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/203.webp"
+    },
+    "comment": {
+      "text": "Muy concurrida y con mar bravo, la arena oscura es espectacular.",
+      "rating": 4.4,
+      "createdAt": "2025-03-30T15:00:00.000Z",
+      "updatedAt": "2025-03-30T15:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 47,
+    "user": {
+      "id": 14,
+      "name": "Ana",
+      "username": "anita",
+      "avatarUrl": "/images/avatar.jpg"
     },
     "beach": {
       "id": "552",
@@ -353,10 +980,262 @@
       "coverUrl": "https://api.playea.eu/storage/public/beaches/552.webp"
     },
     "comment": {
-      "text": "La arena oscura es preciosa, pero el mar bravo no me dejó relajarme mucho.",
+      "text": "Arena oscura y agua tranquila, las duchas son un plus.",
+      "rating": 4.0,
+      "createdAt": "2025-03-31T09:00:00.000Z",
+      "updatedAt": "2025-03-31T09:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 48,
+    "user": {
+      "id": 15,
+      "name": "Carlos",
+      "username": "carlitos",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "404",
+      "name": "Charco del Cieno",
+      "island": "La Gomera",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/404.webp"
+    },
+    "comment": {
+      "text": "Mar bravo y rocoso, un lugar salvaje para explorar.",
       "rating": 3.6,
-      "createdAt": "2025-03-30T13:00:00.000Z",
-      "updatedAt": "2025-03-30T13:00:00.000Z"
+      "createdAt": "2025-03-31T10:30:00.000Z",
+      "updatedAt": "2025-03-31T10:30:00.000Z"
+    }
+  },
+  {
+    "commentId": 49,
+    "user": {
+      "id": 16,
+      "name": "María",
+      "username": "maria123",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "611",
+      "name": "Charco del Clérigo",
+      "island": "Tenerife",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/611.webp"
+    },
+    "comment": {
+      "text": "Agua calma pero peligrosa, el acceso difícil lo hace especial.",
+      "rating": 3.8,
+      "createdAt": "2025-03-31T12:00:00.000Z",
+      "updatedAt": "2025-03-31T12:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 50,
+    "user": {
+      "id": 17,
+      "name": "Luis",
+      "username": "luisin",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "126",
+      "name": "Charco del Palo",
+      "island": "Lanzarote",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/126.webp"
+    },
+    "comment": {
+      "text": "Arena blanca y agua tranquila, un sitio semiurbano agradable.",
+      "rating": 4.1,
+      "createdAt": "2025-03-31T13:30:00.000Z",
+      "updatedAt": "2025-03-31T13:30:00.000Z"
+    }
+  },
+  {
+    "commentId": 51,
+    "user": {
+      "id": 13,
+      "name": "pepe",
+      "username": "pepito",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "112",
+      "name": "Charco del Palo (Piscina)",
+      "island": "Lanzarote",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/112.webp"
+    },
+    "comment": {
+      "text": "Muy concurrida, el agua calma y la arena blanca son geniales.",
+      "rating": 4.5,
+      "createdAt": "2025-03-31T15:00:00.000Z",
+      "updatedAt": "2025-03-31T15:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 52,
+    "user": {
+      "id": 14,
+      "name": "Ana",
+      "username": "anita",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "696",
+      "name": "Charco del Río",
+      "island": "Tenerife",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/696.webp"
+    },
+    "comment": {
+      "text": "Mar bravo y rocoso, un lugar para los valientes.",
+      "rating": 3.7,
+      "createdAt": "2025-04-01T09:00:00.000Z",
+      "updatedAt": "2025-04-01T09:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 53,
+    "user": {
+      "id": 15,
+      "name": "Carlos",
+      "username": "carlitos",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "616",
+      "name": "Charco del Viento",
+      "island": "Tenerife",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/616.webp"
+    },
+    "comment": {
+      "text": "Rocoso y aislado, un sitio para desconectar.",
+      "rating": 3.5,
+      "createdAt": "2025-04-01T10:30:00.000Z",
+      "updatedAt": "2025-04-01T10:30:00.000Z"
+    }
+  },
+  {
+    "commentId": 54,
+    "user": {
+      "id": 16,
+      "name": "María",
+      "username": "maria123",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "421",
+      "name": "Charco los Sargos",
+      "island": "El Hierro",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/421.webp"
+    },
+    "comment": {
+      "text": "Olas moderadas y rocas, un lugar tranquilo para explorar.",
+      "rating": 3.9,
+      "createdAt": "2025-04-01T12:00:00.000Z",
+      "updatedAt": "2025-04-01T12:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 55,
+    "user": {
+      "id": 17,
+      "name": "Luis",
+      "username": "luisin",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "35",
+      "name": "Chica",
+      "island": "Fuerteventura",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/35.webp"
+    },
+    "comment": {
+      "text": "Arena blanca y agua calma, las duchas son un gran plus.",
+      "rating": 4.3,
+      "createdAt": "2025-04-01T13:30:00.000Z",
+      "updatedAt": "2025-04-01T13:30:00.000Z"
+    }
+  },
+  {
+    "commentId": 56,
+    "user": {
+      "id": 13,
+      "name": "pepe",
+      "username": "pepito",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "395",
+      "name": "Chinguarime",
+      "island": "La Gomera",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/395.webp"
+    },
+    "comment": {
+      "text": "Arena oscura y agua calma, el acceso difícil la hace única.",
+      "rating": 4.0,
+      "createdAt": "2025-04-01T15:00:00.000Z",
+      "updatedAt": "2025-04-01T15:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 57,
+    "user": {
+      "id": 14,
+      "name": "Ana",
+      "username": "anita",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "53",
+      "name": "Cofete",
+      "island": "Fuerteventura",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/53.webp"
+    },
+    "comment": {
+      "text": "Arena dorada y mar bravo, un lugar espectacular pero salvaje.",
+      "rating": 4.2,
+      "createdAt": "2025-04-02T09:00:00.000Z",
+      "updatedAt": "2025-04-02T09:00:00.000Z"
+    }
+  },
+  {
+    "commentId": 58,
+    "user": {
+      "id": 15,
+      "name": "Carlos",
+      "username": "carlitos",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "146",
+      "name": "Conejos",
+      "island": "Lanzarote",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/146.webp"
+    },
+    "comment": {
+      "text": "Pequeña pero con arena blanca y agua tranquila, ideal para relajarse.",
+      "rating": 4.1,
+      "createdAt": "2025-04-02T10:30:00.000Z",
+      "updatedAt": "2025-04-02T10:30:00.000Z"
+    }
+  },
+  {
+    "commentId": 59,
+    "user": {
+      "id": 16,
+      "name": "María",
+      "username": "maria123",
+      "avatarUrl": "/images/avatar.jpg"
+    },
+    "beach": {
+      "id": "6",
+      "name": "Corralejo",
+      "island": "Fuerteventura",
+      "coverUrl": "https://api.playea.eu/storage/public/beaches/6.webp"
+    },
+    "comment": {
+      "text": "Urbana y con arena dorada, el agua calma es perfecta para nadar.",
+      "rating": 4.3,
+      "createdAt": "2025-04-02T12:00:00.000Z",
+      "updatedAt": "2025-04-02T12:00:00.000Z"
     }
   }
 ]

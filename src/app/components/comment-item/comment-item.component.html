@@ -1,9 +1,12 @@
 <div class="comment-item">
-    <div class="comment-item__author">{{ comment.author }}</div>
-    <div class="comment-item__rating">{{ comment.rating }} ★</div>
-    <div class="comment-item__text">{{ comment.text }}</div>
-    <div class="comment-item__actions">
-        <button class="comment-item__button comment-item__button--reply">Responder</button>
-        <button class="comment-item__button comment-item__button--like">Me gusta</button>
-    </div>
+  <div class="comment-item__author" (click)="navigateToProfile()">
+    <img class="user__avatar" src="{{ comment.user.avatarUrl }}">
+    <h3 class="user__name">{{ comment.user.name }}</h3>
+  </div>
+  <div class="comment-item__rating">{{ comment.comment.rating }} ★</div>
+  <div class="comment-item__text">{{ comment.comment.text }}</div>
+  <div class="comment-item__actions">
+    <button class="comment-item__button comment-item__button--reply">Responder</button>
+    <button class="comment-item__button comment-item__button--like">Me gusta</button>
+  </div>
 </div>

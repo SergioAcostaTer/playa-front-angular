@@ -5,14 +5,44 @@
 }
 
 .comment-item__author {
+  display: flex;
+  align-items: flex-start;
+  justify-content: left;
+  flex-direction: row;
+  gap: 3px;
+  cursor: pointer; /* Mano para todo el contenedor */
+}
+
+.user__avatar {
+  border-radius: 50%;
+  width: 30px; /* Tamaño fijo para consistencia, ajusta según necesites */
+  height: 30px;
+  object-fit: cover; /* Para que la imagen se ajuste bien */
+  border: 2px solid var(--primary-color); /* Borde visible */
+  transition: border-color 0.3s ease; /* Transición suave para el borde */
+}
+
+.user__name {
   font-size: 1em;
   font-weight: 600;
   color: #333;
+  transition: color 0.3s ease; /* Transición suave para el color */
+}
+
+/* Efecto hover en el contenedor comment-item__author */
+.comment-item__author:hover .user__avatar {
+  border-color: var(--primary-color); /* Refuerza el borde en hover */
+  filter: brightness(1.2); /* Opcional: aumenta el brillo para resaltar */
+}
+
+.comment-item__author:hover .user__name {
+  color: var(--primary-color); /* Cambia el color del nombre */
+  text-decoration: underline; /* Subrayado al pasar el ratón */
 }
 
 .comment-item__rating {
   font-size: 0.9em;
-  color: #f39c12; /* Amarillo para la calificación */
+  color: var(--primary-color);
   margin: 5px 0;
 }
 
@@ -47,12 +77,12 @@
 }
 
 .comment-item__button--like {
-  background-color: var(--login-button-color);;
+  background-color: var(--login-button-color);
   color: white;
 }
 
 .comment-item__button--like:hover {
-  background-color: var(--login-button-color);;
+  background-color: var(--login-button-color);
 }
 
 @media (max-width: 768px) {
