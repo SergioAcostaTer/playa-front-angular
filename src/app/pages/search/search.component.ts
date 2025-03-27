@@ -83,10 +83,18 @@ export class SearchComponent implements OnInit {
   }
 
   updateQueryParams() {
-    const queryParams: { [key: string]: string } = {};
-    if (this.searchQuery.trim()) queryParams['q'] = this.searchQuery.trim();
-    if (this.islandFilter.trim()) queryParams['island'] = this.islandFilter.trim();
-    else delete queryParams['island'];
+    const queryParams: { [key: string]: string | null } = {};
+    if (this.searchQuery.trim()) {
+      queryParams['q'] = this.searchQuery.trim();
+    } else {
+      queryParams['q'] = null; // Remove query param if empty
+    }
+
+    if (this.islandFilter.trim()) {
+      queryParams['island'] = this.islandFilter.trim();
+    } else {
+      queryParams['island'] = null; // Explicitly remove island param if empty
+    }
 
     this.router.navigate([], {
       relativeTo: this.route,
@@ -102,7 +110,7 @@ export class SearchComponent implements OnInit {
   }
 
   onFiltersChange(filters: any) {
-    this.islandFilter = filters.island;
+    this.islandFilter = filters.island || '';
     this.filters = {
       hasLifeguard: filters.hasLifeguard,
       hasSand: filters.hasSand,
