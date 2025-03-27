@@ -1,0 +1,44 @@
+<!-- src/app/components/filter-panel/filter-panel.component.html -->
+<aside class="filter-panel">
+    <h3 class="filter-panel__title">Filtros</h3>
+    
+    <div class="filter-panel__section">
+        <h4 class="filter-panel__section-title">Lugar</h4>
+        <select 
+            class="filter-panel__select"
+            [value]="selectedIsland"
+            (change)="onIslandChange($event)"
+        >
+            <!-- Add default empty option -->
+            <option value="">Selecciona tu isla</option>
+            <option 
+                *ngFor="let island of islands; trackBy: trackById" 
+                [value]="island.name"
+            >
+                {{ island.name }}
+            </option>
+        </select>
+    </div>
+    
+    <div class="filter-panel__section filter-panel__section--labels">
+        <h4 class="filter-panel__section-title">Características</h4>
+        <label class="filter-panel__checkbox">
+            <input type="checkbox"> Socorrista
+        </label>
+        <label class="filter-panel__checkbox">
+            <input type="checkbox"> Arena
+        </label>
+        <label class="filter-panel__checkbox">
+            <input type="checkbox"> Rocas
+        </label>
+        <label class="filter-panel__checkbox">
+            <input type="checkbox"> Duchas
+        </label>
+        <label class="filter-panel__checkbox">
+            <input type="checkbox"> Baños
+        </label>
+        <label class="filter-panel__checkbox">
+            <input type="checkbox"> Lavapiés
+        </label>
+    </div>
+</aside>

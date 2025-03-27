@@ -4,9 +4,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BeachGridComponent } from '../../components/beach-grid/beach-grid.component';
+import { FilterPanelComponent } from '../../components/filter-panel/filter-panel.component';
 import { Beach } from '../../models/beach';
 import { debounceTime, switchMap, Subject } from 'rxjs';
 import { searchBeaches } from '../../services/searchBeaches';
+import { getCategories } from '../../services/getCategories';
+import { Category } from '../../models/category';
 
 @Component({
   selector: 'app-search',
@@ -14,26 +17,35 @@ import { searchBeaches } from '../../services/searchBeaches';
   imports: [
     CommonModule,
     FormsModule,
-    BeachGridComponent
+    BeachGridComponent,
+    FilterPanelComponent
   ],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent implements OnInit {
   beaches: Beach[] = [];
+  categories: Category[] = [];
   loading = false;
   searchQuery: string = '';
-  islandFilter: string = ''; // Added island filter
+  islandFilter: string = '';
   private searchQuerySubject = new Subject<{ query: string, island: string }>();
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
+    
+    getCategories().then(categories => {
+      this.categories = categories;
+    }).catch(error => {
+      console.error('Error fetching categories:', error);
+    });
+
     this.searchQuerySubject.pipe(
       debounceTime(500),
       switchMap(({ query, island }) => {
         this.loading = true;
-        return searchBeaches(query, island); // Pass both query and island
+        return searchBeaches(query, island);
       })
     ).subscribe({
       next: (beaches) => {
@@ -46,13 +58,12 @@ export class SearchComponent implements OnInit {
       }
     });
 
-    // Listen to route query parameters
     this.route.queryParams.subscribe(params => {
       const query = params['q'] || '';
       const island = params['island'] || '';
       this.searchQuery = query;
       this.islandFilter = island;
-      this.searchQuerySubject.next({ query, island }); // Trigger search with both params
+      this.searchQuerySubject.next({ query, island });
     });
   }
 
@@ -76,8 +87,7 @@ export class SearchComponent implements OnInit {
     this.updateQueryParam(query, this.islandFilter);
   }
 
-  onIslandChange(event: any) {
-    const island = event.target.value;
+  onIslandChange(island: string) {
     this.islandFilter = island;
     this.updateQueryParam(this.searchQuery, island);
   }

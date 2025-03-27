@@ -1,81 +1,41 @@
 <div class="search-container">
-    <div class="search-wrapper">
-      <!-- Search Input -->
-      <div class="search-header">
-        <div class="search-input-wrapper">
-          <input 
-            type="text" 
-            [(ngModel)]="searchQuery"
-            (input)="onSearchInputChange($event)"
-            placeholder="Search beaches..."
-            class="search-input"
-          >
-          <svg class="search-icon" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-          </svg>
-        </div>
+  <div class="search-wrapper">
+    <div class="search-header">
+      <div class="search-input-wrapper">
+        <input 
+          type="text" 
+          [(ngModel)]="searchQuery"
+          (input)="onSearchInputChange($event)"
+          placeholder="Search beaches..."
+          class="search-input"
+        >
+        <svg class="search-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+        </svg>
       </div>
-  
-      <!-- Main Content with Aside -->
-      <div class="content-container">
-        <!-- Filter Aside -->
-        <aside class="filter-panel">
-          <h3 class="filter-title">Filtros</h3>
-          
-          <!-- Location Filter -->
-          <div class="filter-section">
-            <h4 class="filter-section--title">Lugar</h4>
-            <select class="filter-select">
-              <option value="">Selecciona tu isla</option>
-              <option value="El Hierro">El Hierro</option>
-              <option value="La Palma">La Palma</option>
-              <option value="La Gomera">La Gomera</option>
-              <option value="Tenerife">Tenerife</option>
-              <option value="Gran Canaria">Gran Canaria</option>
-              <option value="Fuerteventura">Fuerteventura</option>
-              <option value="Lanzarote">Lanzarote</option>
-            </select>
-          </div>
-  
-          <!-- Features Filter -->
-          <div class="filter-section filter-section--labels">
-            <h4 class="filter-section--title">Características</h4>
-            <label class="filter-checkbox">
-              <input type="checkbox"> Socorrista
-            </label>
-            <label class="filter-checkbox">
-              <input type="checkbox"> Arena
-            </label>
-            <label class="filter-checkbox">
-              <input type="checkbox"> Rocas
-            </label>
-            <label class="filter-checkbox">
-              <input type="checkbox"> Duchas
-            </label>
-            <label class="filter-checkbox">
-              <input type="checkbox"> Baños
-            </label>
-            <label class="filter-checkbox">
-              <input type="checkbox"> Lavapiés
-            </label>
-          </div>
-        </aside>
-  
-        <!-- Results Section -->
-        <div class="results-section">
-          <div *ngIf="loading" class="loading-state">
-            <div class="spinner"></div>
-          </div>
-  
-          <div *ngIf="!loading && beaches.length === 0" class="no-results">
-            <p>No beaches found matching your search</p>
-          </div>
-  
-          <app-beach-grid 
-            *ngIf="!loading && beaches.length > 0"
-            [beaches]="beaches"
-          ></app-beach-grid>
+    </div>
+
+    <div class="content-container">
+      <app-filter-panel
+        [selectedIsland]="islandFilter"
+        (islandChange)="onIslandChange($event)"
+        [islands]="categories"
+      ></app-filter-panel>
+
+      <div class="results-section">
+        <div *ngIf="loading" class="loading-state">
+          <div class="spinner"></div>
         </div>
+
+        <div *ngIf="!loading && beaches.length === 0" class="no-results">
+          <p>No beaches found matching your search</p>
+        </div>
+
+        <app-beach-grid 
+          *ngIf="!loading && beaches.length > 0"
+          [beaches]="beaches"
+        ></app-beach-grid>
       </div>
     </div>
   </div>
+</div>
