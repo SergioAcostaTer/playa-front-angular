@@ -29,12 +29,17 @@ export class SearchComponent implements OnInit {
   loading = false;
   searchQuery: string = '';
   islandFilter: string = '';
-  private searchQuerySubject = new Subject<{ query: string, island: string }>();
+  hasLifeguard: boolean = false;
+  hasSand: boolean = false;
+  hasRock: boolean = false;
+  hasShowers: boolean = false;
+  hasToilets: boolean = false;
+  hasFootShowers: boolean = false;
+  private searchQuerySubject = new Subject<any>();
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    
     getCategories().then(categories => {
       this.categories = categories;
     }).catch(error => {
@@ -43,9 +48,9 @@ export class SearchComponent implements OnInit {
 
     this.searchQuerySubject.pipe(
       debounceTime(500),
-      switchMap(({ query, island }) => {
+      switchMap(({ query, filters }) => {
         this.loading = true;
-        return searchBeaches(query, island);
+        return searchBeaches(query, filters);
       })
     ).subscribe({
       next: (beaches) => {
@@ -63,32 +68,53 @@ export class SearchComponent implements OnInit {
       const island = params['island'] || '';
       this.searchQuery = query;
       this.islandFilter = island;
-      this.searchQuerySubject.next({ query, island });
+      this.searchQuerySubject.next({ 
+        query, 
+        filters: this.getFilters()
+      });
     });
   }
 
-  updateQueryParam(query: string, island: string) {
+  getFilters() {
+    return {
+      island: this.islandFilter,
+      hasLifeguard: this.hasLifeguard,
+      hasSand: this.hasSand,
+      hasRock: this.hasRock,
+      hasShowers: this.hasShowers,
+      hasToilets: this.hasToilets,
+      hasFootShowers: this.hasFootShowers
+    };
+  }
+
+  updateQueryParam(query: string, filters: any) {
     const queryParams: { [key: string]: string } = {};
     if (query.trim()) queryParams['q'] = query.trim();
-    if (island.trim()) queryParams['island'] = island.trim();
+    if (filters.island.trim()) queryParams['island'] = filters.island.trim();
 
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams,
       queryParamsHandling: 'merge',
     });
-    this.searchQuerySubject.next({ query, island });
+    this.searchQuerySubject.next({ query, filters });
     this.loading = true;
   }
 
   onSearchInputChange(event: any) {
     const query = event.target.value;
     this.searchQuery = query;
-    this.updateQueryParam(query, this.islandFilter);
+    this.updateQueryParam(query, this.getFilters());
   }
 
-  onIslandChange(island: string) {
-    this.islandFilter = island;
-    this.updateQueryParam(this.searchQuery, island);
+  onFiltersChange(filters: any) {
+    this.islandFilter = filters.island;
+    this.hasLifeguard = filters.hasLifeguard;
+    this.hasSand = filters.hasSand;
+    this.hasRock = filters.hasRock;
+    this.hasShowers = filters.hasShowers;
+    this.hasToilets = filters.hasToilets;
+    this.hasFootShowers = filters.hasFootShowers;
+    this.updateQueryParam(this.searchQuery, filters);
   }
 }

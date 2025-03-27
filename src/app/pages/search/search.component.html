@@ -1,3 +1,4 @@
+<!-- src/app/search/search.component.html -->
 <div class="search-container">
   <div class="search-wrapper">
     <div class="search-header">
@@ -18,8 +19,8 @@
     <div class="content-container">
       <app-filter-panel
         [selectedIsland]="islandFilter"
-        (islandChange)="onIslandChange($event)"
         [islands]="categories"
+        (filtersChange)="onFiltersChange($event)"
       ></app-filter-panel>
 
       <div class="results-section">

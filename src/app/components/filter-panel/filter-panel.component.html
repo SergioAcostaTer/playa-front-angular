@@ -9,7 +9,6 @@
             [value]="selectedIsland"
             (change)="onIslandChange($event)"
         >
-            <!-- Add default empty option -->
             <option value="">Selecciona tu isla</option>
             <option 
                 *ngFor="let island of islands; trackBy: trackById" 
@@ -23,22 +22,46 @@
     <div class="filter-panel__section filter-panel__section--labels">
         <h4 class="filter-panel__section-title">Características</h4>
         <label class="filter-panel__checkbox">
-            <input type="checkbox"> Socorrista
+            <input 
+                type="checkbox" 
+                [(ngModel)]="hasLifeguard"
+                (change)="onFilterChange()"
+            > Socorrista
         </label>
         <label class="filter-panel__checkbox">
-            <input type="checkbox"> Arena
+            <input 
+                type="checkbox" 
+                [(ngModel)]="hasSand"
+                (change)="onFilterChange()"
+            > Arena
         </label>
         <label class="filter-panel__checkbox">
-            <input type="checkbox"> Rocas
+            <input 
+                type="checkbox" 
+                [(ngModel)]="hasRock"
+                (change)="onFilterChange()"
+            > Rocas
         </label>
         <label class="filter-panel__checkbox">
-            <input type="checkbox"> Duchas
+            <input 
+                type="checkbox" 
+                [(ngModel)]="hasShowers"
+                (change)="onFilterChange()"
+            > Duchas
         </label>
         <label class="filter-panel__checkbox">
-            <input type="checkbox"> Baños
+            <input 
+                type="checkbox" 
+                [(ngModel)]="hasToilets"
+                (change)="onFilterChange()"
+            > Baños
         </label>
         <label class="filter-panel__checkbox">
-            <input type="checkbox"> Lavapiés
+            <input 
+                type="checkbox" 
+                [(ngModel)]="hasFootShowers"
+                (change)="onFilterChange()"
+            > Lavapiés
         </label>
     </div>
 </aside>

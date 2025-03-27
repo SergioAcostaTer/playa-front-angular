@@ -13,14 +13,35 @@ import { Category } from '../../models/category';
 })
 export class FilterPanelComponent {
   @Input() selectedIsland: string = '';
-  @Output() islandChange = new EventEmitter<string>();
   @Input() islands: Category[] = [];
-  
-  trackById(index: number, category: { id: string }): string {
-      return category.id;
+  @Output() filtersChange = new EventEmitter<any>();
+
+  // Individual filter properties
+  hasLifeguard: boolean = false;
+  hasSand: boolean = false;
+  hasRock: boolean = false;
+  hasShowers: boolean = false;
+  hasToilets: boolean = false;
+  hasFootShowers: boolean = false;
+
+  trackById(index: number, category: Category): string {
+    return category.id;
+  }
+
+  onFilterChange() {
+    this.filtersChange.emit({
+      island: this.selectedIsland,
+      hasLifeguard: this.hasLifeguard,
+      hasSand: this.hasSand,
+      hasRock: this.hasRock,
+      hasShowers: this.hasShowers,
+      hasToilets: this.hasToilets,
+      hasFootShowers: this.hasFootShowers
+    });
   }
 
   onIslandChange(event: any) {
-    this.islandChange.emit(event.target.value);
+    this.selectedIsland = event.target.value;
+    this.onFilterChange();
   }
 }
