@@ -10,13 +10,22 @@
   margin-bottom: 15px;
   background-color: var(--card-bg-color); /* #fff */
   display: flex;
-  align-items: flex-start;
+  flex-direction: column; /* Apilamos los bloques verticalmente */
+  gap: 10px; /* Espacio entre bloques */
 }
 
-.beach-info {
+.beach-name {
+  font-weight: bold;
+  color: var(--card-title-color); /* #222 */
+  margin: 0; /* Sin margen para que esté pegado arriba */
+  cursor: pointer; /* Indica que es clicable */
+  transition: color 0.3s ease; /* Transición suave para el color */
+}
+
+.comment-main {
   display: flex;
-  align-items: center;
-  margin-right: 15px;
+  align-items: flex-start; /* Alinea la foto y el texto por arriba */
+  gap: 15px; /* Espacio entre la foto y el comentario */
 }
 
 .beach-cover {
@@ -24,100 +33,42 @@
   height: 100px;
   object-fit: cover;
   border-radius: 5px;
-}
-
-.beach-name {
-  font-weight: bold;
-  margin: 5px 0 0 10px;
-  color: var(--card-title-color); /* #222 */
-  max-width: 150px; /* Limita el ancho para evitar que ocupe demasiado */
-  word-break: break-word; /* Permite que se divida en varias líneas */
-  line-height: 1.2; /* Mejora la legibilidad en varias líneas */
-}
-
-.comment-content {
-  flex: 1;
+  cursor: pointer; /* Indica que es clicable */
+  transition: filter 0.3s ease; /* Transición suave para el resaltado */
 }
 
 .comment-text {
-  margin: 5px 0;
+  flex: 1; /* Ocupa el espacio restante */
+  margin: 0; /* Sin márgenes para que esté pegado */
   color: var(--card-text-color); /* #666 */
 }
 
-.rating {
-  font-size: 0.9em;
-  color: var(--login-button-color); /* #ff385c */
-  margin: 5px 0;
+.comment-meta {
+  display: flex;
+  justify-content: space-between; /* Fecha a la izquierda, rating a la derecha */
+  align-items: center;
 }
 
 .date {
   font-size: 0.8em;
   color: var(--login-placeholder-color); /* #717171 */
-  margin: 5px 0;
+  margin: 0; /* Sin márgenes para que esté pegado */
 }
 
-/* Media query para dispositivos pequeños */
-@media (max-width: 768px) {
-  .comment-card {
-    flex-direction: column; /* Apila los elementos verticalmente */
-    align-items: stretch;
-  }
+.rating {
+  font-size: 0.9em;
+  color: var(--login-button-color); /* #ff385c */
+  margin: 0; /* Sin márgenes para que esté pegado */
+}
 
-  .beach-info {
-    display: flex;
-    flex-direction: column; /* Nombre arriba, foto debajo */
-    align-items: flex-start; /* Alinea a la izquierda */
-    margin-right: 10px; /* Espacio a la derecha para separar de .comment-content */
-    margin-bottom: 10px; /* Espacio debajo */
-    width: auto; /* Deja que el ancho se ajuste al contenido */
-  }
+/* Efecto hover para beach-name y beach-cover */
+.beach-name:hover,
+.comment-main:hover .beach-name {
+  color: var(--primary-color, #007bff); /* Resalta el nombre */
+  text-decoration: underline; /* Subrayado opcional */
+}
 
-  .beach-name {
-    order: -1; /* Coloca el nombre antes de la foto */
-    margin: 0 0 10px 0; /* Sin margen lateral, espacio solo debajo */
-    max-width: 100%; /* Permite que el nombre use todo el ancho disponible */
-    text-align: left; /* Alineado a la izquierda */
-  }
-
-  .beach-cover {
-    width: 80px; /* Tamaño reducido para pantallas pequeñas */
-    height: 80px;
-  }
-
-  .comment-content {
-    display: flex;
-    flex-direction: column; /* Organiza el contenido verticalmente */
-    flex: 1; /* Ocupa el espacio restante */
-  }
-
-  .comment-text {
-    margin: 0 0 10px 0; /* Espacio debajo del texto */
-    text-align: left; /* Alineado a la izquierda */
-  }
-
-  .rating {
-    order: 1; /* Coloca el rating después del texto */
-    margin: 0; /* Sin márgenes adicionales */
-    text-align: left;
-  }
-
-  .date {
-    order: 2; /* Coloca la fecha al final */
-    margin: 5px 0 0 0; /* Espacio solo arriba */
-    text-align: left;
-  }
-
-  /* Ajuste para mantener foto a la izquierda y contenido a la derecha */
-  .comment-card {
-    flex-direction: row; /* Vuelve a flex horizontal para foto y contenido */
-    flex-wrap: wrap; /* Permite que los elementos se ajusten */
-  }
-
-  .beach-info {
-    flex: 0 0 auto; /* No crece, usa el tamaño de la foto */
-  }
-
-  .comment-content {
-    flex: 1; /* Ocupa el resto del espacio a la derecha */
-  }
+.beach-cover:hover,
+.comment-main:hover .beach-cover {
+  filter: brightness(1.2); /* Resalta la imagen */
 }

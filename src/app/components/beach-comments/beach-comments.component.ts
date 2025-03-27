@@ -13,23 +13,40 @@ import { Comment } from '../../models/comment';
 })
 export class BeachCommentsComponent {
   @Input() comments: Comment[] = [];
-  @Output() addComment = new EventEmitter<Comment>(); // Evento de salida para notificar al padre
+  @Input() currentUser: { id: number; name: string; username: string; avatarUrl: string } = {
+    id: 0,
+    name: 'Usuario Actual',
+    username: 'currentUser',
+    avatarUrl: 'images/default-avatar.jpg'
+  }; // Información del usuario actual (simulada o pasada desde el padre)
+  @Input() beach: { id: string; name: string; island: string; coverUrl: string } = {
+    id: '0',
+    name: 'Playa Desconocida',
+    island: 'Unknown',
+    coverUrl: ''
+  }; // Información de la playa actual
+  @Output() addComment = new EventEmitter<Comment>();
 
   newCommentText: string = '';
-  newCommentAuthor: string = 'You'; // Valor por defecto
   newCommentRating: number = 5; // Valor por defecto
 
   onAddComment() {
-    if (this.newCommentText.trim() && this.newCommentAuthor.trim()) {
+    if (this.newCommentText.trim()) {
+      const currentDate = new Date().toISOString();
       const newComment: Comment = {
-        author: this.newCommentAuthor,
-        rating: this.newCommentRating,
-        text: this.newCommentText,
+        commentId: this.comments.length + 1, // ID temporal (el backend debería generarlo)
+        user: this.currentUser, // Usamos la info del usuario actual
+        beach: this.beach, // Usamos la info de la playa actual
+        comment: {
+          text: this.newCommentText,
+          rating: this.newCommentRating,
+          createdAt: currentDate,
+          updatedAt: currentDate
+        }
       };
-      this.addComment.emit(newComment); // Emite el nuevo comentario al padre
-      this.newCommentText = '';
-      this.newCommentAuthor = 'You';
-      this.newCommentRating = 5;
+      this.addComment.emit(newComment);
+      this.newCommentText = ''; // Reseteamos el texto
+      this.newCommentRating = 5; // Reseteamos la calificación
     }
   }
 }

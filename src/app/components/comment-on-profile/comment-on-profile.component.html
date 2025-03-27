@@ -8,16 +8,29 @@
 
 <div *ngIf="!isLoading && comments.length > 0" class="comments-container">
   <div *ngFor="let comment of comments" class="comment-card">
-    <div class="beach-info">
-      <img [src]="comment.beach.coverUrl" alt="{{ comment.beach.name }}" class="beach-cover">
-      <div>
-        <p class="beach-name">{{ comment.beach.name }}</p>
-      </div>
-    </div>
-    <div class="comment-content">
+    <!-- Bloque superior: Nombre de la playa -->
+    <p
+      class="beach-name"
+      (click)="navigateToBeach(comment.beach.name)"
+    >
+      {{ comment.beach.name }}
+    </p>
+
+    <!-- Bloque intermedio: Foto a la izquierda, comentario a la derecha -->
+    <div class="comment-main">
+      <img
+        [src]="comment.beach.coverUrl"
+        alt="{{ comment.beach.name }}"
+        class="beach-cover"
+        (click)="navigateToBeach(comment.beach.name)"
+      >
       <p class="comment-text">{{ comment.comment.text }}</p>
-      <p class="rating">Calificación: {{ comment.comment.rating }}/5</p>
+    </div>
+
+    <!-- Bloque inferior: Fecha a la izquierda, rating a la derecha -->
+    <div class="comment-meta">
       <p class="date">Publicado: {{ comment.comment.createdAt | date: 'medium' }}</p>
+      <p class="rating">Calificación: {{ comment.comment.rating }}/5</p>
     </div>
   </div>
 </div>
