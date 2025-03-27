@@ -4,7 +4,7 @@
   justify-content: space-between;
   gap: 1rem;
   align-items: center;
-  width: 100%;
+  width: 100vw;
   background-color: var(--header-background, #fff);
   color: var(--header-text-color, #000);
   padding: 0 4vw;

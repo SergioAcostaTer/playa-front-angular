@@ -13,6 +13,7 @@
   height: 100%;
   border-radius: 10px;
   object-fit: cover;
+  max-height: 400px;
 }
 
 .beach-detail-layout__sidebar-container {
@@ -108,6 +109,10 @@
 }
 
 @media (max-width: 768px) {
+  .beach-detail-layout__image-main {
+    max-height: 260px;
+  }
+
   .beach-detail-layout {
     flex-direction: column;
     font-size: 14px;
@@ -124,6 +129,10 @@
 }
 
 @media (max-width: 500px) {
+  .beach-detail-layout__image-main {
+    max-height: 200px;
+  }
+
   .beach-detail-layout {
     flex-direction: column;
     font-size: 12px;
