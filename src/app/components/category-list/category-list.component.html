@@ -1,6 +1,6 @@
 <div *ngIf="categories?.length; else emptyState" class="category-list" role="list">
     <app-category
-        *ngFor="let category of categories; trackBy: trackById"
+      *ngFor="let category of categories; trackBy: trackById"
         [category]="category"
         class="category-list__item"
         role="listitem">

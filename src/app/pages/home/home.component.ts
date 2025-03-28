@@ -7,6 +7,7 @@ import { BeachGridComponent } from '../../components/beach-grid/beach-grid.compo
 import { Beach } from '../../models/beach';
 import { getAllBeaches } from '../../services/getBeaches';
 import { Category } from '../../models/category';
+import { getCategories } from '../../services/getCategories';
 
 @Component({
   selector: 'app-home',
@@ -30,6 +31,7 @@ export class HomePageComponent implements OnInit {
 
   async ngOnInit() {
     try {
+      this.categories = await getCategories();
       this.beaches = await getAllBeaches();
     } catch (error) {
     } finally {
