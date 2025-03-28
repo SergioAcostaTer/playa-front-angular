@@ -1,12 +1,40 @@
-  <div *ngIf="isLoggedIn; else loginTemplate" class="user-info">
-    <img [src]="user.avatarUrl" alt="User Avatar" class="avatar" />
-    <div class="user-details">
-      <h3>{{ user.name }}</h3>
-      <p>{{ user.username }}</p>
-    </div>
+<div class="user-header">
+  <div *ngIf="isLoggedIn; else loginTemplate" class="user-header__user-menu">
+    <!-- Hacer que todo el contenedor sea clickable -->
+    <a class="user-header__menu-toggle" (click)="togglePopup()">
+      <img [src]="user.avatarUrl" class="user-header__menu-icon" alt="User Avatar">
+      <!-- Añadir el nombre y el símbolo verde -->
+      <div class="user-header__user-info">
+        <span class="user-header__user-name">{{ user.name }}</span>
+        <span class="user-header__status-icon"></span>
+      </div>
+    </a>
   </div>
 
-  <!-- Login button if user is not logged in -->
+  <!-- Login and Register buttons if user is not logged in -->
   <ng-template #loginTemplate>
-    <a class="login-button" href="/login">Login</a>
+    <div class="user-header__auth-buttons">
+      <a class="user-header__button user-header__button--login" href="/login">Login</a>
+      <a class="user-header__button user-header__button--register" href="/register">Register</a>
+    </div>
   </ng-template>
+
+  <!-- Popup -->
+  <div *ngIf="isPopupVisible" class="user-header__popup">
+    <div class="popup__container">
+      <img [src]="user.avatarUrl" alt="User Avatar" class="popup__image">
+      <div class="user-details">
+        <h3>{{ user.name }}</h3>
+        <p>{{ user.username }}</p>
+      </div>
+      <div class="popup__account-buttons">
+        <a href="/login" class="popup__account-button popup__account-link">Cambia de cuenta</a>
+        <a (click)="logout()" class="popup__account-button popup__account-link" style="cursor: pointer;">Cerrar sesión</a>
+      </div>
+      <div class="popup__nav-buttons">
+        <a href="/profile" class="popup__nav-button popup__nav-link">Perfil</a>
+        <a href="/favourites" class="popup__nav-button popup__nav-link">Me gusta</a>
+      </div>
+    </div>
+  </div>
+</div>

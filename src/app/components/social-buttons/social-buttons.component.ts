@@ -15,6 +15,5 @@ export class SocialButtonsComponent implements OnInit {
 
   ngOnInit(): void {
     this.googleUrl = this.envService.getApiUrl() + '/auth/google';
-    console.log(this.googleUrl)
   }
 }
