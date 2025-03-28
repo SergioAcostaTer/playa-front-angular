@@ -2,7 +2,7 @@
   background-image: url("/images/las-canteras.jpg");
   background-size: cover;
   background-position: center;
-  height: 30vh; /* Taller for a more immersive feel */
+  height: 30vh;
   position: relative;
   display: flex;
   align-items: center;
@@ -17,7 +17,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4); /* Subtle overlay for contrast */
+  background: rgba(0, 0, 0, 0.4);
   z-index: 1;
 }
 
@@ -30,8 +30,8 @@
 }
 
 .banner__title {
-  font-size: 2.25rem; /* Clean, readable size */
-  font-weight: 600; /* Bold but not overly heavy */
+  font-size: 2.25rem;
+  font-weight: 600;
   margin-bottom: 1.5rem;
   line-height: 1.2;
   letter-spacing: 0.5px;
@@ -39,23 +39,24 @@
 }
 
 .banner__search {
-  max-width: 600px; /* Constrain width like Airbnb */
+  max-width: 600px;
   width: 100%;
   margin: 0 auto;
+  margin-bottom: 1.5rem;
 }
 
 .search-container {
   display: flex;
   align-items: center;
   background: white;
-  border-radius: 32px; /* Rounded, modern look */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Soft shadow */
+  border-radius: 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   overflow: hidden;
   transition: box-shadow 0.2s ease;
 }
 
 .search-container:hover {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Hover effect */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
 .banner__input {
@@ -74,7 +75,7 @@
 }
 
 .search-button {
-  background: #ff385c; /* Airbnb-like vibrant color */
+  background: #ff385c;
   border: none;
   padding: 0.75rem;
   border-radius: 50%;
@@ -87,20 +88,52 @@
 }
 
 .search-button:hover {
-  background: #e31c5f; /* Darker shade on hover */
+  background: #e31c5f;
 }
 
 .search-button svg {
   color: white;
 }
 
-/* Responsive Design */
+.banner__mobile-nav {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.banner__mobile-nav--link {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: white;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.banner__mobile-nav--link:hover {
+  color: #ff385c;
+}
+
+.banner__mobile-nav--separator {
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: white;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
 @media (max-width: 768px) {
   .banner {
     height: 30vh;
   }
 
-  .banner__title {
+  .banner__title,
+  .banner__nav-link,
+  .banner__nav-separator {
     font-size: 1.75rem;
   }
 
@@ -109,9 +142,15 @@
   }
 }
 
-@media (max-width: 480px) {
-  .banner__title {
+@media (max-width: 550px) {
+  .banner__title,
+  .banner__nav-link,
+  .banner__nav-separator {
     font-size: 1.5rem;
+  }
+
+  .banner__mobile-nav {
+    display: flex;
   }
 
   .banner__input {
@@ -121,5 +160,9 @@
 
   .search-button {
     padding: 0.5rem;
+  }
+
+  .banner__nav {
+    gap: 0.5rem;
   }
 }

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CategoryListComponent } from '../../components/category-list/category-list.component';
 import { BeachGridComponent } from '../../components/beach-grid/beach-grid.component';
@@ -16,7 +16,8 @@ import { getCategories } from '../../services/getCategories';
     CommonModule,
     FormsModule,
     CategoryListComponent,
-    BeachGridComponent
+    BeachGridComponent,
+    RouterModule
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
