@@ -1,6 +1,6 @@
+<!-- src/app/search/search.component.html -->
 <div class="search-container">
   <div class="search-wrapper">
-    <!-- Search Input -->
     <div class="search-header">
       <div class="search-input-wrapper">
         <input 
@@ -16,40 +16,13 @@
       </div>
     </div>
 
-    <!-- Main Content with Aside -->
     <div class="content-container">
-      <!-- Filter Aside -->
-      <aside class="filter-panel">
-        <h3 class="filter-title">Filters</h3>
-        
-        <!-- Location Filter -->
-        <div class="filter-section">
-          <h4>Location</h4>
-          <select class="filter-select">
-            <option value="">All Locations</option>
-            <option value="north">North Coast</option>
-            <option value="south">South Coast</option>
-            <option value="east">East Coast</option>
-            <option value="west">West Coast</option>
-          </select>
-        </div>
+      <app-filter-panel
+        [selectedIsland]="islandFilter"
+        [islands]="categories"
+        (filtersChange)="onFiltersChange($event)"
+      ></app-filter-panel>
 
-        <!-- Features Filter -->
-        <div class="filter-section">
-          <h4>Features</h4>
-          <label class="filter-checkbox">
-            <input type="checkbox"> Swimming
-          </label>
-          <label class="filter-checkbox">
-            <input type="checkbox"> Surfing
-          </label>
-          <label class="filter-checkbox">
-            <input type="checkbox"> Parking
-          </label>
-        </div>
-      </aside>
-
-      <!-- Results Section -->
       <div class="results-section">
         <div *ngIf="loading" class="loading-state">
           <div class="spinner"></div>

@@ -1,0 +1,67 @@
+<!-- src/app/components/filter-panel/filter-panel.component.html -->
+<aside class="filter-panel">
+    <h3 class="filter-panel__title">Filtros</h3>
+    
+    <div class="filter-panel__section">
+        <h4 class="filter-panel__section-title">Lugar</h4>
+        <select 
+            class="filter-panel__select"
+            [ngModel]="filters.island"
+            (ngModelChange)="onIslandChange($event)"
+        >
+            <option value="">Selecciona tu isla</option>
+            <option 
+                *ngFor="let island of islands; trackBy: trackById" 
+                [value]="island.name"
+            >
+                {{ island.name }}
+            </option>
+        </select>
+    </div>
+    
+    <div class="filter-panel__section filter-panel__section--labels">
+        <h4 class="filter-panel__section-title">Características</h4>
+        <label class="filter-panel__checkbox">
+            <input 
+                type="checkbox" 
+                [(ngModel)]="filters.hasLifeguard"
+                (change)="onFilterChange()"
+            > Socorrista
+        </label>
+        <label class="filter-panel__checkbox">
+            <input 
+                type="checkbox" 
+                [(ngModel)]="filters.hasSand"
+                (change)="onFilterChange()"
+            > Arena
+        </label>
+        <label class="filter-panel__checkbox">
+            <input 
+                type="checkbox" 
+                [(ngModel)]="filters.hasRock"
+                (change)="onFilterChange()"
+            > Rocas
+        </label>
+        <label class="filter-panel__checkbox">
+            <input 
+                type="checkbox" 
+                [(ngModel)]="filters.hasShowers"
+                (change)="onFilterChange()"
+            > Duchas
+        </label>
+        <label class="filter-panel__checkbox">
+            <input 
+                type="checkbox" 
+                [(ngModel)]="filters.hasToilets"
+                (change)="onFilterChange()"
+            > Baños
+        </label>
+        <label class="filter-panel__checkbox">
+            <input 
+                type="checkbox" 
+                [(ngModel)]="filters.hasFootShowers"
+                (change)="onFilterChange()"
+            > Lavapiés
+        </label>
+    </div>
+</aside>
