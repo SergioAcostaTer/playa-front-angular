@@ -1,4 +1,3 @@
-// src/app/search/search.component.ts
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,10 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { BeachGridComponent } from '../../components/beach-grid/beach-grid.component';
 import { FilterPanelComponent } from '../../components/filter-panel/filter-panel.component';
 import { Beach } from '../../models/beach';
-import { debounceTime, switchMap, Subject } from 'rxjs';
-import { searchBeaches } from '../../services/searchBeaches';
-import { getCategories } from '../../services/getCategories';
 import { Category } from '../../models/category';
+import { debounceTime, switchMap, Subject } from 'rxjs';
+import { searchBeaches } from '../../services/searchBeaches.service'; // Importamos la clase correcta
+import { GetCategoriesService } from '../../services/getCategories.service'; // Importamos el servicio de categorías
 
 @Component({
   selector: 'app-search',
@@ -18,7 +17,7 @@ import { Category } from '../../models/category';
     CommonModule,
     FormsModule,
     BeachGridComponent,
-    FilterPanelComponent
+    FilterPanelComponent,
   ],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
@@ -35,37 +34,44 @@ export class SearchComponent implements OnInit {
     hasRock: false,
     hasShowers: false,
     hasToilets: false,
-    hasFootShowers: false
+    hasFootShowers: false,
   };
-  private searchSubject = new Subject<{ query: string, island: string, filters: any }>();
+  private searchSubject = new Subject<{ query: string; island: string; filters: any }>();
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private searchBeachService: searchBeaches, // Inyectamos correctamente el servicio
+    private getCategoriesService: GetCategoriesService // Inyectamos el servicio de categorías
+  ) {}
 
-  ngOnInit() {
-    getCategories().then(categories => {
-      this.categories = categories;
-    }).catch(error => {
+  async ngOnInit() {
+    try {
+      this.categories = await this.getCategoriesService.getCategories();
+    } catch (error) {
       console.error('Error fetching categories:', error);
-    });
+    }
 
-    this.searchSubject.pipe(
-      debounceTime(500),
-      switchMap(({ query, island, filters }) => {
-        this.loading = true;
-        return searchBeaches(query, { island, ...filters });
-      })
-    ).subscribe({
-      next: (beaches) => {
-        this.beaches = beaches;
-        this.loading = false;
-      },
-      error: (error) => {
-        console.error('Error fetching beaches:', error);
-        this.loading = false;
-      }
-    });
+    this.searchSubject
+      .pipe(
+        debounceTime(500),
+        switchMap(({ query, island, filters }) => {
+          this.loading = true;
+          return this.searchBeachService.searchBeaches(query, { island, ...filters });
+        })
+      )
+      .subscribe({
+        next: (beaches) => {
+          this.beaches = beaches;
+          this.loading = false;
+        },
+        error: (error) => {
+          console.error('Error fetching beaches:', error);
+          this.loading = false;
+        },
+      });
 
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       const query = params['q'] || '';
       const island = params['island'] || '';
       this.searchQuery = query;
@@ -78,7 +84,7 @@ export class SearchComponent implements OnInit {
     this.searchSubject.next({
       query: this.searchQuery,
       island: this.islandFilter,
-      filters: this.filters
+      filters: this.filters,
     });
   }
 
@@ -117,7 +123,7 @@ export class SearchComponent implements OnInit {
       hasRock: filters.hasRock,
       hasShowers: filters.hasShowers,
       hasToilets: filters.hasToilets,
-      hasFootShowers: filters.hasFootShowers
+      hasFootShowers: filters.hasFootShowers,
     };
     this.updateQueryParams();
     this.triggerSearch();

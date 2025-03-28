@@ -1,42 +1,80 @@
 <main class="login">
-    <app-panel-image></app-panel-image>
+  <app-panel-image></app-panel-image>
 
-    <div class="login__panel login__panel--right">
-        <a href="/" class="login__logo">
-            <h1 class="login__title">
-                Playea<span class="login__title-icon">®</span>
-            </h1>
-        </a>
-        <h2 class="login__subtitle">Iniciar sesión</h2>
-        <p class="login__text">
-            ¿No tienes una cuenta? <a href="/register" class="login__link">Regístrate</a>
+  <div class="login__panel login__panel--right">
+    <a href="/" class="login__logo">
+      <h1 class="login__title">
+        Playea<span class="login__title-icon">®</span>
+      </h1>
+    </a>
+    <h2 class="login__subtitle">Iniciar sesión</h2>
+    <p class="login__text">
+      ¿No tienes una cuenta? <a href="/register" class="login__link">Regístrate</a>
+    </p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login__form">
+      <div class="login__input-wrapper">
+        <input
+          type="email"
+          placeholder="Correo electrónico"
+          class="login__input login__input--email"
+          formControlName="email"
+          [ngClass]="{'login__input--error': emailControl?.touched && emailControl?.invalid}"
+        >
+        <p
+          class="login__validation-message"
+          *ngIf="emailControl?.touched && emailControl?.invalid"
+        >
+          {{ getEmailErrorMessage() }}
         </p>
+      </div>
 
-        <form class="login__form" (ngSubmit)="onSubmit()">
-            <div class="login__input-wrapper">
-                <input type="email" placeholder="Correo electrónico" class="login__input login__input--email" [(ngModel)]="email" name="email" (input)="onEmailChange($event)" required>
-                <p class="login__validation-message" [ngClass]="{'valid': emailValid, 'invalid': !emailValid}">{{ emailMessage }}</p>
-            </div>
+      <div class="login__password-wrapper--initial">
+        <div class="login__password-wrapper">
+          <input
+            id="login-password-text"
+            [type]="passwordVisible ? 'text' : 'password'"
+            placeholder="Contraseña"
+            class="login__input login__input--password"
+            formControlName="password"
+            [ngClass]="{'login__input--error': passwordControl?.touched && passwordControl?.invalid}"
+          >
+          <button
+            type="button"
+            class="login__password-toggle"
+            (click)="togglePassword()"
+          >
+            <img
+              id="login-toggle-icon"
+              [src]="passwordVisible ? '/images/Showing.png' : '/images/NotShowing.png'"
+              alt="Toggle Password Visibility"
+              class="login__password-icon"
+            >
+          </button>
+        </div>
+        <p
+          class="login__validation-message"
+          *ngIf="passwordControl?.touched && passwordControl?.invalid"
+        >
+          {{ getPasswordErrorMessage() }}
+        </p>
+      </div>
 
-            <div class="login__password-wrapper--initial">
-                <div class="login__password-wrapper">
-                    <input id="login-password-text" type="password" placeholder="Contraseña" class="login__input login__input--password" [(ngModel)]="password" name="password" (input)="onPasswordChange($event)" [style.border-color]="passwordColor" required>
-                    <button type="button" class="login__password-toggle" (click)="togglePassword()">
-                        <img id="login-toggle-icon" src="/images/NotShowing.png" alt="Mostrar Contraseña" class="login__password-icon">
-                    </button>
-                </div>
-                <p class="login__validation-message" [ngClass]="{'valid': passwordValid, 'invalid': !passwordValid}">{{ passwordMessage }}</p>
-            </div>
+      <a class="login__forgot-link" href="/forgot-password">¿Olvidaste tu contraseña?</a>
 
-            <a class="login__forgot-link" href="/forgot-password">¿Olvidaste tu contraseña?</a>
+      <button
+        type="submit"
+        class="login__submit"
+        [disabled]="loginForm.invalid"
+      >
+        Iniciar sesión
+      </button>
 
-            <button type="submit" class="login__submit" [disabled]="!isFormValid()">Iniciar sesión</button>
+      <div class="login__divider">
+        <span class="login__divider-text">O continúa con</span>
+      </div>
 
-            <div class="login__divider">
-                <span class="login__divider-text">O continúa con</span>
-            </div>
-
-            <app-social-buttons></app-social-buttons>
-        </form>
-    </div>
+      <app-social-buttons></app-social-buttons>
+    </form>
+  </div>
 </main>

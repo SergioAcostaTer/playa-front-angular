@@ -1,113 +1,123 @@
 import { Component } from '@angular/core';
-import { PanelImageComponent } from "../../components/panel-image/panel-image.component";
-import { SocialButtonsComponent } from '../../components/social-buttons/social-buttons.component';
-import { togglePasswordView } from '../../utils/toggle-password-view';
-import {  passwordsMatch } from '../../utils/passwordsMatch';
-import { validatePasswordLength  } from '../../utils/validatePasswordLength';
-import { validateEmail } from '../../utils/validateEmail';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { PanelImageComponent } from '../../components/panel-image/panel-image.component';
+import { SocialButtonsComponent } from '../../components/social-buttons/social-buttons.component';
+import { togglePasswordView } from '../../utils/toggle-password-view';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [PanelImageComponent, SocialButtonsComponent, FormsModule, CommonModule ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule, // Usamos ReactiveFormsModule en lugar de FormsModule
+    PanelImageComponent,
+    SocialButtonsComponent,
+  ],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
 export class RegisterPageComponent {
-  email: string = '';
-  password: string = '';
-  confirmPassword: string = '';
-  firstName: string = '';
-  lastName: string = '';
-  termsAccepted: boolean = false;
+  registerForm: FormGroup;
+  passwordVisible = false; // Para el toggle de la contraseña
+  confirmPasswordVisible = false; // Para el toggle de la confirmación
 
-  // Propiedades para validaciones y mensajes
-  emailValid: boolean = false;
-  emailMessage: string = 'Ingresa tu correo electrónico';
-  passwordValid: boolean = false;
-  passwordMessage: string = 'Ingresa tu contraseña';
-  passwordColor: string = 'red';
-  passwordsMatchValid: boolean = false;
-  passwordsMatchMessage: string = 'Confirma tu contraseña';
-
-  onEmailChange(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    this.email = input.value;
-    const validation = validateEmail(this.email);
-    this.emailValid = validation.isValid;
-    this.emailMessage = validation.message;
+  constructor(private fb: FormBuilder, private router: Router) {
+    this.registerForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      confirmPassword: ['', Validators.required],
+      terms: [false, Validators.requiredTrue], // Checkbox debe ser true
+    }, { validators: this.passwordMatchValidator }); // Validador personalizado para coincidencia de contraseñas
   }
 
-  onPasswordChange(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    this.password = input.value;
-    const validation = validatePasswordLength(this.password);
-    this.passwordValid = validation.isValid;
-    this.passwordColor = validation.color;
-    this.passwordMessage = validation.message;
-    this.checkPasswordsMatch();
-  }
+  // Getters para acceder fácilmente a los controles
+  get firstNameControl() { return this.registerForm.get('firstName'); }
+  get lastNameControl() { return this.registerForm.get('lastName'); }
+  get emailControl() { return this.registerForm.get('email'); }
+  get passwordControl() { return this.registerForm.get('password'); }
+  get confirmPasswordControl() { return this.registerForm.get('confirmPassword'); }
+  get termsControl() { return this.registerForm.get('terms'); }
 
-  constructor(private router: Router) {}
-
-  onConfirmPasswordChange(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    this.confirmPassword = input.value;
-    this.checkPasswordsMatch();
-  }
-
-  onFirstNameChange(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    this.firstName = input.value;
-  }
-
-  onLastNameChange(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    this.lastName = input.value;
-  }
-
-  onTermsChange(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    this.termsAccepted = input.checked;
-  }
-
-  checkPasswordsMatch(): void {
-    const validation = passwordsMatch(this.password, this.confirmPassword);
-    this.passwordsMatchValid = validation.isValid;
-    this.passwordsMatchMessage = validation.message;
-  }
-
-  isFormValid(): boolean {
-    return this.emailValid && this.passwordValid && this.passwordsMatchValid && this.termsAccepted && this.firstName.length > 0 && this.lastName.length > 0;
+  // Validador personalizado para verificar que las contraseñas coincidan
+  passwordMatchValidator(form: FormGroup) {
+    const password = form.get('password')?.value;
+    const confirmPassword = form.get('confirmPassword')?.value;
+    return password === confirmPassword ? null : { mismatch: true };
   }
 
   togglePassword(): void {
-    console.log('Toggling password visibility...');
+    this.passwordVisible = !this.passwordVisible;
     togglePasswordView('register-password-text', 'register-toggle-icon');
   }
 
   toggleConfirmationPassword(): void {
-    console.log('Toggling password visibility...');
+    this.confirmPasswordVisible = !this.confirmPasswordVisible;
     togglePasswordView('register-password-confirmation-text', 'confirmation-toggle-icon');
   }
 
   onSubmit(): void {
-    if (this.isFormValid()) {
+    if (this.registerForm.valid) {
       const userData = {
-        firstName: this.firstName,
-        lastName: this.lastName,
-        email: this.email,
-        password: this.password,
+        firstName: this.registerForm.value.firstName,
+        lastName: this.registerForm.value.lastName,
+        email: this.registerForm.value.email,
+        password: this.registerForm.value.password,
       };
       localStorage.setItem('user', JSON.stringify(userData));
       console.log('Usuario registrado y guardado en localStorage:', userData);
-
       this.router.navigate(['/']);
     } else {
       console.log('Formulario no válido');
+      this.registerForm.markAllAsTouched(); // Mostrar errores en todos los campos
     }
+  }
+
+  // Métodos para mensajes de error
+  getFirstNameErrorMessage(): string {
+    return this.firstNameControl?.hasError('required') ? 'El nombre es obligatorio' : '';
+  }
+
+  getLastNameErrorMessage(): string {
+    return this.lastNameControl?.hasError('required') ? 'El apellido es obligatorio' : '';
+  }
+
+  getEmailErrorMessage(): string {
+    if (this.emailControl?.hasError('required')) {
+      return 'El correo electrónico es obligatorio';
+    }
+    if (this.emailControl?.hasError('email')) {
+      return 'Ingresa un correo electrónico válido';
+    }
+    return '';
+  }
+
+  getPasswordErrorMessage(): string {
+    if (this.passwordControl?.hasError('required')) {
+      return 'La contraseña es obligatoria';
+    }
+    if (this.passwordControl?.hasError('minlength')) {
+      return 'La contraseña debe tener al menos 8 caracteres';
+    }
+    return '';
+  }
+
+  getConfirmPasswordErrorMessage(): string {
+    if (this.confirmPasswordControl?.hasError('required')) {
+      return 'Confirma tu contraseña';
+    }
+    if (this.registerForm.hasError('mismatch') && this.confirmPasswordControl?.touched) {
+      return 'Las contraseñas no coinciden';
+    }
+    return '';
+  }
+
+  getTermsErrorMessage(): string {
+    return this.termsControl?.hasError('required') && this.termsControl?.touched
+      ? 'Debes aceptar los términos y condiciones'
+      : '';
   }
 }

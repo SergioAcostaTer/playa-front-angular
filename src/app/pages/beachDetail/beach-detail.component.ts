@@ -4,9 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { beachesList } from '../../constants/beachesList';
 import { BeachDetailLayoutComponent } from '../../components/beach-detail-layout/beach-detail-layout.component';
 import { BeachDescriptionComponent } from '../../components/beach-description/beach-description.component';
-import { MaplibreMapComponent } from '../../maplibre-map/maplibre-map.component';
+import { MaplibreMapComponent } from '../../components/maplibre-map/maplibre-map.component';
 import { BeachCommentsComponent } from '../../components/beach-comments/beach-comments.component';
-import { GetCommentsService } from '../../services/getComments.service'; // Asegúrate de que la ruta sea correcta
+import { GetCommentsService } from '../../services/getComments.service'; // Ajustado el nombre del archivo
 import { Beach } from '../../models/beach';
 import { Comment } from '../../models/comment';
 
@@ -18,7 +18,7 @@ import { Comment } from '../../models/comment';
     BeachDetailLayoutComponent,
     BeachDescriptionComponent,
     MaplibreMapComponent,
-    BeachCommentsComponent
+    BeachCommentsComponent,
   ],
   templateUrl: './beach-detail.component.html',
   styleUrls: ['./beach-detail.component.css'],
@@ -35,7 +35,7 @@ export class BeachDetailPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const slug = this.route.snapshot.paramMap.get('slug'); // No necesitamos :any aquí
+    const slug = this.route.snapshot.paramMap.get('slug');
     if (slug) {
       this.beach = this.beaches?.find((beach: Beach) =>
         beach.name?.replace(/ /g, '-')?.toLowerCase() === slug.toLowerCase()
@@ -46,21 +46,19 @@ export class BeachDetailPageComponent implements OnInit {
     }
   }
 
-  loadComments() {
+  async loadComments() {
     if (!this.beach) return;
 
-    this.commentService.getComments().subscribe({
-      next: (comments: Comment[]) => { // Especificamos que comments es Comment[]
-        this.comments = comments.filter((comment: Comment) => // Tipamos el parámetro comment
-          comment.beach.name.toLowerCase().replace(/\s+/g, '-') ===
-          this.beach!.name.toLowerCase().replace(/\s+/g, '-')
-        );
-      },
-      error: (err: any) => {
-        console.error('Error loading comments:', err);
-        this.comments = [];
-      }
-    });
+    try {
+      const comments = await this.commentService.getComments();
+      this.comments = comments.filter((comment: Comment) =>
+        comment.beach.name.toLowerCase().replace(/\s+/g, '-') ===
+        this.beach!.name.toLowerCase().replace(/\s+/g, '-')
+      );
+    } catch (err) {
+      console.error('Error loading comments:', err);
+      this.comments = [];
+    }
   }
 
   addComment(newComment: Comment) {

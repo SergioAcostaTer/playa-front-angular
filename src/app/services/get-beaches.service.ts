@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { environment } from '../../environments/environment';
-import { Comment } from '../models/comment';
+import { Beach } from '../models/beach'; // Asegúrate de importar el modelo Beach
 
 // Create an axios instance with the base URL from the environment
 const api = axios.create({
@@ -11,17 +11,15 @@ const api = axios.create({
 @Injectable({
   providedIn: 'root',
 })
-export class GetCommentsService {
-  private readonly commentsUrl = '/mockup/comment.json';
-
+export class GetBeachesService {
   constructor() {}
 
-  async getComments(): Promise<Comment[]> {
+  async getBeaches(): Promise<Beach[]> {
     try {
-      const { data } = await api.get<Comment[]>(this.commentsUrl);
-      return data;
+      const response = await api.get<Beach[]>('/mockup/beaches.json');
+      return response.data;
     } catch (error) {
-      console.error('Error fetching comments:', error);
+      console.error('Error fetching beaches:', error);
       throw error;
     }
   }

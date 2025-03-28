@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { CommentOnProfileComponent } from '../../components/comment-on-profile/comment-on-profile.component';
-import { GetCommentsService } from '../../services/getComments.service'; // Importamos el servicio
-import { Comment } from '../../models/comment'; // Asegúrate de que la ruta sea correcta
+import { GetCommentsService } from '../../services/getComments.service';
+import { GetUserService } from '../../services/get-user.service'; // Nuevo servicio
+import { Comment } from '../../models/comment';
 
 interface User {
   id: number;
@@ -16,18 +16,12 @@ interface User {
   avatarUrl: string;
 }
 
-interface UserResponse {
-  data: User;
-  message: string;
-  status: number;
-}
-
 @Component({
   selector: 'app-view-profile',
   standalone: true,
   imports: [CommonModule, CommentOnProfileComponent],
   templateUrl: './view-profile.component.html',
-  styleUrls: ['./view-profile.component.css']
+  styleUrls: ['./view-profile.component.css'],
 })
 export class ViewProfileComponent implements OnInit {
   user: User | null = null;
@@ -35,9 +29,9 @@ export class ViewProfileComponent implements OnInit {
   isLoadingComments = true;
 
   constructor(
-    private http: HttpClient,
     private route: ActivatedRoute,
-    private commentService: GetCommentsService // Inyectamos el servicio
+    private commentService: GetCommentsService,
+    private userService: GetUserService // Inyectamos el nuevo servicio
   ) {}
 
   ngOnInit(): void {
@@ -45,7 +39,7 @@ export class ViewProfileComponent implements OnInit {
     this.loadComments();
   }
 
-  loadUserData(): void {
+  async loadUserData(): Promise<void> {
     const username = this.route.snapshot.paramMap.get('username');
     if (!username) {
       console.error('No username provided in route parameters');
@@ -53,27 +47,18 @@ export class ViewProfileComponent implements OnInit {
       return;
     }
 
-    this.http.get<UserResponse[]>('/mockup/user.json').subscribe({
-      next: (response) => {
-        if (Array.isArray(response)) {
-          const userData = response.find(r => r.data?.username === username);
-          this.user = userData?.data || null;
-          if (!this.user) {
-            console.warn(`User with username "${username}" not found in mock data`);
-          }
-        } else {
-          console.error('Expected an array response but received:', response);
-          this.user = null;
-        }
-      },
-      error: (err) => {
-        console.error('Failed to fetch user data:', err);
-        this.user = null;
+    try {
+      this.user = await this.userService.getUserByUsername(username);
+      if (!this.user) {
+        console.warn(`User with username "${username}" not found in mock data`);
       }
-    });
+    } catch (err) {
+      console.error('Failed to fetch user data:', err);
+      this.user = null;
+    }
   }
 
-  loadComments(): void {
+  async loadComments(): Promise<void> {
     const username = this.route.snapshot.paramMap.get('username');
     if (!username) {
       console.error('No username provided for filtering comments');
@@ -81,16 +66,14 @@ export class ViewProfileComponent implements OnInit {
       return;
     }
 
-    this.commentService.getComments().subscribe({
-      next: (comments) => {
-        this.comments = comments.filter(comment => comment.user.username === username);
-        this.isLoadingComments = false;
-      },
-      error: (err) => {
-        console.error('Error loading comments:', err);
-        this.comments = [];
-        this.isLoadingComments = false;
-      }
-    });
+    try {
+      const comments = await this.commentService.getComments();
+      this.comments = comments.filter(comment => comment.user.username === username);
+      this.isLoadingComments = false;
+    } catch (err) {
+      console.error('Error loading comments:', err);
+      this.comments = [];
+      this.isLoadingComments = false;
+    }
   }
 }

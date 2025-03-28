@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { categoriesList } from '../../constants/categoriesList';
 import { TitlePageComponent } from '../../components/title-page/title-page.component';
 import { BeachGridComponent } from '../../components/beach-grid/beach-grid.component';
-import { getBeaches } from '../../services/getBeaches';
-import { getCategories } from '../../services/getCategories';
+import { GetBeachesService } from '../../services/get-beaches.service'; // Importamos el servicio
+import { Beach } from '../../models/beach'; // Importamos el modelo Beach
 
 @Component({
   selector: 'app-user-favourites',
@@ -13,16 +12,17 @@ import { getCategories } from '../../services/getCategories';
   templateUrl: './favourite.component.html',
 })
 export class FavouritePageComponent {
-  categories = [];
-  beaches = [];
+  beaches: Beach[] = []; // Tipamos la propiedad beaches
   loading = true;
+
+  constructor(private getBeachesService: GetBeachesService) {} // Inyectamos el servicio
 
   async ngOnInit() {
     try {
-      this.beaches = await getBeaches();
-      this.categories = await getCategories();
+      this.beaches = await this.getBeachesService.getBeaches();
     } catch (error) {
       console.error('Error fetching beaches:', error);
+      this.beaches = []; // Fallback en caso de error
     } finally {
       this.loading = false;
     }

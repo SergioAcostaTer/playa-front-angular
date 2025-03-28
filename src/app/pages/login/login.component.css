@@ -149,12 +149,15 @@
   text-align: left;
 }
 
-.login__validation-message.valid {
-  color: green;
+.login__input--error {
+  border-color: red !important; /* Resalta el borde en rojo */
 }
 
-.login__validation-message.invalid {
-  color: red;
+.login__validation-message {
+  font-size: 0.8rem;
+  margin-top: 5px;
+  text-align: left;
+  color: red; /* Todos los mensajes de error en rojo */
 }
 
 @media (max-width: 430px) {
@@ -184,3 +187,16 @@
     width: 100%;
   }
 }
+
+.login__input--error {
+  border-color: red !important; /* Resalta el borde en rojo */
+}
+
+.login__validation-message {
+  font-size: 0.8rem;
+  margin-top: 5px;
+  text-align: left;
+  color: red; /* Todos los mensajes de error en rojo */
+}
+
+/* Eliminamos las clases .valid e .invalid ya que solo mostramos errores */
