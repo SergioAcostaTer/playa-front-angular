@@ -1,4 +1,3 @@
-// src/services/search.ts
 import axios from 'axios';
 import { environment } from '../../environments/environment';
 import { Beach } from '../models/beach';
@@ -17,7 +16,7 @@ export const searchBeaches = async (
     hasToilets?: boolean;
     hasFootShowers?: boolean;
   } = {}
-): Promise<Beach[]> => {
+): Promise<SearchBeachesResponse> => {
   try {
     const queryParams = new URLSearchParams();
     queryParams.set('q', query);
@@ -35,7 +34,7 @@ export const searchBeaches = async (
 
     const url = `${environment.apiUrl}/beaches/search?${queryParams.toString()}`;
     const response = await axios.get(url);
-    return response.data.data; // Devolvemos solo la lista de playas
+    return response.data; // Devolvemos el objeto completo { status, data, pagination }
   } catch (error) {
     console.error('Error fetching beaches search:', error);
     throw error;

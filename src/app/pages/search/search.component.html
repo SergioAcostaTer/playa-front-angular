@@ -1,17 +1,20 @@
-<!-- src/app/search/search.component.html -->
 <div class="search-container">
   <div class="search-wrapper">
     <div class="search-header">
       <div class="search-input-wrapper">
-        <input 
-          type="text" 
+        <input
+          type="text"
           [(ngModel)]="searchQuery"
           (input)="onSearchInputChange($event)"
           placeholder="Search beaches..."
           class="search-input"
-        >
+        />
         <svg class="search-icon" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+          <path
+            fill-rule="evenodd"
+            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+            clip-rule="evenodd"
+          />
         </svg>
       </div>
     </div>
@@ -32,10 +35,18 @@
           <p>No beaches found matching your search</p>
         </div>
 
-        <app-beach-grid 
+        <app-beach-grid
           *ngIf="!loading && beaches.length > 0"
           [beaches]="beaches"
         ></app-beach-grid>
+
+        <app-pagination
+          *ngIf="!loading && beaches.length > 0"
+          [currentPage]="currentPage"
+          [totalPages]="totalPages"
+          [limit]="limit"
+          (pageChange)="onPageChange($event)"
+        ></app-pagination>
       </div>
     </div>
   </div>

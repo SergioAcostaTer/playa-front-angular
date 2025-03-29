@@ -1,10 +1,10 @@
-// src/app/pages/search/search.component.ts
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BeachGridComponent } from '../../components/beach-grid/beach-grid.component';
 import { FilterPanelComponent } from '../../components/filter-panel/filter-panel.component';
+import { PaginationComponent } from '../../components/pagination/pagination.component';
 import { Beach } from '../../models/beach';
 import { searchBeaches } from '../../services/search';
 import { debounceTime, switchMap, Subject } from 'rxjs';
@@ -14,7 +14,13 @@ import { getCategories } from '../../services/getCategories';
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [CommonModule, FormsModule, BeachGridComponent, FilterPanelComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    BeachGridComponent,
+    FilterPanelComponent,
+    PaginationComponent
+  ],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
 })
@@ -24,6 +30,9 @@ export class SearchComponent implements OnInit {
   loading = true;
   searchQuery: string = '';
   islandFilter: string = '';
+  currentPage: number = 1; // Añadir currentPage
+  totalPages: number = 1; // Añadir totalPages
+  limit: number = 30; // Añadir limit
   filters = {
     island: '',
     hasLifeguard: false,
@@ -35,6 +44,7 @@ export class SearchComponent implements OnInit {
   };
   private searchSubject = new Subject<{
     query: string;
+    page: number;
     filters: {
       island: string;
       hasLifeguard: boolean;
@@ -56,14 +66,17 @@ export class SearchComponent implements OnInit {
     this.searchSubject
       .pipe(
         debounceTime(500),
-        switchMap(({ query, filters }) => {
+        switchMap(({ query, page, filters }) => {
           this.loading = true;
-          return searchBeaches(query, 1, 30, filters);
+          return searchBeaches(query, page, this.limit, filters);
         })
       )
       .subscribe({
-        next: (beaches) => {
-          this.beaches = beaches;
+        next: (response) => {
+          this.beaches = response.data;
+          this.currentPage = response.pagination.currentPage;
+          this.totalPages = response.pagination.totalPages;
+          this.limit = response.pagination.limit;
           this.loading = false;
         },
         error: (error) => {
@@ -74,6 +87,7 @@ export class SearchComponent implements OnInit {
     // Leer los parámetros de la URL
     this.route.queryParams.subscribe((params) => {
       this.searchQuery = params['q'] || '';
+      this.currentPage = Number(params['page']) || 1; // Leer la página de la URL
       this.filters.island = params['island'] || '';
       this.islandFilter = this.filters.island;
       this.filters.hasLifeguard = params['hasLifeguard'] === 'true';
@@ -83,15 +97,19 @@ export class SearchComponent implements OnInit {
       this.filters.hasToilets = params['hasToilets'] === 'true';
       this.filters.hasFootShowers = params['hasFootShowers'] === 'true';
 
-      this.searchSubject.next({ query: this.searchQuery, filters: this.filters });
+      this.searchSubject.next({
+        query: this.searchQuery,
+        page: this.currentPage,
+        filters: this.filters,
+      });
     });
   }
 
-  updateQueryParams(query: string, filters: typeof this.filters) {
+  updateQueryParams(query: string, page: number, filters: typeof this.filters) {
     const queryParams: { [key: string]: string | undefined } = {
       q: query.trim() || undefined,
+      page: String(page),
       island: filters.island || undefined,
-      // Solo incluir los filtros booleanos si están en true
       hasLifeguard: filters.hasLifeguard ? 'true' : undefined,
       hasSand: filters.hasSand ? 'true' : undefined,
       hasRock: filters.hasRock ? 'true' : undefined,
@@ -106,19 +124,26 @@ export class SearchComponent implements OnInit {
       queryParamsHandling: 'merge',
     });
 
-    this.searchSubject.next({ query: query.trim(), filters });
+    this.searchSubject.next({ query: query.trim(), page, filters });
     this.loading = true;
   }
 
   onSearchInputChange(event: any) {
     const query = event.target.value;
     this.searchQuery = query;
-    this.updateQueryParams(query, this.filters);
+    this.currentPage = 1; // Resetear la página a 1 al cambiar la búsqueda
+    this.updateQueryParams(query, this.currentPage, this.filters);
   }
 
   onFiltersChange(filters: typeof this.filters) {
     this.filters = filters;
     this.islandFilter = filters.island;
-    this.updateQueryParams(this.searchQuery, filters);
+    this.currentPage = 1; // Resetear la página a 1 al cambiar los filtros
+    this.updateQueryParams(this.searchQuery, this.currentPage, filters);
+  }
+
+  onPageChange(page: number) {
+    this.currentPage = page;
+    this.updateQueryParams(this.searchQuery, page, this.filters);
   }
 }

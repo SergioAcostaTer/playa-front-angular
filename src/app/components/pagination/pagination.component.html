@@ -1,0 +1,27 @@
+<!-- src/app/components/pagination/pagination.component.html -->
+<div class="pagination" *ngIf="totalPages > 1">
+    <button
+        class="pagination__button pagination__button--prev"
+        [disabled]="currentPage === 1"
+        (click)="previousPage()"
+        >
+        Anterior
+    </button>
+    
+    <button
+        *ngFor="let page of pages"
+        class="pagination__button"
+        [class.pagination__button--active]="page === currentPage"
+        (click)="goToPage(page)"
+        >
+        {{ page }}
+    </button>
+    
+    <button
+        class="pagination__button pagination__button--next"
+        [disabled]="currentPage === totalPages"
+        (click)="nextPage()"
+        >
+        Siguiente
+    </button>
+</div>
