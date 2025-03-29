@@ -18,6 +18,7 @@
             placeholder="Nombre"
             class="register__input register__input--first-name"
             formControlName="firstName"
+            name="firstName"
             [ngClass]="{'register__input--error': firstNameControl?.touched && firstNameControl?.invalid}"
           >
           <p
@@ -33,6 +34,7 @@
             placeholder="Apellido"
             class="register__input register__input--last-name"
             formControlName="lastName"
+            name="lastName"
             [ngClass]="{'register__input--error': lastNameControl?.touched && lastNameControl?.invalid}"
           >
           <p
@@ -50,6 +52,7 @@
           placeholder="Correo electrónico"
           class="register__input register__input--email"
           formControlName="email"
+          name="email"
           [ngClass]="{'register__input--error': emailControl?.touched && emailControl?.invalid}"
         >
         <p
@@ -68,6 +71,7 @@
             placeholder="Ingresa tu contraseña"
             class="register__input register__input--password"
             formControlName="password"
+            name="password"
             [ngClass]="{'register__input--error': passwordControl?.touched && passwordControl?.invalid}"
           >
           <button

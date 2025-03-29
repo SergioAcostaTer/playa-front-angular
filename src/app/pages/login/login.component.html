@@ -19,6 +19,7 @@
           placeholder="Correo electrónico"
           class="login__input login__input--email"
           formControlName="email"
+          name="email"
           [ngClass]="{'login__input--error': emailControl?.touched && emailControl?.invalid}"
         >
         <p
@@ -37,6 +38,7 @@
             placeholder="Contraseña"
             class="login__input login__input--password"
             formControlName="password"
+            name="password"
             [ngClass]="{'login__input--error': passwordControl?.touched && passwordControl?.invalid}"
           >
           <button
