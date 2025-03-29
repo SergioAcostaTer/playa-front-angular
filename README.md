@@ -1,4 +1,4 @@
-# Playea: Sprint [Número/Nombre del Sprint] - Resumen de Desarrollo
+# Playea: Sprint 2 - Resumen de Desarrollo
 
 ## 📌 Integrantes del Proyecto
 
@@ -8,42 +8,57 @@
 
 ## 📝 Resumen del Sprint
 
-En este sprint, el equipo de **Playea** se enfocó en optimizar la estructura del proyecto, mejorar la experiencia de usuario en diferentes dispositivos y avanzar en la funcionalidad dinámica de la plataforma. A continuación, se detalla paso a paso el trabajo realizado para seguir construyendo una herramienta interactiva que permita a los usuarios explorar y valorar las playas de las Islas Canarias de manera eficiente.
+Durante este sprint, el equipo de **Playea** se centró en la optimización del proyecto, la mejora de la experiencia de usuario en distintos dispositivos y el desarrollo de nuevas funcionalidades dinámicas. A continuación, se detallan los avances logrados en esta iteración, con el objetivo de seguir construyendo una plataforma intuitiva que permita a los usuarios explorar y valorar las playas de las Islas Canarias de manera eficiente.
 
 ## 🚀 Tareas Realizadas
 
-### 1. Atomización de Componentes Existentes
+### 1️⃣ Refactorización y Modularización de Componentes
 
-- **Objetivo:** Mejorar la modularidad del código para facilitar futuras modificaciones y mantenimiento.  
-- **Descripción:** Se descompusieron los componentes ya creados en partes más pequeñas y reutilizables. Esto permite una mayor flexibilidad al realizar cambios o añadir nuevas funcionalidades, alineándose con el requisito no funcional RNF01 (interfaz intuitiva y fácil de usar) al mantener el código organizado y escalable.
+- **Objetivo:** Mejorar la mantenibilidad y escalabilidad del código.
+- **Descripción:** Se descompusieron los componentes existentes en subcomponentes más pequeños y reutilizables. Esto facilita la implementación de nuevas funcionalidades y optimiza la estructura del código, alineándose con el requisito no funcional **RNF01** (interfaz intuitiva y fácil de usar).
+    - Se puede observar bien en la página de **detalles de una playas** (`/beaches/:slug`)
 
-### 2. Adaptación de Diseños en Figma para Móviles y Tablets
+### 2️⃣ Creación de Nuevos Componentes y Vistas
 
-- **Objetivo:** Ampliar los diseños existentes para que sean compatibles con dispositivos móviles y tablets, además de los diseños previos para PC.  
-- **Descripción:** Se actualizaron los prototipos en Figma para incluir vistas específicas para móviles y tablets, asegurando que la experiencia de usuario sea consistente en todos los dispositivos. Este paso es clave para cumplir con el requisito no funcional RNF02 (diseño responsivo para distintos dispositivos). Puedes revisar los diseños actualizados en el [enlace de Figma](https://www.figma.com/design/r6Gxqsy8sfzuwfJZOIexKR/Playea.com?node-id=0-1&t=liIOWVMREdWDgDs7-1).
+- **Objetivo:** Ampliar la interfaz del usuario con nuevas secciones.
+- **Descripción:** Se diseñaron y desarrollaron nuevas páginas en **Figma**, trasladándolas posteriormente a **HTML y CSS**:
+  - **Página de búsqueda** (`/search`)
+  - **Vista de perfil de usuario** (`/view-profile/:username`)
 
-### 3. Implementación de un Diseño Responsive
+### 3️⃣ Adaptación de Diseños para Móviles y Tablets
 
-- **Objetivo:** Asegurar que la plataforma se visualice correctamente en pantallas de PC, tablets y móviles.  
-- **Descripción:** Se adaptaron los mockups a un diseño responsive utilizando técnicas de desarrollo web (como CSS Grid, Flexbox y media queries). Para validar el diseño en diferentes tamaños de pantalla, se utilizó la extensión de Google Chrome **Responsive Viewer**, lo que permitió simular y ajustar la interfaz en tiempo real. Este desarrollo refuerza el cumplimiento del requisito no funcional RNF02.
+- **Objetivo:** Garantizar una experiencia de usuario óptima en cualquier dispositivo.
+- **Descripción:** Se actualizaron los diseños en **Figma** para incluir versiones específicas para móviles y tablets, asegurando una visualización y usabilidad consistentes. Esto cumple con el requisito no funcional **RNF02** (diseño responsivo para distintos dispositivos). Puedes ver los diseños en el siguiente enlace: [Figma - Playea](https://www.figma.com/design/r6Gxqsy8sfzuwfJZOIexKR/Playea.com?node-id=0-1&t=liIOWVMREdWDgDs7-1).
 
-### 4. Carga Dinámica de Datos de Playas desde JSON
+### 4️⃣ Implementación de RWD (Responsive Web Designe)
 
-- **Objetivo:** Implementar una carga dinámica de datos para las playas y sus categorías.  
-- **Descripción:** Se configuró la plataforma para que los datos de las playas (como ubicación, tipo de arena, servicios disponibles, etc.) y las categorías (como "más limpias" o "más visitadas") se carguen desde un archivo JSON. Esto permite una gestión más eficiente de la información y facilita la escalabilidad de la base de datos, apoyando los requisitos funcionales RF04 (explorar todas las playas) y RF05 (información detallada de cada playa).
+- **Objetivo:** Optimizar la interfaz para su correcto funcionamiento en múltiples tamaños de pantalla.
+- **Descripción:** Se aplicaron técnicas de desarrollo web como **CSS Grid, Flexbox y Media Queries** para asegurar la adaptabilidad del sitio. Además, se utilizó la extensión **Responsive Viewer** en Google Chrome para validar el diseño en distintos dispositivos.
 
-### 5. Implementación y Validación de Formularios con LocalStorage
+### 5️⃣ Carga Dinámica de Datos desde JSON
 
-- **Objetivo:** Habilitar el funcionamiento completo de los formularios de login, registro y recuperación de contraseña, con almacenamiento local.  
-- **Descripción:**  
-  - Se implementaron los formularios de **login** (`/login`), **registro** (`/register`) y **recuperación de contraseña** (`/forgot-password`) para que envíen datos correctamente.  
-  - Se utilizó **LocalStorage** para gestionar la autenticación de manera local, permitiendo a los usuarios iniciar y cerrar sesión (RF02).  
-  - Además, se modificó el **header** de la plataforma para que muestre un diseño diferente dependiendo de si el usuario está logueado o no, mejorando la experiencia de usuario (RNF01).  
-  - Este desarrollo también cubre los requisitos funcionales RF01 (registro mediante email y contraseña) y RF03 (recuperación de contraseña mediante email).
+- **Objetivo:** Incorporar datos dinámicos sobre las playas y sus categorías.
+- **Descripción:** Se implementó la carga de información de las playas (ubicación, tipo de arena, servicios, etc.), las principales categorías para filtrar (las propias 'islas canarias') y los comentarios desde un archivo **JSON**. Esto permite una mejor gestión de la información y facilita la escalabilidad de la base de datos, cumpliendo con los requisitos funcionales **RF04** (explorar todas las playas) y **RF05** (información detallada de cada playa).
+
+### 6️⃣ Implementación y Validación de Formularios con LocalStorage
+
+- **Objetivo:** Desarrollar formularios interactivos con almacenamiento local.
+- **Descripción:**
+  - Se implementaron formularios reactivos con feedback en tiempo real utilizando **'@angular/forms'**.
+  - Se desarrollaron los formularios de **login** (`/login`), **registro** (`/register`) y **recuperación de contraseña** (`/forgot-password`).
+  - Se utilizó **LocalStorage** para gestionar la autenticación, permitiendo a los usuarios iniciar y cerrar sesión sin necesidad de una base de datos remota.
+  - Se actualizó el **header** de la plataforma para que muestre un diseño adaptado según el estado de sesión del usuario.
+  - Se cubrieron los requisitos funcionales **RF01** (registro mediante email y contraseña), **RF02** (autenticación de usuario).
+
+### 7️⃣ Tareas Adicionales del Sprint
+
+- **Objetivo:** Mejorar la funcionalidad general del sistema.
+- **Descripción:**
+  - Implementación de un sistema de búsqueda sobre un dataset de **60 playas** en formato JSON.
+  - Integración de una API de mapas para mostrar la ubicación de cada playa en su página de detalles.
+  - Implementación de un sistema local para que los usuarios puedan añadir comentarios y visualizarlos en la web sin necesidad de una base de datos remota.
 
 ## 🔗 Enlaces Relevantes
 
-- **Figma (Diseños Actualizados):** [Enlace a Figma](https://www.figma.com/design/r6Gxqsy8sfzuwfJZOIexKR/Playea.com?node-id=0-1&t=liIOWVMREdWDgDs7-1)  
-- **Trello (Seguimiento de Tareas):** [Enlace a Trello](https://trello.com/b/le5wbuMa/playea)
-Explicación del Formato
-Encabezado YAML: Incluye metadatos como el título, autores, fecha y formato de salida (HTML con tabla de contenidos flotante y tema "united" para un diseño limpio).
+- **Figma (Diseños Actualizados):** [Ver en Figma](https://www.figma.com/design/r6Gxqsy8sfzuwfJZOIexKR/Playea.com?node-id=0-1&t=liIOWVMREdWDgDs7-1)  
+- **Trello (Seguimiento de Tareas):** [Ver en Trello](https://trello.com/invite/b/67a26c5803a681c1f3cd86b6/ATTI5be2f01e866d062d285809669037fb44D193B19C/playea)
