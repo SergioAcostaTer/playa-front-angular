@@ -1,46 +1,43 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { validateEmail } from '../../utils/validateEmail';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { validateEmail } from '../../utils/validation.service';
 
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
-  imports: [RouterModule, FormsModule, CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.css'],
 })
 export class ForgotPasswordComponent {
-  email: string = '';
+  forgotPasswordForm: FormGroup;
 
-  emailValid: boolean = false;
-  emailMessage: string = 'Ingresa tu correo electrónico';
-
-  constructor(private router: Router) {}
-
-  onEmailChange(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    this.email = input.value;
-    const validation = validateEmail(this.email);
-    this.emailValid = validation.isValid;
-    this.emailMessage = validation.message;
+  constructor(private fb: FormBuilder, private router: Router) {
+    this.forgotPasswordForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+    });
   }
 
-  isFormValid(): boolean {
-    return this.emailValid;
-  }
+  get emailControl() { return this.forgotPasswordForm.get('email'); }
 
   onSubmit(): void {
-    if (this.isFormValid()) {
+    if (this.forgotPasswordForm.valid) {
       const data = {
-        email: this.email,
+        email: this.forgotPasswordForm.value.email,
       };
       console.log('Formulario válido, enviando datos:', data);
       this.router.navigate(['/forgot-password/otp-verification']);
     } else {
       console.log('Formulario no válido');
+      this.forgotPasswordForm.markAllAsTouched();
     }
+  }
+
+  getEmailErrorMessage(): string {
+    if (!this.emailControl?.touched) return '';
+    const email = this.emailControl?.value || '';
+    return validateEmail(email).message;
   }
 }
