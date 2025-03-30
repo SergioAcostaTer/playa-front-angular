@@ -25,6 +25,6 @@
 
 @media (max-width: 768px) {
 	.beach-grid {
-		grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
 	}
 }
