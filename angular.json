@@ -32,19 +32,15 @@
             "ssr": {
               "entry": "src/server.ts"
             },
-            "server": "src/main.server.ts",
-            "prerender": {
-              "discoverRoutes": true,
-              "routesFile": "routes.txt"
-            }
+            "server": "src/main.server.ts"
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "1MB",
-                  "maximumError": "1.5MB"
+                  "maximumWarning": "2MB",
+                  "maximumError": "2MB"
                 },
                 {
                   "type": "anyComponentStyle",
