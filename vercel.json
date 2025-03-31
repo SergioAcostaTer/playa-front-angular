@@ -2,14 +2,15 @@
   "version": 2,
   "builds": [
     {
-      "src": "src/main.server.ts",
-      "use": "@vercel/node"
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist/playa/browser"
+      }
     }
   ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "src/main.server.ts"
-    }
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
