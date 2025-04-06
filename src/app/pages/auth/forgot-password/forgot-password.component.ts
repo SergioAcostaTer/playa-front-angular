@@ -1,8 +1,12 @@
-import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { ReactiveFormsModule, Validators, FormControl, NonNullableFormBuilder } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-// import { validateEmail } from '../../../utils/validators';
+import { isRequired, hasEmailError } from '../../../utils/validators';
+
+interface ForgotPasswordForm {
+  email: FormControl<string>;
+}
 
 @Component({
   selector: 'app-forgot-password',
@@ -12,31 +16,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./forgot-password.component.css'],
 })
 export class ForgotPasswordComponent {
-  forgotPasswordForm: FormGroup;
+  private _formBuilder = inject(NonNullableFormBuilder);
+  private _router = inject(Router);
 
-  constructor(private fb: FormBuilder, private router: Router) {
-    this.forgotPasswordForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-    });
+  forgotPasswordForm = this._formBuilder.group<ForgotPasswordForm>({
+    email: this._formBuilder.control('', [Validators.required, Validators.email]),
+  });
+
+  get emailControl() {
+    return this.forgotPasswordForm.get('email');
   }
 
-  get emailControl() { return this.forgotPasswordForm.get('email'); }
+  isRequired(field: 'email') {
+    return isRequired(field, this.forgotPasswordForm);
+  }
+
+  hasEmailError() {
+    return hasEmailError(this.forgotPasswordForm);
+  }
 
   onSubmit(): void {
-    if (this.forgotPasswordForm.valid) {
-      const data = {
-        email: this.forgotPasswordForm.value.email,
-      };
-      this.router.navigate(['/auth/otp-verification']);
-    } else {
-      console.log('Formulario no válido');
+    if (this.forgotPasswordForm.invalid) {
       this.forgotPasswordForm.markAllAsTouched();
+      return;
     }
+    const { email } = this.forgotPasswordForm.value;
+    console.log('Formulario enviado:', { email });
+    this._router.navigate(['/auth/otp-verification']);
   }
-
-/*   getEmailErrorMessage(): string {
-    if (!this.emailControl?.touched) return '';
-    const email = this.emailControl?.value || '';
-    return validateEmail(email).message;
-  } */
 }
