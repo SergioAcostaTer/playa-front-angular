@@ -1,33 +1,20 @@
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './layout/main/main-layout.component';
-import { HomePageComponent } from './pages/home/home.component';
 import { NoHeaderLayoutComponent } from './layout/noheader-layout/noheader-layout.component';
-import { BeachDetailPageComponent } from './pages/beachDetail/beach-detail.component';
-import { ProfilePageComponent } from './pages/profile/profile.component';
-import { RankingPageComponent } from './pages/ranking/ranking.component';
-import { FavouritePageComponent } from './pages/favourites/favourite.component';
-import {ViewProfileComponent} from './pages/view-profile/view-profile.component';
-import { SearchComponent } from './pages/search/search.component';
+
 
 export const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
-    children: [
-      { path: '', component: HomePageComponent },
-      { path: 'favourites', component: FavouritePageComponent },
-      { path: 'beach/:slug', component: BeachDetailPageComponent },
-      { path: 'profile', component: ProfilePageComponent },
-      { path: 'ranking', component: RankingPageComponent },
-      { path: 'view-profile/:username', component: ViewProfileComponent },
-      { path: 'search', component: SearchComponent },
-    ],
+    loadChildren: () =>
+      import('./pages/pages.routes').then(m => m.default)
   },
   {
     path: 'auth',
     component: NoHeaderLayoutComponent,
     loadChildren: () =>
-      import('./pages/auth/auth.routes')
+      import('./pages/auth/auth.routes').then(m => m.default)
   },
   {
     path: '**',
