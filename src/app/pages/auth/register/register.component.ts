@@ -1,11 +1,20 @@
-import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { ReactiveFormsModule, Validators, FormControl, NonNullableFormBuilder } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { PanelImageComponent } from '../../../components/panel-image/panel-image.component';
 import { SocialButtonsComponent } from '../../../components/social-buttons/social-buttons.component';
 import { togglePasswordView } from '../../../utils/toggle-password-view';
-import { validateEmail, validatePasswordLength, passwordsMatch } from '../../../utils/validation.service';
+import { isRequired, hasEmailError, hasPasswordLengthError, hasPasswordMatchError } from '../../../utils/validators';
+
+interface RegisterForm {
+  firstName: FormControl<string>;
+  lastName: FormControl<string>;
+  email: FormControl<string>;
+  password: FormControl<string>;
+  confirmPassword: FormControl<string>;
+  terms: FormControl<boolean>;
+}
 
 @Component({
   selector: 'app-register',
@@ -20,33 +29,34 @@ import { validateEmail, validatePasswordLength, passwordsMatch } from '../../../
   styleUrls: ['./register.component.css'],
 })
 export class RegisterPageComponent {
-  registerForm: FormGroup;
   passwordVisible = false;
   confirmPasswordVisible = false;
+  private _formBuilder = inject(NonNullableFormBuilder);
+  private _router = inject(Router);
 
-  constructor(private fb: FormBuilder, private router: Router) {
-    this.registerForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', Validators.required],
-      terms: [false, Validators.requiredTrue],
-    }, { validators: this.passwordMatchValidator.bind(this) });
+  registerForm = this._formBuilder.group<RegisterForm>({
+    firstName: this._formBuilder.control('', [Validators.required]),
+    lastName: this._formBuilder.control('', [Validators.required]),
+    email: this._formBuilder.control('', [Validators.required, Validators.email]),
+    password: this._formBuilder.control('', [Validators.required, Validators.minLength(8)]),
+    confirmPassword: this._formBuilder.control('', [Validators.required]),
+    terms: this._formBuilder.control(false, [Validators.requiredTrue]),
+  });
+
+  isRequired(field: 'firstName' | 'lastName' | 'email' | 'password' | 'confirmPassword' | 'terms') {
+    return isRequired(field, this.registerForm);
   }
 
-  get firstNameControl() { return this.registerForm.get('firstName'); }
-  get lastNameControl() { return this.registerForm.get('lastName'); }
-  get emailControl() { return this.registerForm.get('email'); }
-  get passwordControl() { return this.registerForm.get('password'); }
-  get confirmPasswordControl() { return this.registerForm.get('confirmPassword'); }
-  get termsControl() { return this.registerForm.get('terms'); }
+  hasEmailError() {
+    return hasEmailError(this.registerForm);
+  }
 
-  passwordMatchValidator(form: FormGroup) {
-    const password = form.get('password')?.value || '';
-    const confirmPassword = form.get('confirmPassword')?.value || '';
-    const result = passwordsMatch(password, confirmPassword);
-    return result.isValid ? null : { mismatch: true };
+  hasPasswordLengthError() {
+    return hasPasswordLengthError(this.registerForm);
+  }
+
+  hasPasswordMatchError() {
+    return hasPasswordMatchError(this.registerForm);
   }
 
   togglePassword(): void {
@@ -60,52 +70,14 @@ export class RegisterPageComponent {
   }
 
   onSubmit(): void {
-    if (this.registerForm.valid) {
-      const userData = {
-        firstName: this.registerForm.value.firstName,
-        lastName: this.registerForm.value.lastName,
-        email: this.registerForm.value.email,
-        password: this.registerForm.value.password,
-      };
-      localStorage.setItem('user', JSON.stringify(userData));
-      console.log('Usuario registrado y guardado en localStorage:', userData);
-      this.router.navigate(['/']);
-    } else {
-      console.log('Formulario no válido');
+    if (this.registerForm.invalid || this.hasPasswordMatchError()) {
       this.registerForm.markAllAsTouched();
+      return;
     }
-  }
 
-  getFirstNameErrorMessage(): string {
-    return this.firstNameControl?.hasError('required') ? 'El nombre es obligatorio' : '';
-  }
+    const { firstName, lastName, email, password } = this.registerForm.value;
+    if (!firstName || !lastName || !email || !password) return; // Esto nunca debería pasar con NonNullableFormBuilder, pero lo dejamos por seguridad
 
-  getLastNameErrorMessage(): string {
-    return this.lastNameControl?.hasError('required') ? 'El apellido es obligatorio' : '';
-  }
-
-  getEmailErrorMessage(): string {
-    if (!this.emailControl?.touched) return '';
-    const email = this.emailControl?.value || '';
-    return validateEmail(email).message;
-  }
-
-  getPasswordErrorMessage(): string {
-    if (!this.passwordControl?.touched) return '';
-    const password = this.passwordControl?.value || '';
-    return validatePasswordLength(password).message;
-  }
-
-  getConfirmPasswordErrorMessage(): string {
-    if (!this.confirmPasswordControl?.touched) return '';
-    const password = this.passwordControl?.value || '';
-    const confirmPassword = this.confirmPasswordControl?.value || '';
-    return passwordsMatch(password, confirmPassword).message;
-  }
-
-  getTermsErrorMessage(): string {
-    return this.termsControl?.hasError('required') && this.termsControl?.touched
-      ? 'Debes aceptar los términos y condiciones'
-      : '';
+    this._router.navigate(['/']);
   }
 }

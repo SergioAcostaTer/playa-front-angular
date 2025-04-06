@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { validateEmail } from '../../../utils/validation.service';
+// import { validateEmail } from '../../../utils/validators';
 
 @Component({
   selector: 'app-forgot-password',
@@ -34,9 +34,9 @@ export class ForgotPasswordComponent {
     }
   }
 
-  getEmailErrorMessage(): string {
+/*   getEmailErrorMessage(): string {
     if (!this.emailControl?.touched) return '';
     const email = this.emailControl?.value || '';
     return validateEmail(email).message;
-  }
+  } */
 }

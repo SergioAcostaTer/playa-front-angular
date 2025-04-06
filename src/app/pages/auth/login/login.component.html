@@ -20,18 +20,26 @@
           class="login__input login__input--email"
           formControlName="email"
           name="email"
-          [ngClass]="{'login__input--error': emailControl?.touched && emailControl?.invalid}"
+          [ngClass]="{
+            'login__input--error': loginForm.get('email')?.touched && loginForm.get('email')?.invalid,
+            'login__input--valid': loginForm.get('email')?.touched && loginForm.get('email')?.valid
+          }"
         >
-        <p
-          class="login__validation-message"
-          *ngIf="emailControl?.touched && emailControl?.invalid"
-        >
-          {{ getEmailErrorMessage() }}
-        </p>
+        @if (isRequired('email')) {
+          <p class="login__validation-message">Este campo es requerido</p>
+        }
+        @if (hasEmailError()) {
+          <p class="login__validation-message">El correo electrónico no es válido</p> 
+        }
       </div>
 
-      <div class="login__password-wrapper--initial">
-        <div class="login__password-wrapper">
+      <div class="login__password-wrapper">
+        <div class="login__password-container"
+          [ngClass]="{
+            'login__input--error': loginForm.get('password')?.touched && loginForm.get('password')?.invalid,
+            'login__input--valid': loginForm.get('password')?.touched && loginForm.get('password')?.valid
+          }"
+        >
           <input
             id="login-password-text"
             [type]="passwordVisible ? 'text' : 'password'"
@@ -39,7 +47,6 @@
             class="login__input login__input--password"
             formControlName="password"
             name="password"
-            [ngClass]="{'login__input--error': passwordControl?.touched && passwordControl?.invalid}"
           >
           <button
             type="button"
@@ -54,12 +61,11 @@
             >
           </button>
         </div>
-        <p
-          class="login__validation-message"
-          *ngIf="passwordControl?.touched && passwordControl?.invalid"
-        >
-          {{ getPasswordErrorMessage() }}
-        </p>
+        <div class="login__validation-messages">
+          @if (isRequired('password')) {
+            <p class="login__validation-message">Este campo es requerido</p>
+          }
+        </div>
       </div>
 
       <a class="login__forgot-link" href="/auth/forgot-password">¿Olvidaste tu contraseña?</a>

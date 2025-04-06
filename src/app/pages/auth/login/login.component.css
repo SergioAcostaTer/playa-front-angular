@@ -20,14 +20,6 @@
   margin-top: 10px;
 }
 
-.login__background {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
-}
-
 .login__panel--right {
   display: flex;
   flex-direction: column;
@@ -72,25 +64,31 @@
 }
 
 .login__password-wrapper {
-  position: relative;
   width: 100%;
 }
 
+.login__password-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 1px solid var(--login-border-color); /* Borde por defecto */
+  border-radius: 5px;
+  background-color: var(--login-input-bg); /* Fondo del contenedor */
+}
+
 .login__password-toggle {
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
   cursor: pointer;
-  font-size: 1.5rem;
-  padding: 5px;
+  padding: 0 10px;
   border: none;
   background: none;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .login__password-icon {
-  width: 15px;
-  height: 15px;
+  width: 20px; /* Ajustado para que coincida con el diseño del componente de registro */
+  height: 20px;
 }
 
 .login__input {
@@ -101,6 +99,13 @@
   color: var(--login-text-color);
   width: 100%;
   font-size: 1rem;
+}
+
+.login__input--password {
+  padding-right: 40px; /* Espacio para el ícono */
+  border: none; /* Sin borde en el input */
+  background: transparent; /* Fondo transparente */
+  flex: 1; /* Ocupa el espacio disponible */
 }
 
 .login__input::placeholder {
@@ -119,7 +124,7 @@
   border: none;
   padding: 12px;
   border-radius: 5px;
-  color: var(--button-text-color); /* Cambiado a blanco para mejor contraste */
+  color: var(--button-text-color);
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.3s;
@@ -143,60 +148,35 @@
   opacity: 0.8;
 }
 
+.login__validation-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
 .login__validation-message {
   font-size: 0.8rem;
-  margin-top: 5px;
+  margin-top: 2px; /* Espaciado consistente con el componente de registro */
   text-align: left;
+  color: red;
 }
 
 .login__input--error {
-  border-color: red !important; /* Resalta el borde en rojo */
+  border: 1px solid red !important;
 }
 
-.login__validation-message {
-  font-size: 0.8rem;
-  margin-top: 5px;
-  text-align: left;
-  color: red; /* Todos los mensajes de error en rojo */
-}
-
-@media (max-width: 430px) {
-  .login {
-    flex-direction: column;
-  }
-
-  app-panel-image {
-    display: none;
-  }
-
-  .login__panel {
-    width: 100%;
-  }
+.login__input--valid {
+  border: 1px solid green !important;
 }
 
 @media (max-width: 742px) {
   .login {
     flex-direction: column;
   }
-
   app-panel-image {
     display: none;
   }
-
   .login__panel {
     width: 100%;
   }
 }
-
-.login__input--error {
-  border-color: red !important; /* Resalta el borde en rojo */
-}
-
-.login__validation-message {
-  font-size: 0.8rem;
-  margin-top: 5px;
-  text-align: left;
-  color: red; /* Todos los mensajes de error en rojo */
-}
-
-/* Eliminamos las clases .valid e .invalid ya que solo mostramos errores */

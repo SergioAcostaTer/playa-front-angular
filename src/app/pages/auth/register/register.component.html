@@ -8,7 +8,9 @@
       </h1>
     </a>
     <h2 class="register__subtitle">Crear una cuenta</h2>
-    <p class="register__text">¿Ya tienes una cuenta? <a href="/auth/login" class="register__link">Iniciar sesión</a></p>
+    <p class="register__text">
+      ¿Ya tienes una cuenta? <a href="/auth/login" class="register__link">Iniciar sesión</a>
+    </p>
 
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register__form">
       <div class="register__input-group">
@@ -16,69 +18,71 @@
           <input
             type="text"
             placeholder="Nombre"
-            class="register__input register__input--first-name"
-            formControlName="firstName"
             name="firstName"
-            [ngClass]="{'register__input--error': firstNameControl?.touched && firstNameControl?.invalid}"
+            class="register__input"
+            formControlName="firstName"
+            [ngClass]="{
+              'register__input--error': registerForm.get('firstName')?.touched && registerForm.get('firstName')?.invalid,
+              'register__input--valid': registerForm.get('firstName')?.touched && registerForm.get('firstName')?.valid
+            }"
           >
-          <p
-            class="register__validation-message"
-            *ngIf="firstNameControl?.touched && firstNameControl?.invalid"
-          >
-            {{ getFirstNameErrorMessage() }}
-          </p>
+          @if (isRequired('firstName')) {
+            <p class="register__validation-message">Este campo es requerido</p>
+          }
         </div>
         <div class="register__input-wrapper">
           <input
             type="text"
-            placeholder="Apellido"
-            class="register__input register__input--last-name"
-            formControlName="lastName"
             name="lastName"
-            [ngClass]="{'register__input--error': lastNameControl?.touched && lastNameControl?.invalid}"
+            placeholder="Apellido"
+            class="register__input"
+            formControlName="lastName"
+            [ngClass]="{
+              'register__input--error': registerForm.get('lastName')?.touched && registerForm.get('lastName')?.invalid,
+              'register__input--valid': registerForm.get('lastName')?.touched && registerForm.get('lastName')?.valid
+            }"
           >
-          <p
-            class="register__validation-message"
-            *ngIf="lastNameControl?.touched && lastNameControl?.invalid"
-          >
-            {{ getLastNameErrorMessage() }}
-          </p>
+          @if (isRequired('lastName')) {
+            <p class="register__validation-message">Este campo es requerido</p>
+          }
         </div>
       </div>
 
       <div class="register__input-wrapper">
         <input
           type="email"
-          placeholder="Correo electrónico"
-          class="register__input register__input--email"
-          formControlName="email"
           name="email"
-          [ngClass]="{'register__input--error': emailControl?.touched && emailControl?.invalid}"
+          placeholder="Correo electrónico"
+          class="register__input"
+          formControlName="email"
+          [ngClass]="{
+            'register__input--error': registerForm.get('email')?.touched && registerForm.get('email')?.invalid,
+            'register__input--valid': registerForm.get('email')?.touched && registerForm.get('email')?.valid
+          }"
         >
-        <p
-          class="register__validation-message"
-          *ngIf="emailControl?.touched && emailControl?.invalid"
-        >
-          {{ getEmailErrorMessage() }}
-        </p>
+        @if (isRequired('email')) {
+          <p class="register__validation-message">Este campo es requerido</p>
+        }
+        @if (hasEmailError()) {
+          <p class="register__validation-message">El correo electrónico no es válido</p>
+        }
       </div>
 
-      <div class="register__password-wrapper--initial">
-        <div class="register__password-wrapper">
+      <div class="register__password-wrapper">
+        <div class="register__password-container"
+          [ngClass]="{
+            'register__input--error': registerForm.get('password')?.touched && (registerForm.get('password')?.invalid || hasPasswordMatchError()),
+            'register__input--valid': registerForm.get('password')?.touched && registerForm.get('password')?.valid && !hasPasswordMatchError()
+          }"
+        >
           <input
             id="register-password-text"
             [type]="passwordVisible ? 'text' : 'password'"
             placeholder="Ingresa tu contraseña"
             class="register__input register__input--password"
             formControlName="password"
-            name="password"
-            [ngClass]="{'register__input--error': passwordControl?.touched && passwordControl?.invalid}"
           >
-          <button
-            type="button"
-            class="register__password-toggle"
-            (click)="togglePassword()"
-          >
+          <button type="button" class="register__password-toggle" (click)="togglePassword()">
             <img
               id="register-toggle-icon"
               [src]="passwordVisible ? '/images/Showing.png' : '/images/NotShowing.png'"
@@ -87,29 +91,31 @@
             >
           </button>
         </div>
-        <p
-          class="register__validation-message"
-          *ngIf="passwordControl?.touched && passwordControl?.invalid"
-        >
-          {{ getPasswordErrorMessage() }}
-        </p>
+        <div class="register__validation-messages">
+          @if (isRequired('password')) {
+            <p class="register__validation-message">Este campo es requerido</p>
+          }
+          @if (hasPasswordLengthError()) {
+            <p class="register__validation-message">Mínimo 8 caracteres</p>
+          }
+        </div>
       </div>
 
-      <div class="register__password-wrapper-confirmation">
-        <div class="register__password-wrapper">
+      <div class="register__password-wrapper">
+        <div class="register__password-container"
+          [ngClass]="{
+            'register__input--error': registerForm.get('confirmPassword')?.touched && (registerForm.get('confirmPassword')?.invalid || hasPasswordMatchError()),
+            'register__input--valid': registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.valid && !hasPasswordMatchError()
+          }"
+        >
           <input
             id="register-password-confirmation-text"
             [type]="confirmPasswordVisible ? 'text' : 'password'"
             placeholder="Confirma tu contraseña"
             class="register__input register__input--password"
             formControlName="confirmPassword"
-            [ngClass]="{'register__input--error': confirmPasswordControl?.touched && (confirmPasswordControl?.invalid || registerForm.hasError('mismatch'))}"
           >
-          <button
-            type="button"
-            class="register__password-toggle"
-            (click)="toggleConfirmationPassword()"
-          >
+          <button type="button" class="register__password-toggle" (click)="toggleConfirmationPassword()">
             <img
               id="confirmation-toggle-icon"
               [src]="confirmPasswordVisible ? '/images/Showing.png' : '/images/NotShowing.png'"
@@ -118,37 +124,27 @@
             >
           </button>
         </div>
-        <p
-          class="register__validation-message"
-          *ngIf="confirmPasswordControl?.touched && (confirmPasswordControl?.invalid || registerForm.hasError('mismatch'))"
-        >
-          {{ getConfirmPasswordErrorMessage() }}
-        </p>
+        <div class="register__validation-messages">
+          @if (isRequired('confirmPassword')) {
+            <p class="register__validation-message">Este campo es requerido</p>
+          }
+          @if (hasPasswordMatchError()) {
+            <p class="register__validation-message">Las contraseñas no coinciden</p>
+          }
+        </div>
       </div>
 
       <div class="register__checkbox-group">
-        <input
-          type="checkbox"
-          id="terms"
-          class="register__checkbox"
-          formControlName="terms"
-        >
+        <input type="checkbox" id="terms" class="register__checkbox" formControlName="terms">
         <label for="terms" class="register__terms-label">
           Acepto los <a href="#" class="register__terms-link">Términos y Condiciones</a>
         </label>
+        @if (isRequired('terms')) {
+          <p class="register__validation-message">Debes aceptar los términos</p>
+        }
       </div>
-      <p
-        class="register__validation-message"
-        *ngIf="termsControl?.touched && termsControl?.invalid"
-      >
-        {{ getTermsErrorMessage() }}
-      </p>
 
-      <button
-        type="submit"
-        class="register__button"
-        [disabled]="registerForm.invalid"
-      >
+      <button type="submit" class="register__button" [disabled]="registerForm.invalid || hasPasswordMatchError()">
         Crear cuenta
       </button>
 

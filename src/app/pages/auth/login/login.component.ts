@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { ReactiveFormsModule, Validators, FormControl, NonNullableFormBuilder } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { PanelImageComponent } from '../../../components/panel-image/panel-image.component';
 import { SocialButtonsComponent } from '../../../components/social-buttons/social-buttons.component';
 import { togglePasswordView } from '../../../utils/toggle-password-view';
-import { validateEmail, validatePasswordLength } from '../../../utils/validation.service';
+import { hasEmailError, isRequired } from '../../../utils/validators';
+
+interface LoginForm {
+  email: FormControl<string>;
+  password: FormControl<string>;
+}
 
 @Component({
   selector: 'app-login',
@@ -20,18 +25,21 @@ import { validateEmail, validatePasswordLength } from '../../../utils/validation
   styleUrls: ['./login.component.css'],
 })
 export class LoginPageComponent {
-  loginForm: FormGroup;
   passwordVisible = false;
+  private _formBuilder = inject(NonNullableFormBuilder);
+  private _router = inject(Router);
+  loginForm = this._formBuilder.group<LoginForm>({
+    email: this._formBuilder.control('', [Validators.required, Validators.email]),
+    password: this._formBuilder.control('', [Validators.required, Validators.minLength(8)]),
+  });
 
-  constructor(private fb: FormBuilder, private router: Router) {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]], // Ajusté a 8 para consistencia
-    });
+  isRequired(field: 'email' | 'password') {
+    return isRequired(field, this.loginForm);
   }
 
-  get emailControl() { return this.loginForm.get('email'); }
-  get passwordControl() { return this.loginForm.get('password'); }
+  hasEmailError() {
+    return hasEmailError(this.loginForm);
+  }
 
   togglePassword(): void {
     this.passwordVisible = !this.passwordVisible;
@@ -39,29 +47,13 @@ export class LoginPageComponent {
   }
 
   onSubmit(): void {
-    if (this.loginForm.valid) {
-      const userData = {
-        email: this.loginForm.value.email,
-        password: this.loginForm.value.password,
-      };
-      localStorage.setItem('user', JSON.stringify(userData));
-      console.log('Usuario registrado y guardado en localStorage:', userData);
-      this.router.navigate(['/']);
-    } else {
-      console.log('Formulario no válido');
+    if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
+      return;
     }
-  }
+    const { email, password } = this.loginForm.value;
+    if (!email || !password) return; // Esto nunca debería pasar con NonNullableFormBuilder, pero lo dejamos por seguridad
 
-  getEmailErrorMessage(): string {
-    if (!this.emailControl?.touched) return '';
-    const email = this.emailControl?.value || '';
-    return validateEmail(email).message;
-  }
-
-  getPasswordErrorMessage(): string {
-    if (!this.passwordControl?.touched) return '';
-    const password = this.passwordControl?.value || '';
-    return validatePasswordLength(password).message;
+    this._router.navigate(['/']);
   }
 }
