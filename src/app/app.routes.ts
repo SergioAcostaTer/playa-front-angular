@@ -1,14 +1,10 @@
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './layout/main/main-layout.component';
 import { HomePageComponent } from './pages/home/home.component';
-import { LoginPageComponent } from './pages/login/login.component';
 import { NoHeaderLayoutComponent } from './layout/noheader-layout/noheader-layout.component';
-import { RegisterPageComponent } from './pages/register/register.component';
 import { BeachDetailPageComponent } from './pages/beachDetail/beach-detail.component';
 import { ProfilePageComponent } from './pages/profile/profile.component';
 import { RankingPageComponent } from './pages/ranking/ranking.component';
-import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
-import { OTPVerificationComponent } from './pages/otp-verification/otp-verification.component';
 import { FavouritePageComponent } from './pages/favourites/favourite.component';
 import {ViewProfileComponent} from './pages/view-profile/view-profile.component';
 import { SearchComponent } from './pages/search/search.component';
@@ -28,13 +24,13 @@ export const routes: Routes = [
     ],
   },
   {
-    path: '',
+    path: 'auth',
     component: NoHeaderLayoutComponent,
-    children: [
-      { path: 'register', component: RegisterPageComponent },
-      { path: 'login', component: LoginPageComponent },
-      { path: 'forgot-password', component: ForgotPasswordComponent },
-      { path: 'forgot-password/otp-verification', component: OTPVerificationComponent },
-    ],
+    loadChildren: () =>
+      import('./pages/auth/auth.routes')
+  },
+  {
+    path: '**',
+    redirectTo: '/'
   }
 ];

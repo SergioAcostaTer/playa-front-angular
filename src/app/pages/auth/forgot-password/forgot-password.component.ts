@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { validateEmail } from '../../utils/validation.service';
+import { validateEmail } from '../../../utils/validation.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -27,8 +27,7 @@ export class ForgotPasswordComponent {
       const data = {
         email: this.forgotPasswordForm.value.email,
       };
-      console.log('Formulario válido, enviando datos:', data);
-      this.router.navigate(['/forgot-password/otp-verification']);
+      this.router.navigate(['/auth/otp-verification']);
     } else {
       console.log('Formulario no válido');
       this.forgotPasswordForm.markAllAsTouched();

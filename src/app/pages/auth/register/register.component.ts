@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { PanelImageComponent } from '../../components/panel-image/panel-image.component';
-import { SocialButtonsComponent } from '../../components/social-buttons/social-buttons.component';
-import { togglePasswordView } from '../../utils/toggle-password-view';
-import { validateEmail, validatePasswordLength, passwordsMatch } from '../../utils/validation.service';
+import { PanelImageComponent } from '../../../components/panel-image/panel-image.component';
+import { SocialButtonsComponent } from '../../../components/social-buttons/social-buttons.component';
+import { togglePasswordView } from '../../../utils/toggle-password-view';
+import { validateEmail, validatePasswordLength, passwordsMatch } from '../../../utils/validation.service';
 
 @Component({
   selector: 'app-register',

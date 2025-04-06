@@ -9,7 +9,7 @@
     </a>
     <h2 class="login__subtitle">Iniciar sesión</h2>
     <p class="login__text">
-      ¿No tienes una cuenta? <a href="/register" class="login__link">Regístrate</a>
+      ¿No tienes una cuenta? <a href="/auth/register" class="login__link">Regístrate</a>
     </p>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login__form">
@@ -62,7 +62,7 @@
         </p>
       </div>
 
-      <a class="login__forgot-link" href="/forgot-password">¿Olvidaste tu contraseña?</a>
+      <a class="login__forgot-link" href="/auth/forgot-password">¿Olvidaste tu contraseña?</a>
 
       <button
         type="submit"
