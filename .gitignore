@@ -47,5 +47,5 @@ Thumbs.db
 .runtimeconfig.json
 
 # Environment variables 
-/src/environments/environment.ts
-/src/environments/environment.prod.ts
+environment.ts
+environment.*.ts
