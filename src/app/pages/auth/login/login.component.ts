@@ -6,6 +6,8 @@ import { PanelImageComponent } from '../../../components/panel-image/panel-image
 import { SocialButtonsComponent } from '../../../components/social-buttons/social-buttons.component';
 import { togglePasswordView } from '../../../utils/toggle-password-view';
 import { hasEmailError, isRequired } from '../../../utils/validators';
+import { AuthService } from '../../../services/auth.service';
+import { toast } from 'ngx-sonner';
 
 interface LoginForm {
   email: FormControl<string>;
@@ -28,6 +30,8 @@ export class LoginPageComponent {
   passwordVisible = false;
   private _formBuilder = inject(NonNullableFormBuilder);
   private _router = inject(Router);
+  private _authService = inject(AuthService);
+
   loginForm = this._formBuilder.group<LoginForm>({
     email: this._formBuilder.control('', [Validators.required, Validators.email]),
     password: this._formBuilder.control('', [Validators.required, Validators.minLength(8)]),
@@ -46,14 +50,22 @@ export class LoginPageComponent {
     togglePasswordView('login-password-text', 'login-toggle-icon');
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       return;
     }
+  
     const { email, password } = this.loginForm.value;
-    if (!email || !password) return; // Esto nunca debería pasar con NonNullableFormBuilder, pero lo dejamos por seguridad
-
-    this._router.navigate(['/']);
+    if (!email || !password) return; // Esto no debería ocurrir con NonNullableFormBuilder
+  
+    try {
+      await this._authService.login(email, password);
+      toast.success('Bienvenido de nuevo!');
+      this._router.navigate(['/']);
+    } catch (error: any) {
+      console.error('Error en onSubmit:', error); // Para depurar
+      toast.error('Error al iniciar sesión: ' + (error.message || 'Inténtalo de nuevo.'));
+    }
   }
 }

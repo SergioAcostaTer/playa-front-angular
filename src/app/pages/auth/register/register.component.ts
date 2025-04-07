@@ -6,6 +6,8 @@ import { PanelImageComponent } from '../../../components/panel-image/panel-image
 import { SocialButtonsComponent } from '../../../components/social-buttons/social-buttons.component';
 import { togglePasswordView } from '../../../utils/toggle-password-view';
 import { isRequired, hasEmailError, hasPasswordLengthError, hasPasswordMatchError } from '../../../utils/validators';
+import { AuthService } from '../../../services/auth.service';
+import { toast } from 'ngx-sonner';
 
 interface RegisterForm {
   firstName: FormControl<string>;
@@ -33,6 +35,7 @@ export class RegisterPageComponent {
   confirmPasswordVisible = false;
   private _formBuilder = inject(NonNullableFormBuilder);
   private _router = inject(Router);
+  private _authService = inject(AuthService);
 
   registerForm = this._formBuilder.group<RegisterForm>({
     firstName: this._formBuilder.control('', [Validators.required]),
@@ -69,15 +72,21 @@ export class RegisterPageComponent {
     togglePasswordView('register-password-confirmation-text', 'confirmation-toggle-icon');
   }
 
-  onSubmit(): void {
+  async onSubmit() {
     if (this.registerForm.invalid || this.hasPasswordMatchError()) {
       this.registerForm.markAllAsTouched();
       return;
     }
 
-    const { firstName, lastName, email, password } = this.registerForm.value;
-    if (!firstName || !lastName || !email || !password) return; // Esto nunca debería pasar con NonNullableFormBuilder, pero lo dejamos por seguridad
+    try {
+      const { firstName, lastName, email, password } = this.registerForm.value;
+      if (!firstName || !lastName || !email || !password) return; // Esto nunca debería pasar con NonNullableFormBuilder, pero lo dejamos por seguridad
 
+      await this._authService.register({ firstName, lastName, email, password });
+      toast.success('Registro de usuario exitoso!');
+    } catch (error) {
+      toast.error('Error al registrar el usuario. Por favor, inténtelo de nuevo más tarde.');
+    }
     this._router.navigate(['/']);
   }
 }

@@ -1,4 +1,4 @@
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 export const isRequired = (field: 'firstName' | 'lastName' | 'email' | 'password' | 'confirmPassword' | 'terms', form: FormGroup) => {
   const control = form.get(field);
