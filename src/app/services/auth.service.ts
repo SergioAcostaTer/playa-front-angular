@@ -1,4 +1,3 @@
-// auth.service.ts
 import { inject, Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, UserCredential } from '@angular/fire/auth';
 import { Firestore, doc, setDoc, updateDoc } from '@angular/fire/firestore';
@@ -16,7 +15,7 @@ export interface User {
 })
 export class AuthService {
   private _auth = inject(Auth);
-  private _firestore = inject(Firestore);
+  private _firestore = inject(Firestore); 
 
   async register(user: User): Promise<any> {
     try {
@@ -55,7 +54,7 @@ export class AuthService {
     }
   }
 
-  async logout(): Promise<any> {
+  async logout(): Promise<void> {
     try {
       await signOut(this._auth);
       console.log('Usuario ha cerrado sesión exitosamente');

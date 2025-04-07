@@ -3,18 +3,19 @@
     <a href="/auth/login" class="user-header__button user-header__button--login">Login</a>
     <a href="/auth/register" class="user-header__button user-header__button--register">Register</a>
   </div>
+
   <div *ngIf="isRegistered" class="user-header__user-menu">
     <a class="user-header__menu-toggle" (click)="togglePopup()">
-      <img src="/images/avatar.jpg" class="user-header__menu-icon" alt="User Avatar">
+      <img [src]="userPhoto" class="user-header__menu-icon" alt="User Avatar">
     </a>
   </div>
-  <div *ngIf="isPopupVisible" class="user-header__popup">
+
+  <div *ngIf="isRegistered && isPopupVisible" class="user-header__popup">
     <div class="popup__container">
-      <img src="/images/avatar.jpg" alt="UserIcon" class="popup__image">
+      <img [src]="userPhoto" alt="UserIcon" class="popup__image">
       <div class="popup__account-buttons">
         <a href="/auth/login" class="popup__account-button popup__account-link">Añadir Cuenta</a>
-<!--       <a (click)="logout()" class="popup__account-button popup__account-link" style="cursor: pointer;">Cerrar Sesión</a> -->        
-          <a class="popup__account-button popup__account-link" style="cursor: pointer;">Cerrar Sesión</a>
+        <a (click)="logout()" class="popup__account-button popup__account-link" style="cursor: pointer;">Cerrar Sesión</a>
       </div>
       <div class="popup__nav-buttons">
         <a href="/profile" class="popup__nav-button popup__nav-link">Perfil</a>
