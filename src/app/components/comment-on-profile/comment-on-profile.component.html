@@ -11,7 +11,7 @@
     <!-- Bloque superior: Nombre de la playa -->
     <p
       class="beach-name"
-      (click)="navigateToBeach(comment.beach)"
+      (click)="navigateToBeach(comment.beach.name)"
     >
       {{ comment.beach }}
     </p>
@@ -22,7 +22,7 @@
         [src]="comment.beach"
         alt="{{ comment.beach }}"
         class="beach-cover"
-        (click)="navigateToBeach(comment.beach)"
+        (click)="navigateToBeach(comment.beach.name)"
       >
       <p class="comment-text">{{ comment.comment.text }}</p>
     </div>
