@@ -6,12 +6,7 @@ export interface Comment {
     username: string;
     avatarUrl: string;
   };
-  beach: {
-    id: string;
-    name: string;
-    island: string;
-    coverUrl: string;
-  };
+  beach: string;
   comment: {
     text: string;
     rating: number;
