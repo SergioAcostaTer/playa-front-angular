@@ -36,7 +36,12 @@ export class BeachCommentsComponent {
       const newComment: Comment = {
         commentId: this.comments.length + 1, // ID temporal (el backend debería generarlo)
         user: this.currentUser, // Usamos la info del usuario actual
-        beach: this.beach.id, // Usamos la info de la playa actual
+        beach: {
+          id: this.beach.id,
+          name: this.beach.name,
+          island: this.beach.island,
+          coverUrl: this.beach.coverUrl
+        },
         comment: {
           text: this.newCommentText,
           rating: this.newCommentRating,

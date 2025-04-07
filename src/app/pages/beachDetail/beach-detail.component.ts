@@ -52,7 +52,7 @@ export class BeachDetailPageComponent implements OnInit {
     try {
       const comments = await this.commentService.getComments();
       this.comments = comments.filter((comment: Comment) =>
-        comment.beach.toLowerCase().replace(/\s+/g, '-') ===
+        comment.beach.id.toLowerCase().replace(/\s+/g, '-') ===
         this.beach!.id.toLowerCase().replace(/\s+/g, '-')
       );
     } catch (err) {
