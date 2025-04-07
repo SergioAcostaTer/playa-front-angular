@@ -28,6 +28,15 @@ export class BeachService {
     await setDoc(beachDoc, beach);
   }
 
+  // 🟢 Create from a list
+    async createBeaches(beaches: Beach[]): Promise<void[]> {
+        const promises = beaches.map((beach) => {
+        const beachDoc = doc(this.beachCollection, beach.id);
+        return setDoc(beachDoc, beach);
+        });
+        return Promise.all(promises);
+    }
+
   // 🔵 Read all
   getAllBeaches(): Observable<Beach[]> {
     return collectionData(this.beachCollection, { idField: 'id' }) as Observable<Beach[]>;

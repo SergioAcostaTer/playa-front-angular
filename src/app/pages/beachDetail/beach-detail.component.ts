@@ -52,8 +52,8 @@ export class BeachDetailPageComponent implements OnInit {
     try {
       const comments = await this.commentService.getComments();
       this.comments = comments.filter((comment: Comment) =>
-        comment.beach.name.toLowerCase().replace(/\s+/g, '-') ===
-        this.beach!.name.toLowerCase().replace(/\s+/g, '-')
+        comment.beach.toLowerCase().replace(/\s+/g, '-') ===
+        this.beach!.id.toLowerCase().replace(/\s+/g, '-')
       );
     } catch (err) {
       console.error('Error loading comments:', err);

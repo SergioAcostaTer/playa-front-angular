@@ -13,4 +13,8 @@ export interface Beach {
   accessByFoot: string | null;
   hasToilets: boolean;
   hasShowers: boolean;
+  island: string;
+  longitude: number;
+  latitude: number;
+  length: number;
 }

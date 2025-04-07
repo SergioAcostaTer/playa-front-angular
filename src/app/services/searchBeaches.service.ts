@@ -26,22 +26,18 @@ export class searchBeaches {
         if (!filters) return matchesQuery;
 
         const matchesIsland = filters.island ? beachIsland === filters.island.toLowerCase() : true;
-        const matchesLifeguard = filters.hasLifeguard ? beach.lifeguardService !== '' : true;
         const matchesSand = filters.hasSand ? beach.hasSand : true;
         const matchesRock = filters.hasRock ? beach.hasRock : true;
         const matchesShowers = filters.hasShowers ? beach.hasShowers : true;
         const matchesToilets = filters.hasToilets ? beach.hasToilets : true;
-        const matchesFootShowers = filters.hasFootShowers ? beach.hasFootShowers : true;
 
         return (
           matchesQuery &&
           matchesIsland &&
-          matchesLifeguard &&
           matchesSand &&
           matchesRock &&
           matchesShowers &&
-          matchesToilets &&
-          matchesFootShowers
+          matchesToilets
         );
       });
     } catch (error) {

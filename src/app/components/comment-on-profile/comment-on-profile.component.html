@@ -11,18 +11,18 @@
     <!-- Bloque superior: Nombre de la playa -->
     <p
       class="beach-name"
-      (click)="navigateToBeach(comment.beach.name)"
+      (click)="navigateToBeach(comment.beach)"
     >
-      {{ comment.beach.name }}
+      {{ comment.beach }}
     </p>
 
     <!-- Bloque intermedio: Foto a la izquierda, comentario a la derecha -->
     <div class="comment-main">
       <img
-        [src]="comment.beach.coverUrl"
-        alt="{{ comment.beach.name }}"
+        [src]="comment.beach"
+        alt="{{ comment.beach }}"
         class="beach-cover"
-        (click)="navigateToBeach(comment.beach.name)"
+        (click)="navigateToBeach(comment.beach)"
       >
       <p class="comment-text">{{ comment.comment.text }}</p>
     </div>
