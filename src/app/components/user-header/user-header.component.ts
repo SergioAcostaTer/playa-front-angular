@@ -1,10 +1,11 @@
-import { Component, HostListener, inject } from '@angular/core';
+import { Component, inject, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service'; 
+import { AuthService } from '../../services/auth.service';
 import { toast } from 'ngx-sonner';
-import { onAuthStateChanged, User as FirebaseUser } from '@angular/fire/auth';
 import { Firestore, doc, getDoc } from '@angular/fire/firestore';
+import type { User as FirebaseUser } from 'firebase/auth';
+
 
 @Component({
   selector: 'app-user-header',
@@ -13,16 +14,17 @@ import { Firestore, doc, getDoc } from '@angular/fire/firestore';
   templateUrl: './user-header.component.html',
   styleUrls: ['./user-header.component.css'],
 })
-export class UserHeaderComponent {
+export class UserHeaderComponent implements OnInit {
   isRegistered: boolean = false;
   isPopupVisible: boolean = false;
   userPhoto: string = '/images/avatar.jpg';
+
   private _authService = inject(AuthService);
   private _router = inject(Router);
   private _firestore = inject(Firestore);
 
-  constructor() {
-    onAuthStateChanged(this._authService['_auth'], (user) => {
+  ngOnInit(): void {
+    this._authService.user$.subscribe((user) => {
       this.isRegistered = !!user;
       if (user) {
         this.loadUserData(user);

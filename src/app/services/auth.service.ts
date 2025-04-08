@@ -1,6 +1,19 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, UserCredential } from '@angular/fire/auth';
-import { Firestore, doc, setDoc, updateDoc } from '@angular/fire/firestore';
+import {
+  Auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  User as FirebaseUser,
+  onAuthStateChanged,
+} from '@angular/fire/auth';
+import {
+  Firestore,
+  doc,
+  setDoc,
+  updateDoc,
+} from '@angular/fire/firestore';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface User {
   firstName?: string;
@@ -15,62 +28,50 @@ export interface User {
 })
 export class AuthService {
   private _auth = inject(Auth);
-  private _firestore = inject(Firestore); 
+  private _firestore = inject(Firestore);
 
-  async register(user: User): Promise<any> {
-    try {
-      const userCredential: UserCredential = await createUserWithEmailAndPassword(
-        this._auth,
-        user.email,
-        user.password
-      );
-      const uid = userCredential.user.uid;
-      const userRef = doc(this._firestore, `users/${uid}`);
-      await setDoc(userRef, {
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        createdAt: new Date(),
-        imageUrl: user.imageUrl || 'https://www.asofiduciarias.org.co/wp-content/uploads/2018/06/sin-foto.png',
-      });
-      return userCredential;
-    } catch (error) {
-      console.error('Error during registration:', error);
-      throw error;
-    }
+  private _userSubject = new BehaviorSubject<FirebaseUser | null>(null);
+  public user$: Observable<FirebaseUser | null> = this._userSubject.asObservable();
+
+  constructor() {
+    onAuthStateChanged(this._auth, (user) => {
+      this._userSubject.next(user);
+    });
   }
 
-  async login(userEmail: string, password: string): Promise<any> {
-    try {
-      const userCredential: UserCredential = await signInWithEmailAndPassword(
-        this._auth,
-        userEmail,
-        password
-      );
-      return userCredential;
-    } catch (error) {
-      console.error('Error during login:', error);
-      throw error;
-    }
+  get currentUser(): FirebaseUser | null {
+    return this._userSubject.getValue();
+  }
+
+  async register(user: User): Promise<any> {
+    const userCredential = await createUserWithEmailAndPassword(
+      this._auth,
+      user.email,
+      user.password
+    );
+    const uid = userCredential.user.uid;
+    const userRef = doc(this._firestore, `users/${uid}`);
+    await setDoc(userRef, {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      createdAt: new Date(),
+      imageUrl: user.imageUrl || 'https://www.asofiduciarias.org.co/wp-content/uploads/2018/06/sin-foto.png',
+    });
+    return userCredential;
+  }
+
+  async login(email: string, password: string): Promise<any> {
+    return await signInWithEmailAndPassword(this._auth, email, password);
   }
 
   async logout(): Promise<void> {
-    try {
-      await signOut(this._auth);
-      console.log('Usuario ha cerrado sesión exitosamente');
-    } catch (error) {
-      console.error('Error durante el cierre de sesión:', error);
-      throw error;
-    }
+    await signOut(this._auth);
+    this._userSubject.next(null);
   }
 
   async updateUserData(uid: string, data: Partial<User>): Promise<void> {
-    try {
-      const userRef = doc(this._firestore, `users/${uid}`);
-      await updateDoc(userRef, { ...data });
-    } catch (error) {
-      console.error('Error updating user data:', error);
-      throw error;
-    }
+    const userRef = doc(this._firestore, `users/${uid}`);
+    await updateDoc(userRef, { ...data });
   }
 }
