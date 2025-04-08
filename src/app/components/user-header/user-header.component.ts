@@ -1,11 +1,11 @@
 import { Component, inject, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { AuthStateService } from '../../services/auth-state.service';
 import { toast } from 'ngx-sonner';
 import { Firestore, doc, getDoc } from '@angular/fire/firestore';
 import type { User as FirebaseUser } from 'firebase/auth';
-
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-user-header',
@@ -19,32 +19,51 @@ export class UserHeaderComponent implements OnInit {
   isPopupVisible: boolean = false;
   userPhoto: string = '/images/avatar.jpg';
 
-  private _authService = inject(AuthService);
+  private _authStateService = inject(AuthStateService);
   private _router = inject(Router);
   private _firestore = inject(Firestore);
+  private _auth = inject(AuthService);
 
   ngOnInit(): void {
-    this._authService.user$.subscribe((user) => {
+    this.isRegistered = this._authStateService.isAuthenticated(); 
+    this.loadUserPhotoFromLocalStorage();
+
+    this._authStateService.user$.subscribe((user) => {
       this.isRegistered = !!user;
       if (user) {
         this.loadUserData(user);
       } else {
         this.userPhoto = '/images/avatar.jpg';
+        localStorage.removeItem('userPhoto');
       }
     });
   }
 
   async loadUserData(user: FirebaseUser): Promise<void> {
     try {
+      const cachedPhoto = localStorage.getItem('userPhoto');
+      if (cachedPhoto) {
+        this.userPhoto = cachedPhoto;
+        return;
+      }
+
       const userRef = doc(this._firestore, `users/${user.uid}`);
       const userDoc = await getDoc(userRef);
       if (userDoc.exists()) {
         const userData = userDoc.data();
         this.userPhoto = userData['imageUrl'] || '/images/avatar.jpg';
+        localStorage.setItem('userPhoto', this.userPhoto);
       }
     } catch (error) {
       console.error('Error loading user data:', error);
       this.userPhoto = '/images/avatar.jpg';
+    }
+  }
+
+  private loadUserPhotoFromLocalStorage(): void {
+    const cachedPhoto = localStorage.getItem('userPhoto');
+    if (cachedPhoto && this.isRegistered) {
+      this.userPhoto = cachedPhoto;
     }
   }
 
@@ -58,7 +77,7 @@ export class UserHeaderComponent implements OnInit {
 
   async logout(): Promise<void> {
     try {
-      await this._authService.logout();
+      await this._auth.logout();
       this.closePopup();
       toast.success('Sesión cerrada correctamente.');
       this._router.navigate(['/auth/login']);

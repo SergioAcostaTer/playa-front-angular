@@ -4,8 +4,6 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  User as FirebaseUser,
-  onAuthStateChanged,
 } from '@angular/fire/auth';
 import {
   Firestore,
@@ -13,7 +11,7 @@ import {
   setDoc,
   updateDoc,
 } from '@angular/fire/firestore';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { AuthStateService } from './auth-state.service';
 
 export interface User {
   firstName?: string;
@@ -29,19 +27,9 @@ export interface User {
 export class AuthService {
   private _auth = inject(Auth);
   private _firestore = inject(Firestore);
+  private _authStateService = inject(AuthStateService);
 
-  private _userSubject = new BehaviorSubject<FirebaseUser | null>(null);
-  public user$: Observable<FirebaseUser | null> = this._userSubject.asObservable();
-
-  constructor() {
-    onAuthStateChanged(this._auth, (user) => {
-      this._userSubject.next(user);
-    });
-  }
-
-  get currentUser(): FirebaseUser | null {
-    return this._userSubject.getValue();
-  }
+  constructor() {}
 
   async register(user: User): Promise<any> {
     const userCredential = await createUserWithEmailAndPassword(
@@ -58,16 +46,19 @@ export class AuthService {
       createdAt: new Date(),
       imageUrl: user.imageUrl || 'https://www.asofiduciarias.org.co/wp-content/uploads/2018/06/sin-foto.png',
     });
+    localStorage.setItem('token', uid);
     return userCredential;
   }
 
   async login(email: string, password: string): Promise<any> {
-    return await signInWithEmailAndPassword(this._auth, email, password);
+    const userCredential = await signInWithEmailAndPassword(this._auth, email, password);
+    localStorage.setItem('token', userCredential.user.uid);
+    return userCredential;
   }
 
   async logout(): Promise<void> {
     await signOut(this._auth);
-    this._userSubject.next(null);
+    localStorage.removeItem('token');
   }
 
   async updateUserData(uid: string, data: Partial<User>): Promise<void> {
