@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './layout/main/main-layout.component';
 import { NoHeaderLayoutComponent } from './layout/noheader-layout/noheader-layout.component';
+import { privateGuard, publicGuard } from './core/auth.guard';
 
 
 export const routes: Routes = [
