@@ -1,52 +1,42 @@
 <div class="profile">
     <div class="profile__user-image">
-      <img src="/images/avatar.jpg" alt="UserIcon" class="profile__avatar">
-      <p>
-        <span class="profile__username">Pablito1234</span>
-      </p>
-      <p><a href="#" class="profile__change-link">Cambia tu foto de perfil</a></p>
+        <img [src]="userPhoto" alt="UserIcon" class="profile__avatar">
+        <p>
+            <span class="profile__username">{{ userData.firstName || 'Usuario' }}</span>
+        </p>
+        <p><a href="#" class="profile__change-link" (click)="toggleImagePopup($event)">Cambia tu foto de perfil</a></p>
     </div>
-    <form class="profile__form">
-        <div class="profile__form-input">
-            <label class="profile__label">Nombre de Usuario
-                <input type="text" name="username" id="profile-username" placeholder="Pablito1234" class="profile__input">
-            </label>
-        </div>
+    <form class="profile__form" (ngSubmit)="saveChanges()">
         <div class="profile__form-input">
             <label class="profile__label">Nombre
-                <input type="text" name="name" id="profile-name" placeholder="Pablo" class="profile__input">
+                <input type="text" name="firstName" id="profile-name" [(ngModel)]="userData.firstName" placeholder="Pablo" class="profile__input" required>
             </label>
         </div>
         <div class="profile__form-input">
             <label class="profile__label">Apellido
-                <input type="text" name="surname" id="profile-surname" placeholder="Acosta" class="profile__input">
+                <input type="text" name="lastName" id="profile-surname" [(ngModel)]="userData.lastName" placeholder="Acosta" class="profile__input" required>
             </label>
         </div>
         <div class="profile__form-input">
             <label class="profile__label">Email
-                <input type="email" name="email" id="profile-email" placeholder="pablo1234@email.com" class="profile__input">
+                <input type="email" name="email" id="profile-email" [(ngModel)]="userData.email" placeholder="pablo1234@email.com" class="profile__input" disabled>
             </label>
         </div>
         <div class="profile__form-input">
-            <label for="profile-phone" class="profile__label">Número de Teléfono</label>
-            <div class="profile__phone-input">
-                <select name="phone-prefix" id="phone-prefix" class="profile__select">
-                    <option value="+1">+1 (USA)</option>
-                    <option value="+34">+34 (España)</option>
-                    <option value="+44">+44 (Reino Unido)</option>
-                    <option value="+49">+49 (Alemania)</option>
-                    <option value="+33">+33 (Francia)</option>
-                    <option value="+55">+55 (Brasil)</option>
-                    <option value="+91">+91 (India)</option>
-                    <option value="+81">+81 (Japón)</option>
-                    <option value="+86">+86 (China)</option>
-                    <option value="+52">+52 (México)</option>
-                </select>
-                <input type="tel" name="phone" id="profile-phone" placeholder="634 43 63 12" maxlength="15" class="profile__input">
-            </div>
-        </div>
-        <div class="profile__form-input">
-        <input type="submit" name="submit-button" class="profile__input--button" value="Guardar Cambios">
+            <input type="submit" name="submit-button" class="profile__input--button" value="Guardar Cambios">
         </div>
     </form>
+
+    <div class="profile__image-popup" *ngIf="isImagePopupVisible">
+        <div class="profile__popup-content">
+            <h2>Cambiar Foto de Perfil</h2>
+            <label class="profile__label">URL de la Imagen
+                <input type="url" [(ngModel)]="newImageUrl" placeholder="https://example.com/image.jpg" class="profile__input profile__file-input" required>
+            </label>
+            <div class="profile__popup-buttons">
+                <button class="profile__input--button" (click)="updateImageUrl()">Actualizar</button>
+                <button class="profile__input--button profile__cancel-button" (click)="toggleImagePopup()">Cancelar</button>
+            </div>
+        </div>
+    </div>
 </div>

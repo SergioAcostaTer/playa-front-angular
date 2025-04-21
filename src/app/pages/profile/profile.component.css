@@ -1,7 +1,6 @@
 .profile {
   margin: auto;
   margin-top: 10px;
-  height: 70vh;
   font: Arial, sans-serif;
   display: flex;
   flex-direction: column;
@@ -24,8 +23,8 @@
   display: flex;
   flex-direction: column;
   gap: 1em;
-  width: 100%; /* Asegura que el formulario ocupe el ancho completo */
-  align-items: stretch; /* Cambia a stretch para que los hijos ocupen el ancho completo */
+  width: 100%;
+  align-items: stretch;
 }
 
 .profile__input {
@@ -36,11 +35,7 @@
   border-radius: 10px;
   background-color: #ccc6;
   box-shadow: 0 0 5px 0 #0004;
-  box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
-}
-
-#profile-phone {
-  margin-top: 6px;
+  box-sizing: border-box;
 }
 
 .profile__user-image {
@@ -55,8 +50,9 @@
 
 .profile__change-link {
   font-size: 0.8em;
-  color: var(--change-user-image-color);
+  color: var(--change-user-image-color, #007bff);
   text-shadow: 0 0 1px #0004;
+  cursor: pointer;
 }
 
 .profile__avatar {
@@ -66,21 +62,6 @@
   margin: auto;
   border: 1px solid #0003;
   box-shadow: 0 0 3px 0 #0004;
-}
-
-.profile__phone-input {
-  display: flex;
-  width: 100%;
-  gap: 4px;
-}
-
-.profile__select {
-  border: 1px solid #0003;
-  border-radius: 4px;
-  max-width: 20%;
-  height: 37px;
-  margin-top: 5px;
-  box-shadow: 0 0 2px 0 #0004;
 }
 
 .profile__input--button {
@@ -96,13 +77,45 @@
 
 .profile__input--button:hover {
   cursor: pointer;
+  opacity: 0.9;
 }
 
-.profile__button {
-  align-self: flex-end;
-  border: none;
-  background: none;
-  padding: 10px 14px;
+.profile__image-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.profile__popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+}
+
+.profile__file-input {
+  margin: 10px 0;
+  width: 100%;
+}
+
+.profile__popup-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.profile__cancel-button {
+  background-color: #dc3545;
 }
 
 @media (max-width: 768px) {
@@ -124,9 +137,6 @@
   }
   .profile__change-link {
     font-size: 0.7em;
-  }
-  .profile__select {
-    max-width: 25%;
   }
   .profile__input--button {
     padding: 8px 16px;
