@@ -1,0 +1,37 @@
+export const CATEGORIES = [
+  {
+    id: "1",
+    name: "El Hierro",
+    imageUrl: "/images/Hierro.jpg"
+  },
+  {
+    id: "2",
+    name: "La Palma",
+    imageUrl: "/images/palma.jpg"
+  },
+  {
+    id: "3",
+    name: "La Gomera",
+    imageUrl: "/images/gomera.jpg"
+  },
+  {
+    id: "4",
+    name: "Tenerife",
+    imageUrl: "/images/TNF.jpg"
+  },
+  {
+    id: "5",
+    name: "Gran Canaria",
+    imageUrl: "/images/GC.jpg"
+  },
+  {
+    id: "6",
+    name: "Fuerteventura",
+    imageUrl: "/images/FTV.jpg"
+  },
+  {
+    id: "7",
+    name: "Lanzarote",
+    imageUrl: "/images/LNZ.jpg"
+  }
+];
