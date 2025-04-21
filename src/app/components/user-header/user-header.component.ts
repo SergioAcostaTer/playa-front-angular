@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, HostListener } from '@angular/core';
+import { Component, inject, OnInit, HostListener, PLATFORM_ID, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthStateService } from '../../services/auth-state.service';
@@ -6,6 +6,7 @@ import { toast } from 'ngx-sonner';
 import { Firestore, doc, getDoc } from '@angular/fire/firestore';
 import type { User as FirebaseUser } from 'firebase/auth';
 import { AuthService } from '../../services/auth.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-user-header',
@@ -23,10 +24,13 @@ export class UserHeaderComponent implements OnInit {
   private _router = inject(Router);
   private _firestore = inject(Firestore);
   private _auth = inject(AuthService);
+  private _platformId = inject(PLATFORM_ID);
 
   ngOnInit(): void {
-    this.isRegistered = this._authStateService.isAuthenticated(); 
-    this.loadUserPhotoFromLocalStorage();
+    this.isRegistered = this._authStateService.isAuthenticated();
+    if (isPlatformBrowser(this._platformId)) {
+      this.loadUserPhotoFromLocalStorage();
+    }
 
     this._authStateService.user$.subscribe((user) => {
       this.isRegistered = !!user;
@@ -34,17 +38,21 @@ export class UserHeaderComponent implements OnInit {
         this.loadUserData(user);
       } else {
         this.userPhoto = '/images/avatar.jpg';
-        localStorage.removeItem('userPhoto');
+        if (isPlatformBrowser(this._platformId)) {
+          localStorage.removeItem('userPhoto');
+        }
       }
     });
   }
 
   async loadUserData(user: FirebaseUser): Promise<void> {
     try {
-      const cachedPhoto = localStorage.getItem('userPhoto');
-      if (cachedPhoto) {
-        this.userPhoto = cachedPhoto;
-        return;
+      if (isPlatformBrowser(this._platformId)) {
+        const cachedPhoto = localStorage.getItem('userPhoto');
+        if (cachedPhoto) {
+          this.userPhoto = cachedPhoto;
+          return;
+        }
       }
 
       const userRef = doc(this._firestore, `users/${user.uid}`);
@@ -52,7 +60,9 @@ export class UserHeaderComponent implements OnInit {
       if (userDoc.exists()) {
         const userData = userDoc.data();
         this.userPhoto = userData['imageUrl'] || '/images/avatar.jpg';
-        localStorage.setItem('userPhoto', this.userPhoto);
+        if (isPlatformBrowser(this._platformId)) {
+          localStorage.setItem('userPhoto', this.userPhoto);
+        }
       }
     } catch (error) {
       console.error('Error loading user data:', error);
@@ -61,9 +71,11 @@ export class UserHeaderComponent implements OnInit {
   }
 
   private loadUserPhotoFromLocalStorage(): void {
-    const cachedPhoto = localStorage.getItem('userPhoto');
-    if (cachedPhoto && this.isRegistered) {
-      this.userPhoto = cachedPhoto;
+    if (isPlatformBrowser(this._platformId)) {
+      const cachedPhoto = localStorage.getItem('userPhoto');
+      if (cachedPhoto && this.isRegistered) {
+        this.userPhoto = cachedPhoto;
+      }
     }
   }
 

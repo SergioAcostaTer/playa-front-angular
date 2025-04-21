@@ -22,13 +22,11 @@ export class BeachService {
   private firestore = inject(Firestore);
   private beachCollection: CollectionReference<DocumentData> = collection(this.firestore, 'beaches');
 
-  // 🟢 Create
   async createBeach(beach: Beach): Promise<void> {
     const beachDoc = doc(this.beachCollection, beach.id);
     await setDoc(beachDoc, beach);
   }
 
-  // 🟢 Create from a list
     async createBeaches(beaches: Beach[]): Promise<void[]> {
         const promises = beaches.map((beach) => {
         const beachDoc = doc(this.beachCollection, beach.id);
@@ -37,24 +35,20 @@ export class BeachService {
         return Promise.all(promises);
     }
 
-  // 🔵 Read all
   getAllBeaches(): Observable<Beach[]> {
     return collectionData(this.beachCollection, { idField: 'id' }) as Observable<Beach[]>;
   }
 
-  // 🔵 Read one
   getBeachById(id: string): Observable<Beach> {
     const beachDoc = doc(this.firestore, `beaches/${id}`);
     return docData(beachDoc, { idField: 'id' }) as Observable<Beach>;
   }
 
-  // 🟡 Update
   async updateBeach(id: string, updatedData: Partial<Beach>): Promise<void> {
     const beachDoc = doc(this.firestore, `beaches/${id}`);
     await updateDoc(beachDoc, updatedData);
   }
 
-  // 🔴 Delete
   async deleteBeach(id: string): Promise<void> {
     const beachDoc = doc(this.firestore, `beaches/${id}`);
     await deleteDoc(beachDoc);

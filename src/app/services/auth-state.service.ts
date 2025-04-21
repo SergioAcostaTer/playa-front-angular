@@ -1,46 +1,58 @@
-import { inject, Injectable } from "@angular/core";
-import { Auth, authState } from "@angular/fire/auth";
-import { Observable, BehaviorSubject } from "rxjs";
+import { inject, Injectable, PLATFORM_ID, Inject } from '@angular/core';
+import { Auth, authState } from '@angular/fire/auth';
+import { Observable, BehaviorSubject } from 'rxjs';
 import type { User as FirebaseUser } from 'firebase/auth';
-import { map } from "rxjs/operators";
+import { map } from 'rxjs/operators';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
 export class AuthStateService {
-    private _auth = inject(Auth);
-    private _userSubject = new BehaviorSubject<FirebaseUser | null>(this.getInitialUser());
-    public user$: Observable<FirebaseUser | null> = this._userSubject.asObservable();
+  private _auth = inject(Auth);
+  private _platformId = inject(PLATFORM_ID);
+  private _userSubject = new BehaviorSubject<FirebaseUser | null>(this.getInitialUser());
+  public user$: Observable<FirebaseUser | null> = this._userSubject.asObservable();
 
-    constructor() {
-        authState(this._auth).subscribe((user) => {
-            if (user) {
-                localStorage.setItem('token', user.uid);
-                this._userSubject.next(user);
-            } else {
-                localStorage.removeItem('token');
-                this._userSubject.next(null);
-            }
-        });
-    }
-
-    get authState$(): Observable<any> {
-        return authState(this._auth);
-    }
-
-    private getInitialUser(): FirebaseUser | null {
-        const token = localStorage.getItem('token');
-        if (token && this._auth.currentUser?.uid === token) {
-            return this._auth.currentUser;
+  constructor() {
+    authState(this._auth).subscribe((user) => {
+      if (user) {
+        if (isPlatformBrowser(this._platformId)) {
+          localStorage.setItem('token', user.uid);
         }
-        return null;
-    }
+        this._userSubject.next(user);
+      } else {
+        if (isPlatformBrowser(this._platformId)) {
+          localStorage.removeItem('token');
+        }
+        this._userSubject.next(null);
+      }
+    });
+  }
 
-    isAuthenticated(): boolean {
-        return !!localStorage.getItem('token') && !!this._userSubject.getValue();
-    }
+  get authState$(): Observable<any> {
+    return authState(this._auth);
+  }
 
-    get currentUser(): FirebaseUser | null {
-        return this._userSubject.getValue();
+  private getInitialUser(): FirebaseUser | null {
+    if (!isPlatformBrowser(this._platformId)) {
+      return null; // En el servidor, no hay localStorage, retornar null
     }
+    const token = localStorage.getItem('token');
+    if (token && this._auth.currentUser?.uid === token) {
+      return this._auth.currentUser;
+    }
+    return null;
+  }
+
+  isAuthenticated(): boolean {
+    if (!isPlatformBrowser(this._platformId)) {
+      return !!this._userSubject.getValue(); // En el servidor, usa el estado actual
+    }
+    return !!localStorage.getItem('token') && !!this._userSubject.getValue();
+  }
+
+  get currentUser(): FirebaseUser | null {
+    return this._userSubject.getValue();
+  }
 }

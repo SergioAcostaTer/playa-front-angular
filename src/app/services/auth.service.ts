@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, PLATFORM_ID, Inject } from '@angular/core';
 import {
   Auth,
   createUserWithEmailAndPassword,
@@ -12,6 +12,7 @@ import {
   updateDoc,
 } from '@angular/fire/firestore';
 import { AuthStateService } from './auth-state.service';
+import { isPlatformBrowser } from '@angular/common';
 
 export interface User {
   firstName?: string;
@@ -28,8 +29,7 @@ export class AuthService {
   private _auth = inject(Auth);
   private _firestore = inject(Firestore);
   private _authStateService = inject(AuthStateService);
-
-  constructor() {}
+  private _platformId = inject(PLATFORM_ID);
 
   async register(user: User): Promise<any> {
     const userCredential = await createUserWithEmailAndPassword(
@@ -46,19 +46,25 @@ export class AuthService {
       createdAt: new Date(),
       imageUrl: user.imageUrl || 'https://www.asofiduciarias.org.co/wp-content/uploads/2018/06/sin-foto.png',
     });
-    localStorage.setItem('token', uid);
+    if (isPlatformBrowser(this._platformId)) {
+      localStorage.setItem('token', uid);
+    }
     return userCredential;
   }
 
   async login(email: string, password: string): Promise<any> {
     const userCredential = await signInWithEmailAndPassword(this._auth, email, password);
-    localStorage.setItem('token', userCredential.user.uid);
+    if (isPlatformBrowser(this._platformId)) {
+      localStorage.setItem('token', userCredential.user.uid);
+    }
     return userCredential;
   }
 
   async logout(): Promise<void> {
     await signOut(this._auth);
-    localStorage.removeItem('token');
+    if (isPlatformBrowser(this._platformId)) {
+      localStorage.removeItem('token');
+    }
   }
 
   async updateUserData(uid: string, data: Partial<User>): Promise<void> {
