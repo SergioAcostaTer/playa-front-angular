@@ -62,14 +62,42 @@
 	flex: 1;
 }
 
+.footer__credits {
+	font-size: 0.85em; /* Un poco más pequeño para que no compita con el resto */
+	margin-top: 0.5rem;
+}
+
+.footer__credits a {
+	color: var(--footer-text-color, #f0e1a1); /* Mismo color que los otros enlaces */
+	text-decoration: none;
+	transition: color 0.3s ease-in-out;
+}
+
+.footer__credits a:hover {
+	color: var(--footer-hover-color, #ffffff); /* Mismo efecto hover que los otros enlaces */
+}
+
+/* MEDIA QUERIES */
 @media (max-width: 768px) {
 	.footer {
-		font-size: 0.8rem;
-		padding: 0.8em;
-		margin: 0;
+			font-size: 0.8rem;
+			padding: 0.8em;
+			margin: 0;
 	}
 
-	.foºoter__container {
-		padding: 0;
+	.footer__container {
+			padding: 0;
+	}
+
+	.footer__subtitle {
+			font-size: 1.2em;
+	}
+
+	.footer__text {
+			font-size: 0.8em;
+	}
+
+	.footer__credits {
+			font-size: 0.75em;
 	}
 }

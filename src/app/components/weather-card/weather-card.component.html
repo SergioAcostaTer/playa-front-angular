@@ -1,0 +1,9 @@
+<div class="weather-card">
+    <div class="weather-icon {{ getWeatherClass() }}"></div>
+    <p class="temp-max">Máx. {{ dailyWeather.tempMax }}º</p>
+    <div class="temp-range">
+        <span>{{ dailyWeather.tempMin }}º/{{ dailyWeather.tempMax }}º</span>
+        <span class="precipitation">💧 {{ dailyWeather.precipitation }}mm</span>
+    </div>
+    <p>{{ dailyWeather.date | date: 'EEEE' }}</p>
+</div>

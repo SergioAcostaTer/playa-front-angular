@@ -1,0 +1,11 @@
+.no-favorites {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+  font-size: 1.2em;
+}
+
+.loading-indicator {
+  text-align: center;
+  padding: 20px;
+}

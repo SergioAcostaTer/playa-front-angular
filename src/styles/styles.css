@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900);
 
 :root {
   /* Primary Colors */
@@ -76,6 +77,39 @@
   /* END LOGIN */
 }
 
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+@keyframes light {
+  from {
+    box-shadow: rgba(255, 255, 0, 0.2) 0 0 0 10px;
+  }
+  to {
+    box-shadow: rgba(255, 255, 0, 0.2) 0 0 0 17px;
+  }
+}
+
+@keyframes rain {
+  from {
+    box-shadow: 
+      #2092A9 8px 0px,
+      #2092A9 32px -6px, 
+      #2092A9 20px 0px;
+  }
+  to {
+    box-shadow: 
+      #2092A9 8px 6px,
+      #2092A9 32px 0px, 
+      #2092A9 20px 6px;
+  }
+}
+
+@keyframes weather-icon-move {
+  50% { 
+    transform: translateY(-8px); 
+  }
+}
 
 main {
   width: 100%;

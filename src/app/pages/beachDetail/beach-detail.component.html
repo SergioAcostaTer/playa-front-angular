@@ -1,5 +1,6 @@
 <div *ngIf="beach" class="beach-detail-container">
   <app-beach-detail-layout [beach]="beach"></app-beach-detail-layout>
+  <app-weather-wrapper [latitude]="beach.latitude" [longitude]="beach.longitude"></app-weather-wrapper>
   <app-beach-description [title]="beach.name"></app-beach-description>
   <app-maplibre-map 
     [latitude]="beach.latitude" 
