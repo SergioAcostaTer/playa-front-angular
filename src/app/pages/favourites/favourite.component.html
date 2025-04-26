@@ -1,7 +1,18 @@
 <app-title-page [title]="'Tus playas favoritas'"></app-title-page>
 
-<app-beach-grid *ngIf="!loading" [beaches]="beaches"></app-beach-grid>
-
 <div *ngIf="loading" class="loading-indicator">
   <p>Loading...</p>
+</div>
+
+<div *ngIf="!loading">
+  <div *ngIf="error" class="error-message">
+    <p>{{ error }}</p>
+  </div>
+
+  <div *ngIf="!error">
+    <app-beach-grid *ngIf="beaches.length > 0" [beaches]="beaches"></app-beach-grid>
+    <div *ngIf="beaches.length === 0" class="no-favourites">
+      <p class="no-favourites">No tienes playas favoritas. ¡Empieza a explorar y añade algunas!</p>
+    </div>
+  </div>
 </div>
