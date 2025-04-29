@@ -2,11 +2,12 @@
   <app-beach-detail-layout [beach]="beach"></app-beach-detail-layout>
   <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
     <app-weather-display [latitude]="beach.latitude" [longitude]="beach.longitude"></app-weather-display>
+    <app-tides-status [beach]="beach"></app-tides-status>
   </div>
   <!-- <app-beach-description [title]="beach.name"></app-beach-description> -->
-  <app-maplibre-map 
-    [latitude]="beach.latitude" 
-    [longitude]="beach.longitude" 
+  <app-maplibre-map
+    [latitude]="beach.latitude"
+    [longitude]="beach.longitude"
     [zoom]="12">
   </app-maplibre-map>
 </div>

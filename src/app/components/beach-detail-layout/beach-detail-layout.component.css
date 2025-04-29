@@ -1,3 +1,7 @@
+:root {
+  --login-button-color: #007bff; /* Color azul por defecto si no está definido */
+}
+
 .beach-detail-layout {
   display: flex;
   width: 100%;
@@ -96,7 +100,7 @@
 }
 
 .beach-detail-layout__button {
-  background-color: var(--login-button-color);
+  background-color: var(--login-button-color); /* Azul por defecto */
   color: white;
   border: none;
   padding: 12px 20px;
@@ -107,7 +111,15 @@
 }
 
 .beach-detail-layout__button:hover {
-  background-color: #0056b3;
+  background-color: #0056b3; /* Tono más oscuro al pasar el ratón (azul) */
+}
+
+.beach-detail-layout__button--remove {
+  background-color: #dc3545; /* Rojo cuando la playa está en favoritos */
+}
+
+.beach-detail-layout__button--remove:hover {
+  background-color: #c82333; /* Tono más oscuro al pasar el ratón (rojo) */
 }
 
 @media (max-width: 768px) {

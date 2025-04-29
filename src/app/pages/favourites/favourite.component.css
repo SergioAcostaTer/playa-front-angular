@@ -1,11 +1,25 @@
-.no-favorites {
-  text-align: center;
-  padding: 20px;
-  color: #666;
-  font-size: 1.2em;
-}
-
 .loading-indicator {
   text-align: center;
-  padding: 20px;
+  padding: 2em;
+  font-size: 1.2em;
+  color: #666;
+}
+
+.no-favourites {
+  align-self: center;
+  display: flex;
+  margin: auto;
+  font-size: 20px;
+  font-weight: normal;
+  text-align: center;
+  padding: 2em;
+  font-size: 1.1em;
+  color: #888;
+}
+
+.error-message {
+  text-align: center;
+  padding: 2em;
+  font-size: 1.1em;
+  color: #dc3545;
 }

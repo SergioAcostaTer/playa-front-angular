@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TitlePageComponent } from '../../components/title-page/title-page.component';
 import { BeachGridComponent } from '../../components/beach-grid/beach-grid.component';
-import { getAllBeaches } from '../../services/getBeaches';
+import { FavouritesService } from '../../services/favourites.service';
+import { getMe } from '../../services/getMe';
 
 @Component({
   selector: 'app-user-favourites',
@@ -10,17 +12,45 @@ import { getAllBeaches } from '../../services/getBeaches';
   imports: [CommonModule, BeachGridComponent, TitlePageComponent],
   templateUrl: './favourite.component.html',
 })
-export class FavouritePageComponent {
-  categories = [];
-  beaches = [];
+export class FavouritePageComponent implements OnInit {
+  beaches: any[] = [];
   loading = true;
+  error: string | null = null;
+  user: any = null;
+
+  constructor(
+    private favouritesService: FavouritesService,
+    private router: Router
+  ) {}
 
   async ngOnInit() {
     try {
-      this.beaches = await getAllBeaches();
+      this.user = await getMe();
     } catch (error) {
-    } finally {
-      this.loading = false;
+      console.error('Error fetching user:', error);
+      this.user = null;
+      this.router.navigate(['/login']);
+      return;
     }
+
+    if (this.user) {
+      this.loadFavourites();
+    }
+  }
+
+  loadFavourites() {
+    this.favouritesService.getFavourites().subscribe({
+      next: (response) => {
+        console.log('Respuesta de getFavourites:', response);
+        this.beaches = response.data.map((item: any) => item.beaches);
+        console.log('Playas asignadas a this.beaches:', this.beaches);
+        this.loading = false;
+      },
+      error: (error) => {
+        console.error('Error al cargar las playas favoritas:', error);
+        this.error = 'No se pudieron cargar tus playas favoritas. Por favor, intenta de nuevo más tarde.';
+        this.loading = false;
+      }
+    });
   }
 }
