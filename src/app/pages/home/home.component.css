@@ -23,7 +23,7 @@
 
 .banner__content {
   position: relative;
-  z-index: 2;
+  z-index: 100;
   text-align: center;
   color: white;
   padding: 0 1rem;
@@ -43,6 +43,7 @@
   width: 100%;
   margin: 0 auto;
   margin-bottom: 1.5rem;
+  position: relative;
 }
 
 .search-container {
@@ -54,6 +55,18 @@
   overflow: hidden;
   transition: box-shadow 0.2s ease;
 }
+
+.search-container {
+  position: relative; /* 🔥 required for the dropdown to anchor */
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: visible; /* 🔥 allow dropdown to overflow */
+  z-index: 1000;      /* 🔥 ensure it's above category grid */
+}
+
 
 .search-container:hover {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
@@ -165,4 +178,14 @@
   .banner__nav {
     gap: 0.5rem;
   }
+}
+
+form {
+  position: relative;
+  z-index: 20;
+}
+
+.banner {
+  z-index: 10;
+  position: relative;
 }
