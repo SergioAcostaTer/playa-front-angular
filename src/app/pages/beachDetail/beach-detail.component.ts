@@ -13,6 +13,7 @@ import { getBeachBySlug } from '../../services/getBeachById';
 import { BeachCommentsComponent } from "../../components/beach-comments/beach-comments.component";
 import { WeatherWrapperComponent } from '../../components/weather-wrapper/weather-wrapper.component';
 import { WeatherDisplayComponent } from "../../components/weather-display/weather-display.component";
+import {TidesStatusComponent} from '../../components/tides-status/tides-status.component';
 
 @Component({
   selector: 'app-beach-detail',
@@ -20,12 +21,10 @@ import { WeatherDisplayComponent } from "../../components/weather-display/weathe
   imports: [
     CommonModule,
     BeachDetailLayoutComponent,
-    BeachDescriptionComponent,
     MaplibreMapComponent,
-    BeachCommentsComponent,
-    WeatherWrapperComponent,
-    WeatherDisplayComponent
-],
+    WeatherDisplayComponent,
+    TidesStatusComponent
+  ],
   templateUrl: './beach-detail.component.html',
   styleUrls: ['./beach-detail.component.css'],
 })

@@ -1,0 +1,65 @@
+.tides-chart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1em;
+  border: #444444 solid 1px;
+  border-radius: 15px;
+  background: #ffffff;
+  height: 100%;
+}
+
+.tides-chart-wrapper {
+  position: relative;
+  height: 100%; /* Fixed height for the chart */
+}
+
+.tides-chart-loading,
+.tides-chart-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 1em;
+  color: #666;
+}
+
+.tides-chart-error {
+  color: #d32f2f;
+}
+
+.tides-chart-copyright {
+  font-size: 0.8em;
+  color: #666;
+  margin: 0;
+  text-align: right;
+}
+
+.tides-chart-copyright a {
+  color: #1e90ff;
+  text-decoration: none;
+}
+
+.tides-chart-copyright a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .tides-chart-container {
+    padding: 0.5em;
+  }
+
+  .tides-chart-wrapper {
+    height: 250px;
+  }
+
+  .tides-chart-copyright {
+    font-size: 0.75em;
+  }
+}
+
+@media (max-width: 500px) {
+  .tides-chart-wrapper {
+    height: 200px;
+  }
+}

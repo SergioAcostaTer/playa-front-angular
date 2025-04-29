@@ -15,8 +15,6 @@
             </section>
 
             <section class="beach-detail-layout__datails">
-                <h3 class="beach-detail-layout__title">🌤️ Clima</h3>
-                <p class="beach-detail-layout__text">🏙️ Condición Medioambiental: {{ beach.environmentCondition }}</p>
                 <p *ngIf="beach.hasSand" class="beach-detail-layout__text"> ⛱️ Playa de arena</p>
                 <p *ngIf="beach.hasRock" class="beach-detail-layout__text"> 🪨 Playa de rocas</p>
                 <p *ngIf="beach.accessByCar" class="beach-detail-layout__text"> 🚗 Accesible por coche</p>
