@@ -12,6 +12,7 @@ import { MaplibreMapComponent } from "../../maplibre-map/maplibre-map.component"
 import { getBeachBySlug } from '../../services/getBeachById';
 import { BeachCommentsComponent } from "../../components/beach-comments/beach-comments.component";
 import { WeatherWrapperComponent } from '../../components/weather-wrapper/weather-wrapper.component';
+import { WeatherDisplayComponent } from "../../components/weather-display/weather-display.component";
 
 @Component({
   selector: 'app-beach-detail',
@@ -22,7 +23,8 @@ import { WeatherWrapperComponent } from '../../components/weather-wrapper/weathe
     BeachDescriptionComponent,
     MaplibreMapComponent,
     BeachCommentsComponent,
-    WeatherWrapperComponent
+    WeatherWrapperComponent,
+    WeatherDisplayComponent
 ],
   templateUrl: './beach-detail.component.html',
   styleUrls: ['./beach-detail.component.css'],
