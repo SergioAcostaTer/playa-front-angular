@@ -25,7 +25,7 @@ export class WeatherWrapperComponent implements OnChanges {
   }
 
   private fetchWeatherData() {
-    if (this.latitude === 0 && this.longitude === 0) {
+    if (!this.latitude || !this.longitude) {
       this.weatherDays = [];
       return;
     }
