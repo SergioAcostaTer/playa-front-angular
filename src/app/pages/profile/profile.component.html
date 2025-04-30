@@ -9,17 +9,17 @@
     <form class="profile__form" (ngSubmit)="saveChanges()">
         <div class="profile__form-input">
             <label class="profile__label">Nombre
-                <input type="text" name="firstName" id="profile-name" [(ngModel)]="userData.firstName" placeholder="Pablo" class="profile__input" required>
+                <input type="text" name="firstName" id="profile-name" [(ngModel)]="formData.firstName" placeholder="Pablo" class="profile__input" required>
             </label>
         </div>
         <div class="profile__form-input">
             <label class="profile__label">Apellido
-                <input type="text" name="lastName" id="profile-surname" [(ngModel)]="userData.lastName" placeholder="Acosta" class="profile__input" required>
+                <input type="text" name="lastName" id="profile-surname" [(ngModel)]="formData.lastName" placeholder="Acosta" class="profile__input" required>
             </label>
         </div>
         <div class="profile__form-input">
             <label class="profile__label">Email
-                <input type="email" name="email" id="profile-email" [(ngModel)]="userData.email" placeholder="pablo1234@email.com" class="profile__input" disabled>
+                <input type="email" name="email" id="profile-email" [(ngModel)]="formData.email" placeholder="pablo1234@email.com" class="profile__input" disabled>
             </label>
         </div>
         <div class="profile__form-input">

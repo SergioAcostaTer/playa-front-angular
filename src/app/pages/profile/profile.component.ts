@@ -17,6 +17,7 @@ import { User } from '../../models/user';
 })
 export class ProfilePageComponent implements OnInit {
   userData: Partial<User> = { email: '', firstName: '', lastName: '', imageUrl: '' };
+  formData: Partial<User> = { email: '', firstName: '', lastName: '' }; // Copia para el formulario
   userPhoto: string = '/images/avatar.jpg';
   isImagePopupVisible: boolean = false;
   newImageUrl: string = '';
@@ -44,7 +45,8 @@ export class ProfilePageComponent implements OnInit {
     this._authService.getUserById(user.uid).subscribe({
       next: (userData: User | null) => {
         if (userData) {
-          this.userData = userData;
+          this.userData = { ...userData }; // Datos reales para la vista
+          this.formData = { ...userData }; // Copia para el formulario
           this.userPhoto = userData.imageUrl || '/images/avatar.jpg';
           if (isPlatformBrowser(this._platformId)) {
             localStorage.setItem('userPhoto', this.userPhoto);
@@ -75,7 +77,6 @@ export class ProfilePageComponent implements OnInit {
       return;
     }
 
-    // Validar que la URL sea válida
     const urlPattern = /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp))$/i;
     if (!urlPattern.test(this.newImageUrl)) {
       toast.error('La URL debe ser una imagen válida (png, jpg, jpeg, gif, webp).');
@@ -105,11 +106,18 @@ export class ProfilePageComponent implements OnInit {
     }
 
     try {
+      // Actualizar Firestore con los datos del formulario
       await this._authService.updateUser({
         id: user.uid,
-        firstName: this.userData.firstName,
-        lastName: this.userData.lastName,
+        firstName: this.formData.firstName,
+        lastName: this.formData.lastName,
       });
+      // Actualizar userData con los valores del formulario
+      this.userData = {
+        ...this.userData,
+        firstName: this.formData.firstName,
+        lastName: this.formData.lastName,
+      };
       toast.success('Datos actualizados correctamente.');
     } catch (error) {
       console.error('Error saving changes:', error);
