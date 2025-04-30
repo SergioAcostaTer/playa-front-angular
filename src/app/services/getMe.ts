@@ -8,7 +8,6 @@ export const getMe = async () => {
     ).data;
     return data;
   } catch (error) {
-    console.error('Error creating review:', error);
     throw error;
   }
 };

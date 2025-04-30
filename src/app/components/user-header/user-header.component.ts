@@ -1,9 +1,9 @@
-import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http'; // Importar HttpClient
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router'; // Importar Router
-import { getMe } from '../../services/getMe';
 import { EnvironmentService } from '../../services/environment.service';
+import { getMe } from '../../services/getMe';
 
 @Component({
   selector: 'app-user-header',
@@ -26,11 +26,9 @@ export class UserHeaderComponent implements OnInit {
 
   async ngOnInit() {
     this.logOut = this.envService.getApiUrl() + '/auth/log-out';
-    console.log('Logout URL:', this.logOut); // Para depuración
     try {
       this.user = await getMe();
     } catch (error) {
-      console.error('Error fetching user:', error);
     } finally {
       this.loading = false;
     }
@@ -52,17 +50,15 @@ export class UserHeaderComponent implements OnInit {
     console.log('Attempting to log out...');
     this.http.post(this.logOut, {}, { withCredentials: true }).subscribe({
       next: (response) => {
-        console.log('Logout successful:', response);
         this.user = null;
         this.closePopup();
         this.router.navigate(['/login']);
       },
       error: (error) => {
-        console.error('Error during logout:', error);
         this.user = null;
         this.closePopup();
         this.router.navigate(['/login']);
-      }
+      },
     });
   }
 
@@ -71,7 +67,10 @@ export class UserHeaderComponent implements OnInit {
     if (!this.isPopupVisible) return;
 
     const target = event.target as HTMLElement;
-    if (!target.closest('.popup__container') && !target.closest('.user-header__menu-toggle')) {
+    if (
+      !target.closest('.popup__container') &&
+      !target.closest('.user-header__menu-toggle')
+    ) {
       this.closePopup();
     }
   }
