@@ -1,19 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { beachesList } from '../../constants/beachesList';
 import { BeachDetailLayoutComponent } from '../../components/beach-detail-layout/beach-detail-layout.component';
-import { BeachMapComponent } from '../../components/beach-map/beach-map.component';
-import { BeachDescriptionComponent } from '../../components/beach-description/beach-description.component';
+import { beachesList } from '../../constants/beachesList';
+import { MaplibreMapComponent } from '../../maplibre-map/maplibre-map.component';
 import { Beach } from '../../models/beach';
-import { Comment } from '../../models/comment';
-import { MaplibreMapComponent } from "../../maplibre-map/maplibre-map.component";
 
+import { BeachCommentsComponent } from '../../components/beach-comments/beach-comments.component';
+import { TidesStatusComponent } from '../../components/tides-status/tides-status.component';
+import { WeatherDisplayComponent } from '../../components/weather-display/weather-display.component';
 import { getBeachBySlug } from '../../services/getBeachById';
-import { BeachCommentsComponent } from "../../components/beach-comments/beach-comments.component";
-import { WeatherWrapperComponent } from '../../components/weather-wrapper/weather-wrapper.component';
-import { WeatherDisplayComponent } from "../../components/weather-display/weather-display.component";
-import {TidesStatusComponent} from '../../components/tides-status/tides-status.component';
 
 @Component({
   selector: 'app-beach-detail',
@@ -23,7 +19,9 @@ import {TidesStatusComponent} from '../../components/tides-status/tides-status.c
     BeachDetailLayoutComponent,
     MaplibreMapComponent,
     WeatherDisplayComponent,
-    TidesStatusComponent
+    TidesStatusComponent,
+    BeachCommentsComponent,
+    BeachCommentsComponent,
   ],
   templateUrl: './beach-detail.component.html',
   styleUrls: ['./beach-detail.component.css'],
@@ -42,5 +40,4 @@ export class BeachDetailPageComponent implements OnInit {
       this.beach = await getBeachBySlug(slug);
     }
   }
-
 }

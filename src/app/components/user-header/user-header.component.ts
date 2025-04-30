@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http'; // Importar HttpClient
+import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Router } from '@angular/router'; // Importar Router
+import { Router } from '@angular/router';
 import { EnvironmentService } from '../../services/environment.service';
-import { getMe } from '../../services/getMe';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-user-header',
@@ -20,21 +20,27 @@ export class UserHeaderComponent implements OnInit {
 
   constructor(
     private envService: EnvironmentService,
-    private http: HttpClient, // Inyectar HttpClient
-    private router: Router // Inyectar Router
+    private userService: UserService,
+    private http: HttpClient,
+    private router: Router
   ) {}
 
-  async ngOnInit() {
+  ngOnInit(): void {
     this.logOut = this.envService.getApiUrl() + '/auth/log-out';
-    try {
-      this.user = await getMe();
-    } catch (error) {
-    } finally {
-      this.loading = false;
-    }
+
+    this.userService.user$.subscribe({
+      next: (user) => {
+        this.user = user;
+        this.loading = false;
+      },
+      error: () => {
+        this.user = null;
+        this.loading = false;
+      },
+    });
   }
 
-  get isLoggedIn() {
+  get isLoggedIn(): boolean {
     return !!this.user;
   }
 
@@ -49,17 +55,15 @@ export class UserHeaderComponent implements OnInit {
   logout(): void {
     console.log('Attempting to log out...');
     this.http.post(this.logOut, {}, { withCredentials: true }).subscribe({
-      next: (response) => {
-        this.user = null;
-        this.closePopup();
-        this.router.navigate(['/login']);
-      },
-      error: (error) => {
-        this.user = null;
-        this.closePopup();
-        this.router.navigate(['/login']);
-      },
+      next: () => this.handleLogout(),
+      error: () => this.handleLogout(),
     });
+  }
+
+  private handleLogout(): void {
+    this.userService.clearUser();
+    this.closePopup();
+    this.router.navigate(['/login']);
   }
 
   @HostListener('document:click', ['$event'])

@@ -1,8 +1,8 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Review, ReviewService } from '../../services/review.service';
 import { CommentItemComponent } from '../comment-item/comment-item.component';
-import { Comment } from '../../models/comment';
 
 @Component({
   selector: 'app-beach-comments',
@@ -11,25 +11,45 @@ import { Comment } from '../../models/comment';
   templateUrl: './beach-comments.component.html',
   styleUrls: ['./beach-comments.component.css'],
 })
-export class BeachCommentsComponent {
-  @Input() comments: Comment[] = [];
-  @Output() addComment = new EventEmitter<Comment>(); // Evento de salida para notificar al padre
+export class BeachCommentsComponent implements OnInit {
+  public reviews: Review[] = [];
+  public newCommentText: string = '';
+  public newCommentAuthor: string = 'Tú';
+  public newCommentRating: number = 5;
 
-  newCommentText: string = '';
-  newCommentAuthor: string = 'You'; // Valor por defecto
-  newCommentRating: number = 5; // Valor por defecto
+  @Input() beachId: string = '0';
 
-  onAddComment() {
-    if (this.newCommentText.trim() && this.newCommentAuthor.trim()) {
-      const newComment: Comment = {
-        author: this.newCommentAuthor,
-        rating: this.newCommentRating,
-        text: this.newCommentText,
-      };
-      this.addComment.emit(newComment); // Emite el nuevo comentario al padre
+  constructor(private reviewService: ReviewService) {}
+
+  ngOnInit(): void {
+    if (!this.beachId) return;
+
+    this.reviewService.getReviewsForBeach(this.beachId).subscribe((reviews) => {
+      this.reviews = reviews.reviews;
+    });
+  }
+
+  onDeleteComment(reviewId: number): void {
+    this.reviewService.deleteReview(reviewId.toString()).subscribe(() => {
+      this.reviews = this.reviews.filter(
+        (review) => review.reviews.id !== reviewId
+      );
+    });
+  }
+
+  onAddComment(): void {
+    if (!this.newCommentText.trim()) return;
+
+    const newReview: any = {
+      beachId: this.beachId,
+      rating: this.newCommentRating,
+      comment: this.newCommentText,
+    };
+
+    this.reviewService.createReview(newReview).subscribe((createdReview) => {
+      this.reviews.push(createdReview.review);
       this.newCommentText = '';
-      this.newCommentAuthor = 'You';
       this.newCommentRating = 5;
-    }
+    });
   }
 }

@@ -2,7 +2,7 @@
   <div *ngIf="isLoggedIn; else loginTemplate" class="user-header__user-menu">
     <!-- Hacer que todo el contenedor sea clickable -->
     <a class="user-header__menu-toggle" (click)="togglePopup()">
-      <img [src]="user.avatarUrl" class="user-header__menu-icon" alt="User Avatar">
+      <img [src]="'https://i.ytimg.com/vi/lYPhUpSvA1I/maxresdefault.jpg'" class="user-header__menu-icon" alt="User Avatar">
       <!-- Añadir el nombre y el símbolo verde -->
       <div class="user-header__user-info">
         <span class="user-header__user-name">{{ user.name }}</span>

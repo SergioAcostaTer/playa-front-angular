@@ -1,14 +1,86 @@
-import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Comment } from '../../models/comment';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  inject,
+} from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { User } from '../../models/user';
+import { Review, ReviewService } from '../../services/review.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-comment-item',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './comment-item.component.html',
   styleUrls: ['./comment-item.component.css'],
 })
-export class CommentItemComponent {
-  @Input() comment!: Comment;
+export class CommentItemComponent implements OnInit {
+  @Input() review!: Review;
+  @Output() deleteComment = new EventEmitter<number>();
+
+  private reviewService = inject(ReviewService);
+  private userService = inject(UserService);
+
+  public isEditing: boolean = false;
+  public isLoggedIn: boolean = false;
+  public currentUser: User | null = null;
+
+  ngOnInit(): void {
+    this.userService.user$.subscribe((user) => {
+      this.currentUser = user;
+      this.isLoggedIn = !!user;
+    });
+  }
+
+  get formattedDate(): string {
+    return new Date(this.review.reviews.createdAt).toLocaleDateString();
+  }
+
+  get timeAgo(): string {
+    const date = new Date(this.review.reviews.createdAt);
+    const now = new Date();
+    const diffInSeconds = Math.max(
+      Math.floor((now.getTime() - date.getTime()) / 1000),
+      0
+    );
+
+    if (diffInSeconds < 60) return 'hace un momento';
+    if (diffInSeconds < 3600)
+      return `${Math.floor(diffInSeconds / 60)} minutos atrás`;
+    if (diffInSeconds < 86400)
+      return `${Math.floor(diffInSeconds / 3600)} horas atrás`;
+    return `${Math.floor(diffInSeconds / 86400)} días atrás`;
+  }
+
+  onEditComment(): void {
+    this.isEditing = true;
+  }
+
+  onSaveComment(): void {
+    this.reviewService
+      .updateReview(this.review.reviews.id.toString(), {
+        rating: this.review.reviews.rating,
+        comment: this.review.reviews.comment,
+      })
+      .subscribe(() => {
+        this.isEditing = false;
+      });
+  }
+
+  onCancelEdit(): void {
+    this.isEditing = false;
+  }
+
+  get isCurrentUser(): boolean {
+    return this.currentUser?.id === this.review.reviews.userId;
+  }
+
+  onDeleteComment(): void {
+    this.deleteComment.emit(this.review.reviews.id);
+  }
 }

@@ -1,9 +1,71 @@
-<div class="comment-item">
-    <div class="comment-item__author">{{ comment.author }}</div>
-    <div class="comment-item__rating">{{ comment.rating }} ★</div>
-    <div class="comment-item__text">{{ comment.text }}</div>
-    <div class="comment-item__actions">
-        <button class="comment-item__button comment-item__button--reply">Responder</button>
-        <button class="comment-item__button comment-item__button--like">Me gusta</button>
+<div class="flex items-start !space-x-4 !p-4 border-b border-gray-200">
+  <!-- Avatar -->
+  <div class="!w-12 !h-12 rounded-full bg-gray-300 flex-shrink-0"></div>
+
+  <!-- Comment Content -->
+  <div class="flex-1">
+    <!-- Header: Username + Timestamp -->
+    <div class="flex items-center justify-between">
+      <div class="flex items-center !space-x-2">
+        <span class="font-semibold text-gray-800">{{ review.users.username }}</span>
+        <span class="text-sm text-gray-500">{{ formattedDate }}</span>
+        <span class="text-xs text-gray-400">• {{ timeAgo }}</span>
+      </div>
     </div>
+
+    <!-- Rating -->
+    <div class="flex items-center !mt-1 !space-x-1 text-yellow-500">
+      <ng-container *ngFor="let star of [1,2,3,4,5]">
+        <svg *ngIf="star <= review.reviews.rating" xmlns="http://www.w3.org/2000/svg" class="!w-4 !h-4 fill-current" viewBox="0 0 20 20">
+          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.177 3.63h3.813c.969 0 1.371 1.24.588 1.81l-3.084 2.24 1.177 3.63c.3.921-.755 1.688-1.54 1.118L10 13.011l-3.082 2.344c-.785.57-1.84-.197-1.54-1.118l1.177-3.63-3.084-2.24c-.783-.57-.38-1.81.588-1.81h3.813l1.177-3.63z"/>
+        </svg>
+        <svg *ngIf="star > review.reviews.rating" xmlns="http://www.w3.org/2000/svg" class="!w-4 !h-4 text-gray-300" viewBox="0 0 20 20">
+          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.177 3.63h3.813c.969 0 1.371 1.24.588 1.81l-3.084 2.24 1.177 3.63c.3.921-.755 1.688-1.54 1.118L10 13.011l-3.082 2.344c-.785.57-1.84-.197-1.54-1.118l1.177-3.63-3.084-2.24c-.783-.57-.38-1.81.588-1.81h3.813l1.177-3.63z"/>
+        </svg>
+      </ng-container>
+    </div>
+
+    <!-- Comment Text -->
+    <div class="!mt-2 text-sm text-gray-700 whitespace-pre-line">
+      <ng-container *ngIf="isEditing; else viewMode">
+        <!-- Editable Rating -->
+        <div class="flex items-center !space-x-1 text-yellow-500 mb-2">
+          <ng-container *ngFor="let star of [1,2,3,4,5]">
+            <svg 
+              (click)="review.reviews.rating = star" 
+              xmlns="http://www.w3.org/2000/svg" 
+              class="!w-5 !h-5 cursor-pointer"
+              [ngClass]="{
+                'fill-current text-yellow-500': star <= review.reviews.rating,
+                'text-gray-300': star > review.reviews.rating
+              }" 
+              viewBox="0 0 20 20"
+            >
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.177 3.63h3.813c.969 0 1.371 1.24.588 1.81l-3.084 2.24 1.177 3.63c.3.921-.755 1.688-1.54 1.118L10 13.011l-3.082 2.344c-.785.57-1.84-.197-1.54-1.118l1.177-3.63-3.084-2.24c-.783-.57-.38-1.81.588-1.81h3.813l1.177-3.63z"/>
+            </svg>
+          </ng-container>
+        </div>
+      
+        <!-- Editable Comment -->
+        <textarea
+          [(ngModel)]="review.reviews.comment"
+          rows="3"
+          class="w-full p-2 border border-gray-300 rounded"
+        ></textarea>
+        <div class="flex space-x-2 mt-2">
+          <button (click)="onSaveComment()" class="px-3 py-1 bg-blue-500 text-white rounded">Guardar</button>
+          <button (click)="onCancelEdit()" class="px-3 py-1 bg-gray-300 rounded">Cancelar</button>
+        </div>
+      </ng-container>
+      
+      <ng-template #viewMode>
+        <p>{{ review.reviews.comment }}</p>
+        <div *ngIf="isCurrentUser" class="flex space-x-2 mt-2">
+          <button (click)="onEditComment()" class="px-3 py-1 text-sm text-blue-600 underline">Editar</button>
+          <button (click)="onDeleteComment()" class="px-3 py-1 text-sm text-red-600 underline">Eliminar</button>
+        </div>
+      </ng-template>
+    </div>
+    
+  </div>
 </div>
