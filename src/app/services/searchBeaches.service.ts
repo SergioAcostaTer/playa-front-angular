@@ -1,47 +1,89 @@
-import { Injectable } from '@angular/core';
-import axios from 'axios';
-import { environment } from '../../environments/environment';
+import { Injectable, inject } from '@angular/core';
+import {
+  collection,
+  CollectionReference,
+  DocumentData,
+  Firestore,
+  getDocs,
+  query as firestoreQuery,
+} from '@angular/fire/firestore';
 import { Beach } from '../models/beach';
-
-// Create an axios instance with the base URL from the environment
-const api = axios.create({
-  baseURL: environment.apiBaseUrl,
-});
 
 @Injectable({
   providedIn: 'root',
 })
 export class searchBeaches {
-  // Define the searchBeaches method inside the service class
-  async searchBeaches(query?: string, filters?: any): Promise<Beach[]> {
-    try {
-      const { data } = await api.get('/mockup/beaches.json');
+  private firestore = inject(Firestore);
+  private beachCollection: CollectionReference<DocumentData> = collection(this.firestore, 'beaches');
 
-      return data.filter((beach: Beach) => {
+  async searchBeaches(searchQuery?: string, filters?: any): Promise<Beach[]> {
+    try {
+      console.log('Iniciando búsqueda en searchBeaches:', { searchQuery, filters });
+
+      // Obtener todos los documentos de la colección
+      const q = firestoreQuery(this.beachCollection);
+      console.log('Ejecutando consulta a Firestore...');
+      const querySnapshot = await getDocs(q);
+      const beaches: Beach[] = [];
+
+      console.log('Documentos obtenidos:', querySnapshot.size);
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        console.log('Documento encontrado:', { id: doc.id, ...data });
+        beaches.push({ id: doc.id, ...data } as Beach);
+      });
+
+      // Aplicar filtros y búsqueda por nombre en el cliente
+      const filteredBeaches = beaches.filter((beach) => {
         const beachName = beach.name.toLowerCase();
         const beachIsland = beach.island.toLowerCase();
-        const searchQuery = query?.toLowerCase() ?? '';
-        const matchesQuery = searchQuery ? beachName.includes(searchQuery) : true;
+        const normalizedSearchQuery = searchQuery?.toLowerCase() ?? '';
 
-        if (!filters) return matchesQuery;
+        // Filtrar por nombre: verificar si el nombre contiene searchQuery
+        const matchesQuery = normalizedSearchQuery
+          ? beachName.includes(normalizedSearchQuery)
+          : true;
 
-        const matchesIsland = filters.island ? beachIsland === filters.island.toLowerCase() : true;
+        if (!filters) {
+          console.log('Sin filtros, resultado para playa:', beach.name, matchesQuery);
+          return matchesQuery;
+        }
+
+        // Aplicar filtros adicionales
+        const matchesIsland = filters.island
+          ? beachIsland === filters.island.toLowerCase()
+          : true;
         const matchesSand = filters.hasSand ? beach.hasSand : true;
         const matchesRock = filters.hasRock ? beach.hasRock : true;
         const matchesShowers = filters.hasShowers ? beach.hasShowers : true;
         const matchesToilets = filters.hasToilets ? beach.hasToilets : true;
 
-        return (
+        const result =
           matchesQuery &&
           matchesIsland &&
           matchesSand &&
           matchesRock &&
           matchesShowers &&
-          matchesToilets
-        );
+          matchesToilets;
+
+        console.log('Filtrando playa:', beach.name, {
+          matchesQuery,
+          matchesIsland,
+          matchesSand,
+          matchesRock,
+          matchesShowers,
+          matchesToilets,
+          result,
+        });
+
+        return result;
       });
+
+      console.log('La searchQuery es:', searchQuery);
+      console.log('Playas filtradas:', filteredBeaches.length, filteredBeaches.map((b) => b.name));
+      return filteredBeaches;
     } catch (error) {
-      console.error(error);
+      console.error('Error en searchBeaches:', error);
       throw error;
     }
   }
