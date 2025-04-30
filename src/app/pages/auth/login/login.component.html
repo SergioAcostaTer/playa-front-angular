@@ -1,4 +1,4 @@
-<main class="login">
+<div class="login">
   <app-panel-image></app-panel-image>
 
   <div class="login__panel login__panel--right">
@@ -65,6 +65,9 @@
           @if (isRequired('password')) {
             <p class="login__validation-message">Este campo es requerido</p>
           }
+          @if (hasPasswordLengthError()) {
+            <p class="login__validation-message">Mínimo 6 caracteres</p>
+          }
         </div>
       </div>
 
@@ -73,9 +76,9 @@
       <button
         type="submit"
         class="login__submit"
-        [disabled]="loginForm.invalid"
+        [disabled]="loginForm.invalid || isLoading"
       >
-        Iniciar sesión
+        {{ isLoading ? 'Cargando...' : 'Iniciar sesión' }}
       </button>
 
       <div class="login__divider">
@@ -85,4 +88,4 @@
       <app-social-buttons></app-social-buttons>
     </form>
   </div>
-</main>
+</div>

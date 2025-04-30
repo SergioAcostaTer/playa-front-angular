@@ -2,11 +2,11 @@ import { Component, inject, OnInit, HostListener, PLATFORM_ID, Inject } from '@a
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthStateService } from '../../services/auth-state.service';
-import { toast } from 'ngx-sonner';
-import { Firestore, doc, getDoc } from '@angular/fire/firestore';
-import type { User as FirebaseUser } from 'firebase/auth';
 import { AuthService } from '../../services/auth.service';
+import { toast } from 'ngx-sonner';
 import { isPlatformBrowser } from '@angular/common';
+import type { User as FirebaseUser } from 'firebase/auth';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-user-header',
@@ -22,12 +22,10 @@ export class UserHeaderComponent implements OnInit {
 
   private _authStateService = inject(AuthStateService);
   private _router = inject(Router);
-  private _firestore = inject(Firestore);
-  private _auth = inject(AuthService);
+  private _authService = inject(AuthService);
   private _platformId = inject(PLATFORM_ID);
 
   ngOnInit(): void {
-    this.isRegistered = this._authStateService.isAuthenticated();
     if (isPlatformBrowser(this._platformId)) {
       this.loadUserPhotoFromLocalStorage();
     }
@@ -45,29 +43,30 @@ export class UserHeaderComponent implements OnInit {
     });
   }
 
-  async loadUserData(user: FirebaseUser): Promise<void> {
-    try {
-      if (isPlatformBrowser(this._platformId)) {
-        const cachedPhoto = localStorage.getItem('userPhoto');
-        if (cachedPhoto) {
-          this.userPhoto = cachedPhoto;
-          return;
-        }
+  private loadUserData(user: FirebaseUser): void {
+    if (isPlatformBrowser(this._platformId)) {
+      const cachedPhoto = localStorage.getItem('userPhoto');
+      if (cachedPhoto) {
+        this.userPhoto = cachedPhoto;
+        return;
       }
+    }
 
-      const userRef = doc(this._firestore, `users/${user.uid}`);
-      const userDoc = await getDoc(userRef);
-      if (userDoc.exists()) {
-        const userData = userDoc.data();
-        this.userPhoto = userData['imageUrl'] || '/images/avatar.jpg';
+    this._authService.getUserById(user.uid).subscribe({
+      next: (userData: User | null) => {
+        this.userPhoto = userData?.imageUrl || '/images/avatar.jpg';
         if (isPlatformBrowser(this._platformId)) {
           localStorage.setItem('userPhoto', this.userPhoto);
         }
-      }
-    } catch (error) {
-      console.error('Error loading user data:', error);
-      this.userPhoto = '/images/avatar.jpg';
-    }
+      },
+      error: (error) => {
+        console.error('Error loading user data:', error);
+        this.userPhoto = '/images/avatar.jpg';
+        if (isPlatformBrowser(this._platformId)) {
+          localStorage.setItem('userPhoto', this.userPhoto);
+        }
+      },
+    });
   }
 
   private loadUserPhotoFromLocalStorage(): void {
@@ -89,7 +88,7 @@ export class UserHeaderComponent implements OnInit {
 
   async logout(): Promise<void> {
     try {
-      await this._auth.logout();
+      await this._authService.logout();
       this.closePopup();
       toast.success('Sesión cerrada correctamente.');
       this._router.navigate(['/auth/login']);

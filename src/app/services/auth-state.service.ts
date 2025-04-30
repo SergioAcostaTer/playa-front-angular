@@ -2,7 +2,6 @@ import { inject, Injectable, PLATFORM_ID, Inject } from '@angular/core';
 import { Auth, authState } from '@angular/fire/auth';
 import { Observable, BehaviorSubject } from 'rxjs';
 import type { User as FirebaseUser } from 'firebase/auth';
-import { map } from 'rxjs/operators';
 import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
@@ -10,46 +9,29 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class AuthStateService {
   private _auth = inject(Auth);
-  private _platformId = inject(PLATFORM_ID);
-  private _userSubject = new BehaviorSubject<FirebaseUser | null>(this.getInitialUser());
+  private _userSubject = new BehaviorSubject<FirebaseUser | null>(null);
   public user$: Observable<FirebaseUser | null> = this._userSubject.asObservable();
 
-  constructor() {
-    authState(this._auth).subscribe((user) => {
-      if (user) {
-        if (isPlatformBrowser(this._platformId)) {
-          localStorage.setItem('token', user.uid);
-        }
-        this._userSubject.next(user);
-      } else {
-        if (isPlatformBrowser(this._platformId)) {
-          localStorage.removeItem('token');
-        }
-        this._userSubject.next(null);
-      }
-    });
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(this.platformId)) {
+      authState(this._auth).subscribe({
+        next: (user) => {
+          this._userSubject.next(user || null);
+        },
+        error: (error) => {
+          console.error('Error en authState:', error);
+          this._userSubject.next(null);
+        },
+      });
+    }
   }
 
-  get authState$(): Observable<any> {
+  get authState$(): Observable<FirebaseUser | null> {
     return authState(this._auth);
   }
 
-  private getInitialUser(): FirebaseUser | null {
-    if (!isPlatformBrowser(this._platformId)) {
-      return null; // En el servidor, no hay localStorage, retornar null
-    }
-    const token = localStorage.getItem('token');
-    if (token && this._auth.currentUser?.uid === token) {
-      return this._auth.currentUser;
-    }
-    return null;
-  }
-
   isAuthenticated(): boolean {
-    if (!isPlatformBrowser(this._platformId)) {
-      return !!this._userSubject.getValue(); // En el servidor, usa el estado actual
-    }
-    return !!localStorage.getItem('token') && !!this._userSubject.getValue();
+    return !!this._userSubject.getValue();
   }
 
   get currentUser(): FirebaseUser | null {

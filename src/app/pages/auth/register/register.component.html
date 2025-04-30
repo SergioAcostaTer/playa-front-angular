@@ -1,4 +1,4 @@
-<main class="register">
+<div class="register">
   <app-panel-image></app-panel-image>
 
   <div class="register__panel">
@@ -96,7 +96,7 @@
             <p class="register__validation-message">Este campo es requerido</p>
           }
           @if (hasPasswordLengthError()) {
-            <p class="register__validation-message">Mínimo 8 caracteres</p>
+            <p class="register__validation-message">Mínimo 6 caracteres</p>
           }
         </div>
       </div>
@@ -144,8 +144,8 @@
         }
       </div>
 
-      <button type="submit" class="register__button" [disabled]="registerForm.invalid || hasPasswordMatchError()">
-        Crear cuenta
+      <button type="submit" class="register__button" [disabled]="registerForm.invalid || hasPasswordMatchError() || isLoading">
+        {{ isLoading ? 'Cargando...' : 'Crear cuenta' }}
       </button>
 
       <div class="register__divider">
@@ -155,4 +155,4 @@
       <app-social-buttons></app-social-buttons>
     </form>
   </div>
-</main>
+</div>

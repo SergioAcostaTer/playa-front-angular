@@ -33,6 +33,7 @@ interface RegisterForm {
 export class RegisterPageComponent {
   passwordVisible = false;
   confirmPasswordVisible = false;
+  isLoading = false;
   private _formBuilder = inject(NonNullableFormBuilder);
   private _router = inject(Router);
   private _authService = inject(AuthService);
@@ -41,7 +42,7 @@ export class RegisterPageComponent {
     firstName: this._formBuilder.control('', [Validators.required]),
     lastName: this._formBuilder.control('', [Validators.required]),
     email: this._formBuilder.control('', [Validators.required, Validators.email]),
-    password: this._formBuilder.control('', [Validators.required, Validators.minLength(8)]),
+    password: this._formBuilder.control('', [Validators.required, Validators.minLength(6)]),
     confirmPassword: this._formBuilder.control('', [Validators.required]),
     terms: this._formBuilder.control(false, [Validators.requiredTrue]),
   });
@@ -78,15 +79,16 @@ export class RegisterPageComponent {
       return;
     }
 
+    this.isLoading = true;
     try {
       const { firstName, lastName, email, password } = this.registerForm.value;
-      if (!firstName || !lastName || !email || !password) return; // Esto nunca debería pasar con NonNullableFormBuilder, pero lo dejamos por seguridad
-
-      await this._authService.register({ firstName, lastName, email, password });
-      toast.success('Registro de usuario exitoso!');
-    } catch (error) {
-      toast.error('Error al registrar el usuario. Por favor, inténtelo de nuevo más tarde.');
+      await this._authService.register({ firstName: firstName!, lastName: lastName!, email: email!, password: password! });
+      toast.success('¡Registro exitoso!');
+      this._router.navigate(['/']);
+    } catch (error: any) {
+      toast.error(error.message);
+    } finally {
+      this.isLoading = false;
     }
-    this._router.navigate(['/']);
   }
 }
