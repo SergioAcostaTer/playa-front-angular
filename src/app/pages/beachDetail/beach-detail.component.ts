@@ -1,15 +1,15 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { BeachDetailLayoutComponent } from '../../components/beach-detail-layout/beach-detail-layout.component';
-import { BeachDescriptionComponent } from '../../components/beach-description/beach-description.component';
-import { MaplibreMapComponent } from '../../components/maplibre-map/maplibre-map.component';
-import { BeachCommentsComponent } from '../../components/beach-comments/beach-comments.component';
-import { BeachService } from '../../services/beach.service';
-import { CommentService, CommentWithBeachAndUser } from '../../services/comments.service';
-import { AuthStateService } from '../../services/auth-state.service';
-import { Beach } from '../../models/beach';
 import { User } from 'firebase/auth';
+import { BeachCommentsComponent } from '../../components/beach-comments/beach-comments.component';
+import { BeachDescriptionComponent } from '../../components/beach-description/beach-description.component';
+import { BeachDetailLayoutComponent } from '../../components/beach-detail-layout/beach-detail-layout.component';
+import { MaplibreMapComponent } from '../../components/maplibre-map/maplibre-map.component';
+import { Beach } from '../../models/beach';
+import { AuthStateService } from '../../services/auth-state.service';
+import { BeachService } from '../../services/beach.service';
+import { CommentService } from '../../services/comments.service';
 
 @Component({
   selector: 'app-beach-detail',
@@ -26,7 +26,7 @@ import { User } from 'firebase/auth';
 })
 export class BeachDetailPageComponent implements OnInit {
   beach: Beach | null = null;
-  comments: CommentWithBeachAndUser[] = [];
+  comments: any[] = [];
   currentUser: User | null = null;
 
   constructor(
@@ -46,12 +46,15 @@ export class BeachDetailPageComponent implements OnInit {
     if (slug) {
       this.beachService.getAllBeaches().subscribe({
         next: (beaches) => {
-          this.beach = beaches.find(
-            (beach) => beach.name.replace(/ /g, '-').toLowerCase() === slug.toLowerCase()
-          ) || null;
+          this.beach =
+            beaches.find(
+              (beach) =>
+                beach.name.replace(/ /g, '-').toLowerCase() ===
+                slug.toLowerCase()
+            ) || null;
           if (this.beach) {
             this.loadComments();
-            console.log(this.comments)
+            console.log(this.comments);
           } else {
             this.router.navigate(['/beaches']);
           }

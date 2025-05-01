@@ -1,15 +1,15 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CommentWithBeachAndUser } from '../../services/comments.service';
-import { Beach } from '../../models/beach';
 import { User } from 'firebase/auth';
-import { CommentItemComponent } from '../comment-item/comment-item.component'; // Correct import
+import { Beach } from '../../models/beach';
+import { CommentWithBeachAndUser } from '../../services/comments.service';
+import { CommentItemComponent } from '../comment-item/comment-item.component';
 
 @Component({
   selector: 'app-beach-comments',
   standalone: true,
-  imports: [CommonModule, FormsModule, CommentItemComponent], // Added CommentItemComponent
+  imports: [CommonModule, FormsModule, CommentItemComponent],
   templateUrl: './beach-comments.component.html',
   styleUrls: ['./beach-comments.component.css'],
 })
@@ -23,7 +23,11 @@ export class BeachCommentsComponent {
   newCommentRating: number = 5;
 
   onAddComment() {
-    if (!this.newCommentText.trim() || this.newCommentRating < 1 || this.newCommentRating > 5) {
+    if (
+      !this.newCommentText.trim() ||
+      this.newCommentRating < 1 ||
+      this.newCommentRating > 5
+    ) {
       return;
     }
     this.addComment.emit({

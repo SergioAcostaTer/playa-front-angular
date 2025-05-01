@@ -1,22 +1,23 @@
 import { Injectable, inject } from '@angular/core';
 import {
+  CollectionReference,
+  DocumentData,
   Firestore,
-  collection,
   addDoc,
-  updateDoc,
+  collection,
   deleteDoc,
+  doc,
   getDocs,
   query,
+  updateDoc,
   where,
-  CollectionReference,
-  DocumentData, doc,
 } from '@angular/fire/firestore';
-import { Observable, from, map, catchError, switchMap } from 'rxjs';
-import { BeachService } from './beach.service';
-import { AuthService } from './auth.service';
+import { Observable, catchError, from, switchMap } from 'rxjs';
 import { Beach } from '../models/beach';
-import { User } from '../models/user';
 import { Comment } from '../models/comment';
+import { User } from '../models/user';
+import { AuthService } from './auth.service';
+import { BeachService } from './beach.service';
 
 export interface CommentWithBeachAndUser {
   comment: Comment;
@@ -31,9 +32,17 @@ export class CommentService {
   private firestore = inject(Firestore);
   private beachService = inject(BeachService);
   private authService = inject(AuthService);
-  private commentCollection: CollectionReference<DocumentData> = collection(this.firestore, 'comments');
+  private commentCollection: CollectionReference<DocumentData> = collection(
+    this.firestore,
+    'comments'
+  );
 
-  async createComment(comment: { text: string; rating: number; userId: string; beachId: string }): Promise<void> {
+  async createComment(comment: {
+    text: string;
+    rating: number;
+    userId: string;
+    beachId: string;
+  }): Promise<void> {
     try {
       const commentData: Omit<Comment, 'id'> = {
         text: comment.text,
@@ -50,7 +59,10 @@ export class CommentService {
     }
   }
 
-  async updateComment(commentId: string, updatedData: { text?: string; rating?: number }): Promise<void> {
+  async updateComment(
+    commentId: string,
+    updatedData: { text?: string; rating?: number }
+  ): Promise<void> {
     try {
       const commentDocRef = doc(this.firestore, `comments/${commentId}`);
       const updatePayload: Partial<Comment> = {
@@ -77,32 +89,40 @@ export class CommentService {
   getCommentsByBeachId(beachId: string): Observable<CommentWithBeachAndUser[]> {
     const q = query(this.commentCollection, where('beachId', '==', beachId));
     return from(getDocs(q)).pipe(
-      switchMap((querySnapshot) =>
-        from(
-          Promise.all(
-            querySnapshot.docs.map(async (docSnap) => {
-              const data = docSnap.data() as Omit<Comment, 'id'>;
-              const comment: Comment = {
-                id: docSnap.id,
-                text: data.text,
-                rating: data.rating,
-                userId: data.userId,
-                beachId: data.beachId,
-                createdAt: data.createdAt,
-                updatedAt: data.updatedAt,
-              };
+      switchMap((querySnapshot) => {
+        const comments: Comment[] = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        })) as Comment[];
 
-              const beach = await this.beachService.getBeachById(comment.beachId).toPromise();
-              const user = await this.authService.getUserById(comment.userId).toPromise();
-
-              return beach && user ? { comment, beach, user } : null;
-            })
-          )
-        ).pipe(map((results) => results.filter((item): item is CommentWithBeachAndUser => item !== null)))
-      ),
+        return this.beachService.getAllBeaches().pipe(
+          switchMap((beaches) => {
+            const beachMap = new Map(beaches.map((beach) => [beach.id, beach]));
+            return this.authService.getUsers().pipe(
+              switchMap((users) => {
+                const userMap = new Map(users.map((user) => [user.id, user]));
+                return new Observable<CommentWithBeachAndUser[]>((observer) => {
+                  const result = comments
+                    .map((comment) => ({
+                      comment,
+                      beach: beachMap.get(comment.beachId),
+                      user: userMap.get(comment.userId),
+                    }))
+                    .filter(
+                      (item): item is CommentWithBeachAndUser =>
+                        item.beach !== undefined && item.user !== undefined
+                    );
+                  observer.next(result);
+                  observer.complete();
+                });
+              })
+            );
+          })
+        );
+      }),
       catchError((error) => {
-        console.error('Error fetching comments by beach ID:', error);
-        throw new Error(`Error al obtener comentarios: ${error.message}`);
+        console.error('Error fetching comments:', error);
+        throw error;
       })
     );
   }
