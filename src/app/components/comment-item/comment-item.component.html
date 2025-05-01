@@ -1,6 +1,7 @@
 <div class="flex items-start !space-x-4 !p-4 border-b border-gray-200">
   <!-- Avatar -->
-  <div class="!w-12 !h-12 rounded-full bg-gray-300 flex-shrink-0"></div>
+  <!-- <div class="!w-12 !h-12 rounded-full bg-gray-300 flex-shrink-0"></div> -->
+  <img [src]="review.users.avatarUrl" alt="User Avatar" class="!w-12 !h-12 rounded-full flex-shrink-0" *ngIf="review.users.avatarUrl"/>
 
   <!-- Comment Content -->
   <div class="flex-1">
