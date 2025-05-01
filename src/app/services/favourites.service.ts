@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { EnvironmentService } from './environment.service';
+import { Beach } from '../models/beach';
 
 // Interfaz para los detalles de un favorito
 interface Favourite {
@@ -10,57 +11,6 @@ interface Favourite {
   userId: number;
   beachId: number;
   createdAt: string;
-}
-
-// Interfaz para una playa (basada en la respuesta de la API)
-interface Beach {
-  id: string;
-  slug: string;
-  coverUrl: string;
-  name: string;
-  island: string;
-  municipality: string;
-  province: string;
-  accessByCar: boolean;
-  accessByFoot: string;
-  accessByShip: boolean;
-  adaptedShower: boolean;
-  annualMaxOccupancy: string;
-  assistedBathing: boolean;
-  bathingConditions: string;
-  classification: string;
-  environmentCondition: string;
-  blueFlag: boolean;
-  hasAdaptedShowers: boolean;
-  hasCobbles: boolean;
-  hasConcrete: boolean;
-  hasFootShowers: boolean;
-  hasGravel: boolean;
-  hasMixedComposition: boolean;
-  hasPebbles: boolean;
-  hasRock: boolean;
-  hasSand: boolean;
-  hasShowers: boolean;
-  hasToilets: boolean;
-  isBeach: boolean;
-  isWindy: boolean;
-  isZbm: boolean;
-  kidsArea: boolean;
-  lastUpdate: string | null;
-  latitude: number;
-  longitude: number;
-  length: number;
-  width: number;
-  lifeguardService: string;
-  pmrShade: boolean;
-  protectionLevel: string;
-  riskLevel: string;
-  sandColor: string;
-  sportsArea: boolean;
-  sunbedRentals: boolean;
-  umbrellaRentals: boolean;
-  waterSportsRentals: boolean;
-  wheelchairAccess: boolean;
 }
 
 // Interfaz para un elemento de la lista de favoritos (contiene favoritos y playa)

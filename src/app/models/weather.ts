@@ -1,24 +1,20 @@
 export interface WeatherData {
-    latitude: number;
-    longitude: number;
-    generationtime_ms: number;
-    utc_offset_seconds: number;
-    timezone: string;
-    timezone_abbreviation: string;
-    elevation: number;
-    daily_units: {
-        time: string;
-        temperature_2m_max: string;
-        temperature_2m_min: string;
-        precipitation_sum: string;
-        weathercode: string;
-    };
     daily: {
         time: string[];
         temperature_2m_max: number[];
         temperature_2m_min: number[];
         precipitation_sum: number[];
         weathercode: number[];
+        wind_speed_10m_max: number[];
+        wind_direction_10m_dominant: number[];
+        uv_index_max: number[];
+        sunrise: string[];
+        sunset: string[];
+    };
+    hourly: {
+        time: string[];
+        relative_humidity_2m: number[];
+        pressure_msl: number[];
     };
 }
 
@@ -28,4 +24,17 @@ export interface DailyWeather {
     tempMin: number;
     precipitation: number;
     weathercode: number;
+    windSpeedMax: number;
+    windDirectionDominant: number;
+    uvIndexMax: number;
+    sunrise: string;
+    sunset: string;
+    avgHumidity?: number;
+    avgPressure?: number;
+}
+
+export interface HourlyWeather {
+    time: string;
+    humidity: number;
+    pressure: number;
 }

@@ -42,7 +42,7 @@ export class FavouritePageComponent implements OnInit {
     this.favouritesService.getFavourites().subscribe({
       next: (response) => {
         console.log('Respuesta de getFavourites:', response);
-        this.beaches = response.data.map((item: any) => item.beaches);
+        this.beaches = response.data.map((item: any) => item.beach_grades); // Cambia 'beaches' por 'beach_grades'
         console.log('Playas asignadas a this.beaches:', this.beaches);
         this.loading = false;
       },

@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { DailyWeather } from '../../models/weather';
+import { DailyWeather, HourlyWeather } from '../../models/weather';
 import { WeatherService } from '../../services/weather.service';
 import { CommonModule } from '@angular/common';
 
@@ -42,10 +42,10 @@ export class WeatherDisplayComponent implements OnChanges {
       return;
     }
     this.isLoading = true;
-    this.weatherService.getWeatherData(this.latitude, this.longitude).subscribe({
+    this.weatherService.getDailyWeatherData(this.latitude, this.longitude).subscribe({
       next: (data) => {
         this.weatherDays = data;
-        this.selectedDayIndex = 0; // default to today
+        this.selectedDayIndex = 0;
         this.isLoading = false;
       },
       error: () => {
@@ -59,6 +59,7 @@ export class WeatherDisplayComponent implements OnChanges {
     this.selectedDayIndex = index;
   }
 
+
   getWeatherIcon(code: number): string {
     if (code === 0) return '☀️';
     if (code === 1 || code === 2) return '🌤️';
@@ -70,7 +71,6 @@ export class WeatherDisplayComponent implements OnChanges {
     if (code >= 95) return '⛈️';
     return '❓';
   }
-  
 
   get today(): DailyWeather {
     return this.weatherDays[this.selectedDayIndex] ?? {
@@ -78,8 +78,14 @@ export class WeatherDisplayComponent implements OnChanges {
       tempMax: 0,
       tempMin: 0,
       precipitation: 0,
-      weathercode: 0
+      weathercode: 0,
+      windSpeedMax: 0,
+      windDirectionDominant: 0,
+      uvIndexMax: 0,
+      sunrise: '',
+      sunset: '',
+      avgHumidity: 0,
+      avgPressure: 0
     };
   }
-  
 }
