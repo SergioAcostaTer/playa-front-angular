@@ -1,8 +1,31 @@
-<a *ngIf="beach" class="beach-card__link" href="/beach/{{ beach.name.toLowerCase().replaceAll(' ', '-') }}">
+<a
+  *ngIf="beach"
+  class="beach-card__link"
+  href="/beach/{{ beach.slug }}"
+>
   <article class="beach-card">
     <figure class="beach-card__media">
-      <img [src]="beach.coverUrl" [alt]="beach.name" loading="lazy">
-      <div *ngIf="beach.blueFlag" class="beach-card__flag beach-card__flag--blue">Bandera Azul</div>
+      <img [src]="beach.coverUrl" [alt]="beach.name" loading="lazy" />
+      <div
+        *ngIf="beach.blueFlag"
+        class="beach-card__flag beach-card__flag--blue"
+      >
+        Bandera Azul
+      </div>
+      <div
+      *ngIf="beach.grade"
+      class="absolute top-4 right-4 bg-white text-gray-800 font-semibold text-sm px-3! py-1! rounded-full shadow-md flex items-center space-x-1!"
+    >
+      <span>{{ beach.grade }} / 5</span>
+
+      <img
+        src="https://www.svgrepo.com/show/13695/star.svg"
+        alt="Calificación"
+        class="w-4! h-4!"
+        loading="lazy"
+      />
+    </div>
+    
     </figure>
     <div class="beach-card__details">
       <header class="beach-card__header">

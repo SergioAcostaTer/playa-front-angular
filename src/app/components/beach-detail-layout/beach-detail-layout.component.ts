@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Beach } from '../../models/beach';
-import { getMe } from '../../services/getMe';
 import { FavouritesService } from '../../services/favourites.service';
+import { getMe } from '../../services/getMe';
 
 @Component({
   selector: 'app-beach-detail-layout',
@@ -47,8 +47,10 @@ export class BeachDetailLayoutComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error al verificar favoritos:', error);
-        alert('Error al verificar si la playa está en favoritos: ' + error.message);
-      }
+        alert(
+          'Error al verificar si la playa está en favoritos: ' + error.message
+        );
+      },
     });
   }
 
@@ -76,7 +78,7 @@ export class BeachDetailLayoutComponent implements OnInit {
           console.error('Error al eliminar de favoritos:', error);
           this.isLoading = false;
           alert('Error al eliminar la playa de favoritos: ' + error.message);
-        }
+        },
       });
     } else {
       // Añadir a favoritos
@@ -90,7 +92,7 @@ export class BeachDetailLayoutComponent implements OnInit {
           console.error('Error al añadir a favoritos:', error);
           this.isLoading = false;
           alert('Error al añadir la playa a favoritos: ' + error.message);
-        }
+        },
       });
     }
   }

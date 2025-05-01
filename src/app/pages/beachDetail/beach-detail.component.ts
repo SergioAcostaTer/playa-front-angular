@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BeachDetailLayoutComponent } from '../../components/beach-detail-layout/beach-detail-layout.component';
-import { beachesList } from '../../constants/beachesList';
 import { MaplibreMapComponent } from '../../maplibre-map/maplibre-map.component';
 import { Beach } from '../../models/beach';
 
@@ -28,7 +27,6 @@ import { getBeachBySlug } from '../../services/getBeachById';
 })
 export class BeachDetailPageComponent implements OnInit {
   beach: Beach | null = null;
-  beaches: Beach[] | null = beachesList;
 
   constructor(private route: ActivatedRoute) {}
 

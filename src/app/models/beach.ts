@@ -45,4 +45,7 @@ export interface Beach {
   umbrellaRentals: boolean;
   waterSportsRentals: boolean;
   wheelchairAccess: boolean;
+  grade: number;
+  reviewsCount: number;
+  slug: string;
 }

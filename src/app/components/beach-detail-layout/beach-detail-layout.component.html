@@ -1,40 +1,81 @@
 <section class="beach-detail-layout">
-    <div class="beach-detail-layout__image">
-        <img [src]="beach.coverUrl" [alt]="beach.name" class="beach-detail-layout__image-main" />
-    </div>
+  <div class="beach-detail-layout__image">
+    <img
+      [src]="beach.coverUrl"
+      [alt]="beach.name"
+      class="beach-detail-layout__image-main"
+    />
+  </div>
 
-    <div class="beach-detail-layout__sidebar-container">
-        <div class="beach-detail-layout__sidebar" [ngClass]="{'blue-flag-border': beach.blueFlag}">
-            <section class="beach-detail-layout__header">
-                <h1 class="beach-detail-layout__title">🏖️ {{ beach.name }}</h1>
-                <div class="beach-detail-layout__rating-info">
-                    <span class="beach-detail-layout__rating">⭐ Clasificación: {{ beach.classification }}</span>
-                    <span class="beach-detail-layout__reviews">📝 Ocupación Anual: {{ beach.annualMaxOccupancy }}</span>
-                    <span class="beach-detail-layout__distance">📍 Municipio: {{ beach.municipality }}</span>
-                </div>
-            </section>
-
-            <section class="beach-detail-layout__datails">
-                <p *ngIf="beach.hasSand" class="beach-detail-layout__text"> ⛱️ Playa de arena</p>
-                <p *ngIf="beach.hasRock" class="beach-detail-layout__text"> 🪨 Playa de rocas</p>
-                <p *ngIf="beach.accessByCar" class="beach-detail-layout__text"> 🚗 Accesible por coche</p>
-                <p *ngIf="beach.accessByFoot" class="beach-detail-layout__text"> 🚶‍♂️‍➡️ Accesible a pie</p>
-                <p *ngIf="beach.hasToilets" class="beach-detail-layout__text"> 🚽 Baños Accesibles</p>
-                <p *ngIf="beach.hasShowers" class="beach-detail-layout__text"> 🚿 Duchas Accesibles</p>
-            </section>
-
-            <!-- Botón dinámico para añadir o quitar de favoritos -->
-            <button
-                class="beach-detail-layout__button"
-                [ngClass]="{'beach-detail-layout__button--remove': isFavourite}"
-                (click)="onFavoriteClick()">
-                {{ isFavourite ? 'Quitar de favoritos' : 'Guarda la playa en tus favoritos' }}
-            </button>
+  <div class="beach-detail-layout__sidebar-container">
+    <div
+      class="beach-detail-layout__sidebar"
+      [ngClass]="{ 'blue-flag-border': beach.blueFlag }"
+    >
+      <section class="beach-detail-layout__header">
+        <h1 class="beach-detail-layout__title">🏖️ {{ beach.name }}</h1>
+        <div class="beach-detail-layout__rating-info">
+          <span class="beach-detail-layout__rating"
+            >⭐ Clasificación: {{ beach.classification }}</span
+          >
+          <span class="beach-detail-layout__reviews"
+            >📝 Ocupación Anual: {{ beach.annualMaxOccupancy }}</span
+          >
+          <span class="beach-detail-layout__distance"
+            >📍 Municipio: {{ beach.municipality }}</span
+          >
         </div>
+      </section>
 
-        <!-- Texto explicativo sobre la bandera azul -->
-        <p *ngIf="beach.blueFlag" class="beach-detail-layout__blue-flag-info">
-            🌊 <strong>Bandera Azul:</strong> Esta playa ha sido galardonada con la Bandera Azul, un reconocimiento internacional que certifica su calidad ambiental, seguridad y accesibilidad.
+      <section class="beach-detail-layout__datails">
+        <p *ngIf="beach.hasSand" class="beach-detail-layout__text">
+          ⛱️ Playa de arena
         </p>
+        <p *ngIf="beach.hasRock" class="beach-detail-layout__text">
+          🪨 Playa de rocas
+        </p>
+        <p *ngIf="beach.accessByCar" class="beach-detail-layout__text">
+          🚗 Accesible por coche
+        </p>
+        <p *ngIf="beach.accessByFoot" class="beach-detail-layout__text">
+          🚶‍♂️‍➡️ Accesible a pie
+        </p>
+        <p *ngIf="beach.hasToilets" class="beach-detail-layout__text">
+          🚽 Baños Accesibles
+        </p>
+        <p *ngIf="beach.hasShowers" class="beach-detail-layout__text">
+          🚿 Duchas Accesibles
+        </p>
+      </section>
+
+      <section class="beach-detail-layout__datails">
+        <p *ngIf="beach.grade" class="beach-detail-layout__text">
+          ⭐ Calificación: {{ beach.grade }} / 5
+        </p>
+        <p *ngIf="beach.reviewsCount" class="beach-detail-layout__text">
+          📝 Reseñas: {{ beach.reviewsCount }}
+        </p>
+      </section>
+
+      <!-- Botón dinámico para añadir o quitar de favoritos -->
+      <button
+        class="beach-detail-layout__button"
+        [ngClass]="{ 'beach-detail-layout__button--remove': isFavourite }"
+        (click)="onFavoriteClick()"
+      >
+        {{
+          isFavourite
+            ? "Quitar de favoritos"
+            : "Guarda la playa en tus favoritos"
+        }}
+      </button>
     </div>
+
+    <!-- Texto explicativo sobre la bandera azul -->
+    <p *ngIf="beach.blueFlag" class="beach-detail-layout__blue-flag-info">
+      🌊 <strong>Bandera Azul:</strong> Esta playa ha sido galardonada con la
+      Bandera Azul, un reconocimiento internacional que certifica su calidad
+      ambiental, seguridad y accesibilidad.
+    </p>
+  </div>
 </section>

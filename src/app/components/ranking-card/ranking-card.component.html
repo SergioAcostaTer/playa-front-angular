@@ -1,7 +1,20 @@
-<a *ngIf="beach" class="beach-card" href="/beach/{{ beach.name.toLowerCase().replaceAll(' ', '-') }}" [ngClass]="{ 'beach-card--blue-flag': beach.blueFlag }">
+<a *ngIf="beach" class="beach-card relative" href="/beach/{{ beach.name.toLowerCase().replaceAll(' ', '-') }}" [ngClass]="{ 'beach-card--blue-flag': beach.blueFlag }">
     <span *ngIf="beach.blueFlag" class="beach-card__flag beach-card__flag--blue">Blue Flag</span>
     <div class="beach-card__image-container">
         <img [src]="beach.coverUrl" [alt]="beach.name" loading="lazy" class="beach-card__image">
+    </div>
+    <div
+      *ngIf="beach.grade"
+      class="absolute top-6! right-6! bg-white text-gray-800 font-semibold text-sm px-3! py-1! rounded-full shadow-md flex items-center space-x-1!"
+    >
+      <span>{{ beach.grade }} / 5</span>
+
+      <img
+        src="https://www.svgrepo.com/show/13695/star.svg"
+        alt="Calificación"
+        class="w-4! h-4!"
+        loading="lazy"
+      />
     </div>
     <div class="beach-card__info">
         <h2 class="beach-card__title">{{ beach.name }}</h2>
@@ -9,7 +22,7 @@
             <p class="beach-card__details">
                 <span class="beach-card__island">{{ beach.island }}</span> • 
                 <span class="beach-card__classification">{{ beach.classification }}</span> • 
-                <span class="beach-card__length">{{ beach.length }} m</span>
+                <span class="beach-card__length">{{ beach.reviewsCount }} reseñas</span>
             </p>
         </div>
     </div>
