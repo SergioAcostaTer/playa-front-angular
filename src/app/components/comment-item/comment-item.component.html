@@ -1,23 +1,40 @@
 <div class="comment-item">
-  <div class="comment-item__author" (click)="navigateToProfile()">
-    <img class="user__avatar" [src]="comment.user.imageUrl">
-    <h3 class="user__name">{{ comment.user.firstName }}</h3>
+  <div class="comment-header" (click)="navigateToProfile()">
+    <img class="avatar" [src]="comment.user.imageUrl" alt="Avatar">
+    <div class="user-info">
+      <div class="user-name">{{ comment.user.firstName }}</div>
+      <div class="rating">{{ comment.comment.rating }} ★</div>
+    </div>
   </div>
 
-  <div *ngIf="!editing" class="comment-item__rating">{{ comment.comment.rating }} ★</div>
-  <div *ngIf="!editing" class="comment-item__text">{{ comment.comment.text }}</div>
+  <div *ngIf="!editing" class="comment-text">{{ comment.comment.text }}</div>
 
-  <div *ngIf="editing" class="comment-item__edit-form">
-    <textarea [(ngModel)]="editedText"></textarea>
-    <input type="number" [(ngModel)]="editedRating" min="1" max="5">
-    <button (click)="saveEdit()">Guardar</button>
-    <button (click)="cancelEdit()">Cancelar</button>
+  <div *ngIf="editing" class="edit-form">
+    <textarea [(ngModel)]="editedText" class="edit-textarea"></textarea>
+    <div class="star-rating">
+      <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+        <span
+          class="star"
+          [class.filled]="hoveredStar ? star <= hoveredStar : star <= editedRating"
+          (click)="editedRating = star"
+          (mouseover)="hoveredStar = star"
+          (mouseleave)="hoveredStar = 0"
+        >
+          ★
+        </span>
+      </ng-container>
+    </div>
+    
+    
+    
+    <div class="edit-actions">
+      <button (click)="saveEdit()" class="btn btn-primary">Guardar</button>
+      <button (click)="cancelEdit()" class="btn btn-secondary">Cancelar</button>
+    </div>
   </div>
 
-  <div class="comment-item__actions">
-    <ng-container *ngIf="canEdit()">
-      <button (click)="startEdit()">Editar</button>
-      <button (click)="deleteComment()">Eliminar</button>
-    </ng-container>
+  <div class="comment-actions" *ngIf="canEdit() && !editing">
+    <button (click)="startEdit()" class="btn btn-tertiary">Editar</button>
+    <button (click)="deleteComment()" class="btn btn-danger">Eliminar</button>
   </div>
 </div>

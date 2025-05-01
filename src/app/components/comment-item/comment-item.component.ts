@@ -15,7 +15,7 @@ import { CommentWithBeachAndUser } from '../../services/comments.service';
 })
 export class CommentItemComponent {
   @Input() comment!: CommentWithBeachAndUser;
-  @Output() delete = new EventEmitter<string>(); // comment id
+  @Output() delete = new EventEmitter<string>();
   @Output() update = new EventEmitter<{
     id: string;
     text: string;
@@ -26,6 +26,7 @@ export class CommentItemComponent {
   editing: boolean = false;
   editedText: string = '';
   editedRating: number = 0;
+  hoveredStar: number = 0;
 
   constructor(
     private router: Router,
