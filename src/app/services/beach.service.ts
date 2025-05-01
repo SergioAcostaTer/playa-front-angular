@@ -53,4 +53,5 @@ export class BeachService {
     const beachDoc = doc(this.firestore, `beaches/${id}`);
     await deleteDoc(beachDoc);
   }
+  
 }

@@ -147,3 +147,39 @@
     padding: 0.5em;
   }
 }
+
+.beach-detail-layout__favorite-button {
+  background-color: #fff;
+  color: #ff4d6d;
+  border: 2px solid #ff4d6d;
+  padding: 10px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  width: fit-content;
+  align-self: start;
+}
+
+.beach-detail-layout__favorite-button:hover {
+  background-color: #ff4d6d;
+  color: #fff;
+  transform: scale(1.03);
+  box-shadow: 0 4px 8px rgba(255, 77, 109, 0.2);
+}
+
+.beach-detail-layout__favorite-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 77, 109, 0.4);
+}
+
+@media (max-width: 768px) {
+  .beach-detail-layout__favorite-button {
+    width: 100%;
+    text-align: center;
+  }
+}

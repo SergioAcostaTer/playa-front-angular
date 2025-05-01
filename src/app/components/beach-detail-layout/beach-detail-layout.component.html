@@ -27,7 +27,14 @@
                 <p *ngIf="beach.hasShowers" class="beach-detail-layout__text"> 🚿 Duchas Accesibles</p>
             </section>
 
-            <button class="beach-detail-layout__button">Guarda la playa en tus favoritos</button>
+            <button
+            class="beach-detail-layout__favorite-button"
+            (click)="toggleFavorite()"
+            >
+                <span *ngIf="(isFavorite$ | async); else notFavorite">❤️ Quitar de favoritos</span>
+                <ng-template #notFavorite>🤍 Añadir a favoritos</ng-template>
+            </button>
+
         </div>
 
         <!-- Texto explicativo sobre la bandera azul -->
