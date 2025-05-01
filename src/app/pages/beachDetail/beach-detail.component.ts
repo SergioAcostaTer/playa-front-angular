@@ -9,7 +9,10 @@ import { MaplibreMapComponent } from '../../components/maplibre-map/maplibre-map
 import { Beach } from '../../models/beach';
 import { AuthStateService } from '../../services/auth-state.service';
 import { BeachService } from '../../services/beach.service';
-import { CommentService } from '../../services/comments.service';
+import {
+  CommentService,
+  CommentWithBeachAndUser,
+} from '../../services/comments.service';
 
 @Component({
   selector: 'app-beach-detail',
@@ -26,7 +29,7 @@ import { CommentService } from '../../services/comments.service';
 })
 export class BeachDetailPageComponent implements OnInit {
   beach: Beach | null = null;
-  comments: any[] = [];
+  comments: CommentWithBeachAndUser[] = [];
   currentUser: User | null = null;
 
   constructor(
