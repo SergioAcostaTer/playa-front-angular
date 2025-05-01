@@ -47,49 +47,19 @@
         </div>
         <div class="profile__form-input">
             <label class="profile__label">Email
-            <input
-                type="email"
-                name="email"
-                id="profile-email"
-                [(ngModel)]="user.email"
-                class="profile__input"
-                readonly
-            />
+                <div class=" text-gray-500">
+                    <input
+                        type="email"
+                        name="email"
+                        id="profile-email"
+                        [(ngModel)]="user.email"
+                        class="profile__input"
+                        readonly
+                    />
+                </div>
             </label>
         </div>
-        <div class="profile__form-input">
-            <label for="profile-phone" class="profile__label">Número de Teléfono</label>
-            <div class="profile__phone-input">
-            <select
-                name="phone-prefix"
-                id="phone-prefix"
-                [(ngModel)]="user.phonePrefix"
-                class="profile__select"
-                disabled
-            >
-                <option value="+1">+1 (USA)</option>
-                <option value="+34">+34 (España)</option>
-                <option value="+44">+44 (Reino Unido)</option>
-                <option value="+49">+49 (Alemania)</option>
-                <option value="+33">+33 (Francia)</option>
-                <option value="+55">+55 (Brasil)</option>
-                <option value="+91">+91 (India)</option>
-                <option value="+81">+81 (Japón)</option>
-                <option value="+86">+86 (China)</option>
-                <option value="+52">+52 (México)</option>
-            </select>
-            <input
-                type="tel"
-                name="phone"
-                id="profile-phone"
-                [(ngModel)]="user.phone"
-                placeholder="634 43 63 12"
-                maxlength="15"
-                class="profile__input"
-                readonly
-            />
-            </div>
-        </div>
+        
         </div>
     </div>
 </div>

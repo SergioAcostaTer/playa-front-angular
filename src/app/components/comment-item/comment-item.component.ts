@@ -29,6 +29,8 @@ export class CommentItemComponent implements OnInit {
   public isEditing: boolean = false;
   public isLoggedIn: boolean = false;
   public currentUser: User | null = null;
+  public tempRating: number = 0;
+  public tempComment: string = '';
 
   ngOnInit(): void {
     this.userService.user$.subscribe((user) => {
@@ -58,21 +60,27 @@ export class CommentItemComponent implements OnInit {
   }
 
   onEditComment(): void {
+    this.tempRating = this.review.reviews.rating;
+    this.tempComment = this.review.reviews.comment;
     this.isEditing = true;
   }
 
   onSaveComment(): void {
     this.reviewService
       .updateReview(this.review.reviews.id.toString(), {
-        rating: this.review.reviews.rating,
-        comment: this.review.reviews.comment,
+        rating: this.tempRating,
+        comment: this.tempComment,
       })
       .subscribe(() => {
+        this.review.reviews.rating = this.tempRating;
+        this.review.reviews.comment = this.tempComment;
         this.isEditing = false;
       });
   }
 
   onCancelEdit(): void {
+    this.tempRating = 0;
+    this.tempComment = '';
     this.isEditing = false;
   }
 
@@ -83,4 +91,4 @@ export class CommentItemComponent implements OnInit {
   onDeleteComment(): void {
     this.deleteComment.emit(this.review.reviews.id);
   }
-}
+} 
