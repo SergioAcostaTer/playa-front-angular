@@ -1,4 +1,3 @@
-// src/app/pages/profile/profile.component.ts
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -15,7 +14,7 @@ import { UserService } from '../../services/user.service';
 })
 export class ProfilePageComponent implements OnInit {
   user: User | null = null;
-  originalUser: User | null = null;
+  editedUser: User | null = null;
   loading = true;
   error: string | null = null;
   editMode = false;
@@ -25,10 +24,7 @@ export class ProfilePageComponent implements OnInit {
     try {
       const response = await getMe();
       this.user = {
-        ...response,
-        surname: '',
-        phonePrefix: '+34',
-        phone: '',
+        ...response
       };
     } catch (error) {
       console.error('Error fetching user:', error);
@@ -40,25 +36,28 @@ export class ProfilePageComponent implements OnInit {
 
   enableEdit() {
     if (this.user) {
-      this.originalUser = { ...this.user };
+      this.editedUser = { ...this.user };
       this.editMode = true;
     }
   }
 
   cancelEdit() {
-    if (this.originalUser) {
-      this.user = { ...this.originalUser };
-    }
+    this.editedUser = null;
     this.editMode = false;
   }
 
-  saveChanges() {
-    if (!this.user) return;
+  async saveChanges() {
+    if (!this.user || !this.editedUser) return;
 
-    this.userService.updateUser(this.user).then(() => {
+    try {
+      this.user = { ...this.editedUser };
+      await this.userService.updateUser(this.user);
       console.log('User updated successfully:', this.user);
-    });
-    console.log('Saving changes:', this.user);
-    this.editMode = false;
+      this.editMode = false;
+      this.editedUser = null;
+    } catch (error) {
+      console.error('Error updating user:', error);
+      this.error = 'No se pudieron guardar los cambios.';
+    }
   }
 }

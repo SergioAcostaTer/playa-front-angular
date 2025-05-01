@@ -5,7 +5,7 @@
       <img [src]="user.avatarUrl" class="user-header__menu-icon" alt="User Avatar">
       <!-- Añadir el nombre y el símbolo verde -->
       <div class="user-header__user-info">
-        <span class="user-header__user-name">{{ user.name }}</span>
+        <span class="user-header__user-name">{{ user.username }}</span>
         <span class="user-header__status-icon"></span>
       </div>
     </a>
@@ -24,8 +24,8 @@
     <div class="popup__container">
       <img [src]="user.avatarUrl" alt="User Avatar" class="popup__image">
       <div class="user-details">
-        <h3>{{ user.name }}</h3>
-        <p>{{ user.username }}</p>
+        <h3>{{ user.username }}</h3>
+        <p>{{ user.name }}</p>
       </div>
       <div class="popup__account-buttons">
         <a href="/login" class="popup__account-button popup__account-link">Cambia de cuenta</a>

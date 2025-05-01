@@ -1,4 +1,3 @@
-<!-- src/app/pages/profile/profile.component.html -->
 <div class="profile">
   <!-- Loading -->
   <div *ngIf="loading" class="loading-state">
@@ -11,7 +10,7 @@
   </div>
 
   <!-- User Profile -->
-  <div *ngIf="!loading && !error && user">
+  <div *ngIf="!loading && !error && user" class="profile__container">
     <div class="profile__user-image">
       <img [src]="user.avatarUrl" [alt]="user.username" class="profile__avatar" />
       <p>
@@ -24,8 +23,10 @@
         <label class="profile__label">Nombre de Usuario
           <input
             type="text"
-            [(ngModel)]="user.username"
-            class="profile__input"
+            [ngModel]="editMode && editedUser ? editedUser.username : user.username"
+            (ngModelChange)="editMode && editedUser ? (editedUser.username = $event) : null"
+            class="profile__input editable"
+            [class.edit-mode]="editMode"
             [readonly]="!editMode"
           />
         </label>
@@ -35,8 +36,10 @@
         <label class="profile__label">Nombre
           <input
             type="text"
-            [(ngModel)]="user.name"
-            class="profile__input"
+            [ngModel]="editMode && editedUser ? editedUser.name : user.name"
+            (ngModelChange)="editMode && editedUser ? (editedUser.name = $event) : null"
+            class="profile__input editable"
+            [class.edit-mode]="editMode"
             [readonly]="!editMode"
           />
         </label>
@@ -46,9 +49,10 @@
         <label class="profile__label">Email
           <input
             type="email"
-            [(ngModel)]="user.email"
+            [ngModel]="user.email"
             class="profile__input"
-            readonly
+            [class.edit-mode]="editMode"
+            [readonly]="true"
           />
         </label>
       </div>
