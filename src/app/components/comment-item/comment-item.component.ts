@@ -1,23 +1,75 @@
-import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { User } from '@angular/fire/auth';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthStateService } from '../../services/auth-state.service';
 import { CommentWithBeachAndUser } from '../../services/comments.service';
 
 @Component({
   selector: 'app-comment-item',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './comment-item.component.html',
   styleUrls: ['./comment-item.component.css'],
 })
 export class CommentItemComponent {
   @Input() comment!: CommentWithBeachAndUser;
+  @Output() delete = new EventEmitter<string>(); // comment id
+  @Output() update = new EventEmitter<{
+    id: string;
+    text: string;
+    rating: number;
+  }>();
 
-  constructor(private router: Router) {}
+  currentUser: User | null = null;
+  editing: boolean = false;
+  editedText: string = '';
+  editedRating: number = 0;
+
+  constructor(
+    private router: Router,
+    private authStateService: AuthStateService
+  ) {}
+
+  ngOnInit() {
+    this.authStateService.user$.subscribe((user) => {
+      this.currentUser = user;
+    });
+  }
+
+  canEdit(): boolean {
+    return this.currentUser?.uid === this.comment.user.id;
+  }
+
+  startEdit() {
+    this.editing = true;
+    this.editedText = this.comment.comment.text;
+    this.editedRating = this.comment.comment.rating;
+  }
+
+  cancelEdit() {
+    this.editing = false;
+  }
+
+  saveEdit() {
+    this.update.emit({
+      id: this.comment.comment.id,
+      text: this.editedText,
+      rating: this.editedRating,
+    });
+    this.editing = false;
+  }
+
+  deleteComment() {
+    this.delete.emit(this.comment.comment.id);
+  }
 
   navigateToProfile() {
     const userId = this.comment.user.id;
     if (userId && typeof userId === 'string') {
+      // Navigate to user's profile page (optional)
+      this.router.navigate(['/user', userId]);
     } else {
       console.error('Invalid or missing userId for navigation:', userId);
     }

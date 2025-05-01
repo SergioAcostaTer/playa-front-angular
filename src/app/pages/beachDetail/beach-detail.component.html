@@ -7,9 +7,12 @@
     [zoom]="12">
   </app-maplibre-map>
   <app-beach-comments
-    [comments]="comments"
-    [currentUser]="currentUser"
-    [beach]="beach"
-    (addComment)="addComment($event)"
-  ></app-beach-comments>
+  [comments]="comments"
+  [currentUser]="currentUser"
+  [beach]="beach"
+  (addComment)="addComment($event)"
+  (deleteComment)="onDeleteComment($event)"
+  (updateComment)="onUpdateComment($event)">
+</app-beach-comments>
+
 </div>

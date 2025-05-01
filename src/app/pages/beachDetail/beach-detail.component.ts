@@ -107,4 +107,25 @@ export class BeachDetailPageComponent implements OnInit {
       // Show error in UI (e.g., toast)
     }
   }
+
+  onDeleteComment(commentId: string) {
+    this.commentService
+      .deleteComment(commentId)
+      .then(() => {
+        this.loadComments();
+      })
+      .catch((err) => console.error('Delete failed', err));
+  }
+
+  onUpdateComment(update: { id: string; text: string; rating: number }) {
+    this.commentService
+      .updateComment(update.id, {
+        text: update.text,
+        rating: update.rating,
+      })
+      .then(() => {
+        this.loadComments();
+      })
+      .catch((err) => console.error('Update failed', err));
+  }
 }

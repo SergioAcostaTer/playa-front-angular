@@ -18,6 +18,12 @@ export class BeachCommentsComponent {
   @Input() currentUser: User | null = null;
   @Input() beach: Beach | null = null;
   @Output() addComment = new EventEmitter<{ text: string; rating: number }>();
+  @Output() updateComment = new EventEmitter<{
+    id: string;
+    text: string;
+    rating: number;
+  }>();
+  @Output() deleteComment = new EventEmitter<string>();
 
   newCommentText: string = '';
   newCommentRating: number = 5;

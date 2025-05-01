@@ -1,7 +1,16 @@
 <div class="beach-comments">
   <h3 class="beach-comments__title">Comentarios</h3>
   <div class="beach-comments__list">
-    <app-comment-item *ngFor="let comment of comments" [comment]="comment"></app-comment-item>
+
+
+<app-comment-item
+  *ngFor="let comment of comments"
+  [comment]="comment"
+  (delete)="deleteComment.emit($event)"
+  (update)="updateComment.emit($event)">
+</app-comment-item>
+
+
   </div>
 
   <div class="beach-comments__add">
