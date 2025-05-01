@@ -1,9 +1,10 @@
 // src/app/pages/profile/profile.component.ts
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { getMe } from '../../services/getMe';
 import { User } from '../../models/user';
+import { getMe } from '../../services/getMe';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -14,8 +15,11 @@ import { User } from '../../models/user';
 })
 export class ProfilePageComponent implements OnInit {
   user: User | null = null;
-  loading: boolean = true;
+  originalUser: User | null = null;
+  loading = true;
   error: string | null = null;
+  editMode = false;
+  userService = inject(UserService);
 
   async ngOnInit() {
     try {
@@ -32,5 +36,29 @@ export class ProfilePageComponent implements OnInit {
     } finally {
       this.loading = false;
     }
+  }
+
+  enableEdit() {
+    if (this.user) {
+      this.originalUser = { ...this.user };
+      this.editMode = true;
+    }
+  }
+
+  cancelEdit() {
+    if (this.originalUser) {
+      this.user = { ...this.originalUser };
+    }
+    this.editMode = false;
+  }
+
+  saveChanges() {
+    if (!this.user) return;
+
+    this.userService.updateUser(this.user).then(() => {
+      console.log('User updated successfully:', this.user);
+    });
+    console.log('Saving changes:', this.user);
+    this.editMode = false;
   }
 }

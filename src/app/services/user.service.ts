@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { User } from '../models/user';
 import { getMe } from './getMe';
+import { updateMe } from './updateMe';
 
 @Injectable({
   providedIn: 'root',
@@ -29,5 +30,14 @@ export class UserService {
 
   getCurrentUser() {
     return this.userSubject.value;
+  }
+
+  async updateUser(user: User) {
+    try {
+      const updatedUser = await updateMe(user);
+      this.userSubject.next(updatedUser);
+    } catch (e) {
+      console.error('Error updating user:', e);
+    }
   }
 }

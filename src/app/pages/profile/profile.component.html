@@ -1,65 +1,66 @@
 <!-- src/app/pages/profile/profile.component.html -->
 <div class="profile">
-    <!-- Mostrar un mensaje de carga mientras se obtienen los datos -->
-    <div *ngIf="loading" class="loading-state">
-        <p>Cargando datos del usuario...</p>
+  <!-- Loading -->
+  <div *ngIf="loading" class="loading-state">
+    <p>Cargando datos del usuario...</p>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="error && !loading" class="error-state">
+    <p>{{ error }}</p>
+  </div>
+
+  <!-- User Profile -->
+  <div *ngIf="!loading && !error && user">
+    <div class="profile__user-image">
+      <img [src]="user.avatarUrl" [alt]="user.username" class="profile__avatar" />
+      <p>
+        <span class="profile__username">{{ user.username }}</span>
+      </p>
     </div>
 
-    <!-- Mostrar un mensaje de error si falla la carga -->
-    <div *ngIf="error && !loading" class="error-state">
-        <p>{{ error }}</p>
-    </div>
+    <div class="profile__form">
+      <div class="profile__form-input">
+        <label class="profile__label">Nombre de Usuario
+          <input
+            type="text"
+            [(ngModel)]="user.username"
+            class="profile__input"
+            [readonly]="!editMode"
+          />
+        </label>
+      </div>
 
-    <!-- Mostrar los datos del usuario si se cargaron correctamente -->
-    <div *ngIf="!loading && !error && user">
-        <div class="profile__user-image">
-        <img [src]="user.avatarUrl" [alt]="user.username" class="profile__avatar" />
-        <p>
-            <span class="profile__username">{{ user.username }}</span>
-        </p>
-        <!-- <p><a href="#" class="profile__change-link">Cambia tu foto de perfil</a></p> -->
-        </div>
+      <div class="profile__form-input">
+        <label class="profile__label">Nombre
+          <input
+            type="text"
+            [(ngModel)]="user.name"
+            class="profile__input"
+            [readonly]="!editMode"
+          />
+        </label>
+      </div>
 
-        <div class="profile__form">
-        <div class="profile__form-input">
-            <label class="profile__label">Nombre de Usuario
-            <input
-                type="text"
-                name="username"
-                id="profile-username"
-                [(ngModel)]="user.username"
-                class="profile__input"
-                readonly
-            />
-            </label>
+      <div class="profile__form-input">
+        <label class="profile__label">Email
+          <input
+            type="email"
+            [(ngModel)]="user.email"
+            class="profile__input"
+            readonly
+          />
+        </label>
+      </div>
+
+      <!-- Buttons -->
+      <div class="profile__actions">
+        <button *ngIf="!editMode" (click)="enableEdit()" class="btn btn-edit">Editar</button>
+        <div *ngIf="editMode" class="btn-group">
+          <button (click)="saveChanges()" class="btn btn-save">Guardar</button>
+          <button (click)="cancelEdit()" class="btn btn-cancel">Cancelar</button>
         </div>
-        <div class="profile__form-input">
-            <label class="profile__label">Nombre
-            <input
-                type="text"
-                name="name"
-                id="profile-name"
-                [(ngModel)]="user.name"
-                class="profile__input"
-                readonly
-            />
-            </label>
-        </div>
-        <div class="profile__form-input">
-            <label class="profile__label">Email
-                <div class=" text-gray-500">
-                    <input
-                        type="email"
-                        name="email"
-                        id="profile-email"
-                        [(ngModel)]="user.email"
-                        class="profile__input"
-                        readonly
-                    />
-                </div>
-            </label>
-        </div>
-        
-        </div>
+      </div>
     </div>
+  </div>
 </div>
