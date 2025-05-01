@@ -1,3 +1,14 @@
 <app-title-page [title]="'Ranking de playas'"></app-title-page>
 
+<div class="ranking__nav">
+    <button class="ranking__btn ranking__btn--global" [routerLink]="['/ranking']">Global</button>
+    <button class="ranking__btn ranking__btn--island" [routerLink]="['/ranking/el-hierro']">El Hierro</button>
+    <button class="ranking__btn ranking__btn--island" [routerLink]="['/ranking/la-palma']">La Palma</button>
+    <button class="ranking__btn ranking__btn--island" [routerLink]="['/ranking/la-gomera']">La Gomera</button>
+    <button class="ranking__btn ranking__btn--island" [routerLink]="['/ranking/tenerife']">Tenerife</button>
+    <button class="ranking__btn ranking__btn--island" [routerLink]="['/ranking/gran-canaria']">Gran Canaria</button>
+    <button class="ranking__btn ranking__btn--island" [routerLink]="['/ranking/fuerteventura']">Fuerteventura</button>
+    <button class="ranking__btn ranking__btn--island" [routerLink]="['/ranking/lanzarote']">Lanzarote</button>
+  </div>
+
 <app-ranking-list [beaches]="beaches"></app-ranking-list>

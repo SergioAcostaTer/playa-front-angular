@@ -1,0 +1,50 @@
+.ranking__nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+  padding: 0 10px;
+}
+
+.ranking__btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.ranking__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.ranking__btn--global {
+  background: linear-gradient(135deg, #ff6f61, #ff3d00);
+  color: #fff;
+}
+
+.ranking__btn--global:hover {
+  background: linear-gradient(135deg, #ff3d00, #ff6f61);
+}
+
+.ranking__btn--island {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: #fff;
+}
+
+.ranking__btn--island:hover {
+  background: linear-gradient(135deg, #00f2fe, #4facfe);
+}
+
+@media (max-width: 768px) {
+  .ranking__btn {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+}

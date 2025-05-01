@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { RankingListComponent } from '../../components/ranking-list/ranking-list.component';
 import { TitlePageComponent } from '../../components/title-page/title-page.component';
 import { categoriesList } from '../../constants/categoriesList';
@@ -9,9 +9,9 @@ import { getRankingByIsland } from '../../services/getRankingByIsland';
 @Component({
   selector: 'ranking-page',
   standalone: true,
-  imports: [CommonModule, TitlePageComponent, RankingListComponent],
+  imports: [CommonModule, RouterModule, TitlePageComponent, RankingListComponent],
   templateUrl: './ranking.component.html',
-  styleUrls: [],
+  styleUrls: ['./ranking.component.css'],
 })
 export class RankingPageByIslandComponent implements OnInit {
   categories = categoriesList;
