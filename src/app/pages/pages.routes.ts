@@ -25,10 +25,6 @@ export default [
         loadComponent: () => import('./ranking/ranking.component').then(m => m.RankingPageComponent),
     },
     {
-        path: 'view-profile/:username',
-        loadComponent: () => import('./view-profile/view-profile.component').then(m => m.ViewProfileComponent),
-    },
-    {
         path: 'search',
         loadComponent: () => import('./search/search.component').then(m => m.SearchComponent),
     }

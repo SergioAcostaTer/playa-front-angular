@@ -1,14 +1,15 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { beachesList } from '../../constants/beachesList';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { BeachDetailLayoutComponent } from '../../components/beach-detail-layout/beach-detail-layout.component';
 import { BeachDescriptionComponent } from '../../components/beach-description/beach-description.component';
 import { MaplibreMapComponent } from '../../components/maplibre-map/maplibre-map.component';
 import { BeachCommentsComponent } from '../../components/beach-comments/beach-comments.component';
-import { GetCommentsService } from '../../services/getComments.service'; // Ajustado el nombre del archivo
+import { BeachService } from '../../services/beach.service';
+import { CommentService, CommentWithBeachAndUser } from '../../services/comments.service';
+import { AuthStateService } from '../../services/auth-state.service';
 import { Beach } from '../../models/beach';
-import { Comment } from '../../models/comment';
+import { User } from 'firebase/auth';
 
 @Component({
   selector: 'app-beach-detail',
@@ -25,44 +26,79 @@ import { Comment } from '../../models/comment';
 })
 export class BeachDetailPageComponent implements OnInit {
   beach: Beach | null = null;
-  beaches: Beach[] | null = beachesList;
-  comments: Comment[] = [];
-  currentUser = { id: 1, name: 'Pepe', username: 'pepito', avatarUrl: 'images/avatar.jpg' }; // Simulado
+  comments: CommentWithBeachAndUser[] = [];
+  currentUser: User | null = null;
 
   constructor(
     private route: ActivatedRoute,
-    private commentService: GetCommentsService
+    private router: Router,
+    private beachService: BeachService,
+    private commentService: CommentService,
+    private authStateService: AuthStateService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.authStateService.user$.subscribe((user) => {
+      this.currentUser = user;
+    });
+
     const slug = this.route.snapshot.paramMap.get('slug');
     if (slug) {
-      this.beach = this.beaches?.find((beach: Beach) =>
-        beach.name?.replace(/ /g, '-')?.toLowerCase() === slug.toLowerCase()
-      ) || null;
-      if (this.beach) {
-        this.loadComments();
-      }
+      this.beachService.getAllBeaches().subscribe({
+        next: (beaches) => {
+          this.beach = beaches.find(
+            (beach) => beach.name.replace(/ /g, '-').toLowerCase() === slug.toLowerCase()
+          ) || null;
+          if (this.beach) {
+            this.loadComments();
+            console.log(this.comments)
+          } else {
+            this.router.navigate(['/beaches']);
+          }
+        },
+        error: (error) => {
+          console.error('Error fetching beaches:', error);
+          this.router.navigate(['/beaches']);
+        },
+      });
     }
   }
 
-  async loadComments() {
+  loadComments(): void {
     if (!this.beach) return;
-
-    try {
-      const comments = await this.commentService.getComments();
-      this.comments = comments.filter((comment: Comment) =>
-        comment.beach.id.toLowerCase().replace(/\s+/g, '-') ===
-        this.beach!.id.toLowerCase().replace(/\s+/g, '-')
-      );
-    } catch (err) {
-      console.error('Error loading comments:', err);
-      this.comments = [];
-    }
+    this.commentService.getCommentsByBeachId(this.beach.id).subscribe({
+      next: (comments) => {
+        console.log('Fetched comments:', comments); // Debug log
+        this.comments = [...comments]; // Ensure new array reference
+      },
+      error: (error) => {
+        console.error('Error loading comments:', error);
+        this.comments = [];
+      },
+    });
   }
 
-  addComment(newComment: Comment) {
-    this.comments = [...this.comments, newComment];
-    // Aquí podrías enviar el comentario a un backend si existiera
+  async addComment(event: { text: string; rating: number }): Promise<void> {
+    if (!this.currentUser) {
+      this.router.navigate(['/login']);
+      return;
+    }
+    if (!this.beach) {
+      console.error('No beach selected');
+      return;
+    }
+    try {
+      await this.commentService.createComment({
+        text: event.text,
+        rating: event.rating,
+        userId: this.currentUser.uid,
+        beachId: this.beach.id,
+      });
+      console.log('Comment created, reloading comments...'); // Debug log
+      this.loadComments();
+    } catch (error: any) {
+      console.error('Error adding comment:', error);
+      // Show error in UI (e.g., toast)
+    }
   }
 }
