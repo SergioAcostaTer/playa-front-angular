@@ -1,4 +1,4 @@
-
+@import "tailwindcss";
 :root {
   /* Primary Colors */
   --primary-color: #ff385c; /* Warm sand color -> Cambiado por un tono rojizo similar */
@@ -51,14 +51,14 @@
   --change-user-image-color: #f5002c; /* Mantengo el tono naranjado porque no es amarillo puro */
 
   /* Nuevos colores propuestos */
-  --tertiary-color: #ff6f61; 
+  --tertiary-color: #ff6f61;
   --complement-color: #007a7a;
-  --neutral-dark: #2a2a2a; 
-  --neutral-light: #f5f5f5; 
-  --highlight-color: #ff9f1c; 
+  --neutral-dark: #2a2a2a;
+  --neutral-light: #f5f5f5;
+  --highlight-color: #ff9f1c;
   --muted-red: #d13f5b;
   --deep-sea: #004d4d;
-  --soft-beige: #f9e8d9; 
+  --soft-beige: #f9e8d9;
   --warm-gray: #8d552b;
   --hover-darken: #b0123f;
 

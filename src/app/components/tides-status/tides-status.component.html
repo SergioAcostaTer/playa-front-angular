@@ -5,7 +5,7 @@
       {{ errorMessage }}
     </div>
     <canvas
-      *ngIf="!isLoading && !errorMessage"
+      *ngIf="isBrowser && !isLoading && !errorMessage"
       baseChart
       [data]="lineChartData"
       [options]="lineChartOptions"

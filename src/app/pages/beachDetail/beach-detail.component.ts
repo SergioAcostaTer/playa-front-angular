@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'firebase/auth';
 import { BeachCommentsComponent } from '../../components/beach-comments/beach-comments.component';
-import { BeachDescriptionComponent } from '../../components/beach-description/beach-description.component';
 import { BeachDetailLayoutComponent } from '../../components/beach-detail-layout/beach-detail-layout.component';
 import { MaplibreMapComponent } from '../../components/maplibre-map/maplibre-map.component';
 import { Beach } from '../../models/beach';
@@ -13,6 +12,8 @@ import {
   CommentService,
   CommentWithBeachAndUser,
 } from '../../services/comments.service';
+import {WeatherDisplayComponent} from '../../components/weather-display/weather-display.component';
+import {TidesStatusComponent} from '../../components/tides-status/tides-status.component';
 
 @Component({
   selector: 'app-beach-detail',
@@ -20,9 +21,10 @@ import {
   imports: [
     CommonModule,
     BeachDetailLayoutComponent,
-    BeachDescriptionComponent,
     MaplibreMapComponent,
     BeachCommentsComponent,
+    WeatherDisplayComponent,
+    TidesStatusComponent,
   ],
   templateUrl: './beach-detail.component.html',
   styleUrls: ['./beach-detail.component.css'],

@@ -17,12 +17,12 @@ import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(withInterceptorsFromDi(), withFetch()),
     provideClientHydration(withEventReplay()),
     provideClientHydration(withEventReplay()),
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
   ],

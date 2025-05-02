@@ -1,4 +1,5 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { ChartConfiguration, ChartData, ChartType, Chart, Plugin } from 'chart.js';
 import { BaseChartDirective, NgChartsModule } from 'ng2-charts';
@@ -6,7 +7,7 @@ import { TideService, TideData } from '../../services/tide.service';
 import { Beach } from '../../models/beach';
 import 'chartjs-adapter-date-fns';
 
-// Plugin para dibujar la línea de la hora actual
+// Plugin for current time line
 const currentTimePlugin: Plugin<'line'> = {
   id: 'currentTimeLine',
   afterDatasetsDraw(chart) {
@@ -41,7 +42,7 @@ const currentTimePlugin: Plugin<'line'> = {
   },
 };
 
-// Registrar plugin
+// Register plugin
 Chart.register(currentTimePlugin);
 
 @Component({
@@ -67,8 +68,6 @@ export class TidesStatusComponent implements OnInit {
       },
     ],
   };
-
-
 
   public lineChartOptions: ChartConfiguration<'line'>['options'] = {
     responsive: true,
@@ -107,19 +106,26 @@ export class TidesStatusComponent implements OnInit {
   public isLoading: boolean = true;
   public errorMessage: string | null = null;
   private currentDate: string;
+  public isBrowser: boolean;
 
-  constructor(private tideService: TideService) {
+  constructor(
+    private tideService: TideService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
     const today = new Date();
     this.currentDate = today.toISOString().split('T')[0];
   }
 
   ngOnInit(): void {
-    this.loadTideData();
-    setInterval(() => {
-      if (this.chart) {
-        this.chart.update();
-      }
-    }, 60000); // Cada minuto
+    if (this.isBrowser) {
+      this.loadTideData();
+      setInterval(() => {
+        if (this.chart) {
+          this.chart.update();
+        }
+      }, 60000); // Every minute
+    }
   }
 
   private loadTideData(): void {
@@ -149,7 +155,7 @@ export class TidesStatusComponent implements OnInit {
 
   private updateChartData(data: TideData[]): void {
     this.lineChartData.datasets[0].data = data.map((item) => ({
-      x: new Date(item.timestamp).getTime(), // <-- número, no Date
+      x: new Date(item.timestamp).getTime(),
       y: item.height,
     }));
 

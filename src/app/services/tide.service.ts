@@ -64,7 +64,7 @@ export class TideService implements OnDestroy {
       longitude: puerto.lon
     }));
 
-    console.log('Puertos procesados:', ports); // Depuración
+    // console.log('Puertos procesados:', ports); // Depuración
     this.portsSubject.next(ports);
     this.portsLoaded = true;
   }
