@@ -1,0 +1,9 @@
+<div class="ranking__nav">
+    <button class="ranking__btn ranking__btn--global" [routerLink]="['/ranking']">Global</button>
+    <!-- Bucle con *ngFor -->
+    <button *ngFor="let category of categories" 
+            class="ranking__btn ranking__btn--island" 
+            [routerLink]="['/ranking', category.name | lowercase]">
+      {{ category.name }}
+    </button>
+  </div>

@@ -1,4 +1,4 @@
-<a *ngIf="beach" class="beach-card relative" href="/beach/{{ beach.name.toLowerCase().replaceAll(' ', '-') }}" [ngClass]="{ 'beach-card--blue-flag': beach.blueFlag }">
+<a *ngIf="beach" class="beach-card relative" href="/beach/{{ beach.slug }}" [ngClass]="{ 'beach-card--blue-flag': beach.blueFlag }">
     <span *ngIf="beach.blueFlag" class="beach-card__flag beach-card__flag--blue">Blue Flag</span>
     <div class="beach-card__image-container">
         <img [src]="beach.coverUrl" [alt]="beach.name" loading="lazy" class="beach-card__image">
