@@ -24,7 +24,7 @@ export class ProfilePageComponent implements OnInit {
     try {
       const response = await getMe();
       this.user = {
-        ...response
+        ...response,
       };
     } catch (error) {
       console.error('Error fetching user:', error);
