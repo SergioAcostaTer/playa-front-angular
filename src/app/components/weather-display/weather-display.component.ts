@@ -1,14 +1,13 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { WeatherService } from '../../services/weather.service';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { DailyWeather } from '../../models/weather';
+import { WeatherService } from '../../services/weather.service';
 
 @Component({
   selector: 'app-weather-display',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './weather-display.component.html',
-  styleUrls: ['./weather-display.component.css']
 })
 export class WeatherDisplayComponent implements OnChanges {
   @Input() latitude: number = 0;
@@ -27,15 +26,24 @@ export class WeatherDisplayComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (
-      (changes['latitude'] && changes['latitude'].currentValue !== changes['latitude'].previousValue) ||
-      (changes['longitude'] && changes['longitude'].currentValue !== changes['longitude'].previousValue)
+      (changes['latitude'] &&
+        changes['latitude'].currentValue !==
+          changes['latitude'].previousValue) ||
+      (changes['longitude'] &&
+        changes['longitude'].currentValue !==
+          changes['longitude'].previousValue)
     ) {
       this.fetchWeatherData();
     }
   }
 
   private fetchWeatherData(): void {
-    if (!this.latitude || !this.longitude || isNaN(this.latitude) || isNaN(this.longitude)) {
+    if (
+      !this.latitude ||
+      !this.longitude ||
+      isNaN(this.latitude) ||
+      isNaN(this.longitude)
+    ) {
       this.weatherDays = [];
       this.selectedDayIndex = -1;
       this.isLoading = false;
@@ -43,19 +51,21 @@ export class WeatherDisplayComponent implements OnChanges {
     }
 
     this.isLoading = true;
-    this.weatherService.getWeatherData(this.latitude, this.longitude).subscribe({
-      next: (data) => {
-        this.weatherDays = data;
-        this.selectedDayIndex = data.length > 0 ? 0 : -1;
-        this.isLoading = false;
-      },
-      error: (err) => {
-        console.error('Error loading weather data:', err);
-        this.weatherDays = [];
-        this.selectedDayIndex = -1;
-        this.isLoading = false;
-      }
-    });
+    this.weatherService
+      .getWeatherData(this.latitude, this.longitude)
+      .subscribe({
+        next: (data) => {
+          this.weatherDays = data;
+          this.selectedDayIndex = data.length > 0 ? 0 : -1;
+          this.isLoading = false;
+        },
+        error: (err) => {
+          console.error('Error loading weather data:', err);
+          this.weatherDays = [];
+          this.selectedDayIndex = -1;
+          this.isLoading = false;
+        },
+      });
   }
 
   selectDay(index: number): void {
@@ -79,7 +89,7 @@ export class WeatherDisplayComponent implements OnChanges {
       71: '❄️', // Light snow
       73: '❄️', // Moderate snow
       75: '❄️', // Heavy snow
-      95: '⛈️' // Thunderstorm
+      95: '⛈️', // Thunderstorm
     };
     return weatherIcons[weathercode] || '🌍';
   }
