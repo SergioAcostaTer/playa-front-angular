@@ -1,7 +1,7 @@
 <div *ngIf="beach" class="beach-detail-container" id="beach-detail">
   <app-beach-detail-layout [beach]="beach"></app-beach-detail-layout>
   <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-<!--    <app-weather-display [latitude]="beach.latitude" [longitude]="beach.longitude"></app-weather-display>-->
+   <app-weather-display [latitude]="beach.latitude" [longitude]="beach.longitude"></app-weather-display>
     <app-tides-status [beach]="beach"></app-tides-status>
   </div>
   <app-maplibre-map

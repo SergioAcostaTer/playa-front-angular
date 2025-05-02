@@ -5,6 +5,8 @@ import { User } from 'firebase/auth';
 import { BeachCommentsComponent } from '../../components/beach-comments/beach-comments.component';
 import { BeachDetailLayoutComponent } from '../../components/beach-detail-layout/beach-detail-layout.component';
 import { MaplibreMapComponent } from '../../components/maplibre-map/maplibre-map.component';
+import { TidesStatusComponent } from '../../components/tides-status/tides-status.component';
+import { WeatherDisplayComponent } from '../../components/weather-display/weather-display.component';
 import { Beach } from '../../models/beach';
 import { AuthStateService } from '../../services/auth-state.service';
 import { BeachService } from '../../services/beach.service';
@@ -12,8 +14,6 @@ import {
   CommentService,
   CommentWithBeachAndUser,
 } from '../../services/comments.service';
-import {WeatherDisplayComponent} from '../../components/weather-display/weather-display.component';
-import {TidesStatusComponent} from '../../components/tides-status/tides-status.component';
 
 @Component({
   selector: 'app-beach-detail',
@@ -23,8 +23,8 @@ import {TidesStatusComponent} from '../../components/tides-status/tides-status.c
     BeachDetailLayoutComponent,
     MaplibreMapComponent,
     BeachCommentsComponent,
-    WeatherDisplayComponent,
     TidesStatusComponent,
+    WeatherDisplayComponent,
   ],
   templateUrl: './beach-detail.component.html',
   styleUrls: ['./beach-detail.component.css'],

@@ -1,7 +1,13 @@
-import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import {
+  Component,
+  Inject,
+  Input,
+  OnChanges,
+  PLATFORM_ID,
+  SimpleChanges,
+} from '@angular/core';
 import { DailyWeather } from '../../models/weather';
-import { WeatherService } from '../../services/weather.service';
 
 @Component({
   selector: 'app-weather-display',
@@ -18,10 +24,15 @@ export class WeatherDisplayComponent implements OnChanges {
   currentTime: string = '';
   currentDate: string = '';
   isLoading: boolean = false;
+  private isBrowser: boolean;
 
-  constructor(private weatherService: WeatherService) {
-    this.updateTime();
-    setInterval(() => this.updateTime(), 1000);
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+
+    if (this.isBrowser) {
+      this.updateTime();
+      setInterval(() => this.updateTime(), 1000);
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -37,37 +48,6 @@ export class WeatherDisplayComponent implements OnChanges {
     }
   }
 
-  private fetchWeatherData(): void {
-    if (
-      !this.latitude ||
-      !this.longitude ||
-      isNaN(this.latitude) ||
-      isNaN(this.longitude)
-    ) {
-      this.weatherDays = [];
-      this.selectedDayIndex = -1;
-      this.isLoading = false;
-      return;
-    }
-
-    this.isLoading = true;
-    this.weatherService
-      .getWeatherData(this.latitude, this.longitude)
-      .subscribe({
-        next: (data) => {
-          this.weatherDays = data;
-          this.selectedDayIndex = data.length > 0 ? 0 : -1;
-          this.isLoading = false;
-        },
-        error: (err) => {
-          console.error('Error loading weather data:', err);
-          this.weatherDays = [];
-          this.selectedDayIndex = -1;
-          this.isLoading = false;
-        },
-      });
-  }
-
   selectDay(index: number): void {
     if (index >= 0 && index < this.weatherDays.length) {
       this.selectedDayIndex = index;
@@ -75,7 +55,6 @@ export class WeatherDisplayComponent implements OnChanges {
   }
 
   getWeatherIcon(weathercode: number): string {
-    // Mapeo simplificado de códigos de Open-Meteo a iconos
     const weatherIcons: { [key: number]: string } = {
       0: '☀️', // Clear sky
       1: '🌤️', // Mainly clear
@@ -99,4 +78,50 @@ export class WeatherDisplayComponent implements OnChanges {
     this.currentTime = now.toLocaleTimeString();
     this.currentDate = now.toLocaleDateString();
   }
+
+  private fetchWeatherData = (): void => {
+    if (!this.isBrowser) return;
+
+    if (
+      !this.latitude ||
+      !this.longitude ||
+      isNaN(this.latitude) ||
+      isNaN(this.longitude)
+    ) {
+      this.weatherDays = [];
+      this.selectedDayIndex = -1;
+      this.isLoading = false;
+      return;
+    }
+
+    this.isLoading = true;
+
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${this.latitude}&longitude=${this.longitude}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,weathercode&timezone=auto`;
+
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+        return response.json();
+      })
+      .then((data) => {
+        const weatherData =
+          data?.daily?.time.map((date: string, index: number) => ({
+            date,
+            tempMax: data.daily.temperature_2m_max[index],
+            tempMin: data.daily.temperature_2m_min[index],
+            precipitation: data.daily.precipitation_sum[index],
+            weathercode: data.daily.weathercode[index],
+          })) || [];
+
+        this.weatherDays = weatherData;
+        this.selectedDayIndex = weatherData.length > 0 ? 0 : -1;
+        this.isLoading = false;
+      })
+      .catch((error) => {
+        console.error('Error fetching weather data:', error);
+        this.weatherDays = [];
+        this.selectedDayIndex = -1;
+        this.isLoading = false;
+      });
+  };
 }
