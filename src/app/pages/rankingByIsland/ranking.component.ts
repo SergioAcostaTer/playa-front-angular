@@ -3,23 +3,24 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { RankingListComponent } from '../../components/ranking-list/ranking-list.component';
 import { TitlePageComponent } from '../../components/title-page/title-page.component';
-import { categoriesList } from '../../constants/categoriesList';
 import { getRankingByIsland } from '../../services/getRankingByIsland';
+import { getCategories } from '../../services/getCategories';
+import { Category } from '../../models/category';
+import { RankingNavComponent } from '../../components/ranking-nav/ranking-nav.component';
 
 @Component({
   selector: 'ranking-page',
   standalone: true,
-  imports: [CommonModule, RouterModule, TitlePageComponent, RankingListComponent],
+  imports: [CommonModule, RouterModule, TitlePageComponent, RankingListComponent, RankingNavComponent],
   templateUrl: './ranking.component.html',
-  styleUrls: ['./ranking.component.css'],
 })
 export class RankingPageByIslandComponent implements OnInit {
-  categories = categoriesList;
+  categories: Category[] | any = getCategories();
   beaches = [];
   islandSlug = '';
   islandName = '';
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) {} 
 
   async ngOnInit() {
     this.route.paramMap.subscribe(async (params) => {
@@ -27,7 +28,10 @@ export class RankingPageByIslandComponent implements OnInit {
       this.islandName = this.slugToName(this.islandSlug);
 
       try {
-        this.beaches = await getRankingByIsland(this.islandName);
+        [this.categories, this.beaches] = await Promise.all([
+                getCategories(),
+                getRankingByIsland(this.islandName)
+              ]);
       } catch (error) {
         console.error('Error fetching ranking:', error);
       }

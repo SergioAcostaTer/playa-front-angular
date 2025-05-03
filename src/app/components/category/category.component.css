@@ -18,8 +18,8 @@
 }
 
 .category__image {
-  width: 100%; /* Fills the container's width */
-  height: 100%; /* Fills the container's height */
+  min-width: 100%; /* Fills the container's width */
+  min-height: 21px; /* Fills the container's height */
   margin-bottom: 0.5rem; /* Keeps your margin */
   object-fit: fill;
 }

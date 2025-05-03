@@ -7,6 +7,4 @@ export interface User {
   createdAt: string;
   avatarUrl: string;
   surname?: string;
-  phonePrefix?: string;
-  phone?: string;
 }
