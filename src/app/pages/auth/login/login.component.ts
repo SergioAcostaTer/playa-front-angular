@@ -2,8 +2,6 @@ import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule, Validators, FormControl, NonNullableFormBuilder } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { PanelImageComponent } from '../../../components/panel-image/panel-image.component';
-import { SocialButtonsComponent } from '../../../components/social-buttons/social-buttons.component';
 import { togglePasswordView } from '../../../utils/toggle-password-view';
 import { hasEmailError, isRequired, hasPasswordLengthError } from '../../../utils/validators';
 import { AuthService } from '../../../services/auth.service';
@@ -20,8 +18,6 @@ interface LoginForm {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    PanelImageComponent,
-    SocialButtonsComponent,
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],

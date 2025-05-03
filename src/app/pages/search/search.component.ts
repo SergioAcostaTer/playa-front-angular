@@ -7,7 +7,7 @@ import { FilterPanelComponent } from '../../components/filter-panel/filter-panel
 import { Beach } from '../../models/beach';
 import { Category } from '../../models/category';
 import { debounceTime, switchMap, Subject } from 'rxjs';
-import { searchBeaches } from '../../services/searchBeaches.service'; // Importamos la clase correcta
+import { SearchBeaches } from '../../services/searchBeaches.service'; // Importamos la clase correcta
 import { GetCategoriesService } from '../../services/getCategories.service'; // Importamos el servicio de categorías
 
 @Component({
@@ -41,7 +41,7 @@ export class SearchComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private searchBeachService: searchBeaches, // Inyectamos correctamente el servicio
+    private searchBeachService: SearchBeaches, // Inyectamos correctamente el servicio
     private getCategoriesService: GetCategoriesService // Inyectamos el servicio de categorías
   ) {}
 

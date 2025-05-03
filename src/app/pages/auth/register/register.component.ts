@@ -2,8 +2,6 @@ import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule, Validators, FormControl, NonNullableFormBuilder } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { PanelImageComponent } from '../../../components/panel-image/panel-image.component';
-import { SocialButtonsComponent } from '../../../components/social-buttons/social-buttons.component';
 import { togglePasswordView } from '../../../utils/toggle-password-view';
 import { isRequired, hasEmailError, hasPasswordLengthError, hasPasswordMatchError } from '../../../utils/validators';
 import { AuthService } from '../../../services/auth.service';
@@ -24,8 +22,6 @@ interface RegisterForm {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    PanelImageComponent,
-    SocialButtonsComponent,
   ],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],

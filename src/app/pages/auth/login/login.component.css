@@ -169,11 +169,52 @@
   border: 1px solid green !important;
 }
 
+.social-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.social-buttons__button {
+  background: none;
+  border: 1px solid var(--login-border-color);
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: var(--login-text-color);
+  cursor: pointer;
+  transition: border 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.social-buttons__button:hover {
+  border-color: var(--login-button-color);
+}
+
+.panel-image {
+  width: 50vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  position: relative;
+}
+
+.panel-image__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
+}
+
 @media (max-width: 742px) {
   .login {
     flex-direction: column;
   }
-  app-panel-image {
+  .panel-image {
     display: none;
   }
   .login__panel {

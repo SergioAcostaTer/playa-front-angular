@@ -1,75 +1,103 @@
 /* BLOQUE PRINCIPAL */
 .footer {
-	width: 100%;
-	background-color: var(--hover-darken);
-	padding: 1rem;
-	color: var(--footer-text-color);
-	text-align: center;
-	font-size: 1rem;
+  width: 100%;
+  background-color: var(--hover-darken);
+  padding: 1rem;
+  color: var(--footer-text-color);
+  text-align: center;
+  font-size: 1rem;
 }
 
 /* ELEMENTOS DENTRO DEL FOOTER */
 .footer__container {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: center;
-	max-width: 1200px;
-	margin: 0 auto;
-	gap: 1.5rem;
-	padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 1.5rem;
+  padding: 1rem;
 }
 
 .footer__navigation {
-	flex: 1;
-	text-align: center;
+  flex: 1;
+  text-align: center;
 }
 
 .footer__links {
-	list-style: none;
-	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
-	padding: 0;
-	margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
 }
 
 .footer__link a {
-	color: var(--footer-text-color, #f0e1a1);
-	text-decoration: none;
-	font-size: 1em;
-	transition: color 0.3s ease-in-out;
+  color: var(--footer-text-color, #f0e1a1);
+  text-decoration: none;
+  font-size: 1em;
+  transition: color 0.3s ease-in-out;
 }
 
 .footer__link a:hover {
-	color: var(--footer-hover-color, #ffffff);
+  color: var(--footer-hover-color, #ffffff);
 }
 
 /* MODIFICADORES */
 .footer__link--highlighted a {
-	font-weight: bold;
-	text-decoration: underline;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 .footer__subtitle {
-	font-size: 1.5em;
-	font-weight: bold;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
 .footer__text {
-	text-align: center;
-	font-size: 0.9em;
-	flex: 1;
+  text-align: center;
+  font-size: 0.9em;
+  flex: 1;
 }
 
-@media (max-width: 768px) {
-	.footer {
-		font-size: 0.8rem;
-		padding: 0.8em;
-		margin: 0;
-	}
+.footer__credits {
+  font-size: 0.85em; /* Un poco más pequeño para que no compita con el resto */
+  margin-top: 0.5rem;
+}
 
-	.foºoter__container {
-		padding: 0;
-	}
+.footer__credits a {
+  color: var(--footer-text-color, #f0e1a1); /* Mismo color que los otros enlaces */
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer__credits a:hover {
+  color: var(--footer-hover-color, #ffffff); /* Mismo efecto hover que los otros enlaces */
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 768px) {
+  .footer {
+    font-size: 0.8rem;
+    padding: 0.8em;
+    margin: 0;
+  }
+
+  .footer__container {
+    padding: 0;
+  }
+
+  .footer__subtitle {
+    font-size: 1.2em;
+  }
+
+  .footer__text {
+    font-size: 0.8em;
+  }
+
+  .footer__credits {
+    font-size: 0.75em;
+  }
 }

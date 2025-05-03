@@ -12,7 +12,7 @@ import { Beach } from '../models/beach';
 @Injectable({
   providedIn: 'root',
 })
-export class searchBeaches {
+export class SearchBeaches { // Renamed class to follow Angular naming conventions (PascalCase)
   private firestore = inject(Firestore);
   private beachCollection: CollectionReference<DocumentData> = collection(this.firestore, 'beaches');
 
@@ -20,7 +20,6 @@ export class searchBeaches {
     try {
       console.log('Iniciando búsqueda en searchBeaches:', { searchQuery, filters });
 
-      // Obtener todos los documentos de la colección
       const q = firestoreQuery(this.beachCollection);
       console.log('Ejecutando consulta a Firestore...');
       const querySnapshot = await getDocs(q);
@@ -33,13 +32,11 @@ export class searchBeaches {
         beaches.push({ id: doc.id, ...data } as Beach);
       });
 
-      // Aplicar filtros y búsqueda por nombre en el cliente
       const filteredBeaches = beaches.filter((beach) => {
         const beachName = beach.name.toLowerCase();
         const beachIsland = beach.island.toLowerCase();
         const normalizedSearchQuery = searchQuery?.toLowerCase() ?? '';
 
-        // Filtrar por nombre: verificar si el nombre contiene searchQuery
         const matchesQuery = normalizedSearchQuery
           ? beachName.includes(normalizedSearchQuery)
           : true;
@@ -49,7 +46,6 @@ export class searchBeaches {
           return matchesQuery;
         }
 
-        // Aplicar filtros adicionales
         const matchesIsland = filters.island
           ? beachIsland === filters.island.toLowerCase()
           : true;
@@ -84,6 +80,28 @@ export class searchBeaches {
       return filteredBeaches;
     } catch (error) {
       console.error('Error en searchBeaches:', error);
+      throw error;
+    }
+  }
+
+  async getBlueFlagBeaches(): Promise<Beach[]> {
+    try {
+      const q = firestoreQuery(this.beachCollection);
+      const querySnapshot = await getDocs(q);
+      const beaches: Beach[] = [];
+
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        // Use bracket notation to access blueFlag
+        if (data['blueFlag'] === true) {
+          beaches.push({ id: doc.id, ...data } as Beach);
+        }
+      });
+
+      console.log('Playas con bandera azul:', beaches.length, beaches.map((b) => b.name));
+      return beaches;
+    } catch (error) {
+      console.error('Error en getBlueFlagBeaches:', error);
       throw error;
     }
   }

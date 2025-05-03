@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TitlePageComponent } from '../../components/title-page/title-page.component';
 import { RankingListComponent } from '../../components/ranking-list/ranking-list.component';
-import { categoriesList } from '../../constants/categoriesList';
 import { Beach } from '../../models/beach';
-import {BeachService} from '../../services/beach.service'; // Importamos el modelo Beach
+import {SearchBeaches} from '../../services/searchBeaches.service';
 
 @Component({
   selector: 'ranking-page',
@@ -13,18 +12,24 @@ import {BeachService} from '../../services/beach.service'; // Importamos el mode
   templateUrl: './ranking.component.html',
   styleUrls: [],
 })
-export class RankingPageComponent {
-  categories = categoriesList;
-  beaches: Beach[] = []; // Tipamos la propiedad beaches
+export class RankingPageComponent implements OnInit {
+  beaches: Beach[] = [];
 
-  constructor(private getBeachesService: BeachService) {} // Inyectamos el servicio
-//TODO Fix the ranking to work
-  async ngOnInit() {
+  constructor(
+    private searchBeachesService: SearchBeaches // Inject the SearchBeaches service
+  ) {}
+
+  ngOnInit() {
+    this.loadBlueFlagBeaches();
+  }
+
+  async loadBlueFlagBeaches() {
     try {
-      // this.beaches = await this.getBeachesService.getAllBeaches();
+      this.beaches = await this.searchBeachesService.getBlueFlagBeaches();
+      console.log('Blue Flag Beaches loaded:', this.beaches);
     } catch (error) {
-      console.error('Error fetching beaches:', error);
-      this.beaches = []; // Fallback en caso de error
+      console.error('Error loading blue flag beaches:', error);
+      this.beaches = []; // Fallback in case of error
     }
   }
 }

@@ -19,9 +19,21 @@
 }
 
 /* Elements */
-app-logo {
-  max-width: 100px;
+.logo {
+  height: 100%;
+  object-fit: cover;
 }
+
+.logo__image {
+  width: 100%;
+  min-width: 50px;
+  min-height: 50px;
+  height: 100%;
+  object-fit: fill;
+  object-position: center;
+  clip-path: circle(50% at 50% 50%);
+}
+
 
 .header__nav {
   display: flex;
@@ -65,7 +77,7 @@ app-logo {
   .header__nav {
       display: none;
   }
-  
+
   .popup__nav-button--mobile {
       display: flex;
   }
