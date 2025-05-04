@@ -1,6 +1,6 @@
 # Playea: Sprint 3 - Resumen de Desarrollo
 
-## 📌 Integrantes del Proyecto
+## 📌 Integrantes del Proyecto - Grupo 3
 
 - **Miguel Ángel Rodríguez Ruano**  
 - **Gorka Eymard Santana Cabrera**  
@@ -181,6 +181,7 @@ export const environment = {
 ```
 - **⚠️ Importante**:
   - Asegúrate de usar los mismos nombres de variables **(firebaseConfig, apiBaseUrl, etc.)** para evitar errores. **Esta configuración es esencial para conectar el frontend con los servicios de Firebase**.
+  - Si necesita las **claves de firebase** ***(PROFESOR)*** no dude en pedírnolas en clase o le contestaremos por correo, adjunto el mío personal migue.rodrii08@gmailcom .
   - **Debido a que configuramos el SSR la app tarda un buen rato en cargar, no se asuste al ver que no carga rápido. Dele tiempo, y si es necesario, recargue la página en el navegador con f5 si tarda más de 1 minuto.**
 
 
