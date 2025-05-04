@@ -8,6 +8,7 @@ import { validatePasswordLength } from '../../utils/validatePasswordLength';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -28,6 +29,7 @@ export class LoginPageComponent {
   passwordColor: string = 'red';
   router = inject(Router);
   authService = inject(AuthService);
+  userService = inject(UserService);
 
   onEmailChange(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -65,7 +67,7 @@ export class LoginPageComponent {
         next: (response) => {
           if (response && response.message === 'Login successful' && response.user) {
             console.log('Login exitoso:', response.user);
-            localStorage.setItem('user', JSON.stringify(response.user));
+            this.userService.loadUser();
             this.router.navigate(['/']);
           } else {
             console.warn('Credenciales inválidas o error en la respuesta');
