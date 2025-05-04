@@ -22,6 +22,7 @@
 .logo {
   height: 100%;
   object-fit: cover;
+  overflow: hidden; /* Añade esto para recortar el desborde */
 }
 
 .logo__image {
@@ -32,6 +33,7 @@
   object-fit: fill;
   object-position: center;
   clip-path: circle(50% at 50% 50%);
+  transform: scale(1.5);
 }
 
 

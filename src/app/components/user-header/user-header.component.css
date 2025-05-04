@@ -83,8 +83,8 @@
   top: 5px;
   right: 5px;
   background-color: #fff;
-  height: 100vh;
-  max-height: 500px;
+  height: 60%;
+  max-height: 400px;
   width: 40vw;
   max-width: 400px;
   box-shadow: 0 0 10px 0 #0004;
@@ -98,8 +98,10 @@
 }
 
 .popup__image {
-  max-width: 80px;
-  max-height: 80px;
+  max-width: 85px;
+  max-height: 85px;
+  min-width: 85px;
+  min-height: 85px;
   border-radius: 50%;
   border: 1px solid #000;
   margin-bottom: 1em;
