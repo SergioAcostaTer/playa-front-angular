@@ -28,13 +28,30 @@ Durante este sprint, el equipo de **Playea** ha adaptado el sitio web para utili
 
 - **Descripción:** Se utilizó **CSS Grid** y **Flexbox**, para asegurar que el diseño sea adaptable a distintos dispositivos, cumpliendo con los requisitos de RWD.
 
+### 5️⃣ Integración de APIs Externas para Datos Meteorológicos y Mareas (PERSONAL EXTRA)
+
+**Descripción:**  
+Como funcionalidad adicional, se integraron dos APIs externas para proporcionar datos en tiempo real y mejorar la experiencia del usuario en la plataforma. Esto incluye:
+
+- **API de Open-Meteo:**  
+  Utilizada para obtener datos meteorológicos actualizados, como temperatura, precipitación y pronósticos diarios. Estos datos se muestran dinámicamente en la interfaz donde se observan las condiciones climáticas (temperatura, mínimas, y un pronóstico semanal).
+
+- **API de Mareas:**  
+  Implementada para mostrar información sobre las mareas, específicamente la altura de la marea en metros a lo largo del día. La gráfica incluida en la imagen refleja las variaciones de la marea, con datos proporcionados por el **Instituto Hidrográfico de la Marina (2025)**.
+
+**Implementación:**  
+Se crearon dos servicios en Angular:
+- `weather.service.ts` para manejar la obtención de datos meteorológicos.
+- `tide.service.ts` para las mareas.
+
+Estos servicios se integran en componentes como `beachDetail`, que muestran información contextual y útil para los usuarios sobre las condiciones de cada playa.
 
 ## 🔥 Uso de Firebase en el Proyecto
 
 ### Firebase Authentication
 
 - **Uso:** Gestiona el registro y autenticación de usuarios. Los formularios en la página `/auth` (definida en `pages/auth`) utilizan este servicio para registrar nuevos usuarios y autenticar los existentes.
-- **Implementación:** El servicio `auth.service.ts` (en `pages/services`) maneja las interacciones con Firebase Authentication, permitiendo verificar el estado del usuario logueado y personalizar el contenido según su rol.
+- **Implementación:** El servicio `auth.service.ts` (en `pages/services`) maneja las interacciones con Firebase Authentication, permitiendo verificar el estado del usuario logueado y personalizar el contenido según su rol. Además podemos observar el estado en el que se encuentra el usuario con `àuth-state.service.ts` donde podemos permitir acciones a los usuarios registrados que otros no registrados no podrían realizar.
 
 ### Firebase Firestore
 
