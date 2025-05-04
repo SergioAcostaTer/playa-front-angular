@@ -66,13 +66,4 @@ export class CommentItemComponent {
     this.delete.emit(this.comment.comment.id);
   }
 
-  navigateToProfile() {
-    const userId = this.comment.user.id;
-    if (userId && typeof userId === 'string') {
-      // Navigate to user's profile page (optional)
-      this.router.navigate(['/user', userId]);
-    } else {
-      console.error('Invalid or missing userId for navigation:', userId);
-    }
-  }
 }

@@ -10,4 +10,8 @@
 <!-- Mensaje cuando no hay playas -->
 <ng-template #emptyState>
     <p class="beach-grid beach-grid--empty">No hay playas disponibles.</p>
+    <div class="carga-de-playas">
+        <button class="btn-cargar" (click)="loadBeachesToFirebase()">Cargar Playas a Firebase</button>
+      <p *ngIf="uploadStatus">{{ uploadStatus }}</p>
+    </div>
 </ng-template>
