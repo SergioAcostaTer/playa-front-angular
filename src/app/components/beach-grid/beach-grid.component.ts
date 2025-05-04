@@ -14,6 +14,7 @@ import { BeachService } from '../../services/beach.service';
 })
 export class BeachGridComponent {
   @Input() beaches: Beach[] = [];
+  @Input() showEmptyState: boolean = false;
   beachService = inject(BeachService);
   uploadStatus: string = '';
   beachesJson: Beach[] = beachesList;

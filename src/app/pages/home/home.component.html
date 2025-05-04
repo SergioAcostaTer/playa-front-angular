@@ -27,7 +27,7 @@
 <app-category-list [categories]="categories"></app-category-list>
 
 <div style="padding: 0.5rem;">
-  <app-beach-grid *ngIf="!loading" [beaches]="beaches"></app-beach-grid>
+  <app-beach-grid *ngIf="!loading" [beaches]="beaches" [showEmptyState]="true"></app-beach-grid>
 </div>
 
 <div *ngIf="loading" class="loading-indicator">
