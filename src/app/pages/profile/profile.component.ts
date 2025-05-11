@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { User } from '../../models/user';
-import { getMe } from '../../services/getMe';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -22,7 +21,7 @@ export class ProfilePageComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      const response = await getMe();
+      const response = await this.userService.getMe();
       this.user = {
         ...response
       };

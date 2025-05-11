@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { TitlePageComponent } from '../../components/title-page/title-page.component';
 import { BeachGridComponent } from '../../components/beach-grid/beach-grid.component';
 import { FavouritesService } from '../../services/favourites.service';
-import { getMe } from '../../services/getMe';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-user-favourites',
@@ -20,12 +20,13 @@ export class FavouritePageComponent implements OnInit {
 
   constructor(
     private favouritesService: FavouritesService,
+    private userSerive: UserService,
     private router: Router
   ) {}
 
   async ngOnInit() {
     try {
-      this.user = await getMe();
+      this.user = await this.userSerive.getMe();
     } catch (error) {
       console.error('Error fetching user:', error);
       this.user = null;

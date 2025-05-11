@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Beach } from '../../models/beach';
 import { FavouritesService } from '../../services/favourites.service';
-import { getMe } from '../../services/getMe';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-beach-detail-layout',
@@ -17,6 +17,7 @@ export class BeachDetailLayoutComponent implements OnInit {
   user: any = null;
   isFavourite: boolean = false;
   isLoading: boolean = false;
+  userService = inject(UserService);
 
   constructor(
     private router: Router,
@@ -26,7 +27,7 @@ export class BeachDetailLayoutComponent implements OnInit {
   async ngOnInit() {
     // Verificar si el usuario está autenticado
     try {
-      this.user = await getMe();
+      this.user = await this.userService.getMe();
     } catch (error) {
       console.error('Error fetching user:', error);
       this.user = null;

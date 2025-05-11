@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import axios from 'axios';
+import { environment } from '../../environments/environment';
 import { User } from '../models/user';
-import { getMe } from './getMe';
-import { updateMe } from './updateMe';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class UserService {
   private userSubject = new BehaviorSubject<User | null>(null);
   public user$ = this.userSubject.asObservable();
+  private apiUrl = environment.apiUrl;
 
   constructor() {
     this.loadUser();
@@ -17,7 +18,7 @@ export class UserService {
 
   async loadUser() {
     try {
-      const user = await getMe();
+      const user = await this.getMe();
       this.userSubject.next(user);
     } catch (e) {
       this.userSubject.next(null);
@@ -34,10 +35,28 @@ export class UserService {
 
   async updateUser(user: User) {
     try {
-      const updatedUser = await updateMe(user);
+      const updatedUser = await this.updateMe(user);
       this.userSubject.next(updatedUser);
     } catch (e) {
       console.error('Error updating user:', e);
+    }
+  }
+
+  async getMe(): Promise<User> {
+    try {
+      const { data } = (await axios.get(`${this.apiUrl}/me`, { withCredentials: true })).data;
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async updateMe(user: User): Promise<User> {
+    try {
+      const { data } = (await axios.put(`${this.apiUrl}/me`, user, { withCredentials: true })).data;
+      return data;
+    } catch (error) {
+      throw error;
     }
   }
 }
