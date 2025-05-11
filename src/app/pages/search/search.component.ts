@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BeachGridComponent } from '../../components/beach-grid/beach-grid.component';
@@ -9,7 +9,7 @@ import { Beach } from '../../models/beach';
 import { searchBeaches } from '../../services/search';
 import { debounceTime, switchMap, Subject } from 'rxjs';
 import { Category } from '../../models/category';
-import { getCategories } from '../../services/getCategories';
+import { CategoriesService } from '../../services/categories.service';
 
 @Component({
   selector: 'app-search',
@@ -27,6 +27,7 @@ import { getCategories } from '../../services/getCategories';
 export class SearchComponent implements OnInit {
   beaches: Beach[] = [];
   categories: Category[] = [];
+  categoriesService = inject(CategoriesService);
   loading = true;
   searchQuery: string = '';
   islandFilter: string = '';
@@ -60,7 +61,7 @@ export class SearchComponent implements OnInit {
 
   async ngOnInit() {
     // Cargar las categorías (islas)
-    this.categories = await getCategories();
+    this.categories = await this.categoriesService.getCategories();
 
     // Configurar el pipeline de búsqueda con debounce
     this.searchSubject

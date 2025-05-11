@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Category } from '../../models/category';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { getCategories } from '../../services/getCategories';
 
 @Component({
   selector: 'app-ranking-nav',

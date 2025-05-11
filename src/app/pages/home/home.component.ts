@@ -1,13 +1,13 @@
 import { Component, HostListener, inject, OnInit } from '@angular/core';
-import { Router } from '@angular/router'; // ✅ Corrected import
+import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
-import { getCategories } from '../../services/getCategories';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BeachGridComponent } from '../../components/beach-grid/beach-grid.component';
 import { CategoryListComponent } from '../../components/category-list/category-list.component';
 import { BeachService } from '../../services/beach.service';
+import { CategoriesService } from '../../services/categories.service';
 
 @Component({
   selector: 'app-home',
@@ -32,6 +32,7 @@ export class HomePageComponent implements OnInit {
   private searchSubject = new Subject<string>();
   router = inject(Router);
   beachService = inject(BeachService);
+  categoriesService = inject(CategoriesService);
 
 
   ngOnInit(): void {
@@ -50,7 +51,7 @@ export class HomePageComponent implements OnInit {
   private async initializeData() {
     try {
       [this.categories, this.beaches] = await Promise.all([
-        getCategories(),
+        this.categoriesService.getCategories(),
         this.beachService.getAllBeaches()
       ]);
     } catch (error) {
