@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BeachDetailLayoutComponent } from '../../components/beach-detail-layout/beach-detail-layout.component';
 import { MaplibreMapComponent } from '../../maplibre-map/maplibre-map.component';
@@ -8,7 +8,7 @@ import { Beach } from '../../models/beach';
 import { BeachCommentsComponent } from '../../components/beach-comments/beach-comments.component';
 import { TidesStatusComponent } from '../../components/tides-status/tides-status.component';
 import { WeatherDisplayComponent } from '../../components/weather-display/weather-display.component';
-import { getBeachBySlug } from '../../services/getBeachById';
+import { BeachService } from '../../services/beach.service';
 
 @Component({
   selector: 'app-beach-detail',
@@ -27,6 +27,7 @@ import { getBeachBySlug } from '../../services/getBeachById';
 })
 export class BeachDetailPageComponent implements OnInit {
   beach: Beach | null = null;
+  beachService = inject(BeachService);
 
   constructor(private route: ActivatedRoute) {}
 
@@ -34,8 +35,7 @@ export class BeachDetailPageComponent implements OnInit {
     const slug = this.route.snapshot.paramMap.get('slug');
 
     if (slug) {
-      // Find the beach with a matching normalized name
-      this.beach = await getBeachBySlug(slug);
+      this.beach = await this.beachService.getBeachBySlug(slug);
     }
   }
 }

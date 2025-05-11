@@ -1,13 +1,13 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router'; // ✅ Corrected import
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
-import { getAllBeaches } from '../../services/getBeaches';
 import { getCategories } from '../../services/getCategories';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BeachGridComponent } from '../../components/beach-grid/beach-grid.component';
 import { CategoryListComponent } from '../../components/category-list/category-list.component';
+import { BeachService } from '../../services/beach.service';
 
 @Component({
   selector: 'app-home',
@@ -30,8 +30,9 @@ export class HomePageComponent implements OnInit {
   beaches: any[] = [];
   categories: any[] = [];
   private searchSubject = new Subject<string>();
+  router = inject(Router);
+  beachService = inject(BeachService);
 
-  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.searchSubject
@@ -50,7 +51,7 @@ export class HomePageComponent implements OnInit {
     try {
       [this.categories, this.beaches] = await Promise.all([
         getCategories(),
-        getAllBeaches()
+        this.beachService.getAllBeaches()
       ]);
     } catch (error) {
       console.error('Failed to fetch initial data:', error);
