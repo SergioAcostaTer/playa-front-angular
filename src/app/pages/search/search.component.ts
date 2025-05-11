@@ -6,10 +6,10 @@ import { BeachGridComponent } from '../../components/beach-grid/beach-grid.compo
 import { FilterPanelComponent } from '../../components/filter-panel/filter-panel.component';
 import { PaginationComponent } from '../../components/pagination/pagination.component';
 import { Beach } from '../../models/beach';
-import { searchBeaches } from '../../services/search';
 import { debounceTime, switchMap, Subject } from 'rxjs';
 import { Category } from '../../models/category';
 import { CategoriesService } from '../../services/categories.service';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -56,6 +56,7 @@ export class SearchComponent implements OnInit {
       hasFootShowers: boolean;
     };
   }>();
+  searchService = inject(SearchService);
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
@@ -69,7 +70,7 @@ export class SearchComponent implements OnInit {
         debounceTime(500),
         switchMap(({ query, page, filters }) => {
           this.loading = true;
-          return searchBeaches(query, page, this.limit, filters);
+          return this.searchService.searchBeaches(query, page, this.limit, filters);
         })
       )
       .subscribe({
