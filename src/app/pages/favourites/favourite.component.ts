@@ -28,7 +28,6 @@ export class FavouritePageComponent implements OnInit {
   async ngOnInit() {
     try {
       this.user = await this.userService.getMe();
-      toast.success('Usuario cargado correctamente'); // Success toast
     } catch (error: any) {
       console.error('Error fetching user:', error);
       // Handle different error cases
@@ -58,7 +57,6 @@ export class FavouritePageComponent implements OnInit {
         console.log('Respuesta de getFavourites:', response);
         this.beaches = response.data.map((item: any) => item.beach_grades); // Preserve existing mapping
         console.log('Playas asignadas a this.beaches:', this.beaches);
-        toast.success('Favoritos cargados correctamente'); // Success toast
         this.loading = false;
       },
       error: (error) => {

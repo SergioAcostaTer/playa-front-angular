@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { toast } from 'ngx-sonner'; // Import toast
+import { toast } from 'ngx-sonner';
 import { togglePasswordView } from '../../utils/toggle-password-view';
 import { PanelImageComponent } from '../../components/panel-image/panel-image.component';
 import { SocialButtonsComponent } from '../../components/social-buttons/social-buttons.component';
@@ -10,6 +10,9 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
+import { HttpClient } from '@angular/common/http';
+import { EnvironmentService } from '../../services/environment.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -28,9 +31,12 @@ export class LoginPageComponent {
   passwordValid: boolean = false;
   passwordMessage: string = 'Ingresa tu contraseña';
   passwordColor: string = 'red';
+
   router = inject(Router);
   authService = inject(AuthService);
   userService = inject(UserService);
+  http = inject(HttpClient);
+  envService = inject(EnvironmentService);
 
   onEmailChange(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -57,11 +63,27 @@ export class LoginPageComponent {
     togglePasswordView('login-password-text', 'login-toggle-icon');
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     if (!this.isFormValid()) {
-      toast.error('Por favor, completa el formulario correctamente'); // Toast for invalid form
+      toast.error('Por favor, completa el formulario correctamente');
       console.log('Formulario no válido');
       return;
+    }
+
+    // Verificar si hay un usuario logueado
+    const currentUser = await firstValueFrom(this.userService.user$);
+    if (currentUser) {
+      // Realizar logout antes de intentar el nuevo login
+      try {
+        const logoutUrl = `${this.envService.getApiUrl()}/auth/log-out`;
+        await firstValueFrom(this.http.post(logoutUrl, {}, { withCredentials: true }));
+        this.userService.clearUser();
+        toast.info('Sesión anterior cerrada. Iniciando nueva sesión...');
+      } catch (error: any) {
+        console.error('Error during logout:', error);
+        toast.error('Error al cerrar la sesión anterior. Continuando con el nuevo inicio...');
+        this.userService.clearUser(); // Limpiar localmente incluso si falla la solicitud
+      }
     }
 
     const credentials = {
@@ -75,20 +97,20 @@ export class LoginPageComponent {
           console.log('Login exitoso:', response.user);
           this.userService.loadUser();
           this.router.navigate(['/']);
-          toast.success('¡Inicio de sesión exitoso!'); // Success toast
+          toast.success('¡Inicio de sesión exitoso!');
         } else {
           console.warn('Credenciales inválidas o error en la respuesta');
-          toast.error('Error en el inicio de sesión'); // Fallback error toast
+          toast.error('Error en el inicio de sesión');
         }
       },
       error: (error: any) => {
         console.error('Error en login:', error);
         if (error.status === 401) {
-          toast.error('Correo o contraseña incorrectos'); // 401 error toast
+          toast.error('Correo o contraseña incorrectos');
         } else if (error.message?.includes('Network Error')) {
-          toast.error('Error de red. Intenta de nuevo más tarde'); // Network error toast
+          toast.error('Error de red. Intenta de nuevo más tarde');
         } else {
-          toast.error('Error al iniciar sesión'); // Generic error toast
+          toast.error('Error al iniciar sesión');
         }
       },
     });

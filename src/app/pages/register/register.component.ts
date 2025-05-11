@@ -9,7 +9,11 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { toast } from 'ngx-sonner'; // Import toast
+import { UserService } from '../../services/user.service';
+import { HttpClient } from '@angular/common/http';
+import { EnvironmentService } from '../../services/environment.service';
+import { toast } from 'ngx-sonner';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -37,6 +41,9 @@ export class RegisterPageComponent {
 
   router = inject(Router);
   authService = inject(AuthService);
+  userService = inject(UserService);
+  http = inject(HttpClient);
+  envService = inject(EnvironmentService);
 
   onEmailChange(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -97,11 +104,27 @@ export class RegisterPageComponent {
     togglePasswordView('register-password-confirmation-text', 'confirmation-toggle-icon');
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     if (!this.isFormValid()) {
-      toast.error('Por favor, completa el formulario correctamente'); // Toast for invalid form
+      toast.error('Por favor, completa el formulario correctamente');
       console.log('Formulario no válido');
       return;
+    }
+
+    // Verificar si hay un usuario logueado
+    const currentUser = await firstValueFrom(this.userService.user$);
+    if (currentUser) {
+      // Realizar logout antes de intentar el registro
+      try {
+        const logoutUrl = `${this.envService.getApiUrl()}/auth/log-out`;
+        await firstValueFrom(this.http.post(logoutUrl, {}, { withCredentials: true }));
+        this.userService.clearUser();
+        toast.info('Sesión anterior cerrada. Procediendo con el registro...');
+      } catch (error: any) {
+        console.error('Error during logout:', error);
+        toast.error('Error al cerrar la sesión anterior. Continuando con el registro...');
+        this.userService.clearUser(); // Limpiar localmente incluso si falla la solicitud
+      }
     }
 
     const userData = {
@@ -113,17 +136,18 @@ export class RegisterPageComponent {
     this.authService.register(userData).subscribe({
       next: (response) => {
         console.log('Usuario registrado:', response);
-        toast.success('¡Registro exitoso! Bienvenido'); // Success toast
+        this.userService.loadUser(); // Cargar el nuevo usuario
+        toast.success('¡Registro exitoso! Bienvenido');
         this.router.navigate(['/']);
       },
       error: (error: any) => {
         console.error('Error al registrar:', error);
         if (error.status === 409) {
-          toast.error('El correo ya está registrado'); // 409 error toast
+          toast.error('El correo ya está registrado');
         } else if (error.message?.includes('Network Error')) {
-          toast.error('Error de red. Intenta de nuevo más tarde'); // Network error toast
+          toast.error('Error de red. Intenta de nuevo más tarde');
         } else {
-          toast.error('Error al registrar la cuenta'); // Generic error toast
+          toast.error('Error al registrar la cuenta');
         }
       }
     });
