@@ -1,7 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
+import { toast } from 'ngx-sonner';
 import { Review, ReviewService } from '../../services/review.service';
+import { UserService } from '../../services/user.service';
 import { CommentItemComponent } from '../comment-item/comment-item.component';
 
 @Component({
@@ -19,26 +23,76 @@ export class BeachCommentsComponent implements OnInit {
 
   @Input() beachId: string = '0';
 
-  constructor(private reviewService: ReviewService) {}
+  constructor(
+    private reviewService: ReviewService,
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    if (!this.beachId) return;
+    if (!this.beachId) {
+      toast.error('No se proporcionó un ID de playa válido');
+      return;
+    }
 
-    this.reviewService.getReviewsForBeach(this.beachId).subscribe((reviews) => {
-      this.reviews = reviews.reviews;
+    this.reviewService.getReviewsForBeach(this.beachId).subscribe({
+      next: (response) => {
+        this.reviews = response.reviews;
+      },
+      error: (error: any) => {
+        console.error('Error fetching reviews:', error);
+        if (error.message?.includes('Network Error')) {
+          toast.error('Error de red. Intenta de nuevo más tarde');
+        } else {
+          toast.error('Error al cargar los comentarios');
+        }
+      }
     });
   }
 
   onDeleteComment(reviewId: number): void {
-    this.reviewService.deleteReview(reviewId.toString()).subscribe(() => {
-      this.reviews = this.reviews.filter(
-        (review) => review.reviews.id !== reviewId
-      );
+    this.reviewService.deleteReview(reviewId.toString()).subscribe({
+      next: () => {
+        this.reviews = this.reviews.filter(
+          (review) => review.reviews?.id !== reviewId
+        );
+        toast.success('Comentario eliminado correctamente');
+      },
+      error: (error: any) => {
+        console.error('Error deleting review:', error);
+        if (error.status === 401) {
+          toast.error('No tienes permiso para eliminar este comentario');
+        } else if (error.message?.includes('Network Error')) {
+          toast.error('Error de red. Intenta de nuevo más tarde');
+        } else {
+          toast.error('Error al eliminar el comentario');
+        }
+      }
     });
   }
 
-  onAddComment(): void {
-    if (!this.newCommentText.trim()) return;
+  async onAddComment(): Promise<void> {
+    // Check if user is authenticated
+    const user = await firstValueFrom(this.userService.user$);
+    if (!user) {
+      toast.error('Por favor, inicia sesión para añadir un comentario');
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    // Check if user already has a comment
+    const userHasComment = this.reviews.some(
+      (review) => review.reviews?.userId === user.id
+    );
+    if (userHasComment) {
+      toast.error('Ya has añadido un comentario para esta playa');
+      return;
+    }
+
+    if (!this.newCommentText.trim()) {
+      toast.error('Por favor, escribe un comentario antes de enviar');
+      return;
+    }
 
     const newReview: any = {
       beachId: this.beachId,
@@ -46,10 +100,23 @@ export class BeachCommentsComponent implements OnInit {
       comment: this.newCommentText,
     };
 
-    this.reviewService.createReview(newReview).subscribe((createdReview) => {
-      this.reviews.push(createdReview.review);
-      this.newCommentText = '';
-      this.newCommentRating = 5;
+    this.reviewService.createReview(newReview).subscribe({
+      next: (createdReview) => {
+        this.reviews.push(createdReview.review);
+        this.newCommentText = '';
+        this.newCommentRating = 5;
+        toast.success('Comentario añadido correctamente');
+      },
+      error: (error: any) => {
+        console.error('Error creating review:', error);
+        if (error.status === 401) {
+          toast.error('Por favor, inicia sesión para añadir un comentario');
+        } else if (error.message?.includes('Network Error')) {
+          toast.error('Error de red. Intenta de nuevo más tarde');
+        } else {
+          toast.error('Error al añadir el comentario');
+        }
+      }
     });
   }
 }

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { toast } from 'ngx-sonner'; // Import toast
 import { TitlePageComponent } from '../../components/title-page/title-page.component';
 import { BeachGridComponent } from '../../components/beach-grid/beach-grid.component';
 import { FavouritesService } from '../../services/favourites.service';
@@ -20,15 +21,27 @@ export class FavouritePageComponent implements OnInit {
 
   constructor(
     private favouritesService: FavouritesService,
-    private userSerive: UserService,
+    private userService: UserService, // Corrected typo (userSerive -> userService)
     private router: Router
   ) {}
 
   async ngOnInit() {
     try {
-      this.user = await this.userSerive.getMe();
-    } catch (error) {
+      this.user = await this.userService.getMe();
+      toast.success('Usuario cargado correctamente'); // Success toast
+    } catch (error: any) {
       console.error('Error fetching user:', error);
+      // Handle different error cases
+      if (error.response?.status === 401) {
+        this.error = 'No has iniciado sesión o no estás registrado.';
+        toast.error('Por favor, inicia sesión para ver tus favoritos');
+      } else if (error.message?.includes('Network Error')) {
+        this.error = 'No se pudo conectar al servidor. Verifica tu conexión.';
+        toast.error('Error de red. Intenta de nuevo más tarde');
+      } else {
+        this.error = 'No se pudieron cargar los datos del usuario.';
+        toast.error('Error al cargar el usuario');
+      }
       this.user = null;
       this.router.navigate(['/login']);
       return;
@@ -43,13 +56,15 @@ export class FavouritePageComponent implements OnInit {
     this.favouritesService.getFavourites().subscribe({
       next: (response) => {
         console.log('Respuesta de getFavourites:', response);
-        this.beaches = response.data.map((item: any) => item.beach_grades); // Cambia 'beaches' por 'beach_grades'
+        this.beaches = response.data.map((item: any) => item.beach_grades); // Preserve existing mapping
         console.log('Playas asignadas a this.beaches:', this.beaches);
+        toast.success('Favoritos cargados correctamente'); // Success toast
         this.loading = false;
       },
       error: (error) => {
         console.error('Error al cargar las playas favoritas:', error);
         this.error = 'No se pudieron cargar tus playas favoritas. Por favor, intenta de nuevo más tarde.';
+        toast.error('Error al cargar los favoritos'); // Error toast
         this.loading = false;
       }
     });

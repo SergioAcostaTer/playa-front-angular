@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { toast } from 'ngx-sonner'; // Import toast
 import { Beach } from '../../models/beach';
 import { FavouritesService } from '../../services/favourites.service';
 import { UserService } from '../../services/user.service';
@@ -46,11 +47,15 @@ export class BeachDetailLayoutComponent implements OnInit {
       next: (isFavourite) => {
         this.isFavourite = isFavourite;
       },
-      error: (error) => {
+      error: (error: any) => {
         console.error('Error al verificar favoritos:', error);
-        alert(
-          'Error al verificar si la playa está en favoritos: ' + error.message
-        );
+        if (error.status === 401) {
+          toast.error('Por favor, inicia sesión para verificar favoritos');
+        } else if (error.message?.includes('Network Error')) {
+          toast.error('Error de red. Intenta de nuevo más tarde');
+        } else {
+          toast.error('Error al verificar si la playa está en favoritos');
+        }
       },
     });
   }
@@ -58,6 +63,7 @@ export class BeachDetailLayoutComponent implements OnInit {
   // Método para manejar el clic en el botón de favoritos (añadir o quitar)
   onFavoriteClick(): void {
     if (!this.user) {
+      toast.error('Por favor, inicia sesión para gestionar favoritos');
       this.router.navigate(['/login']);
       return;
     }
@@ -74,11 +80,18 @@ export class BeachDetailLayoutComponent implements OnInit {
           console.log('Playa eliminada de favoritos:', response.message);
           this.isFavourite = false;
           this.isLoading = false;
+          toast.success('Playa eliminada de favoritos');
         },
-        error: (error) => {
+        error: (error: any) => {
           console.error('Error al eliminar de favoritos:', error);
           this.isLoading = false;
-          alert('Error al eliminar la playa de favoritos: ' + error.message);
+          if (error.status === 401) {
+            toast.error('No tienes permiso para eliminar esta playa de favoritos');
+          } else if (error.message?.includes('Network Error')) {
+            toast.error('Error de red. Intenta de nuevo más tarde');
+          } else {
+            toast.error('Error al eliminar la playa de favoritos');
+          }
         },
       });
     } else {
@@ -88,11 +101,18 @@ export class BeachDetailLayoutComponent implements OnInit {
           console.log('Playa añadida a favoritos:', response.message);
           this.isFavourite = true;
           this.isLoading = false;
+          toast.success('Playa añadida a favoritos');
         },
-        error: (error) => {
+        error: (error: any) => {
           console.error('Error al añadir a favoritos:', error);
           this.isLoading = false;
-          alert('Error al añadir la playa a favoritos: ' + error.message);
+          if (error.status === 401) {
+            toast.error('No tienes permiso para añadir esta playa a favoritos');
+          } else if (error.message?.includes('Network Error')) {
+            toast.error('Error de red. Intenta de nuevo más tarde');
+          } else {
+            toast.error('Error al añadir la playa a favoritos');
+          }
         },
       });
     }

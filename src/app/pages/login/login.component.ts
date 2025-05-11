@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { toast } from 'ngx-sonner'; // Import toast
 import { togglePasswordView } from '../../utils/toggle-password-view';
 import { PanelImageComponent } from '../../components/panel-image/panel-image.component';
 import { SocialButtonsComponent } from '../../components/social-buttons/social-buttons.component';
@@ -57,31 +58,39 @@ export class LoginPageComponent {
   }
 
   onSubmit(): void {
-    if (this.isFormValid()) {
-      const credentials = {
-        email: this.email,
-        password: this.password,
-      };
-
-      this.authService.login(credentials).subscribe({
-        next: (response) => {
-          if (response && response.message === 'Login successful' && response.user) {
-            console.log('Login exitoso:', response.user);
-            this.userService.loadUser();
-            this.router.navigate(['/']);
-          } else {
-            console.warn('Credenciales inválidas o error en la respuesta');
-          }
-        },
-        error: (err) => {
-          console.error('Error en login:', err);
-          if (err.status === 401) {
-            console.warn('Credenciales inválidas o error en la respuesta');
-          }
-        },
-      });
-    } else {
+    if (!this.isFormValid()) {
+      toast.error('Por favor, completa el formulario correctamente'); // Toast for invalid form
       console.log('Formulario no válido');
+      return;
     }
+
+    const credentials = {
+      email: this.email,
+      password: this.password,
+    };
+
+    this.authService.login(credentials).subscribe({
+      next: (response) => {
+        if (response && response.message === 'Login successful' && response.user) {
+          console.log('Login exitoso:', response.user);
+          this.userService.loadUser();
+          this.router.navigate(['/']);
+          toast.success('¡Inicio de sesión exitoso!'); // Success toast
+        } else {
+          console.warn('Credenciales inválidas o error en la respuesta');
+          toast.error('Error en el inicio de sesión'); // Fallback error toast
+        }
+      },
+      error: (error: any) => {
+        console.error('Error en login:', error);
+        if (error.status === 401) {
+          toast.error('Correo o contraseña incorrectos'); // 401 error toast
+        } else if (error.message?.includes('Network Error')) {
+          toast.error('Error de red. Intenta de nuevo más tarde'); // Network error toast
+        } else {
+          toast.error('Error al iniciar sesión'); // Generic error toast
+        }
+      },
+    });
   }
 }

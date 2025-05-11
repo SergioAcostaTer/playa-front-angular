@@ -1,19 +1,20 @@
 import { Component, inject } from '@angular/core';
-import { PanelImageComponent } from "../../components/panel-image/panel-image.component";
+import { PanelImageComponent } from '../../components/panel-image/panel-image.component';
 import { SocialButtonsComponent } from '../../components/social-buttons/social-buttons.component';
 import { togglePasswordView } from '../../utils/toggle-password-view';
-import {  passwordsMatch } from '../../utils/passwordsMatch';
-import { validatePasswordLength  } from '../../utils/validatePasswordLength';
+import { passwordsMatch } from '../../utils/passwordsMatch';
+import { validatePasswordLength } from '../../utils/validatePasswordLength';
 import { validateEmail } from '../../utils/validateEmail';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { toast } from 'ngx-sonner'; // Import toast
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [PanelImageComponent, SocialButtonsComponent, FormsModule, CommonModule ],
+  imports: [PanelImageComponent, SocialButtonsComponent, FormsModule, CommonModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
@@ -34,6 +35,9 @@ export class RegisterPageComponent {
   passwordsMatchValid: boolean = false;
   passwordsMatchMessage: string = 'Confirma tu contraseña';
 
+  router = inject(Router);
+  authService = inject(AuthService);
+
   onEmailChange(event: Event): void {
     const input = event.target as HTMLInputElement;
     this.email = input.value;
@@ -51,8 +55,6 @@ export class RegisterPageComponent {
     this.passwordMessage = validation.message;
     this.checkPasswordsMatch();
   }
-  router = inject(Router);
-  authService = inject(AuthService);
 
   onConfirmPasswordChange(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -96,24 +98,34 @@ export class RegisterPageComponent {
   }
 
   onSubmit(): void {
-    if (this.isFormValid()) {
-      const userData = {
-        email: this.email,
-        password: this.password,
-        name: `${this.firstName} ${this.lastName}`.trim()
-      };
-  
-      this.authService.register(userData).subscribe({
-        next: (response) => {
-          console.log('Usuario registrado:', response);
-          this.router.navigate(['/']);
-        },
-        error: (err) => {
-          console.error('Error al registrar:', err);
-        }
-      });
-    } else {
+    if (!this.isFormValid()) {
+      toast.error('Por favor, completa el formulario correctamente'); // Toast for invalid form
       console.log('Formulario no válido');
+      return;
     }
+
+    const userData = {
+      email: this.email,
+      password: this.password,
+      name: `${this.firstName} ${this.lastName}`.trim()
+    };
+
+    this.authService.register(userData).subscribe({
+      next: (response) => {
+        console.log('Usuario registrado:', response);
+        toast.success('¡Registro exitoso! Bienvenido'); // Success toast
+        this.router.navigate(['/']);
+      },
+      error: (error: any) => {
+        console.error('Error al registrar:', error);
+        if (error.status === 409) {
+          toast.error('El correo ya está registrado'); // 409 error toast
+        } else if (error.message?.includes('Network Error')) {
+          toast.error('Error de red. Intenta de nuevo más tarde'); // Network error toast
+        } else {
+          toast.error('Error al registrar la cuenta'); // Generic error toast
+        }
+      }
+    });
   }
 }

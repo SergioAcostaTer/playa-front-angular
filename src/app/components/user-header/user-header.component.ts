@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { toast } from 'ngx-sonner'; // Import toast
 import { EnvironmentService } from '../../services/environment.service';
 import { UserService } from '../../services/user.service';
 
@@ -55,9 +56,26 @@ export class UserHeaderComponent implements OnInit {
   logout(): void {
     console.log('Attempting to log out...');
     this.http.post(this.logOut, {}, { withCredentials: true }).subscribe({
-      next: () => this.handleLogout(),
-      error: () => this.handleLogout(),
+      next: () => {
+        this.handleLogout();
+        toast.success('Sesión cerrada correctamente'); // Success toast
+      },
+      error: (error: any) => {
+        console.error('Error during logout:', error);
+        if (error.message?.includes('Network Error')) {
+          toast.error('Error de red. Sesión cerrada localmente'); // Network error toast
+        } else {
+          toast.error('Error al cerrar sesión. Sesión cerrada localmente'); // Generic error toast
+        }
+        this.handleLogout(); // Proceed with logout even on error
+      },
     });
+  }
+
+  changeAccount(): void {
+    console.log('Switching account...');
+    this.logout(); // Trigger logout
+    toast.info('Preparado para cambiar de cuenta'); // Info toast for account switch
   }
 
   private handleLogout(): void {
