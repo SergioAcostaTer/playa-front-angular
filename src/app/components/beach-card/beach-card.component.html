@@ -25,7 +25,7 @@
         loading="lazy"
       />
     </div>
-    
+
     </figure>
     <div class="beach-card__details">
       <header class="beach-card__header">
@@ -34,7 +34,8 @@
           <p class="beach-card__island">{{ beach.island }}</p>
         </div>
       </header>
-      <p class="beach-card__size">{{ beach.length }} metros de longitud</p>
+      <p *ngIf="distance">Distance: {{ distance }}</p>
+      <p *ngIf="!distance">Calculating distance...</p>
     </div>
   </article>
 </a>
