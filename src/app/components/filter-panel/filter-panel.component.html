@@ -19,6 +19,28 @@
         </select>
     </div>
     
+    <div class="filter-panel__section">
+        <h4 class="filter-panel__section-title">Calificación</h4>
+        <label class="filter-panel__checkbox">
+            <input 
+                type="checkbox" 
+                [(ngModel)]="filters.useGradeFilter"
+                (ngModelChange)="onFilterChange()"
+            > Filtrar por calificación
+        </label>
+        <input 
+            type="range" 
+            min="1" 
+            max="5" 
+            step="1" 
+            [(ngModel)]="filters.grade" 
+            (ngModelChange)="onFilterChange()" 
+            class="filter-panel__slider"
+            [disabled]="!filters.useGradeFilter"
+        >
+        <span>{{ filters.useGradeFilter ? (filters.grade || 1) : 'N/A' }}</span>
+    </div>
+    
     <div class="filter-panel__section filter-panel__section--labels">
         <h4 class="filter-panel__section-title">Características</h4>
         <label class="filter-panel__checkbox">
