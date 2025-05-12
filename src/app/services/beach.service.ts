@@ -25,4 +25,12 @@ export class BeachService {
       throw error;
     }
   }
+  async getMapBeaches(): Promise<any> {
+    try {
+      const { data } = (await axios.get(`${this.apiUrl}/beaches?limit=100`)).data;
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  }
 }

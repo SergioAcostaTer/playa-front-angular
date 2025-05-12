@@ -13,6 +13,7 @@ import { RankingPageByIslandComponent } from './pages/rankingByIsland/ranking.co
 import { RegisterPageComponent } from './pages/register/register.component';
 import { SearchComponent } from './pages/search/search.component';
 import { ViewProfileComponent } from './pages/view-profile/view-profile.component';
+import {GeneralMapComponent} from './pages/general-map/general-map.component';
 
 export const routes: Routes = [
   {
@@ -28,6 +29,7 @@ export const routes: Routes = [
       { path: 'search', component: SearchComponent },
       { path: 'view-profile/:username', component: ViewProfileComponent },
       { path: 'ranking/:island', component: RankingPageByIslandComponent },
+      { path: 'map', component: GeneralMapComponent }
     ],
   },
   {

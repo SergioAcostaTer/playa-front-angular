@@ -1,0 +1,17 @@
+<div class="map-container">
+
+  <main class="map-content">
+    <!-- Loading state -->
+    <div *ngIf="loading" class="loading">
+      <p>Loading map and beaches...</p>
+    </div>
+
+    <!-- Error state -->
+    <div *ngIf="error" class="error">
+      <p>{{ error }}</p>
+    </div>
+
+    <!-- Map container -->
+    <div id="map" class="map"></div>
+  </main>
+</div>
