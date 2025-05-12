@@ -21,6 +21,8 @@ export class SearchService {
       hasShowers?: boolean;
       hasToilets?: boolean;
       hasFootShowers?: boolean;
+      grade?: number | null;
+      useGradeFilter?: boolean; // Not sent to API
     } = {}
   ): Promise<SearchBeachesResponse> {
     try {
@@ -29,7 +31,7 @@ export class SearchService {
       queryParams.set('page', String(page));
       queryParams.set('limit', String(limit));
 
-      // Add filters to query string only if defined and true
+      // Add filters to query string only if defined
       if (filters.island) queryParams.set('island', filters.island);
       if (filters.hasLifeguard === true) queryParams.set('hasLifeguard', 'true');
       if (filters.hasSand === true) queryParams.set('hasSand', 'true');
@@ -37,8 +39,11 @@ export class SearchService {
       if (filters.hasShowers === true) queryParams.set('hasShowers', 'true');
       if (filters.hasToilets === true) queryParams.set('hasToilets', 'true');
       if (filters.hasFootShowers === true) queryParams.set('hasFootShowers', 'true');
+      if (filters.grade !== undefined && filters.grade !== null) {
+        queryParams.set('grade', String(filters.grade));
+      }
 
-      const url = `${this.apiUrl}/beaches/search?${queryParams.toString()}`;
+      const url = `${this.apiUrl}/beaches?${queryParams.toString()}`;
       const response = await axios.get(url);
       return response.data;
     } catch (error) {

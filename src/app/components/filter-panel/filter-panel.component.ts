@@ -1,4 +1,3 @@
-// src/app/components/filter-panel/filter-panel.component.ts
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -24,6 +23,8 @@ export class FilterPanelComponent {
     hasShowers: false,
     hasToilets: false,
     hasFootShowers: false,
+    grade: 1, // Initialize grade to 1
+    useGradeFilter: false, // Initialize checkbox as unchecked
   };
 
   ngOnChanges() {
@@ -35,7 +36,12 @@ export class FilterPanelComponent {
   }
 
   onFilterChange() {
-    this.filtersChange.emit({ ...this.filters });
+    // Only include grade if useGradeFilter is true
+    const filtersToEmit = {
+      ...this.filters,
+      grade: this.filters.useGradeFilter ? this.filters.grade : null,
+    };
+    this.filtersChange.emit(filtersToEmit);
   }
 
   onIslandChange(value: string) {
