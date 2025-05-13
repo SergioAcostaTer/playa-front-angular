@@ -38,6 +38,9 @@ export class BeachCommentsComponent implements OnInit {
     this.reviewService.getReviewsForBeach(this.beachId).subscribe({
       next: (response) => {
         this.reviews = response.reviews;
+        if (!this.reviews || this.reviews.length === 0) {
+          toast.info('Esta playa no tiene comentarios aún');
+        }
       },
       error: (error: any) => {
         console.error('Error fetching reviews:', error);
