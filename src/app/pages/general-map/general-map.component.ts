@@ -19,6 +19,16 @@ export class GeneralMapComponent implements OnInit, AfterViewInit {
   userLocation: [number, number] | null = null;
   private map: maplibre.Map | undefined;
   private markers: maplibre.Marker[] = [];
+  private defaultCenter: [number, number] = [-16.6291, 28.2916]; // Canary Islands default center
+  private defaultZoom: number = 8;
+
+  // Define Canary Islands bounds
+  private canaryBounds = {
+    minLat: 27.6,
+    maxLat: 29.5,
+    minLng: -18.2,
+    maxLng: -13.3,
+  };
 
   constructor(
     private beachService: BeachService,
@@ -32,13 +42,15 @@ export class GeneralMapComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.initMap();
+      setTimeout(() => {
+        this.initMap();
+      }, 100);
     }
   }
 
   private async loadBeaches() {
     try {
-      this.beaches = await this.beachService.getAllBeaches();
+      this.beaches = await this.beachService.getMapBeaches();
       console.log('All beaches loaded:', this.beaches);
       console.log('Number of beaches loaded:', this.beaches.length);
       this.loading = false;
@@ -61,6 +73,7 @@ export class GeneralMapComponent implements OnInit, AfterViewInit {
           console.log('User location:', this.userLocation);
           if (this.map && this.map.isStyleLoaded()) {
             this.addUserMarker();
+            this.centerMapOnUserIfInCanary();
           }
         },
         (error) => {
@@ -69,6 +82,29 @@ export class GeneralMapComponent implements OnInit, AfterViewInit {
       );
     } else {
       console.warn('Geolocation not supported or not in browser');
+    }
+  }
+
+  private isUserInCanary(): boolean {
+    if (!this.userLocation) return false;
+    const [lng, lat] = this.userLocation;
+    return (
+      lat >= this.canaryBounds.minLat &&
+      lat <= this.canaryBounds.maxLat &&
+      lng >= this.canaryBounds.minLng &&
+      lng <= this.canaryBounds.maxLng
+    );
+  }
+
+  private centerMapOnUserIfInCanary() {
+    if (this.isUserInCanary() && this.userLocation) {
+      console.log('Centering map on user location within Canary Islands');
+      this.map?.setCenter(this.userLocation);
+      this.map?.setZoom(12);
+    } else {
+      console.log('User location not in Canary Islands or unavailable, using default center');
+      this.map?.setCenter(this.defaultCenter);
+      this.map?.setZoom(this.defaultZoom);
     }
   }
 
@@ -88,29 +124,41 @@ export class GeneralMapComponent implements OnInit, AfterViewInit {
     try {
       this.map = new maplibre.Map({
         container: 'map',
-        // Replace YOUR_MAPTILER_KEY with a valid key
-        style: 'https://api.maptiler.com/maps/satellite/style.json?key=YOUR_MAPTILER_KEY',
-        center: [-16.6291, 28.2916], // Canary Islands
-        zoom: 8,
+        style: 'https://api.maptiler.com/maps/satellite/style.json?key=bI4oYGzzakPOHE0Vtk5q',
+        center: this.defaultCenter,
+        zoom: this.defaultZoom,
         attributionControl: false,
       });
 
       this.map.on('load', () => {
         console.log('Map loaded successfully');
-        const dimensions = mapContainer.getBoundingClientRect();
-        console.log('Map container dimensions:', dimensions.width, dimensions.height);
-        if (dimensions.width === 0 || dimensions.height === 0) {
-          console.error('Map container has zero dimensions');
-          this.error = 'Map container has zero width or height. Please check CSS.';
-          return;
-        }
-        if (this.beaches.length > 0) {
-          this.addMarkers();
-          this.fitBounds();
-        }
-        if (this.userLocation) {
-          this.addUserMarker();
-        }
+        mapContainer.style.display = 'none';
+        mapContainer.offsetHeight;
+        mapContainer.style.display = '';
+
+        setTimeout(() => {
+          const dimensions = mapContainer.getBoundingClientRect();
+          console.log('Map container dimensions:', dimensions.width, dimensions.height);
+          if (dimensions.width === 0 || dimensions.height === 0) {
+            console.error('Map container has zero dimensions');
+            this.error = 'Map container has zero width or height. Please check CSS or parent elements.';
+            let parent = mapContainer.parentElement;
+            while (parent) {
+              const parentRect = parent.getBoundingClientRect();
+              console.log(`Parent dimensions (class: ${parent.className}):`, parentRect.width, parentRect.height);
+              parent = parent.parentElement;
+            }
+            return;
+          }
+          if (this.beaches.length > 0) {
+            this.addMarkers();
+            this.fitBounds();
+          }
+          if (this.userLocation) {
+            this.addUserMarker();
+            this.centerMapOnUserIfInCanary();
+          }
+        }, 100);
       });
 
       this.map.on('error', (e) => {
@@ -120,9 +168,8 @@ export class GeneralMapComponent implements OnInit, AfterViewInit {
 
       this.map.on('styledata', () => {
         if (!this.map?.isStyleLoaded()) {
-          console.error('Primary style failed to load, attempting fallback');
-          // Use MapLibre's demo style as a fallback
-          this.map?.setStyle('https://demotiles.maplibre.org/style.json');
+          console.error('Primary style failed to load, attempting satellite fallback');
+          this.map?.setStyle('https://api.maptiler.com/maps/satellite/style.json?key=bI4oYGzzakPOHE0Vtk5q');
         }
       });
     } catch (err) {
@@ -143,16 +190,27 @@ export class GeneralMapComponent implements OnInit, AfterViewInit {
           .setLngLat([beach.longitude, beach.latitude])
           .setPopup(
             new maplibre.Popup().setHTML(`
-              <b>${beach.name}</b><br>
-              Island: ${beach.island}<br>
-              Municipality: ${beach.municipality}<br>
-              <a href="/beaches/${beach.id}">View Details</a>
+              <div style="font-family: Arial, sans-serif; max-width: 250px; padding: 10px; background: linear-gradient(145deg, #ffffff, #f0f0f0); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
+                <h3 style="margin: 0 0 8px; font-size: 16px; color: #222; font-weight: bold;">${beach.name}</h3>
+                <div style="margin-bottom: 6px; font-size: 14px; color: #555;">
+                  <span style="font-weight: 500;">Island:</span> ${beach.island}
+                </div>
+                <div style="margin-bottom: 6px; font-size: 14px; color: #555;">
+                  <span style="font-weight: 500;">Municipality:</span> ${beach.municipality}
+                </div>
+                <div style="margin-bottom: 8px; font-size: 14px; color: #555;">
+                  <span style="font-weight: 500;">Grade:</span> ${beach.grade} <span style="color: #FFD700;">★</span>
+                </div>
+                <img src="${beach.coverUrl}" alt="${beach.name}" style="width: 100%; height: auto; border-radius: 6px; margin-bottom: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+                <a href="/beaches/${beach.id}" style="display: inline-block; font-size: 14px; color: #007bff; text-decoration: none; font-weight: 500; transition: color 0.2s;">View Details</a>
+              </div>
             `)
           )
           .addTo(this.map!);
         this.markers.push(marker);
       }
     });
+
     console.log('All markers added, total markers:', this.markers.length);
   }
 
@@ -183,8 +241,7 @@ export class GeneralMapComponent implements OnInit, AfterViewInit {
 
     if (validBeaches.length === 0) {
       console.warn('No valid beaches to fit bounds');
-      this.map.setCenter([-16.6291, 28.2916]);
-      this.map.setZoom(8);
+      this.centerMapOnUserIfInCanary();
       return;
     }
 

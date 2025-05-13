@@ -27,7 +27,7 @@ export class BeachService {
   }
   async getMapBeaches(): Promise<any> {
     try {
-      const { data } = (await axios.get(`${this.apiUrl}/beaches?limit=100`)).data;
+      const { data } = (await axios.get(`${this.apiUrl}/beaches/map`)).data;
       return data;
     } catch (error) {
       throw error;
