@@ -18,10 +18,9 @@ export class PaginationComponent {
   private maxPagesToShow: number = 5;
 
   constructor(private router: Router, private route: ActivatedRoute) {
-    this.updateMaxPagesToShow(); 
+    this.updateMaxPagesToShow();
   }
 
-  // Actualizar maxPagesToShow según el tamaño de la pantalla
   private updateMaxPagesToShow() {
     const width = window.innerWidth;
     if (width <= 480) {

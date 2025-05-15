@@ -15,10 +15,9 @@ export class FilterPanelComponent implements OnInit {
   @Input() islands: Category[] = [];
   @Output() filtersChange = new EventEmitter<any>();
 
-  isLocationAvailable: boolean = false; // Controla si la ubicación está disponible
-  locationError: string | null = null; // Mensaje de error si falla la geolocalización
-
   filters = {
+    searchMode: 'filters' as 'filters' | 'proximity',
+    useProximityFilter: false,
     island: '',
     hasLifeguard: false,
     hasSand: false,
@@ -26,88 +25,98 @@ export class FilterPanelComponent implements OnInit {
     hasShowers: false,
     hasToilets: false,
     hasFootShowers: false,
-    grade: 1,
+    grade: null as number | null,
     useGradeFilter: false,
-    useProximityFilter: false,
+    latitude: null as number | null,
+    longitude: null as number | null,
     proximityRadius: 1,
-    searchMode: 'filters' as 'filters' | 'proximity',
-    latitude: null as number | null, // Nueva: coordenada del usuario
-    longitude: null as number | null, // Nueva: coordenada del usuario
   };
 
+  isLocationAvailable: boolean = false;
+  locationError: string | null = null;
+
   ngOnInit() {
-    this.getUserLocation(); // Intentar obtener la ubicación al inicializar
+    this.filters.island = this.selectedIsland;   // Initialize with selectedIsland
+    this.checkLocationAvailability(); // Initial geolocation check
   }
 
-  ngOnChanges() {
-    this.filters.island = this.selectedIsland;
+  trackById(index: number, island: Category): string {
+    return island.id;
   }
 
-  // Obtener la ubicación del usuario
-  private getUserLocation() {
-    if (navigator.geolocation) {
+  checkLocationAvailability() {
+    if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
+          this.isLocationAvailable = true;
           this.filters.latitude = position.coords.latitude;
           this.filters.longitude = position.coords.longitude;
-          this.isLocationAvailable = true;
-          this.onFilterChange(); // Emitir filtros si ya está en modo proximidad
+          this.locationError = null;
+          // Emit filters if in proximity mode to ensure updated location is used
+          if (this.filters.useProximityFilter) {
+            this.onFilterChange();
+          }
         },
         (error) => {
-          console.error('Error getting location:', error);
           this.isLocationAvailable = false;
           this.locationError = 'No se pudo obtener la ubicación';
-          this.filters.useProximityFilter = false; // Forzar modo filtros
-          this.filters.searchMode = 'filters';
-          this.onFilterChange(); // Emitir filtros actualizados
+          this.filters.latitude = null;
+          this.filters.longitude = null;
+          console.error('Location error:', error);
         }
       );
     } else {
       this.isLocationAvailable = false;
-      this.locationError = 'Geolocalización no soportada';
-      this.filters.useProximityFilter = false;
-      this.filters.searchMode = 'filters';
-      this.onFilterChange();
+      this.locationError = 'La geolocalización no está soportada';
+      this.filters.latitude = null;
+      this.filters.longitude = null;
     }
   }
 
-  trackById(index: number, category: Category): string {
-    return category.id;
+  onIslandChange(island: string) {
+    this.filters.island = island;
+    this.onFilterChange();
   }
 
   onFilterChange() {
-    // Sincronizar searchMode con useProximityFilter
-    if (this.isLocationAvailable) {
-      this.filters.searchMode = this.filters.useProximityFilter ? 'proximity' : 'filters';
-    } else {
-      this.filters.searchMode = 'filters';
-      this.filters.useProximityFilter = false; // Prevenir modo proximidad
+    // Determine the new search mode
+    const newSearchMode = this.filters.useProximityFilter ? 'proximity' : 'filters';
+
+    // If switching to proximity mode, fetch geolocation
+    if (newSearchMode === 'proximity' && !this.filters.latitude && !this.filters.longitude) {
+      this.checkLocationAvailability();
     }
 
-    // Preparar los filtros a emitir según el modo
-    const filtersToEmit = {
-      searchMode: this.filters.searchMode,
-      ...(this.filters.searchMode === 'filters' ? {
-        island: this.filters.island,
-        hasLifeguard: this.filters.hasLifeguard,
-        hasSand: this.filters.hasSand,
-        hasRock: this.filters.hasRock,
-        hasShowers: this.filters.hasShowers,
-        hasToilets: this.filters.hasToilets,
-        hasFootShowers: this.filters.hasFootShowers,
-        grade: this.filters.useGradeFilter ? this.filters.grade : null,
-        useGradeFilter: this.filters.useGradeFilter,
-      } : {
-        proximityRadius: this.filters.proximityRadius,
-        latitude: this.filters.latitude,
-        longitude: this.filters.longitude,
-      }),
-    };
-    this.filtersChange.emit(filtersToEmit);
-  }
+    // Reset filters based on the new mode
+    if (newSearchMode !== this.filters.searchMode) {
+      if (newSearchMode === 'filters') {
+        // Reset proximity-related filters
+        this.filters.latitude = null;
+        this.filters.longitude = null;
+        this.filters.proximityRadius = 1;
+      } else {
+        // Reset filter-related filters
+        this.filters.island = '';
+        this.filters.hasLifeguard = false;
+        this.filters.hasSand = false;
+        this.filters.hasRock = false;
+        this.filters.hasShowers = false;
+        this.filters.hasToilets = false;
+        this.filters.hasFootShowers = false;
+        this.filters.grade = null;
+        this.filters.useGradeFilter = false;
+      }
+    }
 
-  onIslandChange(value: string) {
-    this.filters.island = value;
-    this.onFilterChange();
+    // Update search mode
+    this.filters.searchMode = newSearchMode;
+
+    // Only emit if location is available in proximity mode
+    if (newSearchMode === 'proximity' && (!this.filters.latitude || !this.filters.longitude)) {
+      return; // Wait for geolocation callback to emit
+    }
+
+    // Emit the updated filters
+    this.filtersChange.emit(this.filters);
   }
 }
