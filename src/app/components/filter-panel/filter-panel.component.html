@@ -51,7 +51,8 @@
             </label>
             <input 
                 type="range" 
-                min="1" 
+                min="1"
+                [defaultValue]="3"
                 max="5" 
                 step="1" 
                 [(ngModel)]="filters.grade" 
@@ -59,7 +60,7 @@
                 class="filter-panel__slider"
                 [disabled]="!filters.useGradeFilter"
             >
-            <span>{{ filters.useGradeFilter ? (filters.grade || 1) : 'N/A' }}</span>
+            <span>{{ filters.useGradeFilter ? (filters.grade || 3) : 'N/A' }}</span>
         </div>
         
         <div class="filter-panel__section filter-panel__section--labels">

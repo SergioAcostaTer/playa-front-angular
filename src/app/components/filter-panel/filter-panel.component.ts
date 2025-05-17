@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Category } from '../../models/category';
@@ -12,12 +12,14 @@ import { Category } from '../../models/category';
 })
 export class FilterPanelComponent implements OnInit {
   @Input() selectedIsland: string = '';
+  @Input() searchQuery: string = '';
   @Input() islands: Category[] = [];
   @Output() filtersChange = new EventEmitter<any>();
 
   filters = {
     searchMode: 'filters' as 'filters' | 'proximity',
     useProximityFilter: false,
+    name: '',
     island: '',
     hasLifeguard: false,
     hasSand: false,
@@ -34,10 +36,43 @@ export class FilterPanelComponent implements OnInit {
 
   isLocationAvailable: boolean = false;
   locationError: string | null = null;
+  private isPageReloaded: boolean = true;
+
+  @HostListener('window:load')
+  onPageLoad() {
+    this.isPageReloaded = true;
+  }
 
   ngOnInit() {
-    this.filters.island = this.selectedIsland;   // Initialize with selectedIsland
-    this.checkLocationAvailability(); // Initial geolocation check
+    if (this.isPageReloaded) {
+      this.resetFilters();
+      this.isPageReloaded = false;
+    } else {
+      this.filters.island = this.selectedIsland;
+      this.filters.name = this.searchQuery;
+    }
+    this.checkLocationAvailability();
+  }
+
+  private resetFilters() {
+    this.filters = {
+      searchMode: 'filters',
+      useProximityFilter: false,
+      name: '',
+      island: '',
+      hasLifeguard: false,
+      hasSand: false,
+      hasRock: false,
+      hasShowers: false,
+      hasToilets: false,
+      hasFootShowers: false,
+      grade: null,
+      useGradeFilter: false,
+      latitude: null,
+      longitude: null,
+      proximityRadius: 1,
+    };
+    this.filtersChange.emit(this.filters); // Emitir filtros limpios
   }
 
   trackById(index: number, island: Category): string {
@@ -52,7 +87,6 @@ export class FilterPanelComponent implements OnInit {
           this.filters.latitude = position.coords.latitude;
           this.filters.longitude = position.coords.longitude;
           this.locationError = null;
-          // Emit filters if in proximity mode to ensure updated location is used
           if (this.filters.useProximityFilter) {
             this.onFilterChange();
           }
@@ -79,23 +113,18 @@ export class FilterPanelComponent implements OnInit {
   }
 
   onFilterChange() {
-    // Determine the new search mode
     const newSearchMode = this.filters.useProximityFilter ? 'proximity' : 'filters';
 
-    // If switching to proximity mode, fetch geolocation
     if (newSearchMode === 'proximity' && !this.filters.latitude && !this.filters.longitude) {
       this.checkLocationAvailability();
     }
 
-    // Reset filters based on the new mode
     if (newSearchMode !== this.filters.searchMode) {
       if (newSearchMode === 'filters') {
-        // Reset proximity-related filters
         this.filters.latitude = null;
         this.filters.longitude = null;
         this.filters.proximityRadius = 1;
       } else {
-        // Reset filter-related filters
         this.filters.island = '';
         this.filters.hasLifeguard = false;
         this.filters.hasSand = false;
@@ -105,18 +134,16 @@ export class FilterPanelComponent implements OnInit {
         this.filters.hasFootShowers = false;
         this.filters.grade = null;
         this.filters.useGradeFilter = false;
+        this.filters.name = '';
       }
     }
 
-    // Update search mode
     this.filters.searchMode = newSearchMode;
 
-    // Only emit if location is available in proximity mode
     if (newSearchMode === 'proximity' && (!this.filters.latitude || !this.filters.longitude)) {
-      return; // Wait for geolocation callback to emit
+      return;
     }
 
-    // Emit the updated filters
     this.filtersChange.emit(this.filters);
   }
 }

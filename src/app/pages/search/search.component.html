@@ -22,6 +22,7 @@
     <div class="content-container">
       <app-filter-panel
         [selectedIsland]="islandFilter"
+        [searchQuery]="searchQuery"
         [islands]="categories"
         (filtersChange)="onFiltersChange($event)"
       ></app-filter-panel>

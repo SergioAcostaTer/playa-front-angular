@@ -14,6 +14,7 @@
       page = 1,
       limit = 30,
       filters: {
+        name?: string;
         island?: string;
         hasLifeguard?: boolean;
         hasSand?: boolean;
@@ -32,6 +33,7 @@
         queryParams.set('limit', String(limit));
 
         // Add filters to query string only if defined
+        if (filters.name) queryParams.set('name', filters.name);
         if (filters.island) queryParams.set('island', filters.island);
         if (filters.hasLifeguard === true) queryParams.set('hasLifeguard', 'true');
         if (filters.hasSand === true) queryParams.set('hasSand', 'true');

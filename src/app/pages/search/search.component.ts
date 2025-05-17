@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BeachGridComponent } from '../../components/beach-grid/beach-grid.component';
@@ -12,6 +12,7 @@ import { CategoriesService } from '../../services/categories.service';
 import { SearchService } from '../../services/search.service';
 
 interface Filters {
+  name: string;
   island: string;
   hasLifeguard: boolean;
   hasSand: boolean;
@@ -54,6 +55,7 @@ export class SearchComponent implements OnInit {
   limit: number = 30;
   searchMode: 'filters' | 'proximity' = 'filters';
   filters: Filters = {
+    name: '',
     island: '',
     hasLifeguard: false,
     hasSand: false,
@@ -70,6 +72,7 @@ export class SearchComponent implements OnInit {
     proximityRadius: 1,
   };
   errorMessage: string | null = null;
+  private isPageReloaded: boolean = true; // Bandera para detectar recarga
 
   private searchSubject = new Subject<{
     query: string;
@@ -82,11 +85,15 @@ export class SearchComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
+  // Detectar recarga de página
+  @HostListener('window:load')
+  onPageLoad() {
+    this.isPageReloaded = true;
+  }
+
   async ngOnInit() {
-    // Load categories (islands)
     this.categories = await this.categoriesService.getCategories();
 
-    // Configure search pipeline with debounce
     this.searchSubject
       .pipe(
         debounceTime(500),
@@ -125,37 +132,72 @@ export class SearchComponent implements OnInit {
         },
       });
 
-    // Read URL query parameters
     this.route.queryParams.subscribe((params) => {
-      this.searchQuery = params['q'] || '';
-      this.currentPage = Number(params['page']) || 1;
-      this.searchMode = params['lat'] && params['lon'] && params['radius'] ? 'proximity' : 'filters';
-
-      if (this.searchMode === 'filters') {
-        this.filters.island = params['island'] || '';
-        this.islandFilter = this.filters.island;
-        this.filters.hasLifeguard = params['hasLifeguard'] === 'true';
-        this.filters.hasSand = params['hasSand'] === 'true';
-        this.filters.hasRock = params['hasRock'] === 'true';
-        this.filters.hasShowers = params['hasShowers'] === 'true';
-        this.filters.hasToilets = params['hasToilets'] === 'true';
-        this.filters.hasFootShowers = params['hasFootShowers'] === 'true';
-        this.filters.grade = params['grade'] ? Number(params['grade']) : null;
-        this.filters.useGradeFilter = params['grade'] !== undefined;
+      if (this.isPageReloaded) {
+        // Limpiar filtros en recarga
+        this.resetFilters();
+        this.isPageReloaded = false;
+        // Actualizar URL para eliminar parámetros
+        this.updateQueryParams(this.searchQuery, this.currentPage, this.searchMode, this.filters, this.proximityParams);
       } else {
-        this.proximityParams.latitude = params['lat'] ? Number(params['lat']) : null;
-        this.proximityParams.longitude = params['lon'] ? Number(params['lon']) : null;
-        this.proximityParams.proximityRadius = params['radius'] ? Number(params['radius']) : 1;
-      }
+        // Respetar parámetros de URL en navegación normal
+        this.searchQuery = params['name'] || params['q'] || '';
+        this.currentPage = Number(params['page']) || 1;
+        this.searchMode = params['lat'] && params['lon'] && params['radius'] ? 'proximity' : 'filters';
 
-      this.searchSubject.next({
-        query: this.searchQuery,
-        page: this.currentPage,
-        searchMode: this.searchMode,
-        filters: this.filters,
-        proximityParams: this.proximityParams,
-      });
+        if (this.searchMode === 'filters') {
+          this.filters.name = this.searchQuery;
+          this.filters.island = params['island'] || '';
+          this.islandFilter = this.filters.island;
+          this.filters.hasLifeguard = params['hasLifeguard'] === 'true';
+          this.filters.hasSand = params['hasSand'] === 'true';
+          this.filters.hasRock = params['hasRock'] === 'true';
+          this.filters.hasShowers = params['hasShowers'] === 'true';
+          this.filters.hasToilets = params['hasToilets'] === 'true';
+          this.filters.hasFootShowers = params['hasFootShowers'] === 'true';
+          this.filters.grade = params['grade'] ? Number(params['grade']) : null;
+          this.filters.useGradeFilter = params['grade'] !== undefined;
+        } else {
+          this.proximityParams.latitude = params['lat'] ? Number(params['lat']) : null;
+          this.proximityParams.longitude = params['lon'] ? Number(params['lon']) : null;
+          this.proximityParams.proximityRadius = params['radius'] ? Number(params['radius']) : 1;
+          this.filters.name = '';
+          this.searchQuery = '';
+        }
+
+        this.searchSubject.next({
+          query: this.searchQuery,
+          page: this.currentPage,
+          searchMode: this.searchMode,
+          filters: this.filters,
+          proximityParams: this.proximityParams,
+        });
+      }
     });
+  }
+
+  private resetFilters() {
+    this.searchQuery = '';
+    this.islandFilter = '';
+    this.currentPage = 1;
+    this.searchMode = 'filters';
+    this.filters = {
+      name: '',
+      island: '',
+      hasLifeguard: false,
+      hasSand: false,
+      hasRock: false,
+      hasShowers: false,
+      hasToilets: false,
+      hasFootShowers: false,
+      grade: null,
+      useGradeFilter: false,
+    };
+    this.proximityParams = {
+      latitude: null,
+      longitude: null,
+      proximityRadius: 1,
+    };
   }
 
   updateQueryParams(
@@ -167,16 +209,12 @@ export class SearchComponent implements OnInit {
   ) {
     const queryParams: { [key: string]: string | number | undefined } = {};
 
-    // Always include query and page if they exist
-    if (query.trim()) {
-      queryParams['q'] = query.trim();
-    }
-    if (page !== 1) { // Only include page if not 1 to keep URL clean
+    if (page !== 1) {
       queryParams['page'] = String(page);
     }
 
     if (searchMode === 'filters') {
-      // Include filter-related params only
+      if (filters.name) queryParams['name'] = filters.name;
       if (filters.island) queryParams['island'] = filters.island;
       if (filters.hasLifeguard) queryParams['hasLifeguard'] = 'true';
       if (filters.hasSand) queryParams['hasSand'] = 'true';
@@ -188,7 +226,6 @@ export class SearchComponent implements OnInit {
         queryParams['grade'] = String(filters.grade);
       }
     } else {
-      // Include proximity-related params only
       if (proximityParams.latitude != null) queryParams['lat'] = String(proximityParams.latitude);
       if (proximityParams.longitude != null) queryParams['lon'] = String(proximityParams.longitude);
       queryParams['radius'] = String(proximityParams.proximityRadius);
@@ -197,7 +234,7 @@ export class SearchComponent implements OnInit {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams,
-      queryParamsHandling: '', // Replace all query params
+      queryParamsHandling: '',
     });
 
     this.searchSubject.next({ query: query.trim(), page, searchMode, filters, proximityParams });
@@ -207,17 +244,20 @@ export class SearchComponent implements OnInit {
   onSearchInputChange(event: any) {
     const query = event.target.value;
     this.searchQuery = query;
-    this.currentPage = 1; // Reset to page 1 on new search
+    if (this.searchMode === 'filters') {
+      this.filters.name = query;
+    }
+    this.currentPage = 1;
     this.updateQueryParams(this.searchQuery, this.currentPage, this.searchMode, this.filters, this.proximityParams);
   }
 
   onFiltersChange(filters: any) {
     const newSearchMode = filters.searchMode || 'filters';
 
-    // Update search mode and parameters
     this.searchMode = newSearchMode;
     if (this.searchMode === 'filters') {
       this.filters = {
+        name: this.filters.name, // Preservar el valor actual de filters.name
         island: filters.island || '',
         hasLifeguard: filters.hasLifeguard || false,
         hasSand: filters.hasSand || false,
@@ -229,7 +269,7 @@ export class SearchComponent implements OnInit {
         useGradeFilter: filters.useGradeFilter || false,
       };
       this.islandFilter = this.filters.island;
-      // Clear proximity params
+      this.searchQuery = this.filters.name;
       this.proximityParams = {
         latitude: null,
         longitude: null,
@@ -241,8 +281,8 @@ export class SearchComponent implements OnInit {
         longitude: filters.longitude,
         proximityRadius: filters.proximityRadius || 1,
       };
-      // Clear filter params
       this.filters = {
+        name: '',
         island: '',
         hasLifeguard: false,
         hasSand: false,
@@ -254,9 +294,10 @@ export class SearchComponent implements OnInit {
         useGradeFilter: false,
       };
       this.islandFilter = '';
+      this.searchQuery = '';
     }
 
-    this.currentPage = 1; // Reset to page 1 on filter change
+    this.currentPage = 1;
     this.updateQueryParams(this.searchQuery, this.currentPage, this.searchMode, this.filters, this.proximityParams);
   }
 
