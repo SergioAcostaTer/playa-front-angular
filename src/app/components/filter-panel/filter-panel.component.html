@@ -26,9 +26,9 @@
         <h4 class="filter-panel__section-title">Lugar</h4>
         <select 
             class="filter-panel__select"
-            [ngModel]="filters.island"
+            [(ngModel)]="filters.island"
             (ngModelChange)="onIslandChange($event)"
-        >
+            >
             <option value="">Selecciona tu isla</option>
             <option 
                 *ngFor="let island of islands; trackBy: trackById" 

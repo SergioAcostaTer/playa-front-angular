@@ -13,12 +13,10 @@ import { Router } from '@angular/router';
 export class CategoryComponent {
   @Input() category!: Category;
 
-  constructor(private router: Router) {
-    console.log('CategoryComponent inicializado');
-  }
+  constructor(private router: Router) {}
 
   onCategoryClick() {
-    console.log('Clickaste en ' + this.category.name);
+    console.log('Category clicked:', this.category.name);
     this.router.navigate(['/search'], {
       queryParams: { island: this.category.name },
     });

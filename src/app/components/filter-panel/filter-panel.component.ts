@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, HostListener } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectorRef, HostListener, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Category } from '../../models/category';
@@ -10,7 +10,7 @@ import { Category } from '../../models/category';
   templateUrl: './filter-panel.component.html',
   styleUrls: ['./filter-panel.component.css'],
 })
-export class FilterPanelComponent implements OnInit {
+export class FilterPanelComponent implements OnInit, OnChanges {
   @Input() selectedIsland: string = '';
   @Input() searchQuery: string = '';
   @Input() islands: Category[] = [];
@@ -36,22 +36,42 @@ export class FilterPanelComponent implements OnInit {
 
   isLocationAvailable: boolean = false;
   locationError: string | null = null;
-  private isPageReloaded: boolean = true;
+
+  constructor(private cdr: ChangeDetectorRef) {}
 
   @HostListener('window:load')
   onPageLoad() {
-    this.isPageReloaded = true;
+    console.log('FilterPanel: Page reloaded (F5 detected)');
+    this.resetFilters();
+    this.filtersChange.emit(this.filters);
+    this.cdr.detectChanges(); // Forzar actualización del <select>
   }
 
   ngOnInit() {
-    if (this.isPageReloaded) {
-      this.resetFilters();
-      this.isPageReloaded = false;
-    } else {
+    console.log('FilterPanel ngOnInit - selectedIsland:', this.selectedIsland, 'searchQuery:', this.searchQuery);
+    this.filters.island = this.selectedIsland;
+    this.filters.name = this.searchQuery;
+
+    if (this.filters.island || this.filters.name) {
+      console.log('Emitting initial filters:', this.filters);
+      this.filtersChange.emit(this.filters);
+    }
+
+    this.cdr.detectChanges();
+    this.checkLocationAvailability();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['selectedIsland']) {
+      console.log('selectedIsland changed to:', this.selectedIsland);
       this.filters.island = this.selectedIsland;
+      this.cdr.detectChanges(); // Forzar actualización del <select>
+      // No emitimos filtros aquí para evitar un bucle infinito,
+      // ya que SearchComponent ya ha actualizado la URL y los resultados.
+    }
+    if (changes['searchQuery']) {
       this.filters.name = this.searchQuery;
     }
-    this.checkLocationAvailability();
   }
 
   private resetFilters() {
@@ -72,7 +92,6 @@ export class FilterPanelComponent implements OnInit {
       longitude: null,
       proximityRadius: 1,
     };
-    this.filtersChange.emit(this.filters);
   }
 
   trackById(index: number, island: Category): string {
@@ -113,6 +132,7 @@ export class FilterPanelComponent implements OnInit {
   }
 
   onIslandChange(island: string) {
+    console.log('Island changed to:', island);
     this.filters.island = island;
     this.onFilterChange();
   }
@@ -120,13 +140,12 @@ export class FilterPanelComponent implements OnInit {
   onFilterChange() {
     const newSearchMode = this.filters.useProximityFilter ? 'proximity' : 'filters';
 
-    if (newSearchMode === 'proximity' && !this.filters.latitude && !this.filters.longitude) {
-      this.checkLocationAvailability();
-    }
-
-    // Establecer grade a 3 como valor por defecto cuando useGradeFilter se activa
     if (this.filters.useGradeFilter && this.filters.grade === null) {
       this.filters.grade = 3;
+    }
+
+    if (newSearchMode === 'proximity' && !this.filters.latitude && !this.filters.longitude) {
+      this.checkLocationAvailability();
     }
 
     if (newSearchMode !== this.filters.searchMode) {
@@ -135,7 +154,7 @@ export class FilterPanelComponent implements OnInit {
         this.filters.longitude = null;
         this.filters.proximityRadius = 1;
       } else {
-        this.filters.island = ''; // Solo island se limpia en modo proximity
+        this.filters.island = '';
       }
     }
 
@@ -145,6 +164,7 @@ export class FilterPanelComponent implements OnInit {
       return;
     }
 
+    console.log('Emitting changed filters:', this.filters);
     this.filtersChange.emit(this.filters);
   }
 }
