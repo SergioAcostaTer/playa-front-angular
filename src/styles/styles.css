@@ -126,6 +126,14 @@ html, body {
   margin: 0;
 }
 
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden; /* Prevents horizontal scroll if needed */
+}
+
 a {
   text-decoration: none;
 }

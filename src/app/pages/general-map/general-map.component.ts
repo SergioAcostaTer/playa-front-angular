@@ -192,7 +192,6 @@ export class GeneralMapComponent implements OnInit, AfterViewInit {
       .setLngLat([beach.longitude, beach.latitude])
       .setPopup(
         new maplibre.Popup().setHTML(`
-          <div style="font-family: Arial, sans-serif; max-width: 250px; padding: 10px; background: linear-gradient(145deg, #ffffff, #f0f0f0); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
             <h3 style="margin: 0 0 8px; font-size: 16px; color: #222; font-weight: bold;">${beach.name}</h3>
             <div style="margin-bottom: 6px; font-size: 14px; color: #555;">
               <span style="font-weight: 500;">Island:</span> ${beach.island}
@@ -205,7 +204,7 @@ export class GeneralMapComponent implements OnInit, AfterViewInit {
             </div>
             <img src="${beach.coverUrl}" alt="${beach.name}" style="width: 100%; height: auto; border-radius: 6px; margin-bottom: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
             <a href="/beach/${beach.slug}" style="display: inline-block; font-size: 14px; color: #007bff; text-decoration: none; font-weight: 500; transition: color 0.2s;">View Details</a>
-          </div>
+          
         `)
       )
       .addTo(this.map!);

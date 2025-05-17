@@ -10,7 +10,8 @@
   padding: 0 4vw;
   height: 4rem;
   border-bottom: 1px solid var(--header-border-color, #ddd);
-  position: sticky;
+  position: sticky; /* Primary positioning */
+  position: -webkit-sticky; /* Safari support */
   top: 0;
   left: 0;
   right: 0;
