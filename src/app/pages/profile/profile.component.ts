@@ -1,14 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { toast } from 'ngx-sonner'; // Import toast
+import { toast } from 'ngx-sonner';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule], // No ToasterComponent
+  imports: [CommonModule, FormsModule],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
 })
@@ -18,7 +19,13 @@ export class ProfilePageComponent implements OnInit {
   loading = true;
   error: string | null = null;
   editMode = false;
+  showDeleteVerification = false;
+  showDeleteConfirmation = false;
+  verificationUsername: string = '';
+  usernameError: boolean = false;
+  deleteConfirmed: boolean = false;
   userService = inject(UserService);
+  router = inject(Router);
 
   async ngOnInit() {
     try {
@@ -69,6 +76,55 @@ export class ProfilePageComponent implements OnInit {
       console.error('Error updating user:', error);
       this.error = 'No se pudieron guardar los cambios.';
       toast.error('Error al actualizar el perfil');
+    }
+  }
+
+  openDeleteVerification() {
+    this.showDeleteVerification = true;
+    this.verificationUsername = '';
+    this.usernameError = false;
+  }
+
+  closeDeleteVerification() {
+    this.showDeleteVerification = false;
+    this.verificationUsername = '';
+    this.usernameError = false;
+  }
+
+  validateUsername() {
+    this.usernameError = !this.verificationUsername || this.verificationUsername !== this.user?.username;
+  }
+
+  proceedToDeleteConfirmation() {
+    if (!this.usernameError && this.verificationUsername === this.user?.username) {
+      this.showDeleteVerification = false;
+      this.showDeleteConfirmation = true;
+      this.deleteConfirmed = false;
+    }
+  }
+
+  closeDeleteConfirmation() {
+    this.showDeleteConfirmation = false;
+    this.deleteConfirmed = false;
+  }
+
+  async deleteAccount() {
+    if (!this.deleteConfirmed || !this.user) return;
+
+    try {
+      await this.userService.deleteMe();
+      toast.success('Cuenta borrada exitosamente');
+      this.closeDeleteConfirmation();
+      console.log('Navigating to /login');
+      const navigationSuccess = await this.router.navigate(['/login']);
+      if (!navigationSuccess) {
+        console.error('Navigation to /login failed');
+        toast.error('No se pudo redirigir a la página de inicio de sesión');
+      }
+    } catch (error: any) {
+      console.error('Error deleting account:', error);
+      toast.error('Error al borrar la cuenta');
+      this.error = 'No se pudo borrar la cuenta. Intenta de nuevo.';
     }
   }
 }

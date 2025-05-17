@@ -64,6 +64,58 @@
           <button (click)="saveChanges()" class="btn btn-save">Guardar</button>
           <button (click)="cancelEdit()" class="btn btn-cancel">Cancelar</button>
         </div>
+        <button *ngIf="!editMode" (click)="openDeleteVerification()" class="btn btn-delete">Borrar Cuenta</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Username Verification Popup -->
+  <div *ngIf="showDeleteVerification" class="popup-overlay">
+    <div class="popup">
+      <h2>Verificar Identidad</h2>
+      <p>Por favor, escribe tu <span class="font-bold">nombre de usuario</span> para confirmar que deseas borrar tu cuenta.</p>
+      <div class="popup__input-group">
+        <label class="profile__label">
+          <input
+            type="text"
+            [(ngModel)]="verificationUsername"
+            (ngModelChange)="validateUsername()"
+            class="profile__input"
+            [class.error]="usernameError"
+            placeholder="Escribe tu nombre de usuario"
+          />
+        </label>
+        <p *ngIf="usernameError" class="error-message">Debes escribir tu nombre de usuario correcto.</p>
+      </div>
+      <div class="popup__actions">
+        <button (click)="closeDeleteVerification()" class="btn btn-cancel">Cancelar</button>
+        <button
+          (click)="proceedToDeleteConfirmation()"
+          class="btn btn-delete"
+          [disabled]="usernameError || !verificationUsername"
+        >Continuar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Popup -->
+  <div *ngIf="showDeleteConfirmation" class="popup-overlay">
+    <div class="popup">
+      <h2>Confirmar Borrado de Cuenta</h2>
+      <p class="warning">¡ATENCIÓN! Esta acción es <strong>IRREVERSIBLE</strong>. Al borrar tu cuenta, se eliminarán todos tus datos permanentemente.</p>
+      <div class="popup__checkbox">
+        <label>
+          <input type="checkbox" [(ngModel)]="deleteConfirmed" />
+          Entiendo que esta acción es irreversible y deseo continuar.
+        </label>
+      </div>
+      <div class="popup__actions">
+        <button (click)="closeDeleteConfirmation()" class="btn btn-cancel">Cancelar</button>
+        <button
+          (click)="deleteAccount()"
+          class="btn btn-delete"
+          [disabled]="!deleteConfirmed"
+        >Borrar Cuenta</button>
       </div>
     </div>
   </div>

@@ -59,4 +59,22 @@ export class UserService {
       throw error;
     }
   }
+
+  async deleteMe(): Promise<void> {
+    try {
+      await axios.delete(`${this.apiUrl}/me`, { 
+        withCredentials: true,
+        maxRedirects: 0 // Prevent axios from following redirects
+      });
+      this.clearUser();
+    } catch (error: any) {
+      if (error.response && [301, 302, 303, 307, 308].includes(error.response.status)) {
+        // Treat redirect responses as success since deletion occurred
+        this.clearUser();
+        return;
+      }
+      console.error('Error deleting user:', error);
+      throw error;
+    }
+  }
 }
