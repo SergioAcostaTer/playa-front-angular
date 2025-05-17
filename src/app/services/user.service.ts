@@ -35,10 +35,10 @@ export class UserService {
 
   async updateUser(user: User) {
     try {
-      const updatedUser = await this.updateMe(user);
-      this.userSubject.next(updatedUser);
-    } catch (e) {
-      console.error('Error updating user:', e);
+      const { data } = (await axios.put(`${this.apiUrl}/me`, user, { withCredentials: true })).data;
+      return data;
+    } catch (error) {
+      throw error;
     }
   }
 
@@ -64,12 +64,11 @@ export class UserService {
     try {
       await axios.delete(`${this.apiUrl}/me`, { 
         withCredentials: true,
-        maxRedirects: 0 // Prevent axios from following redirects
+        maxRedirects: 0
       });
       this.clearUser();
     } catch (error: any) {
       if (error.response && [301, 302, 303, 307, 308].includes(error.response.status)) {
-        // Treat redirect responses as success since deletion occurred
         this.clearUser();
         return;
       }

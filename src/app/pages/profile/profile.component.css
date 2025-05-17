@@ -65,6 +65,19 @@
   color: #333;
 }
 
+.profile__change-image {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.profile__change-image:hover {
+  color: #0056b3;
+}
+
 .profile__avatar {
   width: 100px;
   height: 100px;
@@ -79,13 +92,20 @@
 .profile__actions {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  align-items: center;
   margin-top: 15px;
 }
 
-.profile__delete-section {
-  margin-top: 20px;
-  text-align: center;
+.profile__actions--left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-group {
+  display: flex;
+  align-items: center; /* Ensures Save and Cancel are vertically centered */
+  gap: 10px;
 }
 
 .btn {
@@ -96,20 +116,16 @@
   font-size: 1rem;
   box-shadow: 0 0 5px 0 #0002;
   transition: background-color 0.2s;
+  line-height: 1; /* Ensures consistent height */
 }
 
 .btn-edit {
-  background-color: var(--button-background, #007bff);
+  background-color: var(--button-background);
   color: #fff;
 }
 
 .btn-edit:hover {
-  background-color: var(--hover-darken, #0056b3);
-}
-
-.btn-group {
-  display: flex;
-  gap: 10px;
+  background-color: var(--hover-darken);
 }
 
 .btn-save {
@@ -122,16 +138,16 @@
 }
 
 .btn-cancel {
-  background-color: #888;
+  background-color: #dc3545;
   color: #fff;
 }
 
 .btn-cancel:hover {
-  background-color: #666;
+  background-color: #c82333;
 }
 
 .btn-delete {
-  background-color: #f32;
+  background-color: var(--delete-user-color);
   color: #fff;
 }
 
@@ -190,6 +206,11 @@
   color: #444;
 }
 
+.image-instruction {
+  font-style: italic;
+  color: #2e7d32;
+}
+
 .popup .warning {
   color: #dc3545;
   font-weight: bold;
@@ -210,6 +231,50 @@
   display: flex;
   justify-content: flex-end;
   gap: 15px;
+}
+
+.suggestion-list {
+  margin-top: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+}
+
+.suggestion-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background-color: #f5f5f5;
+}
+
+.suggestion-image {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.suggestion-details {
+  text-align: left;
+}
+
+.suggestion-name {
+  font-size: 1em;
+  color: #333;
+}
+
+.suggestion-island {
+  font-size: 0.9em;
+  color: #666;
 }
 
 .error-message {
@@ -239,9 +304,6 @@
     padding: 8px 16px;
     font-size: 0.9rem;
   }
-  .profile__delete-section {
-    margin-top: 15px;
-  }
   .popup {
     width: 95%;
     padding: 20px;
@@ -253,10 +315,20 @@
   .popup p {
     font-size: 1em;
   }
+  .image-instruction {
+    font-size: 0.9em;
+  }
   .popup .warning {
     font-size: 1.1em;
   }
   .popup__checkbox {
     font-size: 1em;
+  }
+  .suggestion-list {
+    max-height: 150px;
+  }
+  .suggestion-image {
+    width: 30px;
+    height: 30px;
   }
 }

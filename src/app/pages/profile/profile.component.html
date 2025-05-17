@@ -12,10 +12,11 @@
   <!-- User Profile -->
   <div *ngIf="!loading && !error && user" class="profile__container">
     <div class="profile__user-image">
-      <img [src]="user.avatarUrl" [alt]="user.username" class="profile__avatar" />
+      <img [src]="editMode && editedUser?.avatarUrl ? editedUser?.avatarUrl : user.avatarUrl" [alt]="user.username" class="profile__avatar" />
       <p>
         <span class="profile__username">{{ user.username }}</span>
       </p>
+      <a *ngIf="editMode" (click)="openImageChange()" class="profile__change-image">Cambiar imagen de perfil</a>
     </div>
 
     <div class="profile__form">
@@ -57,12 +58,14 @@
         </label>
       </div>
 
-      <!-- Buttons -->
+      <!-- Edit and Delete Buttons -->
       <div class="profile__actions">
-        <button *ngIf="!editMode" (click)="enableEdit()" class="btn btn-edit">Editar</button>
-        <div *ngIf="editMode" class="btn-group">
-          <button (click)="saveChanges()" class="btn btn-save">Guardar</button>
-          <button (click)="cancelEdit()" class="btn btn-cancel">Cancelar</button>
+        <div class="profile__actions--left">
+          <button *ngIf="!editMode" (click)="enableEdit()" class="btn btn-edit">Editar</button>
+          <div *ngIf="editMode" class="btn-group">
+            <button (click)="saveChanges()" class="btn btn-save">Guardar</button>
+            <button (click)="cancelEdit()" class="btn btn-cancel">Cancelar</button>
+          </div>
         </div>
         <button *ngIf="!editMode" (click)="openDeleteVerification()" class="btn btn-delete">Borrar Cuenta</button>
       </div>
@@ -116,6 +119,35 @@
           class="btn btn-delete"
           [disabled]="!deleteConfirmed"
         >Borrar Cuenta</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Change Search Popup -->
+  <div *ngIf="showImageSearch" class="popup-overlay">
+    <div class="popup">
+      <h2>Cambiar Imagen de Perfil</h2>
+      <p class="image-instruction">🌴 Descubre la belleza del mar y busca la playa que refleje tu espíritu. ¡Encuentra tu paraíso perfecto!</p>
+      <div class="search-container">
+        <input
+          class="profile__input"
+          type="text"
+          [(ngModel)]="searchQuery"
+          placeholder="Busca playas o destinos..."
+          (ngModelChange)="onSearchChange($event)"
+        />
+      </div>
+      <ul *ngIf="searchSuggestions.length > 0" class="suggestion-list">
+        <li *ngFor="let suggestion of searchSuggestions" (click)="selectBeach(suggestion)" class="suggestion-item">
+          <img [src]="suggestion.image || 'https://via.placeholder.com/40'" alt="{{ suggestion.name }}" class="suggestion-image" />
+          <div class="suggestion-details">
+            <span class="suggestion-name">{{ suggestion.name }}</span>
+            <span class="suggestion-island">{{ suggestion.island || 'Isla desconocida' }}</span>
+          </div>
+        </li>
+      </ul>
+      <div class="popup__actions">
+        <button (click)="closeImageSearch()" class="btn btn-cancel mt-[8px]">Cancelar</button>
       </div>
     </div>
   </div>

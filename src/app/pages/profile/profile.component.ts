@@ -5,6 +5,7 @@ import { toast } from 'ngx-sonner';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
+import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -24,10 +25,19 @@ export class ProfilePageComponent implements OnInit {
   verificationUsername: string = '';
   usernameError: boolean = false;
   deleteConfirmed: boolean = false;
+  showImageSearch = false;
+  searchQuery = '';
+  searchSuggestions: any[] = [];
+  private searchSubject = new Subject<string>();
   userService = inject(UserService);
   router = inject(Router);
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.searchSubject.pipe(debounceTime(300), distinctUntilChanged()).subscribe((query) => this.fetchSuggestions(query));
+    this.initializeData();
+  }
+
+  private async initializeData() {
     try {
       const response = await this.userService.getMe();
       this.user = { ...response };
@@ -68,6 +78,8 @@ export class ProfilePageComponent implements OnInit {
     try {
       this.user = { ...this.editedUser };
       await this.userService.updateUser(this.user);
+      // Notify UserService to update its internal state
+      this.userService.loadUser();
       console.log('User updated successfully:', this.user);
       toast.success('Perfil actualizado correctamente');
       this.editMode = false;
@@ -126,5 +138,42 @@ export class ProfilePageComponent implements OnInit {
       toast.error('Error al borrar la cuenta');
       this.error = 'No se pudo borrar la cuenta. Intenta de nuevo.';
     }
+  }
+
+  openImageChange() {
+    this.showImageSearch = true;
+    this.searchQuery = '';
+    this.searchSuggestions = [];
+  }
+
+  closeImageSearch() {
+    this.showImageSearch = false;
+    this.searchQuery = '';
+    this.searchSuggestions = [];
+  }
+
+  onSearchChange(query: string) {
+    if (!query.trim()) {
+      this.searchSuggestions = [];
+    } else {
+      this.searchSubject.next(query);
+    }
+  }
+
+  async fetchSuggestions(query: string) {
+    try {
+      const response = await fetch(`http://localhost:8000/beaches/searchSuggestions?q=${encodeURIComponent(query)}`);
+      const result = await response.json();
+      this.searchSuggestions = result.data || [];
+    } catch (e) {
+      console.error('Failed to fetch suggestions', e);
+    }
+  }
+
+  selectBeach(suggestion: any) {
+    if (this.editedUser) {
+      this.editedUser.avatarUrl = suggestion.image || 'https://via.placeholder.com/100';
+    }
+    this.showImageSearch = false;
   }
 }
