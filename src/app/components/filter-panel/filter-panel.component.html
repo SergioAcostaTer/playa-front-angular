@@ -21,96 +21,25 @@
         {{ locationError }}
     </div>
 
-    <!-- Filtros originales (mostrados solo en modo 'filters') -->
-    <div *ngIf="filters.searchMode === 'filters'">
-        <div class="filter-panel__section">
-            <h4 class="filter-panel__section-title">Lugar</h4>
-            <select 
-                class="filter-panel__select"
-                [ngModel]="filters.island"
-                (ngModelChange)="onIslandChange($event)"
+    <!-- Filtros específicos de modo 'filters' -->
+    <div *ngIf="filters.searchMode === 'filters'" class="filter-panel__section">
+        <h4 class="filter-panel__section-title">Lugar</h4>
+        <select 
+            class="filter-panel__select"
+            [ngModel]="filters.island"
+            (ngModelChange)="onIslandChange($event)"
+        >
+            <option value="">Selecciona tu isla</option>
+            <option 
+                *ngFor="let island of islands; trackBy: trackById" 
+                [value]="island.name"
             >
-                <option value="">Selecciona tu isla</option>
-                <option 
-                    *ngFor="let island of islands; trackBy: trackById" 
-                    [value]="island.name"
-                >
-                    {{ island.name }}
-                </option>
-            </select>
-        </div>
-        
-        <div class="filter-panel__section">
-            <h4 class="filter-panel__section-title">Calificación</h4>
-            <label class="filter-panel__checkbox">
-                <input 
-                    type="checkbox" 
-                    [(ngModel)]="filters.useGradeFilter"
-                    (ngModelChange)="onFilterChange()"
-                > Filtrar por calificación
-            </label>
-            <input 
-                type="range" 
-                min="1"
-                [defaultValue]="3"
-                max="5" 
-                step="1" 
-                [(ngModel)]="filters.grade" 
-                (ngModelChange)="onFilterChange()" 
-                class="filter-panel__slider"
-                [disabled]="!filters.useGradeFilter"
-            >
-            <span>{{ filters.useGradeFilter ? (filters.grade || 3) : 'N/A' }}</span>
-        </div>
-        
-        <div class="filter-panel__section filter-panel__section--labels">
-            <h4 class="filter-panel__section-title">Características</h4>
-            <label class="filter-panel__checkbox">
-                <input 
-                    type="checkbox" 
-                    [(ngModel)]="filters.hasLifeguard"
-                    (change)="onFilterChange()"
-                > Socorrista
-            </label>
-            <label class="filter-panel__checkbox">
-                <input 
-                    type="checkbox" 
-                    [(ngModel)]="filters.hasSand"
-                    (change)="onFilterChange()"
-                > Arena
-            </label>
-            <label class="filter-panel__checkbox">
-                <input 
-                    type="checkbox" 
-                    [(ngModel)]="filters.hasRock"
-                    (change)="onFilterChange()"
-                > Rocas
-            </label>
-            <label class="filter-panel__checkbox">
-                <input 
-                    type="checkbox" 
-                    [(ngModel)]="filters.hasShowers"
-                    (change)="onFilterChange()"
-                > Duchas
-            </label>
-            <label class="filter-panel__checkbox">
-                <input 
-                    type="checkbox" 
-                    [(ngModel)]="filters.hasToilets"
-                    (change)="onFilterChange()"
-                > Baños
-            </label>
-            <label class="filter-panel__checkbox">
-                <input 
-                    type="checkbox" 
-                    [(ngModel)]="filters.hasFootShowers"
-                    (change)="onFilterChange()"
-                > Lavapiés
-            </label>
-        </div>
+                {{ island.name }}
+            </option>
+        </select>
     </div>
 
-    <!-- Filtro de proximidad (mostrado solo en modo 'proximity') -->
+    <!-- Filtros específicos de modo 'proximity' -->
     <div class="filter-panel__section" *ngIf="filters.searchMode === 'proximity'">
         <h4 class="filter-panel__section-title">Radio de búsqueda</h4>
         <input 
@@ -125,4 +54,75 @@
         >
         <span>{{ filters.proximityRadius || 1 }} km</span>
     </div>
+
+    <!-- Filtros comunes (mostrados en ambos modos) -->
+    <div class="filter-panel__section">
+        <h4 class="filter-panel__section-title">Calificación</h4>
+        <label class="filter-panel__checkbox">
+            <input 
+                type="checkbox" 
+                [(ngModel)]="filters.useGradeFilter"
+                (ngModelChange)="onFilterChange()"
+            > Filtrar por calificación
+        </label>
+        <input 
+            type="range" 
+            min="1"
+            [defaultValue]="3"
+            max="5" 
+            step="1" 
+            [(ngModel)]="filters.grade" 
+            (ngModelChange)="onFilterChange()" 
+            class="filter-panel__slider"
+            [disabled]="!filters.useGradeFilter"
+        >
+        <span>{{ filters.useGradeFilter ? (filters.grade || 3) : 'N/A' }}</span>
+    </div>
+    
+    <div class="filter-panel__section filter-panel__section--labels">
+        <h4 class="filter-panel__section-title">Características</h4>
+        <label class="filter-panel__checkbox">
+            <input 
+                type="checkbox" 
+                [(ngModel)]="filters.hasLifeguard"
+                (change)="onFilterChange()"
+            > Socorrista
+        </label>
+        <label class="filter-panel__checkbox">
+            <input 
+                type="checkbox" 
+                [(ngModel)]="filters.hasSand"
+                (change)="onFilterChange()"
+            > Arena
+        </label>
+        <label class="filter-panel__checkbox">
+            <input 
+                type="checkbox" 
+                [(ngModel)]="filters.hasRock"
+                (change)="onFilterChange()"
+            > Rocas
+        </label>
+        <label class="filter-panel__checkbox">
+            <input 
+                type="checkbox" 
+                [(ngModel)]="filters.hasShowers"
+                (change)="onFilterChange()"
+            > Duchas
+        </label>
+        <label class="filter-panel__checkbox">
+            <input 
+                type="checkbox" 
+                [(ngModel)]="filters.hasToilets"
+                (change)="onFilterChange()"
+            > Baños
+        </label>
+        <label class="filter-panel__checkbox">
+            <input 
+                type="checkbox" 
+                [(ngModel)]="filters.hasFootShowers"
+                (change)="onFilterChange()"
+            > Lavapiés
+        </label>
+    </div>
+
 </aside>

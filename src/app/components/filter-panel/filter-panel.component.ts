@@ -72,7 +72,7 @@ export class FilterPanelComponent implements OnInit {
       longitude: null,
       proximityRadius: 1,
     };
-    this.filtersChange.emit(this.filters); // Emitir filtros limpios
+    this.filtersChange.emit(this.filters);
   }
 
   trackById(index: number, island: Category): string {
@@ -93,10 +93,15 @@ export class FilterPanelComponent implements OnInit {
         },
         (error) => {
           this.isLocationAvailable = false;
-          this.locationError = 'No se pudo obtener la ubicación';
+          this.locationError = 'No se pudo obtener la ubicación: ' + error.message;
           this.filters.latitude = null;
           this.filters.longitude = null;
           console.error('Location error:', error);
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 0
         }
       );
     } else {
@@ -119,22 +124,18 @@ export class FilterPanelComponent implements OnInit {
       this.checkLocationAvailability();
     }
 
+    // Establecer grade a 3 como valor por defecto cuando useGradeFilter se activa
+    if (this.filters.useGradeFilter && this.filters.grade === null) {
+      this.filters.grade = 3;
+    }
+
     if (newSearchMode !== this.filters.searchMode) {
       if (newSearchMode === 'filters') {
         this.filters.latitude = null;
         this.filters.longitude = null;
         this.filters.proximityRadius = 1;
       } else {
-        this.filters.island = '';
-        this.filters.hasLifeguard = false;
-        this.filters.hasSand = false;
-        this.filters.hasRock = false;
-        this.filters.hasShowers = false;
-        this.filters.hasToilets = false;
-        this.filters.hasFootShowers = false;
-        this.filters.grade = null;
-        this.filters.useGradeFilter = false;
-        this.filters.name = '';
+        this.filters.island = ''; // Solo island se limpia en modo proximity
       }
     }
 

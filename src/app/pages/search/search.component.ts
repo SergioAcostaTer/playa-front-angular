@@ -1,7 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { BeachGridComponent } from '../../components/beach-grid/beach-grid.component';
 import { FilterPanelComponent } from '../../components/filter-panel/filter-panel.component';
 import { PaginationComponent } from '../../components/pagination/pagination.component';
@@ -72,8 +72,7 @@ export class SearchComponent implements OnInit {
     proximityRadius: 1,
   };
   errorMessage: string | null = null;
-  private isPageReloaded: boolean = true; // Bandera para detectar recarga
-
+  private isPageReloaded: boolean = true;
   private searchSubject = new Subject<{
     query: string;
     page: number;
@@ -85,7 +84,6 @@ export class SearchComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
-  // Detectar recarga de página
   @HostListener('window:load')
   onPageLoad() {
     this.isPageReloaded = true;
@@ -108,7 +106,8 @@ export class SearchComponent implements OnInit {
                 proximityParams.longitude,
                 proximityParams.proximityRadius,
                 page,
-                this.limit
+                this.limit,
+                filters // Pasar filtros al modo proximity
               );
             } else {
               throw new Error('Ubicación no disponible');
@@ -134,35 +133,32 @@ export class SearchComponent implements OnInit {
 
     this.route.queryParams.subscribe((params) => {
       if (this.isPageReloaded) {
-        // Limpiar filtros en recarga
         this.resetFilters();
         this.isPageReloaded = false;
-        // Actualizar URL para eliminar parámetros
         this.updateQueryParams(this.searchQuery, this.currentPage, this.searchMode, this.filters, this.proximityParams);
       } else {
-        // Respetar parámetros de URL en navegación normal
         this.searchQuery = params['name'] || params['q'] || '';
         this.currentPage = Number(params['page']) || 1;
         this.searchMode = params['lat'] && params['lon'] && params['radius'] ? 'proximity' : 'filters';
 
-        if (this.searchMode === 'filters') {
-          this.filters.name = this.searchQuery;
-          this.filters.island = params['island'] || '';
-          this.islandFilter = this.filters.island;
-          this.filters.hasLifeguard = params['hasLifeguard'] === 'true';
-          this.filters.hasSand = params['hasSand'] === 'true';
-          this.filters.hasRock = params['hasRock'] === 'true';
-          this.filters.hasShowers = params['hasShowers'] === 'true';
-          this.filters.hasToilets = params['hasToilets'] === 'true';
-          this.filters.hasFootShowers = params['hasFootShowers'] === 'true';
-          this.filters.grade = params['grade'] ? Number(params['grade']) : null;
-          this.filters.useGradeFilter = params['grade'] !== undefined;
-        } else {
+        this.filters.name = this.searchQuery;
+        this.filters.island = params['island'] || '';
+        this.islandFilter = params['island'] || '';
+        this.filters.hasLifeguard = params['hasLifeguard'] === 'true';
+        this.filters.hasSand = params['hasSand'] === 'true';
+        this.filters.hasRock = params['hasRock'] === 'true';
+        this.filters.hasShowers = params['hasShowers'] === 'true';
+        this.filters.hasToilets = params['hasToilets'] === 'true';
+        this.filters.hasFootShowers = params['hasFootShowers'] === 'true';
+        this.filters.grade = params['grade'] ? Number(params['grade']) : null;
+        this.filters.useGradeFilter = params['grade'] !== undefined;
+
+        if (this.searchMode === 'proximity') {
           this.proximityParams.latitude = params['lat'] ? Number(params['lat']) : null;
           this.proximityParams.longitude = params['lon'] ? Number(params['lon']) : null;
           this.proximityParams.proximityRadius = params['radius'] ? Number(params['radius']) : 1;
-          this.filters.name = '';
-          this.searchQuery = '';
+        } else {
+          this.proximityParams = { latitude: null, longitude: null, proximityRadius: 1 };
         }
 
         this.searchSubject.next({
@@ -213,18 +209,19 @@ export class SearchComponent implements OnInit {
       queryParams['page'] = String(page);
     }
 
+    if (filters.name) queryParams['name'] = filters.name;
+    if (filters.hasLifeguard) queryParams['hasLifeguard'] = 'true';
+    if (filters.hasSand) queryParams['hasSand'] = 'true';
+    if (filters.hasRock) queryParams['hasRock'] = 'true';
+    if (filters.hasShowers) queryParams['hasShowers'] = 'true';
+    if (filters.hasToilets) queryParams['hasToilets'] = 'true';
+    if (filters.hasFootShowers) queryParams['hasFootShowers'] = 'true';
+    if (filters.useGradeFilter && filters.grade != null) {
+      queryParams['grade'] = String(filters.grade);
+    }
+
     if (searchMode === 'filters') {
-      if (filters.name) queryParams['name'] = filters.name;
       if (filters.island) queryParams['island'] = filters.island;
-      if (filters.hasLifeguard) queryParams['hasLifeguard'] = 'true';
-      if (filters.hasSand) queryParams['hasSand'] = 'true';
-      if (filters.hasRock) queryParams['hasRock'] = 'true';
-      if (filters.hasShowers) queryParams['hasShowers'] = 'true';
-      if (filters.hasToilets) queryParams['hasToilets'] = 'true';
-      if (filters.hasFootShowers) queryParams['hasFootShowers'] = 'true';
-      if (filters.useGradeFilter && filters.grade != null) {
-        queryParams['grade'] = String(filters.grade);
-      }
     } else {
       if (proximityParams.latitude != null) queryParams['lat'] = String(proximityParams.latitude);
       if (proximityParams.longitude != null) queryParams['lon'] = String(proximityParams.longitude);
@@ -244,58 +241,35 @@ export class SearchComponent implements OnInit {
   onSearchInputChange(event: any) {
     const query = event.target.value;
     this.searchQuery = query;
-    if (this.searchMode === 'filters') {
-      this.filters.name = query;
-    }
+    this.filters.name = query; // Actualizar filters.name en ambos modos
     this.currentPage = 1;
     this.updateQueryParams(this.searchQuery, this.currentPage, this.searchMode, this.filters, this.proximityParams);
   }
 
   onFiltersChange(filters: any) {
     const newSearchMode = filters.searchMode || 'filters';
-
     this.searchMode = newSearchMode;
-    if (this.searchMode === 'filters') {
-      this.filters = {
-        name: this.filters.name, // Preservar el valor actual de filters.name
-        island: filters.island || '',
-        hasLifeguard: filters.hasLifeguard || false,
-        hasSand: filters.hasSand || false,
-        hasRock: filters.hasRock || false,
-        hasShowers: filters.hasShowers || false,
-        hasToilets: filters.hasToilets || false,
-        hasFootShowers: filters.hasFootShowers || false,
-        grade: filters.useGradeFilter ? filters.grade : null,
-        useGradeFilter: filters.useGradeFilter || false,
-      };
-      this.islandFilter = this.filters.island;
-      this.searchQuery = this.filters.name;
-      this.proximityParams = {
-        latitude: null,
-        longitude: null,
-        proximityRadius: 1,
-      };
-    } else {
-      this.proximityParams = {
-        latitude: filters.latitude,
-        longitude: filters.longitude,
-        proximityRadius: filters.proximityRadius || 1,
-      };
-      this.filters = {
-        name: '',
-        island: '',
-        hasLifeguard: false,
-        hasSand: false,
-        hasRock: false,
-        hasShowers: false,
-        hasToilets: false,
-        hasFootShowers: false,
-        grade: null,
-        useGradeFilter: false,
-      };
-      this.islandFilter = '';
-      this.searchQuery = '';
-    }
+
+    this.filters = {
+      name: filters.name || '',
+      island: newSearchMode === 'filters' ? filters.island || '' : '',
+      hasLifeguard: filters.hasLifeguard || false,
+      hasSand: filters.hasSand || false,
+      hasRock: filters.hasRock || false,
+      hasShowers: filters.hasShowers || false,
+      hasToilets: filters.hasToilets || false,
+      hasFootShowers: filters.hasFootShowers || false,
+      grade: filters.useGradeFilter ? filters.grade : null,
+      useGradeFilter: filters.useGradeFilter || false,
+    };
+    this.islandFilter = this.filters.island;
+    this.searchQuery = this.filters.name;
+
+    this.proximityParams = {
+      latitude: newSearchMode === 'proximity' ? filters.latitude : null,
+      longitude: newSearchMode === 'proximity' ? filters.longitude : null,
+      proximityRadius: filters.proximityRadius || 1,
+    };
 
     this.currentPage = 1;
     this.updateQueryParams(this.searchQuery, this.currentPage, this.searchMode, this.filters, this.proximityParams);
