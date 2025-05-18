@@ -1,8 +1,12 @@
+// app-general-map.component.ts
+
 import { Component, OnInit, AfterViewInit, PLATFORM_ID, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { isPlatformBrowser } from '@angular/common';
 import { BeachService } from '../../services/beach.service';
 import { Beach } from '../../models/beach';
+import { CANARY_ISLANDS_CONFIG, BALEARIC_ISLANDS_CONFIG } from '../../constants/location-config';
+import { LocationConfig } from '../../models/location-config';
 import * as maplibre from 'maplibre-gl';
 
 @Component({
@@ -19,16 +23,7 @@ export class GeneralMapComponent implements OnInit, AfterViewInit {
   userLocation: [number, number] | null = null;
   private map: maplibre.Map | undefined;
   private markers: maplibre.Marker[] = [];
-  private defaultCenter: [number, number] = [-16.6291, 28.2916]; // Canary Islands default center
-  private defaultZoom: number = 8;
-
-  // Define Canary Islands bounds
-  private canaryBounds = {
-    minLat: 27.6,
-    maxLat: 29.5,
-    minLng: -18.2,
-    maxLng: -13.3,
-  };
+  private locationConfig: LocationConfig = CANARY_ISLANDS_CONFIG;
 
   constructor(
     private beachService: BeachService,
@@ -89,10 +84,10 @@ export class GeneralMapComponent implements OnInit, AfterViewInit {
     if (!this.userLocation) return false;
     const [lng, lat] = this.userLocation;
     return (
-      lat >= this.canaryBounds.minLat &&
-      lat <= this.canaryBounds.maxLat &&
-      lng >= this.canaryBounds.minLng &&
-      lng <= this.canaryBounds.maxLng
+      lat >= this.locationConfig.bounds.minLat &&
+      lat <= this.locationConfig.bounds.maxLat &&
+      lng >= this.locationConfig.bounds.minLng &&
+      lng <= this.locationConfig.bounds.maxLng
     );
   }
 
@@ -103,8 +98,8 @@ export class GeneralMapComponent implements OnInit, AfterViewInit {
       this.map?.setZoom(12);
     } else {
       console.log('User location not in Canary Islands or unavailable, using default center');
-      this.map?.setCenter(this.defaultCenter);
-      this.map?.setZoom(this.defaultZoom);
+      this.map?.setCenter(this.locationConfig.defaultCenter);
+      this.map?.setZoom(this.locationConfig.defaultZoom);
     }
   }
 
@@ -125,8 +120,8 @@ export class GeneralMapComponent implements OnInit, AfterViewInit {
       this.map = new maplibre.Map({
         container: 'map',
         style: 'https://api.maptiler.com/maps/satellite/style.json?key=bI4oYGzzakPOHE0Vtk5q',
-        center: this.defaultCenter,
-        zoom: this.defaultZoom,
+        center: this.locationConfig.defaultCenter, // Use config
+        zoom: this.locationConfig.defaultZoom,     // Use config
         attributionControl: false,
       });
 
@@ -185,33 +180,32 @@ export class GeneralMapComponent implements OnInit, AfterViewInit {
     this.markers = [];
 
     this.beaches.forEach((beach) => {
-  if (beach.latitude && beach.longitude) {
-    const markerColor = beach.blueFlag ? '#3399FF' : '#FF0000';
+      if (beach.latitude && beach.longitude) {
+        const markerColor = beach.blueFlag ? '#3399FF' : '#FF0000';
 
-    const marker = new maplibre.Marker({ color: markerColor })
-      .setLngLat([beach.longitude, beach.latitude])
-      .setPopup(
-        new maplibre.Popup().setHTML(`
-            <h3 style="margin: 0 0 8px; font-size: 16px; color: #222; font-weight: bold;">${beach.name}</h3>
-            <div style="margin-bottom: 6px; font-size: 14px; color: #555;">
-              <span style="font-weight: 500;">Island:</span> ${beach.island}
-            </div>
-            <div style="margin-bottom: 6px; font-size: 14px; color: #555;">
-              <span style="font-weight: 500;">Municipality:</span> ${beach.municipality}
-            </div>
-            <div style="margin-bottom: 8px; font-size: 14px; color: #555;">
-              <span style="font-weight: 500;">Grade:</span> ${beach.grade} <span style="color: #FFD700;">★</span>
-            </div>
-            <img src="${beach.coverUrl}" alt="${beach.name}" style="width: 100%; height: auto; border-radius: 6px; margin-bottom: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
-            <a href="/beach/${beach.slug}" style="display: inline-block; font-size: 14px; color: #007bff; text-decoration: none; font-weight: 500; transition: color 0.2s;">View Details</a>
-          
-        `)
-      )
-      .addTo(this.map!);
+        const marker = new maplibre.Marker({ color: markerColor })
+          .setLngLat([beach.longitude, beach.latitude])
+          .setPopup(
+            new maplibre.Popup().setHTML(`
+              <h3 style="margin: 0 0 8px; font-size: 16px; color: #222; font-weight: bold;">${beach.name}</h3>
+              <div style="margin-bottom: 6px; font-size: 14px; color: #555;">
+                <span style="font-weight: 500;">Island:</span> ${beach.island}
+              </div>
+              <div style="margin-bottom: 6px; font-size: 14px; color: #555;">
+                <span style="font-weight: 500;">Municipality:</span> ${beach.municipality}
+              </div>
+              <div style="margin-bottom: 8px; font-size: 14px; color: #555;">
+                <span style="font-weight: 500;">Grade:</span> ${beach.grade} <span style="color: #FFD700;">★</span>
+              </div>
+              <img src="${beach.coverUrl}" alt="${beach.name}" style="width: 100%; height: auto; border-radius: 6px; margin-bottom: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+              <a href="/beach/${beach.slug}" style="display: inline-block; font-size: 14px; color: #007bff; text-decoration: none; font-weight: 500; transition: color 0.2s;">View Details</a>
+            `)
+          )
+          .addTo(this.map!);
 
-    this.markers.push(marker);
-  }
-});
+        this.markers.push(marker);
+      }
+    });
 
     console.log('All markers added, total markers:', this.markers.length);
   }
