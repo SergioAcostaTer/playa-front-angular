@@ -44,7 +44,7 @@ export class FilterPanelComponent implements OnInit, OnChanges {
     console.log('FilterPanel: Page reloaded (F5 detected)');
     this.resetFilters();
     this.filtersChange.emit(this.filters);
-    this.cdr.detectChanges(); // Forzar actualización del <select>
+    this.cdr.detectChanges();
   }
 
   ngOnInit() {
@@ -65,9 +65,7 @@ export class FilterPanelComponent implements OnInit, OnChanges {
     if (changes['selectedIsland']) {
       console.log('selectedIsland changed to:', this.selectedIsland);
       this.filters.island = this.selectedIsland;
-      this.cdr.detectChanges(); // Forzar actualización del <select>
-      // No emitimos filtros aquí para evitar un bucle infinito,
-      // ya que SearchComponent ya ha actualizado la URL y los resultados.
+      this.cdr.detectChanges();
     }
     if (changes['searchQuery']) {
       this.filters.name = this.searchQuery;
@@ -120,7 +118,7 @@ export class FilterPanelComponent implements OnInit, OnChanges {
         {
           enableHighAccuracy: true,
           timeout: 10000,
-          maximumAge: 0
+          maximumAge: 0,
         }
       );
     } else {
@@ -166,5 +164,17 @@ export class FilterPanelComponent implements OnInit, OnChanges {
 
     console.log('Emitting changed filters:', this.filters);
     this.filtersChange.emit(this.filters);
+  }
+
+  setGrade(star: number): void {
+    this.filters.grade = star;
+    this.onFilterChange();
+  }
+
+  onStarKeydown(event: KeyboardEvent, star: number): void {
+    if (event.key === 'Enter' || event.key === 'Space') {
+      event.preventDefault();
+      this.setGrade(star);
+    }
   }
 }

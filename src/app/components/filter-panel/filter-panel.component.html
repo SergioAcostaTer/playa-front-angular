@@ -17,7 +17,7 @@
     </div>
 
     <!-- Mensaje de error si no hay ubicación -->
-    <div *ngIf="!isLocationAvailable && locationError" class="filter-panel__error text-red-500 size-0.1 mb-2">
+    <div *ngIf="!isLocationAvailable && locationError" class="filter-panel__error text-red-500 text-sm mb-2">
         {{ locationError }}
     </div>
 
@@ -28,7 +28,7 @@
             class="filter-panel__select"
             [(ngModel)]="filters.island"
             (ngModelChange)="onIslandChange($event)"
-            >
+        >
             <option value="">Selecciona tu isla</option>
             <option 
                 *ngFor="let island of islands; trackBy: trackById" 
@@ -55,7 +55,7 @@
         <span>{{ filters.proximityRadius || 1 }} km</span>
     </div>
 
-    <!-- Filtros comunes (mostrados en ambos modos) -->
+    <!-- Filtros comunes: Calificación con estrellas -->
     <div class="filter-panel__section">
         <h4 class="filter-panel__section-title">Calificación</h4>
         <label class="filter-panel__checkbox">
@@ -65,20 +65,29 @@
                 (ngModelChange)="onFilterChange()"
             > Filtrar por calificación
         </label>
-        <input 
-            type="range" 
-            min="1"
-            [defaultValue]="3"
-            max="5" 
-            step="1" 
-            [(ngModel)]="filters.grade" 
-            (ngModelChange)="onFilterChange()" 
-            class="filter-panel__slider"
-            [disabled]="!filters.useGradeFilter"
-        >
-        <span>{{ filters.useGradeFilter ? (filters.grade || 3) : 'N/A' }}</span>
+        <div class="filter-panel__star-container space-x-2" [ngClass]="{'opacity-50 cursor-not-allowed': !filters.useGradeFilter}">
+            <ng-container *ngFor="let star of [1,2,3,4,5]">
+                <svg 
+                    (click)="filters.useGradeFilter && setGrade(star)"
+                    (keydown)="filters.useGradeFilter && onStarKeydown($event, star)"
+                    role="button"
+                    tabindex="0"
+                    [attr.aria-label]="'Establecer calificación a ' + star + ' estrellas'"
+                    xmlns="http://www.w3.org/2000/svg" 
+                    class="w-8 h-8 cursor-pointer transition-colors"
+                    [ngClass]="{
+                    'fill-current text-black-400': star <= (filters.grade ?? 0) && filters.useGradeFilter,
+                    'fill-current text-gray-300': star > (filters.grade ?? 0) || !filters.useGradeFilter
+                    }" 
+                    viewBox="0 0 20 20"
+                >
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.177 3.63h3.813c.969 0 1.371 1.24.588 1.81l-3.084 2.24 1.177 3.63c.3.921-.755 1.688-1.54 1.118L10 13.011l-3.082 2.344c-.785.57-1.84-.197-1.54-1.118l1.177-3.63-3.084-2.24c-.783-.57-.38-1.81.588-1.81h3.813l1.177-3.63z"/>
+                </svg>
+            </ng-container>
+        </div>
     </div>
-    
+
+    <!-- Filtros comunes: Características -->
     <div class="filter-panel__section filter-panel__section--labels">
         <h4 class="filter-panel__section-title">Características</h4>
         <label class="filter-panel__checkbox">
@@ -124,5 +133,4 @@
             > Lavapiés
         </label>
     </div>
-
 </aside>
