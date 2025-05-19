@@ -1,10 +1,11 @@
-import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { toast } from 'ngx-sonner';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http'; // Importar HttpClient
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 
 @Component({
@@ -31,10 +32,18 @@ export class ProfilePageComponent implements OnInit {
   private searchSubject = new Subject<string>();
   userService = inject(UserService);
   router = inject(Router);
+  http = inject(HttpClient); // Inyectar HttpClient
+  private platformId = inject(PLATFORM_ID);
 
   ngOnInit() {
     this.searchSubject.pipe(debounceTime(300), distinctUntilChanged()).subscribe((query) => this.fetchSuggestions(query));
-    this.initializeData();
+    // Ejecutar initializeData solo en el cliente
+    if (isPlatformBrowser(this.platformId)) {
+      this.initializeData();
+    } else {
+      // En el servidor, establecer un estado inicial seguro
+      this.loading = false;
+    }
   }
 
   private async initializeData() {
@@ -78,7 +87,6 @@ export class ProfilePageComponent implements OnInit {
     try {
       this.user = { ...this.editedUser };
       await this.userService.updateUser(this.user);
-      // Notify UserService to update its internal state
       this.userService.loadUser();
       console.log('User updated successfully:', this.user);
       toast.success('Perfil actualizado correctamente');
@@ -162,9 +170,11 @@ export class ProfilePageComponent implements OnInit {
 
   async fetchSuggestions(query: string) {
     try {
-      const response = await fetch(`http://localhost:8000/beaches/searchSuggestions?q=${encodeURIComponent(query)}`);
-      const result = await response.json();
-      this.searchSuggestions = result.data || [];
+      // Usar HttpClient en lugar de fetch
+      const result = await this.http
+        .get<{ data: any[] }>(`http://localhost:8000/beaches/searchSuggestions?q=${encodeURIComponent(query)}`)
+        .toPromise();
+      this.searchSuggestions = result?.data || [];
     } catch (e) {
       console.error('Failed to fetch suggestions', e);
     }
