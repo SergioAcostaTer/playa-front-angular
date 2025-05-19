@@ -60,12 +60,11 @@
   margin: 0.5rem 0;
 }
 
-/* Estilos para el toggle */
 .filter-panel__toggle-section {
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
-  justify-content: space-between; /* Cambio: Asegura que el contenido se distribuya con el toggle a la derecha */
+  justify-content: space-between;
 }
 
 .filter-panel__toggle-label {
@@ -96,7 +95,7 @@
   transition: background-color 0.3s;
 }
 
-.filter-panel__toggle-slider::before {
+.filter-panel__toggle-slider:before {
   content: '';
   position: absolute;
   width: 16px;
@@ -112,11 +111,25 @@
   background-color: #3b82f6;
 }
 
-.filter-panel__toggle-input:checked + .filter-panel__toggle-slider::before {
+.filter-panel__toggle-input:checked + .filter-panel__toggle-slider:before {
   transform: translateX(20px);
 }
 
-/* Media Queries */
+.filter-panel__star-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.filter-panel__star-container svg {
+  width: 32px;
+  height: 32px;
+  transition: color 0.2s ease-in-out;
+}
+
+.filter-panel__star-container.opacity-50 svg {
+  cursor: not-allowed;
+}
+
 @media (max-width: 1024px) {
   .filter-panel {
     width: 100%;
@@ -133,6 +146,15 @@
   .filter-panel__checkbox {
     flex: 1 0 45%;
     max-width: 45%;
+  }
+
+  .filter-panel__star-container {
+    gap: 0.5rem; /* Reduced spacing for tablet screens */
+  }
+
+  .filter-panel__star-container svg {
+    width: 28px; /* Slightly smaller stars for tablet */
+    height: 28px;
   }
 }
 
@@ -152,5 +174,14 @@
     flex: 1 0 48%;
     max-width: 48%;
     font-size: 0.85rem;
+  }
+
+  .filter-panel__star-container {
+    gap: 0.25rem; /* Further reduced spacing for mobile */
+  }
+
+  .filter-panel__star-container svg {
+    width: 24px; /* Smaller stars for mobile */
+    height: 24px;
   }
 }
