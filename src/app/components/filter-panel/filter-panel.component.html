@@ -11,6 +11,7 @@
                 (ngModelChange)="onFilterChange()"
                 class="filter-panel__toggle-input"
                 [disabled]="!isLocationAvailable"
+                title="{{ !isLocationAvailable ? 'No se puede activar: la geolocalización no está disponible' : 'Cambiar a búsqueda por ubicación' }}"
             >
             <span class="filter-panel__toggle-slider"></span>
         </label>
@@ -19,6 +20,7 @@
     <!-- Mensaje de error si no hay ubicación -->
     <div *ngIf="!isLocationAvailable && locationError" class="filter-panel__error text-red-500 text-sm mb-2">
         {{ locationError }}
+        <p class="ml-[10px] mb-[6px] mt-[3px]">No se podrá cambiar al modo de Búsqueda por Ubicación</p>
     </div>
 
     <!-- Filtros específicos de modo 'filters' -->

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectorRef, HostListener, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { toast } from 'ngx-sonner'; // Import ToastrService
 import { Category } from '../../models/category';
 
 @Component({
@@ -37,7 +38,7 @@ export class FilterPanelComponent implements OnInit, OnChanges {
   isLocationAvailable: boolean = false;
   locationError: string | null = null;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef) {} // Inject ToastrService
 
   @HostListener('window:load')
   onPageLoad() {
@@ -110,7 +111,7 @@ export class FilterPanelComponent implements OnInit, OnChanges {
         },
         (error) => {
           this.isLocationAvailable = false;
-          this.locationError = 'No se pudo obtener la ubicación: ' + error.message;
+          this.locationError = 'No se pudo obtener la ubicación:';
           this.filters.latitude = null;
           this.filters.longitude = null;
           console.error('Location error:', error);
@@ -134,6 +135,7 @@ export class FilterPanelComponent implements OnInit, OnChanges {
     this.filters.island = island;
     this.onFilterChange();
   }
+
 
   onFilterChange() {
     const newSearchMode = this.filters.useProximityFilter ? 'proximity' : 'filters';

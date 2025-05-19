@@ -130,6 +130,22 @@
   cursor: not-allowed;
 }
 
+/* Ensure the disabled toggle shows a not-allowed cursor */
+.filter-panel__toggle-input:disabled {
+    cursor: not-allowed;
+}
+
+/* Optional: Style the label or slider to provide visual feedback when disabled */
+.filter-panel__toggle-label:has(input:disabled) {
+    opacity: 0.5; /* Reduce opacity to indicate disabled state */
+    pointer-events: auto; /* Ensure hover events are still captured */
+}
+
+/* Optional: Style the toggle slider when disabled */
+.filter-panel__toggle-slider:has(input:disabled) {
+    background-color: #ccc; /* Gray out the slider */
+}
+
 @media (max-width: 1024px) {
   .filter-panel {
     width: 100%;

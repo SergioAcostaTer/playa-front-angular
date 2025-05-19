@@ -38,11 +38,11 @@ export class BeachCardComponent implements OnInit {
         },
         (error) => {
           console.error('Error getting location:', error);
-          this.distance = 'Unable to retrieve location';
+          this.distance = 'Geolocalización no activa';
         }
       );
     } else {
-      this.distance = 'Geolocation not supported';
+      this.distance = 'Geolocalización no compatible';
     }
   }
 
