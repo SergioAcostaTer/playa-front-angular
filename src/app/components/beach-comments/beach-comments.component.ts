@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { firstValueFrom } from 'rxjs';
 import { toast } from 'ngx-sonner';
+import { firstValueFrom } from 'rxjs';
 import { Review, ReviewService } from '../../services/review.service';
 import { UserService } from '../../services/user.service';
 import { CommentItemComponent } from '../comment-item/comment-item.component';
@@ -49,7 +49,7 @@ export class BeachCommentsComponent implements OnInit {
         } else {
           toast.error('Error al cargar los comentarios');
         }
-      }
+      },
     });
   }
 
@@ -70,12 +70,20 @@ export class BeachCommentsComponent implements OnInit {
         } else {
           toast.error('Error al eliminar el comentario');
         }
-      }
+      },
     });
   }
 
+  public selectedImageFile: File | null = null;
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input?.files?.length) {
+      this.selectedImageFile = input.files[0];
+    }
+  }
+
   async onAddComment(): Promise<void> {
-    // Check if user is authenticated
     const user = await firstValueFrom(this.userService.user$);
     if (!user) {
       toast.error('Por favor, inicia sesión para añadir un comentario');
@@ -83,7 +91,6 @@ export class BeachCommentsComponent implements OnInit {
       return;
     }
 
-    // Check if user already has a comment
     const userHasComment = this.reviews.some(
       (review) => review.reviews?.userId === user.id
     );
@@ -97,17 +104,20 @@ export class BeachCommentsComponent implements OnInit {
       return;
     }
 
-    const newReview: any = {
-      beachId: this.beachId,
-      rating: this.newCommentRating,
-      comment: this.newCommentText,
-    };
+    const formData = new FormData();
+    formData.append('beachId', this.beachId);
+    formData.append('rating', this.newCommentRating.toString());
+    formData.append('comment', this.newCommentText);
+    if (this.selectedImageFile) {
+      formData.append('image', this.selectedImageFile);
+    }
 
-    this.reviewService.createReview(newReview).subscribe({
+    this.reviewService.createReview(formData).subscribe({
       next: (createdReview) => {
         this.reviews.push(createdReview.review);
         this.newCommentText = '';
         this.newCommentRating = 5;
+        this.selectedImageFile = null;
         toast.success('Comentario añadido correctamente');
       },
       error: (error: any) => {
@@ -119,7 +129,7 @@ export class BeachCommentsComponent implements OnInit {
         } else {
           toast.error('Error al añadir el comentario');
         }
-      }
+      },
     });
   }
 }

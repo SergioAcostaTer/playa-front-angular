@@ -16,6 +16,7 @@ export interface ReviewResponse {
   rating: number;
   comment: string;
   createdAt: string;
+  imageUrl: string;
 }
 
 @Injectable({
@@ -30,16 +31,13 @@ export class ReviewService {
     return this.http.get(`${this.baseUrl}/${beachId}`);
   }
 
-  createReview(review: Partial<ReviewResponse>): Observable<any> {
+  createReview(review: FormData): Observable<any> {
     return this.http.post(this.baseUrl, review, {
       withCredentials: true,
     });
   }
 
-  updateReview(
-    reviewId: string,
-    review: Partial<ReviewResponse>
-  ): Observable<any> {
+  updateReview(reviewId: string, review: FormData): Observable<any> {
     return this.http.put(`${this.baseUrl}/${reviewId}`, review, {
       withCredentials: true,
     });

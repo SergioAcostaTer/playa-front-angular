@@ -1,26 +1,52 @@
-<div class="flex items-start space-x-4 p-4 border-b border-gray-200 bg-white hover:bg-gray-50 transition-colors">
+<div
+  class="flex items-start space-x-4 p-4 border-b border-gray-200 bg-white hover:bg-gray-50 transition-colors"
+>
   <!-- Avatar -->
-  <img [src]="review.users.avatarUrl" alt="User Avatar" class="w-12 h-12 rounded-full flex-shrink-0 object-cover" *ngIf="review.users.avatarUrl"/>
+  <img
+    [src]="review.users.avatarUrl"
+    alt="User Avatar"
+    class="w-12 h-12 rounded-full flex-shrink-0 object-cover"
+    *ngIf="review.users.avatarUrl"
+  />
 
   <!-- Comment Content -->
   <div class="flex-1">
     <!-- Header: Username + Timestamp -->
     <div class="flex items-center justify-between mb-2">
       <div class="flex items-center space-x-2">
-        <span class="font-semibold text-gray-800">{{ review.users.username }}</span>
+        <span class="font-semibold text-gray-800">{{
+          review.users.username
+        }}</span>
         <span class="text-sm text-gray-500">{{ formattedDate }}</span>
         <span class="text-xs text-gray-400">• {{ timeAgo }}</span>
       </div>
     </div>
 
     <!-- Rating (View Mode) -->
-    <div *ngIf="!isEditing" class="flex items-center mb-4 space-x-1 text-yellow-500">
-      <ng-container *ngFor="let star of [1,2,3,4,5]">
-        <svg *ngIf="star <= review.reviews.rating" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.177 3.63h3.813c.969 0 1.371 1.24.588 1.81l-3.084 2.24 1.177 3.63c.3.921-.755 1.688-1.54 1.118L10 13.011l-3.082 2.344c-.785.57-1.84-.197-1.54-1.118l1.177-3.63-3.084-2.24c-.783-.57-.38-1.81.588-1.81h3.813l1.177-3.63z"/>
+    <div
+      *ngIf="!isEditing"
+      class="flex items-center mb-4 space-x-1 text-yellow-500"
+    >
+      <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+        <svg
+          *ngIf="star <= review.reviews.rating"
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-4 h-4 fill-current"
+          viewBox="0 0 20 20"
+        >
+          <path
+            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.177 3.63h3.813c.969 0 1.371 1.24.588 1.81l-3.084 2.24 1.177 3.63c.3.921-.755 1.688-1.54 1.118L10 13.011l-3.082 2.344c-.785.57-1.84-.197-1.54-1.118l1.177-3.63-3.084-2.24c-.783-.57-.38-1.81.588-1.81h3.813l1.177-3.63z"
+          />
         </svg>
-        <svg *ngIf="star > review.reviews.rating" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-300" viewBox="0 0 20 20">
-          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.177 3.63h3.813c.969 0 1.371 1.24.588 1.81l-3.084 2.24 1.177 3.63c.3.921-.755 1.688-1.54 1.118L10 13.011l-3.082 2.344c-.785.57-1.84-.197-1.54-1.118l1.177-3.63-3.084-2.24c-.783-.57-.38-1.81.588-1.81h3.813l1.177-3.63z"/>
+        <svg
+          *ngIf="star > review.reviews.rating"
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-4 h-4 text-gray-300"
+          viewBox="0 0 20 20"
+        >
+          <path
+            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.177 3.63h3.813c.969 0 1.371 1.24.588 1.81l-3.084 2.24 1.177 3.63c.3.921-.755 1.688-1.54 1.118L10 13.011l-3.082 2.344c-.785.57-1.84-.197-1.54-1.118l1.177-3.63-3.084-2.24c-.783-.57-.38-1.81.588-1.81h3.813l1.177-3.63z"
+          />
         </svg>
       </ng-container>
     </div>
@@ -30,22 +56,24 @@
       <ng-container *ngIf="isEditing; else viewMode">
         <!-- Editable Rating -->
         <div class="flex items-center mb-4 space-x-1 text-yellow-500">
-          <ng-container *ngFor="let star of [1,2,3,4,5]">
-            <svg 
-              (click)="tempRating = star" 
-              xmlns="http://www.w3.org/2000/svg" 
+          <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+            <svg
+              (click)="tempRating = star"
+              xmlns="http://www.w3.org/2000/svg"
               class="w-5 h-5 cursor-pointer transition-colors"
               [ngClass]="{
                 'fill-current text-yellow-500': star <= tempRating,
                 'text-gray-300': star > tempRating
-              }" 
+              }"
               viewBox="0 0 20 20"
             >
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.177 3.63h3.813c.969 0 1.371 1.24.588 1.81l-3.084 2.24 1.177 3.63c.3.921-.755 1.688-1.54 1.118L10 13.011l-3.082 2.344c-.785.57-1.84-.197-1.54-1.118l1.177-3.63-3.084-2.24c-.783-.57-.38-1.81.588-1.81h3.813l1.177-3.63z"/>
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.177 3.63h3.813c.969 0 1.371 1.24.588 1.81l-3.084 2.24 1.177 3.63c.3.921-.755 1.688-1.54 1.118L10 13.011l-3.082 2.344c-.785.57-1.84-.197-1.54-1.118l1.177-3.63-3.084-2.24c-.783-.57-.38-1.81.588-1.81h3.813l1.177-3.63z"
+              />
             </svg>
           </ng-container>
         </div>
-      
+
         <!-- Editable Comment -->
         <textarea
           [(ngModel)]="tempComment"
@@ -53,33 +81,61 @@
           class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none mb-4"
           placeholder="Escribe tu comentario..."
         ></textarea>
+        <!-- Imagen actual o nueva -->
+        <div *ngIf="review.reviews.imageUrl">
+          <img
+            [src]="tempImagePreviewUrl"
+            alt="Imagen actual"
+            class="max-w-sm rounded-lg shadow"
+          />
+          <button (click)="onRemoveImage()" class="ml-3 text-red-600 underline">
+            Quitar imagen
+          </button>
+        </div>
+
+        <!-- Cargar nueva -->
+        <input
+          type="file"
+          accept="image/*"
+          (change)="onFileSelected($event)"
+          class="mb-4"
+        />
+
         <div class="flex justify-end space-x-3">
-          <button 
-            (click)="onCancelEdit()" 
+          <button
+            (click)="onCancelEdit()"
             class="h-[30px] w-[90px] mb-[4px] bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-all shadow-md hover:shadow-lg font-semibold"
           >
             Cancelar
           </button>
-          <button 
-            (click)="onSaveComment()" 
+          <button
+            (click)="onSaveComment()"
             class="h-[30px] w-[90px] mb-[4px] bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all shadow-md hover:shadow-lg font-semibold"
           >
             Guardar
           </button>
         </div>
       </ng-container>
-      
+
       <ng-template #viewMode>
         <p class="leading-relaxed mb-4">{{ review.reviews.comment }}</p>
+        <!-- Review image if available -->
+        <img
+          *ngIf="review.reviews.imageUrl"
+          [src]="apiUrl + review.reviews.imageUrl"
+          alt="Imagen del comentario"
+          class="w-full max-w-sm rounded-lg shadow-sm mb-4"
+        />
+
         <div *ngIf="isCurrentUser" class="flex justify-end space-x-3">
-          <button 
-            (click)="onEditComment()" 
+          <button
+            (click)="onEditComment()"
             class="h-[30px] w-[90px] mb-[4px] bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-all shadow-sm hover:shadow-md font-semibold"
           >
             Editar
           </button>
-          <button 
-            (click)="onDeleteComment()" 
+          <button
+            (click)="onDeleteComment()"
             class="h-[30px] w-[90px] mb-[4px] bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-all shadow-sm hover:shadow-md font-semibold"
           >
             Eliminar

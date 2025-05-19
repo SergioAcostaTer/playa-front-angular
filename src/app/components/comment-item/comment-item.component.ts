@@ -8,6 +8,7 @@ import {
   inject,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../../../environments/environment';
 import { User } from '../../models/user';
 import { Review, ReviewService } from '../../services/review.service';
 import { UserService } from '../../services/user.service';
@@ -31,6 +32,10 @@ export class CommentItemComponent implements OnInit {
   public currentUser: User | null = null;
   public tempRating: number = 0;
   public tempComment: string = '';
+  public tempImageFile: File | null = null;
+  public tempImagePreviewUrl: string | null = null;
+  public removeImage: boolean = false;
+  public apiUrl = environment.apiUrl;
 
   ngOnInit(): void {
     this.userService.user$.subscribe((user) => {
@@ -62,18 +67,49 @@ export class CommentItemComponent implements OnInit {
   onEditComment(): void {
     this.tempRating = this.review.reviews.rating;
     this.tempComment = this.review.reviews.comment;
+    this.tempImagePreviewUrl = this.apiUrl + this.review.reviews.imageUrl;
+    this.tempImageFile = null;
+    this.removeImage = false;
     this.isEditing = true;
   }
 
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.tempImageFile = input.files[0];
+      this.removeImage = false;
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.tempImagePreviewUrl = reader.result as string;
+      };
+      reader.readAsDataURL(this.tempImageFile);
+    }
+  }
+
+  onRemoveImage(): void {
+    this.tempImageFile = null;
+    this.tempImagePreviewUrl = null;
+    this.removeImage = true;
+  }
+
   onSaveComment(): void {
+    const formData = new FormData();
+    formData.append('rating', this.tempRating.toString());
+    formData.append('comment', this.tempComment);
+    if (this.tempImageFile) {
+      formData.append('image', this.tempImageFile);
+    }
+    if (this.removeImage) {
+      formData.append('removeImage', 'true');
+    }
+
     this.reviewService
-      .updateReview(this.review.reviews.id.toString(), {
-        rating: this.tempRating,
-        comment: this.tempComment,
-      })
-      .subscribe(() => {
+      .updateReview(this.review.reviews.id.toString(), formData)
+      .subscribe((res) => {
         this.review.reviews.rating = this.tempRating;
         this.review.reviews.comment = this.tempComment;
+        this.review.reviews.imageUrl = res.review.imageUrl || null;
         this.isEditing = false;
       });
   }
@@ -91,4 +127,4 @@ export class CommentItemComponent implements OnInit {
   onDeleteComment(): void {
     this.deleteComment.emit(this.review.reviews.id);
   }
-} 
+}

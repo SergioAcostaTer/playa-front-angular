@@ -1,44 +1,61 @@
 <div class="beach-comments">
-    <h3 class="beach-comments__title">Comentarios</h3>
-    <div class="beach-comments__list">
-      <app-comment-item *ngFor="let review of reviews" [review]="review"
-        (deleteComment)="onDeleteComment(review.reviews.id)"
-        ></app-comment-item>
-    </div>
+  <h3 class="beach-comments__title">Comentarios</h3>
+  <div class="beach-comments__list">
+    <app-comment-item
+      *ngFor="let review of reviews"
+      [review]="review"
+      (deleteComment)="onDeleteComment(review.reviews.id)"
+    ></app-comment-item>
+  </div>
 
-    <div class="beach-comments__add">
-        <h4 class="beach-comments__add-title">Escribe un comentario</h4>
-        <div class="beach-comments__form">
-            <!-- Star Rating Input -->
-            <div class="flex items-center mb-4 space-x-1 text-yellow-500">
-                <ng-container *ngFor="let star of [1,2,3,4,5]">
-                    <svg 
-                        (click)="newCommentRating = star" 
-                        xmlns="http://www.w3.org/2000/svg" 
-                        class="w-5 h-5 cursor-pointer transition-colors"
-                        [ngClass]="{
-                            'fill-current text-yellow-500': star <= newCommentRating,
-                            'text-gray-300': star > newCommentRating
-                        }" 
-                        viewBox="0 0 20 20"
-                    >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.177 3.63h3.813c.969 0 1.371 1.24.588 1.81l-3.084 2.24 1.177 3.63c.3.921-.755 1.688-1.54 1.118L10 13.011l-3.082 2.344c-.785.57-1.84-.197-1.54-1.118l1.177-3.63-3.084-2.24c-.783-.57-.38-1.81.588-1.81h3.813l1.177-3.63z"/>
-                    </svg>
-                </ng-container>
-            </div>
-            <textarea
-                class="beach-comments__textarea" maxlength="160"
-                [(ngModel)]="newCommentText"
-                placeholder="Tu comentario..."
-                required
-            ></textarea>
-            <button
-                class="beach-comments__submit"
-                (click)="onAddComment()"
-                [disabled]="!newCommentText.trim()"
-            >
-                Enviar comentario
-            </button>
-        </div>
+  <div class="beach-comments__add">
+    <h4 class="beach-comments__add-title">Escribe un comentario</h4>
+    <div class="beach-comments__form">
+      <!-- Star Rating Input -->
+      <div class="flex items-center mb-4 space-x-1 text-yellow-500">
+        <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+          <svg
+            (click)="newCommentRating = star"
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5 cursor-pointer transition-colors"
+            [ngClass]="{
+              'fill-current text-yellow-500': star <= newCommentRating,
+              'text-gray-300': star > newCommentRating
+            }"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.177 3.63h3.813c.969 0 1.371 1.24.588 1.81l-3.084 2.24 1.177 3.63c.3.921-.755 1.688-1.54 1.118L10 13.011l-3.082 2.344c-.785.57-1.84-.197-1.54-1.118l1.177-3.63-3.084-2.24c-.783-.57-.38-1.81.588-1.81h3.813l1.177-3.63z"
+            />
+          </svg>
+        </ng-container>
+      </div>
+
+      <!-- Textarea -->
+      <textarea
+        class="beach-comments__textarea"
+        maxlength="160"
+        [(ngModel)]="newCommentText"
+        placeholder="Tu comentario..."
+        required
+      ></textarea>
+
+      <!-- Image Upload -->
+      <input
+        type="file"
+        (change)="onFileSelected($event)"
+        accept="image/*"
+        class="beach-comments__file mb-3"
+      />
+
+      <!-- Submit Button -->
+      <button
+        class="beach-comments__submit"
+        (click)="onAddComment()"
+        [disabled]="!newCommentText.trim()"
+      >
+        Enviar comentario
+      </button>
     </div>
+  </div>
 </div>
