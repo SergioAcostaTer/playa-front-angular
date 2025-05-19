@@ -125,6 +125,13 @@ export class GeneralMapComponent implements OnInit, AfterViewInit {
         attributionControl: false,
       });
 
+      const navControl = new maplibre.NavigationControl({
+        showCompass: true, // Mostrar la brújula
+        showZoom: true,    // Mostrar botones de zoom
+        visualizePitch: false // Opcional: muestra el ángulo de inclinación
+      });
+      this.map.addControl(navControl, 'top-right'); // Posición del control: 'top-right', 'top-left', 'bottom-right', 'bottom-left'
+
       this.map.on('load', () => {
         console.log('Map loaded successfully');
         mapContainer.style.display = 'none';
@@ -181,23 +188,20 @@ export class GeneralMapComponent implements OnInit, AfterViewInit {
 
     this.beaches.forEach((beach) => {
       if (beach.latitude && beach.longitude) {
-        const markerColor = beach.blueFlag ? '#3399FF' : '#FF0000';
+        const markerColor = beach.blueFlag ? '#0099cc' : '#ff385c';
 
         const marker = new maplibre.Marker({ color: markerColor })
           .setLngLat([beach.longitude, beach.latitude])
           .setPopup(
             new maplibre.Popup().setHTML(`
               <h3 style="margin: 0 0 8px; font-size: 16px; color: #222; font-weight: bold;">${beach.name}</h3>
+              <img src="${beach.coverUrl}" alt="${beach.name}" style="width: 100%; height: auto; border-radius: 6px; margin-bottom: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
               <div style="margin-bottom: 6px; font-size: 14px; color: #555;">
-                <span style="font-weight: 500;">Island:</span> ${beach.island}
-              </div>
-              <div style="margin-bottom: 6px; font-size: 14px; color: #555;">
-                <span style="font-weight: 500;">Municipality:</span> ${beach.municipality}
+                ${beach.island}, ${beach.municipality}
               </div>
               <div style="margin-bottom: 8px; font-size: 14px; color: #555;">
-                <span style="font-weight: 500;">Grade:</span> ${beach.grade} <span style="color: #FFD700;">★</span>
+                <span style="font-weight: 500;">Puntuación:</span> ${beach.grade} <span style="color: #FFD700;">★</span>
               </div>
-              <img src="${beach.coverUrl}" alt="${beach.name}" style="width: 100%; height: auto; border-radius: 6px; margin-bottom: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
               <a href="/beach/${beach.slug}" style="display: inline-block; font-size: 14px; color: #007bff; text-decoration: none; font-weight: 500; transition: color 0.2s;">View Details</a>
             `)
           )
@@ -215,14 +219,14 @@ export class GeneralMapComponent implements OnInit, AfterViewInit {
 
     const userIcon = document.createElement('div');
     userIcon.innerHTML = `
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#0000FF" stroke="#FFFFFF" stroke-width="2"/>
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#3399FF" class="bi bi-pin-fill" viewBox="0 0 16 16">
+        <path d="M4.146.146A.5.5 0 0 1 4.5 0h7a.5.5 0 0 1 .5.5c0 .68-.342 1.174-.646 1.479-.126.125-.25.224-.354.298v4.431l.078.048c.203.127.476.314.751.555C12.36 7.775 13 8.527 13 9.5a.5.5 0 0 1-.5.5h-4v4.5c0 .276-.224 1.5-.5 1.5s-.5-1.224-.5-1.5V10h-4a.5.5 0 0 1-.5-.5c0-.973.64-1.725 1.17-2.189A6 6 0 0 1 5 6.708 SacramentalesV2.277a3 3 0 0 1-.354-.298C4.342 1.674 4 1.179 4 .5a.5.5 0 0 1 .146-.354"/>
       </svg>
     `;
 
     const userMarker = new maplibre.Marker({ element: userIcon })
       .setLngLat(this.userLocation)
-      .setPopup(new maplibre.Popup().setHTML('<b>Your Location</b>'))
+      .setPopup(new maplibre.Popup().setHTML('<b>Tu localización</b>'))
       .addTo(this.map);
     this.markers.push(userMarker);
     console.log('User marker (custom star) added at:', this.userLocation);
