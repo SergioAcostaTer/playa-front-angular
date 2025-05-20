@@ -1,6 +1,4 @@
-<div
-  class="flex items-start space-x-4 p-4 border-b border-gray-200 bg-white hover:bg-gray-50 transition-colors"
->
+<div class="flex items-start space-x-4 p-4 border-b border-gray-200 bg-white hover:bg-gray-50 transition-colors">
   <!-- Avatar -->
   <img
     [src]="review.users.avatarUrl"
@@ -14,9 +12,7 @@
     <!-- Header: Username + Timestamp -->
     <div class="flex items-center justify-between mb-2">
       <div class="flex items-center space-x-2">
-        <span class="font-semibold text-gray-800">{{
-          review.users.username
-        }}</span>
+        <span class="font-semibold text-gray-800">{{ review.users.username }}</span>
         <span class="text-sm text-gray-500">{{ formattedDate }}</span>
         <span class="text-xs text-gray-400">• {{ timeAgo }}</span>
       </div>
@@ -81,26 +77,57 @@
           class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none mb-4"
           placeholder="Escribe tu comentario..."
         ></textarea>
-        <!-- Imagen actual o nueva -->
-        <div *ngIf="review.reviews.imageUrl">
-          <img
-            [src]="tempImagePreviewUrl"
-            alt="Imagen actual"
-            class="max-w-sm rounded-lg shadow"
-          />
-          <button (click)="onRemoveImage()" class="ml-3 text-red-600 underline">
-            Quitar imagen
-          </button>
+
+        <!-- Image Section -->
+        <div class="mb-4">
+          <!-- Current Image Preview -->
+          <div *ngIf="(tempImagePreviewUrl || review.reviews.imageUrl) && !removeImage" class="relative mb-4">
+            <img
+              [src]="tempImagePreviewUrl || apiUrl + review.reviews.imageUrl"
+              alt="Imagen del comentario"
+              class="max-w-sm rounded-lg shadow"
+            />
+            <button
+              (click)="onRemoveImage()"
+              class="absolute top-2 right-2 bg-red-600 text-white rounded-full p-1.5 hover:bg-red-700 transition-all"
+              title="Quitar imagen"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <!-- File Input -->
+          <div class="beach-comments__file-container">
+            <label for="file-upload" class="beach-comments__file-label">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-image-fill" viewBox="0 0 16 16">
+                <path d="M.002 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2zm1 9v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062zm5-6.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0"/>
+              </svg>
+              <span>{{ tempImageFile ? tempImageFile.name : 'Seleccionar imagen' }}</span>
+              <input
+                id="file-upload"
+                type="file"
+                accept="image/*"
+                (change)="onFileSelected($event)"
+                class="beach-comments__file"
+              />
+            </label>
+          </div>
         </div>
 
-        <!-- Cargar nueva -->
-        <input
-          type="file"
-          accept="image/*"
-          (change)="onFileSelected($event)"
-          class="mb-4"
-        />
-
+        <!-- Action Buttons -->
         <div class="flex justify-end space-x-3">
           <button
             (click)="onCancelEdit()"
@@ -111,6 +138,7 @@
           <button
             (click)="onSaveComment()"
             class="h-[30px] w-[90px] mb-[4px] bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all shadow-md hover:shadow-lg font-semibold"
+            [disabled]="!tempComment.trim()"
           >
             Guardar
           </button>

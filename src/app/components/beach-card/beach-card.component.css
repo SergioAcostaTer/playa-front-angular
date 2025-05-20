@@ -31,7 +31,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.9em;
+  font-size: 0.9em; /* Base: ~14.4px */
   color: var(--card-text-color, #666);
   margin-top: 0.375rem;
 }
@@ -103,7 +103,7 @@
 }
 
 .beach-card__island {
-  font-size: 0.7em; /* Base: ~14.4px */
+  font-size: 0.7em; /* Base: ~11.2px */
   text-transform: capitalize;
   font-weight: bold;
   margin-top: 0.1em;
@@ -156,22 +156,35 @@
     position: absolute;
     top: 8px;
     left: 8px;
+    padding: 4px 10px;
+    font-size: 0.7em; /* ~11.2px */
   }
 
   .beach-card__name {
-    font-size: 0.8em; /* ~14.4px */
+    font-size: 0.8em; /* ~12.8px */
   }
 
   .beach-card__province {
-    font-size: 0.7em; /* ~12.8px */
+    font-size: 0.7em; /* ~11.2px */
+    max-width: 80px;
+  }
+
+  .beach-card__island {
+    font-size: 0.65em; /* ~10.4px */
     max-width: 80px;
   }
 
   .beach-card__size {
-    font-size: 0.7em; /* ~12.8px */
+    font-size: 0.7em; /* ~11.2px */
   }
 
-  .beach-card__details {
-    height: 40%;
+  .beach-card__distance {
+    font-size: 0.7em; /* ~11.2px */
+    gap: 0.375rem;
+  }
+
+  .beach-card__distance svg {
+    width: 16px; /* ~1em */
+    height: 16px;
   }
 }
