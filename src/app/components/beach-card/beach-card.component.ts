@@ -20,7 +20,6 @@ export class BeachCardComponent implements OnInit {
     }
   }
 
-  // Get user's current location
   private getUserLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -38,15 +37,14 @@ export class BeachCardComponent implements OnInit {
         },
         (error) => {
           console.error('Error getting location:', error);
-          this.distance = 'Geolocalización no activa';
+          this.distance = null; // Set to null to trigger length display
         }
       );
     } else {
-      this.distance = 'Geolocalización no compatible';
+      this.distance = null; // Set to null to trigger length display
     }
   }
 
-  // Haversine formula to calculate distance between two points
   private calculateDistance(
     lat1: number,
     lon1: number,
@@ -67,7 +65,6 @@ export class BeachCardComponent implements OnInit {
     return `${distance.toFixed(2)} km`;
   }
 
-  // Convert degrees to radians
   private degToRad(deg: number): number {
     return deg * (Math.PI / 180);
   }

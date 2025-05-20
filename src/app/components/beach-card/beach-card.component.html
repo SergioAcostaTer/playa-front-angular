@@ -13,19 +13,17 @@
         Bandera Azul
       </div>
       <div
-      *ngIf="beach.grade"
-      class="absolute top-4 right-4 bg-white text-gray-800 font-semibold text-sm px-3! py-1! rounded-full shadow-md flex items-center space-x-1!"
-    >
-      <span>{{ beach.grade }} / 5</span>
-
-      <img
-        src="https://www.svgrepo.com/show/13695/star.svg"
-        alt="Calificación"
-        class="w-4! h-4!"
-        loading="lazy"
-      />
-    </div>
-
+        *ngIf="beach.grade"
+        class="absolute top-4 right-4 bg-white text-gray-800 font-semibold text-sm px-3! py-1! rounded-full shadow-md flex items-center space-x-1!"
+      >
+        <span>{{ beach.grade }} / 5</span>
+        <img
+          src="https://www.svgrepo.com/show/13695/star.svg"
+          alt="Calificación"
+          class="w-4! h-4!"
+          loading="lazy"
+        />
+      </div>
     </figure>
     <div class="beach-card__details">
       <header class="beach-card__header">
@@ -34,9 +32,67 @@
           <p class="beach-card__island">{{ beach.island }}</p>
         </div>
       </header>
-      <p *ngIf="distance">Distancia: {{ distance }}</p>
-      <p *ngIf="!distance">Calculando distancia...</p>
+      <div class="beach-card__distance flex items-center gap-2">
+  <!-- SVG for when location is available -->
+  <svg
+    *ngIf="distance"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class="w-5 h-5 text-green-600"
+  >
+    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+    <g id="SVGRepo_iconCarrier">
+      <path
+        d="M12 21C15.5 17.4 19 14.1764 19 10.2C19 6.22355 15.866 3 12 3C8.13401 3 5 6.22355 5 10.2C5 14.1764 8.5 17.4 12 21Z"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></path>
+      <path
+        d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></path>
+      </g>
+        </svg>
+        <!-- SVG for when location is not available -->
+        <svg
+          *ngIf="!distance && beach"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-5 h-5 text-red-600"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M12 21C15.5 17.4 19 14.1764 19 10.2C19 6.22355 15.866 3 12 3C8.13401 3 5 6.22355 5 10.2C5 14.1764 8.5 17.4 12 21Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+            <path
+              d="M3 3L21 21"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </g>
+        </svg>
+        <p *ngIf="distance">Estás a {{ distance }} de la playa</p>
+        <p *ngIf="!distance && beach">Longitud de la playa: {{ beach.length }} m</p>
+      </div>
     </div>
   </article>
 </a>
 <div *ngIf="!beach">Playa no disponible</div>
+
+

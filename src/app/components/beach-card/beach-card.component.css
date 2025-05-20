@@ -27,6 +27,15 @@
   box-shadow: 0 0 6px var(--card-hover-shadow, rgba(0, 0, 0, 0.15));
 }
 
+.beach-card__distance {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9em;
+  color: var(--card-text-color, #666);
+  margin-top: 0.375rem;
+}
+
 /* ELEMENTOS */
 .beach-card__media {
   position: relative;
