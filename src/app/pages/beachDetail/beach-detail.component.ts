@@ -27,13 +27,14 @@ import { BeachService } from '../../services/beach.service';
 })
 export class BeachDetailPageComponent implements OnInit {
   beach: Beach | null = null;
+  beaches: Beach[] | null = null;
   beachService = inject(BeachService);
 
   constructor(private route: ActivatedRoute) {}
 
   async ngOnInit() {
     const slug = this.route.snapshot.paramMap.get('slug');
-    this.beaches = await getAllBeaches();
+    this.beaches = await this.beachService.getAllBeaches();
 
     if (slug) {
       this.beach = await this.beachService.getBeachBySlug(slug);
