@@ -25,7 +25,6 @@ export const routes: Routes = [
       { path: 'beach/:slug', component: BeachDetailPageComponent },
       { path: 'profile', component: ProfilePageComponent },
       { path: 'ranking', component: RankingPageComponent },
-      { path: 'view-profile', component: ViewProfileComponent },
       { path: 'search', component: SearchComponent },
       { path: 'view-profile/:username', component: ViewProfileComponent },
       { path: 'ranking/:island', component: RankingPageByIslandComponent },

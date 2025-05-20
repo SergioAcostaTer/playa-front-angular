@@ -10,7 +10,7 @@ import * as maplibre from 'maplibre-gl';
 export class MaplibreMapComponent implements OnInit, OnChanges {
   @Input() latitude: number = 51.5074;
   @Input() longitude: number = -0.1278;
-  @Input() zoom: number = 12;
+  @Input() zoom: number = 20;
 
   private map: maplibre.Map | undefined;
 

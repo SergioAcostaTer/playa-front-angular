@@ -33,6 +33,7 @@ export class BeachDetailPageComponent implements OnInit {
 
   async ngOnInit() {
     const slug = this.route.snapshot.paramMap.get('slug');
+    this.beaches = await getAllBeaches();
 
     if (slug) {
       this.beach = await this.beachService.getBeachBySlug(slug);
