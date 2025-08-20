@@ -1,4 +1,4 @@
-# Playea: Sprint [Número/Nombre del Sprint] - Resumen de Desarrollo
+# Playea: Resumen de Desarrollo (BACKEND CAÍDO)
 
 ## 📌 Integrantes del Proyecto
 
